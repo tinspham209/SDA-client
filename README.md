@@ -8,6 +8,17 @@
 
 ### Tech-Stack
 
+- React Hooks
+- react-router-dom
+- immutability-helper
+- react-dnd
+- react-dnd-html5-backend
+- styled-components
+- react-redux
+- @reduxjs/toolkit
+- @material-ui/core
+- react-icons
+
 ### Deploy
 
 https://sda-research.ml
@@ -16,7 +27,12 @@ https://sda-research.ml
 
 ### Plan Of Action
 
-- Initial Setup
+- Initial Project
+- Setup React & Install dependencies
+- Setup Router
+- Navbar component
+- InfoSection component
+- Add data to homepage
 
 ### Directory Structure
 
