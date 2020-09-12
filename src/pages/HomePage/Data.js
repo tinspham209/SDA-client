@@ -1,7 +1,7 @@
 export const homeObjOne = {
 	primary: true,
 	lightBg: false,
-	lightTopLine: true,
+	lightTopLine: false,
 	lightText: true,
 	lightTextDesc: true,
 	topLine: "Environment Analysis System",
@@ -35,11 +35,11 @@ export const homeObjTwo = {
 };
 
 export const homeObjThree = {
-	primary: false,
-	lightBg: true,
-	lightTopLine: false,
-	lightText: false,
-	lightTextDesc: false,
+	primary: true,
+	lightBg: false,
+	lightTopLine: true,
+	lightText: true,
+	lightTextDesc: true,
 	imgStart: "",
 	start: "",
 	topLine: "",
