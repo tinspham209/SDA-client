@@ -38,13 +38,13 @@ const Navbar = () => {
 							<NavLinks to="/">Home</NavLinks>
 						</NavItem>
 						<NavItem>
-							<NavLinks to="/services">Dashboard</NavLinks>
+							<NavLinks to="/dashboard">Dashboard</NavLinks>
 						</NavItem>
 						<NavItem>
-							<NavLinks to="/products">About</NavLinks>
+							<NavLinks to="/about">About</NavLinks>
 						</NavItem>
 						<NavItem>
-							<NavLinks to="/products">Contact</NavLinks>
+							<NavLinks to="/contact">Contact</NavLinks>
 						</NavItem>
 					</NavMenu>
 				</NavbarContainer>
