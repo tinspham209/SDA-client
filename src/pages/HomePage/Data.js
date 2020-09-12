@@ -33,3 +33,20 @@ export const homeObjTwo = {
 	alt: "Vault",
 	start: "",
 };
+
+export const homeObjThree = {
+	primary: false,
+	lightBg: true,
+	lightTopLine: false,
+	lightText: false,
+	lightTextDesc: false,
+	imgStart: "",
+	start: "",
+	topLine: "",
+	headline: "Need more information ?",
+	description: "Contact us if you need more information about our services",
+	buttonLabel: "Contact Us",
+	urlLinkBtn: "/contact",
+	img: require("../../assets/img/question.svg"),
+	alt: "question",
+};
