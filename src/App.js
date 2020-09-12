@@ -6,6 +6,7 @@ import GlobalStyle from "./GlobalStyles";
 import { NotFound, Spinner } from "./components/UI/";
 import ScrollToTop from "./components/ScrollToTop";
 const HomePage = React.lazy(() => import("./pages/HomePage/HomePage"));
+const About = React.lazy(() => import("./pages/About/About"));
 
 function App() {
 	return (
@@ -16,6 +17,7 @@ function App() {
 				<Navbar />
 				<Switch>
 					<Route path="/" exact component={HomePage} />
+					<Route path="/about" exact component={About} />
 					<Route component={NotFound} />
 				</Switch>
 			</Router>
