@@ -28,7 +28,7 @@ export const homeObjTwo = {
 		"Means that a dashboard that is convenient for users to analyze and review data.",
 	buttonLabel: "Go to Dashboard",
 	urlLinkBtn: "/dashboard",
-	imgStart: "",
+	imgStart: "flex-end",
 	img: require("../../assets/img/what-is-sda.svg"),
 	alt: "Vault",
 	start: "",
