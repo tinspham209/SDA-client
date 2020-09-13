@@ -29,7 +29,7 @@ export const homeObjTwo = {
 	buttonLabel: "",
 	urlLinkBtn: "/contact",
 	imgStart: "flex-end",
-	img: require("../../assets/img/what-is-sda.svg"),
+	img: require("../../assets/img/bug-fixing.svg"),
 	alt: "Vault",
 	start: "",
 };
