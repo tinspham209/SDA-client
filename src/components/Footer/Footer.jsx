@@ -1,6 +1,6 @@
 import React from "react";
 import logoImg from "../../assets/img/logo.png";
-import { FaFacebook, FaInstagram } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 import {
 	FooterContainer,
 	LogoImg,
@@ -21,11 +21,12 @@ const Footer = () => {
 					</SocialLogo>
 					<WebsiteRights>SDA-Team © 2020</WebsiteRights>
 					<SocialIcons>
-						<SocialIconLink href="/" target="_blank" aria-label="Facebook">
-							<FaFacebook />
-						</SocialIconLink>
-						<SocialIconLink href="/" target="_blank" aria-label="Instagram">
-							<FaInstagram />
+						<SocialIconLink
+							href="https://github.com/sdateamdtu2020"
+							target="_blank"
+							aria-label="Facebook"
+						>
+							<FaGithub />
 						</SocialIconLink>
 					</SocialIcons>
 				</SocialMediaWrap>
