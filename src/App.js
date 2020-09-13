@@ -7,6 +7,7 @@ import { NotFound, Spinner } from "./components/UI/";
 import ScrollToTop from "./components/ScrollToTop";
 const HomePage = React.lazy(() => import("./pages/HomePage/HomePage"));
 const About = React.lazy(() => import("./pages/About/About"));
+const Dashboard = React.lazy(() => import("./pages/Dashboard/Dashboard"));
 const Contact = React.lazy(() => import("./pages/Contact/Contact"));
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
 				<Switch>
 					<Route path="/" exact component={HomePage} />
 					<Route path="/about" exact component={About} />
+					<Route path="/dashboard" exact component={Dashboard} />
 					<Route path="/contact" exact component={Contact} />
 					<Route component={NotFound} />
 				</Switch>
