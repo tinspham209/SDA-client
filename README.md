@@ -13,10 +13,10 @@
 - immutability-helper
 - react-dnd
 - react-dnd-html5-backend
-- styled-components
 - react-redux
 - @reduxjs/toolkit
 - @material-ui/core
+- styled-components
 - react-icons
 
 ### Deploy
@@ -33,6 +33,10 @@ https://sda-research.ml
 - Navbar component
 - InfoSection component
 - Add data to homepage
+- Create Navbar Dashboard
+- Implement Redux to app
+- Update Navbar
+- Import Material-UI
 
 ### Directory Structure
 
