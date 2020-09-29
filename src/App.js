@@ -33,7 +33,7 @@ function App() {
 						<Route path="/contact" exact component={Contact} />
 						<Route component={NotFound} />
 					</Switch>
-					<Footer />
+					{isDashboard ? null : <Footer />}
 				</DndProvider>
 			</Router>
 		</Suspense>
