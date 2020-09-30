@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { InfoSection } from "../../components";
 import { homeObjOne, homeObjTwo, homeObjThree } from "./Data";
 
@@ -8,12 +8,14 @@ import { useLocation } from "react-router-dom";
 
 const Home = () => {
 	const dispatch = useDispatch();
-
 	let location = useLocation();
-	if (location.pathname !== "/dashboard") {
-		const action = setDashboardNavbar(false);
-		dispatch(action);
-	}
+
+	useEffect(() => {
+		if (location.pathname !== "/dashboard") {
+			const action = setDashboardNavbar(false);
+			dispatch(action);
+		}
+	}, [location.pathname, dispatch]);
 
 	return (
 		<>
