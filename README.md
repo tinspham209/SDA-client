@@ -87,19 +87,6 @@ For the project to build, these must exist with exact filenames:
 
 ## Installation Guide
 
-### Tech-Stack
-
-- React Hooks
-- react-router-dom
-- immutability-helper
-- react-dnd
-- react-dnd-html5-backend
-- react-redux
-- @reduxjs/toolkit
-- @material-ui/core
-- styled-components
-- react-icons
-
 ### Production
 
 - Clone this project
@@ -135,14 +122,29 @@ npm install
 npm start
 ```
 
-### Folder function:
+### Tech-Stack
+
+- React Hooks
+- react-router-dom
+- immutability-helper
+- react-dnd
+- react-dnd-html5-backend
+- react-redux
+- @reduxjs/toolkit
+- @material-ui/core
+- styled-components
+- react-icons
+
+### Folder function
 
 - `app`: store redux
 - `assets`: store image
 - `components`:
 - `pages`:
 
-### Component function:
+### Component function
+
+- i'll write it as soon as i can 😀
 
 ### How to name a folder and a file
 
