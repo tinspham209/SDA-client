@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Container } from "../../../GlobalStyles";
 import { Link } from "react-router-dom";
 
 export const Nav = styled.nav`
@@ -16,13 +15,14 @@ export const Nav = styled.nav`
 	z-index: 999;
 `;
 
-export const NavbarContainer = styled(Container)`
+export const NavbarContainer = styled.div`
 	display: flex;
 	align-items: center;
+	width: 100%;
+	padding: 4px;
+
 	/* justify-content: space-between; */
 	height: 80px;
-
-	${Container}
 `;
 
 export const NavLogo = styled(Link)`
@@ -38,7 +38,7 @@ export const NavLogo = styled(Link)`
 `;
 
 export const NavLogoImg = styled.img`
-	height: 40px;
+	height: 48px;
 	border: 0;
 
 	padding-right: 0;
