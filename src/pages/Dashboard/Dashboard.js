@@ -1,10 +1,10 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import { InfoSection } from "../../components";
-import { homeObjOne } from "./Data";
-
 import { useDispatch } from "react-redux";
+
 import { setDashboardNavbar } from "./dashboardSlice";
+
+import DashboardComponent from "../../components/Dashboard/Dashboard";
 
 const Dashboard = () => {
 	const dispatch = useDispatch();
@@ -15,11 +15,7 @@ const Dashboard = () => {
 		dispatch(action);
 	}
 
-	return (
-		<>
-			<InfoSection {...homeObjOne} />
-		</>
-	);
+	return <DashboardComponent />;
 };
 
 export default Dashboard;
