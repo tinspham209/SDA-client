@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import Grid from "@material-ui/core/Grid";
 
 export const Nav = styled.nav`
 	background: rgb(51, 102, 204);
-	height: 80px;
+	height: 60px;
 	font-size: 1.2rem;
 	display: flex;
 	justify-content: center;
@@ -14,8 +15,10 @@ export const Nav = styled.nav`
 	z-index: 999;
 `;
 
+export const GridContainer = styled(Grid)``;
+
 export const NavbarContainer = styled.div`
-	height: 80px;
+	height: 60px;
 	width: 100%;
 	max-width: 1500px;
 	padding: 4px;
@@ -30,14 +33,14 @@ export const NavLogo = styled(Link)`
 	font-size: 2rem;
 
 	display: flex;
-	justify-self: flex-start;
+	justify-content: center;
 	align-items: center;
 
 	cursor: pointer;
 `;
 
 export const NavLogoImg = styled.img`
-	height: 48px;
+	height: 50px;
 	border: 0;
 
 	padding-right: 0;
@@ -53,7 +56,6 @@ export const Icon = styled.span`
 export const GroupButton = styled.div`
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-
-	margin: 4px;
+	align-items: left;
+	margin-top: 6px;
 `;

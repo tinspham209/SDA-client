@@ -14,6 +14,7 @@ import {
 	NavLogoImg,
 	Icon,
 	GroupButton,
+	GridContainer,
 } from "./Navbar.elements";
 
 const Navbar = () => {
@@ -22,41 +23,47 @@ const Navbar = () => {
 			<IconContext.Provider value={{ color: "#fff" }}>
 				<Nav>
 					<NavbarContainer>
-						<NavLogo to="/">
-							<NavLogoImg src={logoImg} alt="logo" />
-						</NavLogo>
-						<GroupButton>
-							<ButtonGroup
-								variant="contained"
-								color="primary"
-								aria-label="contained primary button group"
-							>
-								<Button>
-									{" "}
-									<Icon>
-										<FaPlusCircle />
-									</Icon>{" "}
-									New
-								</Button>
-								<Button>
-									{" "}
-									<Icon>
-										<FaSave />
-									</Icon>{" "}
-									Save
-								</Button>
-								<Button>
-									{" "}
-									<Icon>
-										<FaQuestionCircle />
-									</Icon>{" "}
-									Help
-								</Button>
-								<Button>Example 1</Button>
-								<Button>Example 2</Button>
-								<Button>Example 3</Button>
-							</ButtonGroup>
-						</GroupButton>
+						<GridContainer container spacing={1}>
+							<GridContainer item xs={2}>
+								<NavLogo to="/">
+									<NavLogoImg src={logoImg} alt="logo" />
+								</NavLogo>
+							</GridContainer>
+							<GridContainer item xs={8}>
+								<GroupButton>
+									<ButtonGroup
+										variant="contained"
+										color="primary"
+										aria-label="contained primary button group"
+									>
+										<Button>
+											{" "}
+											<Icon>
+												<FaPlusCircle />
+											</Icon>{" "}
+											New
+										</Button>
+										<Button>
+											{" "}
+											<Icon>
+												<FaSave />
+											</Icon>{" "}
+											Save
+										</Button>
+										<Button>
+											{" "}
+											<Icon>
+												<FaQuestionCircle />
+											</Icon>{" "}
+											Help
+										</Button>
+										<Button>Example 1</Button>
+										<Button>Example 2</Button>
+										<Button>Example 3</Button>
+									</ButtonGroup>
+								</GroupButton>
+							</GridContainer>
+						</GridContainer>
 					</NavbarContainer>
 				</Nav>
 			</IconContext.Provider>
