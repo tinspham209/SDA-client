@@ -2,10 +2,9 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Nav = styled.nav`
-	background: #101522;
+	background: rgb(51, 102, 204);
 	height: 80px;
 	font-size: 1.2rem;
-
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -16,13 +15,13 @@ export const Nav = styled.nav`
 `;
 
 export const NavbarContainer = styled.div`
-	display: flex;
-	align-items: center;
+	height: 80px;
 	width: 100%;
+	max-width: 1500px;
 	padding: 4px;
 
-	/* justify-content: space-between; */
-	height: 80px;
+	display: flex;
+	align-items: center;
 `;
 
 export const NavLogo = styled(Link)`
@@ -49,4 +48,12 @@ export const NavLogoImg = styled.img`
 
 export const Icon = styled.span`
 	margin-right: 5px;
+`;
+
+export const GroupButton = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	margin: 4px;
 `;
