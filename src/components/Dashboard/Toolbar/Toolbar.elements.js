@@ -7,7 +7,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Collapse from "@material-ui/core/Collapse";
 
 export const CustomToolbar = styled.div`
-	height: calc(100vh - 80px - 4px);
+	height: calc(100vh - 60px - 4px);
 	background-color: rgb(242, 242, 242);
 	overflow-y: auto;
 	border: 1px solid #000;

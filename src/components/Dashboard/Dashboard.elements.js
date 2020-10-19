@@ -18,5 +18,5 @@ export const DashboardContainer = styled.div`
 `;
 
 export const GridContainer = styled(Grid)`
-	height: calc(100vh - 80px);
+	height: calc(100vh - 60px);
 `;
