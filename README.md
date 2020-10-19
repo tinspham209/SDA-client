@@ -21,15 +21,13 @@
 5. InfoSection component
 6. Add data to homepage
 7. Create Navbar Dashboard
-8. Implement Redux to app
-9. Update Navbar
+8. Implement Redux toolkit to app
+9. Update Navbar Dashboard
 10. Import Material-UI
-11. Install redux-toolkit
+11. Grid layout for Dashboard
+12. Toolbar component
 
 ### Next Steps:
-
-- Create Grid UI
-- Create List of item in sidebar
 
 ### Directory Structure
 
