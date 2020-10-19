@@ -1,10 +1,10 @@
 # Mini Project: Smart Dashboard Application - Client
 
-## Date: 20 - Aug - 2020
+## Date: 20 - Aug - 2020 to present
 
 ### Functions:
 
-- Environment Analysis System
+- Scientific research: Environment Analysis System in Vietnam
 
 ### Releases
 
@@ -48,6 +48,9 @@
     ├── components
         ├── Dashboard
             ├── Navbar
+            ├── Toolbar
+            ├── Dashboard.jsx
+            └── index.js
         ├── Footer
         ├── InfoSection
         ├── Navbar
