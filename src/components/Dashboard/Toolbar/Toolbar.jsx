@@ -1,7 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsOpen } from "./ToolbarSlice";
-
+import { useDrag } from "react-dnd";
+import { ItemTypes } from "../../../app/ItemTypes";
 import {
 	CustomToolbar,
 	CustomList,
@@ -21,6 +22,13 @@ const Toolbar = () => {
 		const action = setIsOpen(object);
 		dispatch(action);
 	};
+
+	const [, drag] = useDrag({
+		item: { type: ItemTypes.ITEM },
+		collect: (monitor) => ({
+			isDragging: monitor.isDragging(),
+		}),
+	});
 
 	return (
 		<CustomToolbar>
@@ -42,7 +50,7 @@ const Toolbar = () => {
 						<CustomCollapse in={isOpen[item.id]} timeout="auto" unmountOnExit>
 							<CustomList component="div" disablePadding>
 								{item.collapseItem.map((itemCollapse) => (
-									<CustomListItem button key={itemCollapse.id}>
+									<CustomListItem button key={itemCollapse.id} ref={drag}>
 										<CustomListItemText
 											primary={itemCollapse.name}
 											id={itemCollapse.id}
