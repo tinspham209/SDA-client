@@ -1,21 +1,49 @@
 import React from "react";
 import { CustomContent } from "./Content.elements";
 
-import Diagram, { createSchema, useSchema } from "beautiful-react-diagrams";
+import Diagram, { useSchema } from "beautiful-react-diagrams";
 import "beautiful-react-diagrams/styles.css";
-const initialSchema = createSchema({
+
+const initialSchema = {
 	nodes: [
-		{ id: "node-1", content: "Node 1", coordinates: [100, 200] },
-		{ id: "node-2", content: "Node 2", coordinates: [250, 100] },
-		{ id: "node-3", content: "Node 3", coordinates: [350, 320] },
-		{ id: "node-4", content: "Node 4", coordinates: [250, 400] },
+		{
+			id: "node-1",
+			content: "Start",
+			coordinates: [100, 150],
+			outputs: [{ id: "port-1", alignment: "right" }],
+			data: {
+				foo: "bar",
+				count: 0,
+			},
+		},
+		{
+			id: "node-2",
+			content: "Middle",
+			coordinates: [300, 150],
+			inputs: [{ id: "port-3", alignment: "left" }],
+			outputs: [{ id: "port-5", alignment: "right" }],
+			data: {
+				bar: "foo",
+			},
+		},
+		{
+			id: "node-3",
+			content: "End",
+			coordinates: [600, 150],
+			inputs: [{ id: "port-7", alignment: "left" }],
+			data: {
+				foo: true,
+				bar: false,
+				some: {
+					deep: {
+						object: true,
+					},
+				},
+			},
+		},
 	],
-	links: [
-		{ input: "node-1", output: "node-2" },
-		{ input: "node-1", output: "node-3" },
-		{ input: "node-1", output: "node-4" },
-	],
-});
+	links: [{ input: "port-1", output: "port-3" }],
+};
 
 const Content = () => {
 	const [schema, { onChange }] = useSchema(initialSchema);
