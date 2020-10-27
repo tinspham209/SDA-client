@@ -5,7 +5,9 @@ import {
 	GridContainer,
 	Layout,
 } from "./Dashboard.elements";
-import { Toolbar } from "./index";
+
+import { Toolbar, Content } from "./index";
+
 const Dashboard = () => {
 	return (
 		<Layout>
@@ -15,7 +17,7 @@ const Dashboard = () => {
 						<Toolbar />
 					</GridContainer>
 					<GridContainer item xs={8}>
-						<div style={{ border: "1px solid red" }}></div>
+						<Content />
 					</GridContainer>
 					<GridContainer item xs>
 						<div style={{ border: "1px solid red" }}></div>
