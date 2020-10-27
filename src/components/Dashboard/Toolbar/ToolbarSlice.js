@@ -10,7 +10,7 @@ const toolbar = createSlice({
 			industry: false,
 			forest: false,
 			operators: false,
-			visualization: false,
+			visualization: true,
 		},
 	},
 	reducers: {
