@@ -28,8 +28,14 @@
 12. Toolbar component
 13. Initial content component
 14. Setup draw diagrams
+15. Refactor Toolbar component with Redux
+16. addNewNode & removeNode
+17. First layout of Node
 
 ### Next Steps:
+
+- Fix item can't drag in Toolbar
+- Update UI CustomRender of Node
 
 ### Directory Structure
 
@@ -183,5 +189,13 @@ import { InfoSec, InfoRow } from "./InfoSection.elements";
 ```
 
 ### How to deploy to firebase
+
+i'll write it as soon as i can 😀
+
+### How to setup Redux-Toolkit
+
+i'll write it as soon as i can 😀
+
+### How to update state in Redux of each component
 
 i'll write it as soon as i can 😀
