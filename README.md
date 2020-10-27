@@ -26,6 +26,8 @@
 10. Import Material-UI
 11. Grid layout for Dashboard
 12. Toolbar component
+13. Initial content component
+14. Setup draw diagrams
 
 ### Next Steps:
 
