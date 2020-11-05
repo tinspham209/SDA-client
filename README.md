@@ -31,11 +31,14 @@
 15. Refactor Toolbar component with Redux
 16. addNewNode & removeNode
 17. First layout of Node
+18. Viz Node in TreeView
 
 ### Next Steps:
 
 - Fix item can't drag in Toolbar
-- Update UI CustomRender of Node
+- Refactor Code of TableTree & CustomNode
+- Viz Node in Maps
+- Set uniqueID of each node
 
 ### Directory Structure
 
@@ -57,6 +60,9 @@
         ├── Dashboard
             ├── Navbar
             ├── Toolbar
+            ├── Content
+            ├── CustomNode
+            ├── TableTree
             ├── Dashboard.jsx
             └── index.js
         ├── Footer
