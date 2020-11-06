@@ -1,9 +1,8 @@
 import styled from "styled-components";
 
 export const Node = styled.div`
-	width: 360px;
-	height: 275px;
 	border: 1px solid #000;
+	border-radius: 5px;
 `;
 
 export const Header = styled.div`
@@ -15,7 +14,9 @@ export const Header = styled.div`
 	padding: 2px 10px 2px 10px;
 `;
 
-export const HeaderSubTitle = styled.div``;
+export const HeaderLeft = styled.div``;
+
+export const HeaderCenter = styled.div``;
 
 export const HeaderTitle = styled.p`
 	font-size: 16px;
@@ -23,11 +24,11 @@ export const HeaderTitle = styled.p`
 	font-weight: bold;
 `;
 
-export const HeaderIcon = styled.div`
+export const HeaderRight = styled.div`
 	color: white;
 `;
 
-export const Body = styled.p`
+export const Body = styled.div`
 	border: 1px solid red;
 	margin: 15px;
 	overflow-y: auto;

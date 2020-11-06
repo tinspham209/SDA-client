@@ -7,8 +7,9 @@ import TableTree from "../TableTree/TableTree";
 import {
 	Body,
 	Header,
-	HeaderSubTitle,
-	HeaderIcon,
+	HeaderLeft,
+	HeaderCenter,
+	HeaderRight,
 	HeaderTitle,
 	Node,
 	PortIn,
@@ -18,19 +19,20 @@ import {
 const CustomNode = ({ id, data, inputs, outputs }) => (
 	<Node>
 		<Header>
-			<HeaderSubTitle> </HeaderSubTitle>
-			<HeaderTitle>Industry Production</HeaderTitle>
-			<HeaderIcon>
+			<HeaderLeft />
+			<HeaderCenter>
+				<HeaderTitle>Industry Production</HeaderTitle>
+			</HeaderCenter>
+			<HeaderRight>
 				<IconButton
 					aria-label="delete"
 					size="small"
-					edge="false"
 					color="inherit"
 					onClick={() => data.onClick(id)}
 				>
 					<AiFillCloseCircle />
 				</IconButton>
-			</HeaderIcon>
+			</HeaderRight>
 		</Header>
 		<Body>
 			<TableTree />
