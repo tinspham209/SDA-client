@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TreeView from "@material-ui/lab/TreeView";
-import { MdExpandLess, MdExpandMore } from "react-icons/md";
+import { MdExpandLess, MdExpandMore, MdExitToApp } from "react-icons/md";
 import TreeItem from "@material-ui/lab/TreeItem";
 
 const useStyles = makeStyles({
@@ -11,7 +11,7 @@ const useStyles = makeStyles({
 		maxWidth: 400,
 	},
 });
-const TableTree = () => {
+const TableTree = ({ treeItem }) => {
 	const classes = useStyles();
 	const [expanded, setExpanded] = React.useState([]);
 	const [selected, setSelected] = React.useState([]);
@@ -29,6 +29,7 @@ const TableTree = () => {
 			className={classes.root}
 			defaultCollapseIcon={<MdExpandLess />}
 			defaultExpandIcon={<MdExpandMore />}
+			defaultEndIcon={<MdExitToApp />}
 			expanded={expanded}
 			selected={selected}
 			onNodeToggle={handleToggle}
@@ -43,6 +44,16 @@ const TableTree = () => {
 				<TreeItem nodeId="7" label="2017" />
 				<TreeItem nodeId="8" label="2018" />
 				<TreeItem nodeId="9" label="2019" />
+			</TreeItem>
+			<TreeItem nodeId="11" label="Industry">
+				<TreeItem nodeId="22" label="2012" />
+				<TreeItem nodeId="33" label="2013" />
+				<TreeItem nodeId="44" label="2014" />
+				<TreeItem nodeId="55" label="2015" />
+				<TreeItem nodeId="66" label="2016" />
+				<TreeItem nodeId="77" label="2017" />
+				<TreeItem nodeId="88" label="2018" />
+				<TreeItem nodeId="99" label="2019" />
 			</TreeItem>
 		</TreeView>
 	);
