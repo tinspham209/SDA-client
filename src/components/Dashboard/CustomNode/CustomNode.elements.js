@@ -30,6 +30,7 @@ export const HeaderIcon = styled.div`
 export const Body = styled.p`
 	border: 1px solid red;
 	margin: 15px;
+	overflow-y: auto;
 `;
 
 export const PortIn = styled.div`
