@@ -1,6 +1,6 @@
 import React from "react";
 import { useDrop } from "react-dnd";
-import { ItemTypes } from "../../../app/ItemTypes";
+import { ITEM } from "../../../app/ItemTypes";
 
 import Diagram, { useSchema } from "beautiful-react-diagrams";
 import "beautiful-react-diagrams/styles.css";
@@ -17,7 +17,7 @@ const Content = () => {
 
 	// dnd from list to container
 	const [, dropList] = useDrop({
-		accept: ItemTypes.ITEM,
+		accept: ITEM,
 		drop: (item, monitor) => {
 			addNewNode(monitor.getClientOffset().x, monitor.getClientOffset().y);
 			return undefined;
