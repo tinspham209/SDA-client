@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import { TOOLBAR } from "../ItemTypes";
 const toolbar = createSlice({
-	name: "toolbar",
+	name: TOOLBAR,
 	initialState: {
 		isOpen: {
 			climate: false,
@@ -12,6 +12,7 @@ const toolbar = createSlice({
 			operators: false,
 			visualization: true,
 		},
+		isDragItem: {},
 	},
 	reducers: {
 		setDashboardNavbar: (state, action) => {

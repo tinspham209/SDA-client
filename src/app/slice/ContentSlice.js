@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { CONTENT } from "../ItemTypes";
 
 const content = createSlice({
-	name: "content",
+	name: CONTENT,
 	initialState: {
 		nodes: [],
 	},

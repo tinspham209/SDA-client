@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { DASHBOARD } from "../ItemTypes";
 
 const dashboard = createSlice({
-	name: "dashboard",
+	name: DASHBOARD,
 	initialState: {
 		isDashboard: false,
 	},
