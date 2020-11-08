@@ -1,8 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setIsOpen } from "./ToolbarSlice";
-import { useDrag } from "react-dnd";
-import { ItemTypes } from "../../../app/ItemTypes";
+import { setIsOpen } from "../../../app/slice/ToolbarSlice";
+
 import {
 	CustomToolbar,
 	CustomList,
@@ -11,9 +10,11 @@ import {
 	CustomListItemText,
 	CustomCollapse,
 } from "./Toolbar.elements";
-
 import { MdExpandLess, MdExpandMore } from "react-icons/md";
+
 import { listItems } from "./Data";
+import ListItem from "./ListItem/ListItem";
+
 const Toolbar = () => {
 	const dispatch = useDispatch();
 	const isOpen = useSelector((state) => state.toolbar.isOpen);
@@ -22,13 +23,6 @@ const Toolbar = () => {
 		const action = setIsOpen(object);
 		dispatch(action);
 	};
-
-	const [, drag] = useDrag({
-		item: { type: ItemTypes.ITEM },
-		collect: (monitor) => ({
-			isDragging: monitor.isDragging(),
-		}),
-	});
 
 	return (
 		<CustomToolbar>
@@ -50,12 +44,11 @@ const Toolbar = () => {
 						<CustomCollapse in={isOpen[item.id]} timeout="auto" unmountOnExit>
 							<CustomList component="div" disablePadding>
 								{item.collapseItem.map((itemCollapse) => (
-									<CustomListItem button key={itemCollapse.id} ref={drag}>
-										<CustomListItemText
-											primary={itemCollapse.name}
-											id={itemCollapse.id}
-										/>
-									</CustomListItem>
+									<ListItem
+										key={itemCollapse.id}
+										primary={itemCollapse.name}
+										id={itemCollapse.id}
+									/>
 								))}
 							</CustomList>
 						</CustomCollapse>
