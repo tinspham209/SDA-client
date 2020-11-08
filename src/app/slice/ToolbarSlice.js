@@ -12,7 +12,7 @@ const toolbar = createSlice({
 			operators: false,
 			visualization: true,
 		},
-		isDragItem: {},
+		isDragItem: "",
 	},
 	reducers: {
 		setDashboardNavbar: (state, action) => {
@@ -22,11 +22,14 @@ const toolbar = createSlice({
 		setIsOpen: (state, action) => {
 			state.isOpen[action.payload] = !state.isOpen[action.payload];
 		},
+		setIsDragItem: (state, action) => {
+			state.isDragItem = action.payload;
+		},
 	},
 });
 
 const { reducer, actions } = toolbar;
 
-export const { setDashboardNavbar, setIsOpen } = actions;
+export const { setDashboardNavbar, setIsOpen, setIsDragItem } = actions;
 
 export default reducer;
