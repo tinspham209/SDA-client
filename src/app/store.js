@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import dashboardReducer from "../pages/Dashboard/dashboardSlice";
-import toolbarReducer from "../components/Dashboard/Toolbar/ToolbarSlice";
-import contentReducer from "../components/Dashboard/Content/ContentSlice";
+import dashboardReducer from "./slice/dashboardSlice";
+import toolbarReducer from "./slice/ToolbarSlice";
+import contentReducer from "./slice/ContentSlice";
 
 const rootReducer = {
 	dashboard: dashboardReducer,

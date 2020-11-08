@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import { setDashboardNavbar } from "./dashboardSlice";
+import { setDashboardNavbar } from "../../app/slice/dashboardSlice";
 
 import DashboardComponent from "../../components/Dashboard/Dashboard";
 
