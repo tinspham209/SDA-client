@@ -11,7 +11,7 @@ const useStyles = makeStyles({
 		maxWidth: 400,
 	},
 });
-const TableTree = ({ treeItem }) => {
+const TableTree = ({ treeItem, setItemSelecting }) => {
 	const classes = useStyles();
 	const [expanded, setExpanded] = React.useState([]);
 	const [selected, setSelected] = React.useState([]);
@@ -22,6 +22,7 @@ const TableTree = ({ treeItem }) => {
 
 	const handleSelect = (event, nodeIds) => {
 		setSelected(nodeIds);
+		setItemSelecting(nodeIds);
 	};
 
 	return (
