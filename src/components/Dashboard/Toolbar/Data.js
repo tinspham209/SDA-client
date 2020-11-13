@@ -4,16 +4,22 @@ export const listItems = [
 		name: "Climate",
 		collapseItem: [
 			{
-				id: "avg-temperature",
+				id: "avgTemperature",
 				name: "Average Temperature",
+				input: false,
+				output: true,
 			},
 			{
-				id: "avg-precipitation",
-				name: "Average Precipitation",
+				id: "avgHumidity",
+				name: "Average Humidity",
+				input: false,
+				output: true,
 			},
 			{
-				id: "avg-rainfall",
+				id: "avgRainfall",
 				name: "Average Rainfall",
+				input: false,
+				output: true,
 			},
 		],
 	},
@@ -22,11 +28,11 @@ export const listItems = [
 		name: "Atmosphere",
 		collapseItem: [
 			{
-				id: "air-quality-station",
+				id: "airQualityStation",
 				name: "Air Quality Station",
 			},
 			{
-				id: "air-quality-filter",
+				id: "airQualityFilter",
 				name: "Air Quality Filter",
 			},
 		],
@@ -56,7 +62,7 @@ export const listItems = [
 		name: "Forest",
 		collapseItem: [
 			{
-				id: "forest-cover-area",
+				id: "forestCoverArea",
 				name: "Forest Cover Area",
 			},
 			{
@@ -70,11 +76,11 @@ export const listItems = [
 		name: "Operators",
 		collapseItem: [
 			{
-				id: "statistics-merge",
+				id: "statisticsMerge",
 				name: "Statistics Merge",
 			},
 			{
-				id: "simple-merge",
+				id: "simpleMerge",
 				name: "Simple Merge",
 			},
 		],
@@ -84,20 +90,28 @@ export const listItems = [
 		name: "Visualization",
 		collapseItem: [
 			{
-				id: "column-chart",
+				id: "columnChart",
 				name: "Column Chart",
+				input: true,
+				output: false,
 			},
 			{
-				id: "line-chart",
+				id: "lineChart",
 				name: "Line Chart",
+				input: true,
+				output: false,
 			},
 			{
-				id: "pie-chart",
+				id: "pieChart",
 				name: "Pie Chart",
+				input: true,
+				output: false,
 			},
 			{
 				id: "maps-viz",
 				name: "Maps",
+				input: true,
+				output: false,
 			},
 		],
 	},
