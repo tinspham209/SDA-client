@@ -32,13 +32,11 @@
 16. addNewNode & removeNode
 17. First layout of Node
 18. Viz Node in TreeView
+19. Set unique HeaderName of Node
 
 ### Next Steps:
 
-- get ID each item in Toolbar, an push it to Redux store
-- Refactor Code of TableTree & CustomNode
 - Fix item can't drag in Toolbar
-- Set uniqueID of each node
 - Viz Node in Maps
 
 ### Directory Structure
