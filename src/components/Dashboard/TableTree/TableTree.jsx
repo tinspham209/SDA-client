@@ -45,16 +45,6 @@ const TableTree = ({ treeItem }) => {
 				<TreeItem nodeId="8" label="2018" />
 				<TreeItem nodeId="9" label="2019" />
 			</TreeItem>
-			<TreeItem nodeId="11" label="Industry">
-				<TreeItem nodeId="22" label="2012" />
-				<TreeItem nodeId="33" label="2013" />
-				<TreeItem nodeId="44" label="2014" />
-				<TreeItem nodeId="55" label="2015" />
-				<TreeItem nodeId="66" label="2016" />
-				<TreeItem nodeId="77" label="2017" />
-				<TreeItem nodeId="88" label="2018" />
-				<TreeItem nodeId="99" label="2019" />
-			</TreeItem>
 		</TreeView>
 	);
 };
