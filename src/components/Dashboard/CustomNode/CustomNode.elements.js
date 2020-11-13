@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Button } from "@material-ui/core";
 
 export const Node = styled.div`
 	border: 1px solid #000;
@@ -45,3 +46,9 @@ export const PortOut = styled.div`
 	top: 50%;
 	right: -8px;
 `;
+
+export const BodyButton = styled.div`
+	margin: 10px 15px 0 15px;
+`;
+
+export const CustomButton = styled(Button)``;

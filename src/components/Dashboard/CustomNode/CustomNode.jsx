@@ -12,10 +12,14 @@ import {
 	Node,
 	PortIn,
 	PortOut,
+	BodyButton,
+	CustomButton,
 } from "./CustomNode.elements";
 
 const CustomNode = ({ id, data, inputs, outputs }) => {
-	console.log("id: ", id);
+	const input = data.port(id)[0];
+	const output = data.port(id)[1];
+
 	return (
 		<Node>
 			<Header>
@@ -34,32 +38,46 @@ const CustomNode = ({ id, data, inputs, outputs }) => {
 					</IconButton>
 				</HeaderRight>
 			</Header>
+			<BodyButton>
+				<CustomButton
+					size="small"
+					variant="contained"
+					color="primary"
+					onClick={() => {}}
+				>
+					Run
+				</CustomButton>
+			</BodyButton>
 			<Body>
 				{data.renderNode(id)}
-				<PortIn>
-					{inputs.map((port) =>
-						React.cloneElement(port, {
-							style: {
-								width: "15px",
-								height: "15px",
-								background: "#1B263B",
-								borderRadius: "50%",
-							},
-						})
-					)}
-				</PortIn>
-				<PortOut>
-					{outputs.map((port) =>
-						React.cloneElement(port, {
-							style: {
-								width: "15px",
-								height: "15px",
-								background: "#1B263B",
-								borderRadius: "50%",
-							},
-						})
-					)}
-				</PortOut>
+				{input ? (
+					<PortIn>
+						{inputs.map((port) =>
+							React.cloneElement(port, {
+								style: {
+									width: "15px",
+									height: "15px",
+									background: "#1B263B",
+									borderRadius: "50%",
+								},
+							})
+						)}
+					</PortIn>
+				) : null}
+				{output ? (
+					<PortOut>
+						{outputs.map((port) =>
+							React.cloneElement(port, {
+								style: {
+									width: "15px",
+									height: "15px",
+									background: "#1B263B",
+									borderRadius: "50%",
+								},
+							})
+						)}
+					</PortOut>
+				) : null}
 			</Body>
 		</Node>
 	);
