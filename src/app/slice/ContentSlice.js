@@ -4,17 +4,22 @@ import { CONTENT } from "../ItemTypes";
 const content = createSlice({
 	name: CONTENT,
 	initialState: {
-		nodes: [],
+		itemIsSelect: {},
 	},
 	reducers: {
-		addNode: (state, action) => {
+		setItemIsSelect: (state, action) => {
 			console.log("action.payload", action.payload);
+			const itemSelect = action.payload;
+			state.itemIsSelect = {
+				...state.itemIsSelect,
+				itemSelect,
+			};
 		},
 	},
 });
 
 const { reducer, actions } = content;
 
-export const { addNode } = actions;
+export const { setItemIsSelect } = actions;
 
 export default reducer;
