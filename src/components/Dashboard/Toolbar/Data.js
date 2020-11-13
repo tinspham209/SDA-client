@@ -54,6 +54,8 @@ export const listItems = [
 			{
 				id: "industryItem",
 				name: "Industry Production",
+				input: false,
+				output: true,
 			},
 		],
 	},
@@ -108,7 +110,7 @@ export const listItems = [
 				output: false,
 			},
 			{
-				id: "maps-viz",
+				id: "mapsViz",
 				name: "Maps",
 				input: true,
 				output: false,
