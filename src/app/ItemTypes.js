@@ -6,3 +6,4 @@ export const TOOLBAR = "TOOLBAR";
 
 export const INDUSTRY_ITEM = "industryItem";
 export const MAPS_VIZ = "maps-viz";
+export const AVG_HUMIDITY = "avgHumidity";
