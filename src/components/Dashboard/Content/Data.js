@@ -41,3 +41,17 @@ export const treeIndustry = {
 		},
 	],
 };
+
+export const treeHumidity = {
+	name: "Average Humidity",
+	data: [
+		{
+			id: "humidity-camau",
+			name: "Cà Mau",
+		},
+		{
+			id: "humidity-hanoi",
+			name: "Hà Nội",
+		},
+	],
+};
