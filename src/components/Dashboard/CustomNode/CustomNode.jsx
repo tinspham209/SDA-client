@@ -15,12 +15,13 @@ import {
 } from "./CustomNode.elements";
 
 const CustomNode = ({ id, data, inputs, outputs }) => {
+	console.log("id: ", id);
 	return (
 		<Node>
 			<Header>
 				<HeaderLeft />
 				<HeaderCenter>
-					<HeaderTitle>Industry Production</HeaderTitle>
+					<HeaderTitle>{data.headerNode(id)}</HeaderTitle>
 				</HeaderCenter>
 				<HeaderRight>
 					<IconButton

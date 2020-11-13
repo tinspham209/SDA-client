@@ -35,7 +35,7 @@ const Toolbar = () => {
 					</CustomListSubheader>
 				}
 			>
-				{listItems.map((item) => (
+				{listItems.map((item, indexItem) => (
 					<div key={item.id}>
 						<CustomListItem button onClick={() => handleClick(item.id)}>
 							<CustomListItemText primary={item.name} />
@@ -43,11 +43,13 @@ const Toolbar = () => {
 						</CustomListItem>
 						<CustomCollapse in={isOpen[item.id]} timeout="auto" unmountOnExit>
 							<CustomList component="div" disablePadding>
-								{item.collapseItem.map((itemCollapse) => (
+								{item.collapseItem.map((itemCollapse, indexItemCollapse) => (
 									<ListItem
 										key={itemCollapse.id}
 										primary={itemCollapse.name}
 										id={itemCollapse.id}
+										indexItem={indexItem}
+										indexItemCollapse={indexItemCollapse}
 									/>
 								))}
 							</CustomList>

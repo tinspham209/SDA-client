@@ -6,9 +6,13 @@ import { useDrag } from "react-dnd";
 import { useDispatch } from "react-redux";
 
 import { ITEM } from "../../../../app/ItemTypes";
-import { setIsDragItem } from "../../../../app/slice/ToolbarSlice";
+import {
+	setIsDragItem,
+	setIndexItem,
+	setIndexItemCollapse,
+} from "../../../../app/slice/ToolbarSlice";
 
-const ListItem = ({ id, primary }) => {
+const ListItem = ({ id, primary, indexItem, indexItemCollapse }) => {
 	const dispatch = useDispatch();
 
 	const [, drag] = useDrag({
@@ -18,6 +22,8 @@ const ListItem = ({ id, primary }) => {
 		}),
 		begin: () => {
 			dragging(id);
+			setIndex(indexItem);
+			setIndexCollapse(indexItemCollapse);
 		},
 		end: () => {
 			isDrop(id);
@@ -29,8 +35,22 @@ const ListItem = ({ id, primary }) => {
 		dispatch(action);
 	};
 
+	const setIndex = (indexItem) => {
+		const action = setIndexItem(indexItem);
+		dispatch(action);
+	};
+
+	const setIndexCollapse = (indexItemCollapse) => {
+		const action = setIndexItemCollapse(indexItemCollapse);
+		dispatch(action);
+	};
+
 	const isDrop = (id) => {
-		const action = setIsDragItem("");
+		let action = setIsDragItem("");
+		dispatch(action);
+		action = setIndexItem("");
+		dispatch(action);
+		action = setIndexItemCollapse("");
 		dispatch(action);
 	};
 

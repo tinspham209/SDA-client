@@ -13,6 +13,10 @@ const toolbar = createSlice({
 			visualization: true,
 		},
 		isDragItem: "",
+		indexItemCollapse: {
+			item: "",
+			itemCollapse: "",
+		},
 	},
 	reducers: {
 		setDashboardNavbar: (state, action) => {
@@ -25,11 +29,23 @@ const toolbar = createSlice({
 		setIsDragItem: (state, action) => {
 			state.isDragItem = action.payload;
 		},
+		setIndexItem: (state, action) => {
+			state.indexItemCollapse.item = action.payload;
+		},
+		setIndexItemCollapse: (state, action) => {
+			state.indexItemCollapse.itemCollapse = action.payload;
+		},
 	},
 });
 
 const { reducer, actions } = toolbar;
 
-export const { setDashboardNavbar, setIsOpen, setIsDragItem } = actions;
+export const {
+	setDashboardNavbar,
+	setIsOpen,
+	setIsDragItem,
+	setIndexItem,
+	setIndexItemCollapse,
+} = actions;
 
 export default reducer;
