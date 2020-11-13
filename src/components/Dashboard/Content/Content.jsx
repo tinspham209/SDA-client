@@ -32,13 +32,8 @@ const Content = () => {
 		},
 	});
 
-	const deleteNodeFromSchema = (id) => {
-		const nodeToRemove = schema.nodes.find((node) => node.id === id);
-		removeNode(nodeToRemove);
-	};
-
+	// set render Node
 	const setItemRenderNode = (id) => {
-		// split from "industryItem-1" to "industry"
 		switch (id.split("-")[0]) {
 			case INDUSTRY_ITEM:
 				return <TableTree />;
@@ -47,12 +42,22 @@ const Content = () => {
 		}
 	};
 
+	// get Header Name
 	const getHeaderNode = (id) => {
 		const indexItem = id.split("-")[1];
 		const indexItemCollapse = id.split("-")[2];
 		const headerName =
 			listItems[indexItem].collapseItem[indexItemCollapse].name;
 		return headerName;
+	};
+
+	const setPort = (id) => {
+		const indexItem = id.split("-")[1];
+		const indexItemCollapse = id.split("-")[2];
+
+		const input = listItems[indexItem].collapseItem[indexItemCollapse].input;
+		const output = listItems[indexItem].collapseItem[indexItemCollapse].output;
+		return [input, output];
 	};
 
 	// ID: idNode-indexItem-indexItemCollapse-randomNumber
@@ -68,11 +73,17 @@ const Content = () => {
 				onClick: deleteNodeFromSchema,
 				renderNode: setItemRenderNode,
 				headerNode: getHeaderNode,
+				port: setPort,
 			},
 			inputs: [{ id: `port-${Math.random()}` }],
 			outputs: [{ id: `port-${Math.random()}` }],
 		};
 		addNode(nextNode);
+	};
+
+	const deleteNodeFromSchema = (id) => {
+		const nodeToRemove = schema.nodes.find((node) => node.id === id);
+		removeNode(nodeToRemove);
 	};
 
 	return (
