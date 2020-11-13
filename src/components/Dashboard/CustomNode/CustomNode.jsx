@@ -43,7 +43,7 @@ const CustomNode = ({ id, data, inputs, outputs }) => {
 					size="small"
 					variant="contained"
 					color="primary"
-					onClick={() => {}}
+					onClick={() => data.btnOnClick(id)}
 				>
 					Run
 				</CustomButton>
