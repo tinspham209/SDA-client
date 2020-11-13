@@ -33,9 +33,12 @@
 17. First layout of Node
 18. Viz Node in TreeView
 19. Set unique HeaderName of Node
+20. Viz AVG_HUMIDITY in TreeView
+21. Viz INDUSTRY in TreeView
 
 ### Next Steps:
 
+- handleBtnOnClickInNode doesn't send state to Store;
 - Fix item can't drag in Toolbar
 - Viz Node in Maps
 
