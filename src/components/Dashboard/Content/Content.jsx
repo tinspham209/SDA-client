@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDrop } from "react-dnd";
-import { useSelector } from "react-redux";
-import { ITEM, INDUSTRY_ITEM } from "../../../app/ItemTypes";
+import { useSelector, useDispatch } from "react-redux";
+import { ITEM, INDUSTRY_ITEM, AVG_HUMIDITY } from "../../../app/ItemTypes";
+import { setItemIsSelect } from "../../../app/slice/ContentSlice";
 
 import Diagram, { useSchema } from "beautiful-react-diagrams";
 import "beautiful-react-diagrams/styles.css";
@@ -10,16 +11,23 @@ import { CustomContent } from "./Content.elements";
 import CustomNode from "../CustomNode/CustomNode";
 import TableTree from "../TableTree/TableTree";
 import { listItems } from "../Toolbar/Data";
+import { treeHumidity, treeIndustry } from "./Data";
 
 const initialSchema = {
 	nodes: [],
 };
 
 const Content = () => {
+	const dispatch = useDispatch();
+
 	const isDropItem = useSelector((state) => state.toolbar.isDragItem);
+
 	const indexItemCollapse = useSelector(
 		(state) => state.toolbar.indexItemCollapse
 	);
+
+	const [itemSelecting, setItemSelecting] = useState("");
+	console.log("itemSelectingContent: ", itemSelecting);
 
 	const [schema, { onChange, addNode, removeNode }] = useSchema(initialSchema);
 
@@ -33,17 +41,29 @@ const Content = () => {
 	});
 
 	// set render Node
-	const setItemRenderNode = (id) => {
+	const setItemRenderInNode = (id) => {
 		switch (id.split("-")[0]) {
 			case INDUSTRY_ITEM:
-				return <TableTree />;
+				return (
+					<TableTree
+						treeItem={treeIndustry}
+						setItemSelecting={setItemSelecting}
+					/>
+				);
+			case AVG_HUMIDITY:
+				return (
+					<TableTree
+						treeItem={treeHumidity}
+						setItemSelecting={setItemSelecting}
+					/>
+				);
 			default:
 				return null;
 		}
 	};
 
 	// get Header Name
-	const getHeaderNode = (id) => {
+	const setHeaderNameInNode = (id) => {
 		const indexItem = id.split("-")[1];
 		const indexItemCollapse = id.split("-")[2];
 		const headerName =
@@ -60,6 +80,16 @@ const Content = () => {
 		return [input, output];
 	};
 
+	const handleBtnOnClickInNode = (id) => {
+		const action = setItemIsSelect(itemSelecting);
+		dispatch(action);
+	};
+
+	const deleteNodeFromSchema = (id) => {
+		const nodeToRemove = schema.nodes.find((node) => node.id === id);
+		removeNode(nodeToRemove);
+	};
+
 	// ID: idNode-indexItem-indexItemCollapse-randomNumber
 	const addNewNode = (x, y) => {
 		const nextNode = {
@@ -71,19 +101,15 @@ const Content = () => {
 			render: CustomNode,
 			data: {
 				onClick: deleteNodeFromSchema,
-				renderNode: setItemRenderNode,
-				headerNode: getHeaderNode,
+				renderNode: setItemRenderInNode,
+				headerNode: setHeaderNameInNode,
 				port: setPort,
+				btnOnClick: handleBtnOnClickInNode,
 			},
 			inputs: [{ id: `port-${Math.random()}` }],
 			outputs: [{ id: `port-${Math.random()}` }],
 		};
 		addNode(nextNode);
-	};
-
-	const deleteNodeFromSchema = (id) => {
-		const nodeToRemove = schema.nodes.find((node) => node.id === id);
-		removeNode(nodeToRemove);
 	};
 
 	return (
