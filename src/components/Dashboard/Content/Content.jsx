@@ -82,6 +82,7 @@ const Content = () => {
 
 	const handleBtnOnClickInNode = (id) => {
 		const action = setItemIsSelect(itemSelecting);
+		console.log("itemSelecting", itemSelecting);
 		dispatch(action);
 	};
 
