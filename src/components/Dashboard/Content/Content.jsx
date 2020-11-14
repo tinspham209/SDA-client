@@ -6,6 +6,7 @@ import {
 	INDUSTRY_ITEM,
 	AVG_HUMIDITY,
 	LINE_CHART,
+	COLUMN_CHART,
 } from "../../../app/ItemTypes";
 import { setItemIsSelect } from "../../../app/slice/ContentSlice";
 
@@ -16,6 +17,7 @@ import { CustomContent } from "./Content.elements";
 import CustomNode from "../CustomNode/CustomNode";
 import TableTree from "../TableTree/TableTree";
 import LineChart from "../LineChart/LineChart";
+import ColumnChart from "../ColumnChart/ColumnChart";
 import { listItems } from "../Toolbar/Data";
 import { treeHumidity, treeIndustry } from "./Data";
 
@@ -65,6 +67,8 @@ const Content = () => {
 				);
 			case LINE_CHART:
 				return <LineChart />;
+			case COLUMN_CHART:
+				return <ColumnChart />;
 			default:
 				return null;
 		}
