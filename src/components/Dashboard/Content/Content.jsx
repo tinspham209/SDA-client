@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { useDrop } from "react-dnd";
 import { useSelector, useDispatch } from "react-redux";
-import { ITEM, INDUSTRY_ITEM, AVG_HUMIDITY } from "../../../app/ItemTypes";
+import {
+	ITEM,
+	INDUSTRY_ITEM,
+	AVG_HUMIDITY,
+	LINE_CHART,
+} from "../../../app/ItemTypes";
 import { setItemIsSelect } from "../../../app/slice/ContentSlice";
 
 import Diagram, { useSchema } from "beautiful-react-diagrams";
@@ -10,6 +15,7 @@ import "beautiful-react-diagrams/styles.css";
 import { CustomContent } from "./Content.elements";
 import CustomNode from "../CustomNode/CustomNode";
 import TableTree from "../TableTree/TableTree";
+import LineChart from "../LineChart/LineChart";
 import { listItems } from "../Toolbar/Data";
 import { treeHumidity, treeIndustry } from "./Data";
 
@@ -57,6 +63,8 @@ const Content = () => {
 						setItemSelecting={setItemSelecting}
 					/>
 				);
+			case LINE_CHART:
+				return <LineChart />;
 			default:
 				return null;
 		}
