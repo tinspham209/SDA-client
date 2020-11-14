@@ -4,8 +4,8 @@ import HighchartsReact from "highcharts-react-official";
 import { CustomColumnChart } from "./ColumnChart.elements";
 import { getHumidityData, getHumidityDataHanoi } from "../../../../api";
 
-const LineChart = () => {
-	const [dataLineChart, setDataLineChart] = useState({
+const ColumnChart = () => {
+	const [dataColumnChart, setDataColumnChart] = useState({
 		chart: {
 			type: "column",
 		},
@@ -57,7 +57,7 @@ const LineChart = () => {
 						};
 
 						// update State of xAxis & yAxis
-						setDataLineChart((prevState) => ({
+						setDataColumnChart((prevState) => ({
 							...prevState,
 							xAxis: {
 								...prevState.xAxis,
@@ -76,9 +76,9 @@ const LineChart = () => {
 
 	return (
 		<CustomColumnChart>
-			<HighchartsReact highcharts={Highcharts} options={dataLineChart} />
+			<HighchartsReact highcharts={Highcharts} options={dataColumnChart} />
 		</CustomColumnChart>
 	);
 };
 
-export default LineChart;
+export default ColumnChart;
