@@ -35,6 +35,7 @@ const TableTree = ({ treeItem, setItemSelecting }) => {
 			selected={selected}
 			onNodeToggle={handleToggle}
 			onNodeSelect={handleSelect}
+			multiSelect
 		>
 			{treeItem.data.map((item) => (
 				<TreeItem nodeId={item.id} label={item.name} key={item.id}>
