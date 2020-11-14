@@ -12,6 +12,8 @@
 
 ### Screenshot
 
+<img src="./screenshot.png" alt="screenshot"/>
+
 ### Plan Of Action
 
 1. Initial Project
