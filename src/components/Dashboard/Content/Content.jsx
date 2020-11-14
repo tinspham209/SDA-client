@@ -7,6 +7,7 @@ import {
 	AVG_HUMIDITY,
 	LINE_CHART,
 	COLUMN_CHART,
+	MAPS_VIZ,
 } from "../../../app/ItemTypes";
 import { setItemIsSelect } from "../../../app/slice/ContentSlice";
 
@@ -15,9 +16,12 @@ import "beautiful-react-diagrams/styles.css";
 
 import { CustomContent } from "./Content.elements";
 import CustomNode from "../CustomNode/CustomNode";
-import TableTree from "../TableTree/TableTree";
-import LineChart from "../LineChart/LineChart";
-import ColumnChart from "../ColumnChart/ColumnChart";
+import {
+	ColumnChart,
+	LineChart,
+	Maps,
+	TableTree,
+} from "../Visualization/index";
 import { listItems } from "../Toolbar/Data";
 import { treeHumidity, treeIndustry } from "./Data";
 
@@ -69,6 +73,8 @@ const Content = () => {
 				return <LineChart />;
 			case COLUMN_CHART:
 				return <ColumnChart />;
+			case MAPS_VIZ:
+				return <Maps />;
 			default:
 				return null;
 		}
