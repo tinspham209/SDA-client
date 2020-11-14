@@ -8,7 +8,6 @@ const content = createSlice({
 	},
 	reducers: {
 		setItemIsSelect: (state, action) => {
-			console.log("action.payload", action.payload);
 			const itemSelect = action.payload;
 			state.itemIsSelect = {
 				...state.itemIsSelect,
