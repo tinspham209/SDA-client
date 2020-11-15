@@ -9,7 +9,10 @@ import {
 	COLUMN_CHART,
 	MAPS_VIZ,
 } from "../../../app/ItemTypes";
-import { setItemIsSelect } from "../../../app/slice/ContentSlice";
+import {
+	setItemIsSelect,
+	fetchDataHumidity,
+} from "../../../app/slice/ContentSlice";
 
 import Diagram, { useSchema } from "beautiful-react-diagrams";
 import "beautiful-react-diagrams/styles.css";
@@ -94,10 +97,10 @@ const Content = () => {
 	};
 
 	const handleBtnOnClickInNode = (id) => {
-		// itemIsSelect.map((item) => {
-		// 	if(item === )
-		// })
-		const action = setItemIsSelect([]);
+		let action;
+		action = fetchDataHumidity(itemIsSelect);
+
+		// action = setItemIsSelect([]);
 		dispatch(action);
 	};
 
@@ -113,7 +116,7 @@ const Content = () => {
 			id: `${isDropItem}-${indexItemCollapse.item}-${
 				indexItemCollapse.itemCollapse
 			}-${schema.nodes.length + 1}`,
-			coordinates: [x - 250, y - 70],
+			coordinates: [x - 250, y - 80],
 			render: CustomNode,
 			data: {
 				onClick: deleteNodeFromSchema,
