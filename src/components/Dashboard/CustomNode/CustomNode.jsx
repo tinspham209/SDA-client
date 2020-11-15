@@ -19,6 +19,7 @@ import {
 const CustomNode = ({ id, data, inputs, outputs }) => {
 	const input = data.port(id)[0];
 	const output = data.port(id)[1];
+	const isButton = data.isBtn(id);
 
 	return (
 		<Node>
@@ -38,16 +39,18 @@ const CustomNode = ({ id, data, inputs, outputs }) => {
 					</IconButton>
 				</HeaderRight>
 			</Header>
-			<BodyButton>
-				<CustomButton
-					size="small"
-					variant="contained"
-					color="primary"
-					onClick={() => data.btnOnClick(id)}
-				>
-					Run
-				</CustomButton>
-			</BodyButton>
+			{isButton ? (
+				<BodyButton>
+					<CustomButton
+						size="small"
+						variant="contained"
+						color="primary"
+						onClick={() => data.btnOnClick(id)}
+					>
+						Run
+					</CustomButton>
+				</BodyButton>
+			) : null}
 			<Body>
 				{data.renderNode(id)}
 				{input ? (
