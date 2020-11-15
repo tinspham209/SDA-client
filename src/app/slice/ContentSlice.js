@@ -4,15 +4,15 @@ import { CONTENT } from "../ItemTypes";
 const content = createSlice({
 	name: CONTENT,
 	initialState: {
-		itemIsSelect: {},
+		itemIsSelect: [],
+		humidity: {
+			categories: [],
+			series: [],
+		},
 	},
 	reducers: {
 		setItemIsSelect: (state, action) => {
-			const itemSelect = action.payload;
-			state.itemIsSelect = {
-				...state.itemIsSelect,
-				itemSelect,
-			};
+			state.itemIsSelect = action.payload;
 		},
 	},
 });
