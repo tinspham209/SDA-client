@@ -12,7 +12,7 @@ import {
 } from "./Toolbar.elements";
 import { MdExpandLess, MdExpandMore } from "react-icons/md";
 
-import { listItems } from "./Data";
+import { listItems } from "../../../data";
 import ListItem from "./ListItem/ListItem";
 
 const Toolbar = () => {
