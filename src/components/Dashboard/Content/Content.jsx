@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDrop } from "react-dnd";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -22,24 +22,21 @@ import {
 	Maps,
 	TableTree,
 } from "../Visualization/index";
-import { listItems } from "../Toolbar/Data";
-import { treeHumidity, treeIndustry } from "./Data";
+import { listItems, treeHumidity, treeIndustry } from "../../../data";
 
 const initialSchema = {
 	nodes: [],
 };
 
 const Content = () => {
-	const dispatch = useDispatch();
-
 	const isDropItem = useSelector((state) => state.toolbar.isDragItem);
+	const itemIsSelect = useSelector((state) => state.content.itemIsSelect);
+
+	const dispatch = useDispatch();
 
 	const indexItemCollapse = useSelector(
 		(state) => state.toolbar.indexItemCollapse
 	);
-
-	const [itemSelecting, setItemSelecting] = useState("");
-	console.log("itemSelectingContent: ", itemSelecting);
 
 	const [schema, { onChange, addNode, removeNode }] = useSchema(initialSchema);
 
@@ -56,19 +53,9 @@ const Content = () => {
 	const setItemRenderInNode = (id) => {
 		switch (id.split("-")[0]) {
 			case INDUSTRY_ITEM:
-				return (
-					<TableTree
-						treeItem={treeIndustry}
-						setItemSelecting={setItemSelecting}
-					/>
-				);
+				return <TableTree treeItem={treeIndustry} />;
 			case AVG_HUMIDITY:
-				return (
-					<TableTree
-						treeItem={treeHumidity}
-						setItemSelecting={setItemSelecting}
-					/>
-				);
+				return <TableTree treeItem={treeHumidity} />;
 			case LINE_CHART:
 				return <LineChart />;
 			case COLUMN_CHART:
@@ -98,9 +85,19 @@ const Content = () => {
 		return [input, output];
 	};
 
+	// set button is in Node
+	const setButtonInNode = (id) => {
+		const indexItem = id.split("-")[1];
+		const indexItemCollapse = id.split("-")[2];
+		const button = listItems[indexItem].collapseItem[indexItemCollapse].button;
+		return button;
+	};
+
 	const handleBtnOnClickInNode = (id) => {
-		const action = setItemIsSelect(itemSelecting);
-		console.log("itemSelecting", itemSelecting);
+		// itemIsSelect.map((item) => {
+		// 	if(item === )
+		// })
+		const action = setItemIsSelect([]);
 		dispatch(action);
 	};
 
@@ -124,6 +121,7 @@ const Content = () => {
 				headerNode: setHeaderNameInNode,
 				port: setPort,
 				btnOnClick: handleBtnOnClickInNode,
+				isBtn: setButtonInNode,
 			},
 			inputs: [{ id: `port-${Math.random()}` }],
 			outputs: [{ id: `port-${Math.random()}` }],
