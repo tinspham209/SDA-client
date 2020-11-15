@@ -68,7 +68,9 @@ const LineChart = () => {
 				}
 			);
 		};
-		fetchAPI();
+		setTimeout(() => {
+			fetchAPI();
+		}, 5000);
 	}, []);
 
 	return (

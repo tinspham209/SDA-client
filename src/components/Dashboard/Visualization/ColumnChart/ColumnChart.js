@@ -71,7 +71,9 @@ const ColumnChart = () => {
 				}
 			);
 		};
-		fetchAPI();
+		setTimeout(() => {
+			fetchAPI();
+		}, 5000);
 	}, []);
 
 	return (
