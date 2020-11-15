@@ -3,6 +3,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import TreeView from "@material-ui/lab/TreeView";
 import { MdExpandLess, MdExpandMore, MdExitToApp } from "react-icons/md";
 import TreeItem from "@material-ui/lab/TreeItem";
+import { useDispatch } from "react-redux";
+import { setItemIsSelect } from "../../../../app/slice/ContentSlice";
 
 const useStyles = makeStyles({
 	root: {
@@ -12,6 +14,7 @@ const useStyles = makeStyles({
 	},
 });
 const TableTree = ({ treeItem, setItemSelecting }) => {
+	const dispatch = useDispatch();
 	const classes = useStyles();
 	const [expanded, setExpanded] = React.useState([]);
 	const [selected, setSelected] = React.useState([]);
@@ -22,7 +25,8 @@ const TableTree = ({ treeItem, setItemSelecting }) => {
 
 	const handleSelect = (event, nodeIds) => {
 		setSelected(nodeIds);
-		setItemSelecting(nodeIds);
+		const action = setItemIsSelect(nodeIds);
+		dispatch(action);
 	};
 
 	return (
