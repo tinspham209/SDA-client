@@ -4,6 +4,7 @@ import { Button } from "@material-ui/core";
 export const Node = styled.div`
 	border: 1px solid #000;
 	border-radius: 5px;
+	background-color: rgb(255, 255, 255, 0.9);
 `;
 
 export const Header = styled.div`
@@ -30,7 +31,7 @@ export const HeaderRight = styled.div`
 `;
 
 export const Body = styled.div`
-	border: 1px solid red;
+	border: 1px solid #000;
 	margin: 15px;
 	overflow-y: auto;
 `;
