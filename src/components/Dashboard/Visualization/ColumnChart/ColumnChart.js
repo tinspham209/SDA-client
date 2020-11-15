@@ -20,7 +20,7 @@ const ColumnChart = () => {
 		},
 		yAxis: {
 			title: {
-				text: "deo bik dat ten gi",
+				text: "",
 			},
 		},
 		tooltip: {
