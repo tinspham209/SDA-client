@@ -14,11 +14,14 @@ const content = createSlice({
 		setItemIsSelect: (state, action) => {
 			state.itemIsSelect = action.payload;
 		},
+		fetchDataHumidity: (state, action) => {
+			console.log("action.payload", action.payload);
+		},
 	},
 });
 
 const { reducer, actions } = content;
 
-export const { setItemIsSelect } = actions;
+export const { setItemIsSelect, fetchDataHumidity } = actions;
 
 export default reducer;
