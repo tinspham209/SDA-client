@@ -1,9 +1,18 @@
 import React from "react";
 
+import { useStyles } from "./Dashboard.elements";
+
+import { Toolbar } from "../components";
+import MashupContent from "./MashupContent/MashupContent";
+
+import { listItems } from "../data";
+
 const DashboardContainer = () => {
+	const classes = useStyles();
 	return (
-		<div>
-			<h2>dashboard</h2>
+		<div className={classes.dashboard}>
+			<Toolbar listItems={listItems} />
+			<MashupContent />
 		</div>
 	);
 };
