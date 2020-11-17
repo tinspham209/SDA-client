@@ -8,6 +8,7 @@ export const useStyles = makeStyles((theme) => ({
 		top: 0,
 		zIndex: "999",
 		background: theme.palette.primary.main,
+		marginBottom: "2px",
 	},
 	logoImg: {
 		height: "60px",
