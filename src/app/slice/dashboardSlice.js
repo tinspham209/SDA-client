@@ -4,17 +4,17 @@ import { DASHBOARD } from "../ItemTypes";
 const dashboard = createSlice({
 	name: DASHBOARD,
 	initialState: {
-		isDashboard: false,
+		navbarBtnOnClick: "",
 	},
 	reducers: {
-		setDashboardNavbar: (state, action) => {
-			state.isDashboard = action.payload;
+		setNavbarBtnOnClick: (state, action) => {
+			state.navbarBtnOnClick = action.payload;
 		},
 	},
 });
 
 const { reducer, actions } = dashboard;
 
-export const { setDashboardNavbar } = actions;
+export const { setNavbarBtnOnClick } = actions;
 
 export default reducer;
