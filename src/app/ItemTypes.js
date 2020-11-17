@@ -6,3 +6,4 @@ export const TOOLBAR = "TOOLBAR";
 
 export const CLIMATE_HUMIDITY = "avgHumidity";
 export const VIZ_LINECHART = "lineChart";
+export const VIZ_COLUMNCHART = "columnChart";
