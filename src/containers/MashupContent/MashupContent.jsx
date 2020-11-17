@@ -6,9 +6,14 @@ import "beautiful-react-diagrams/styles.css";
 
 import { useDrop } from "react-dnd";
 import { useSelector } from "react-redux";
-import { CLIMATE_HUMIDITY, ITEM, VIZ_LINECHART } from "../../app/ItemTypes";
+import {
+	CLIMATE_HUMIDITY,
+	ITEM,
+	VIZ_LINECHART,
+	VIZ_COLUMNCHART,
+} from "../../app/ItemTypes";
 
-import { Humidity, LineChart } from "../../components/Widgets";
+import { Humidity, LineChart, ColumnChart } from "../../components/Widgets";
 
 const initialSchema = {
 	nodes: [],
@@ -35,6 +40,8 @@ const MashupContent = () => {
 				return Humidity;
 			case VIZ_LINECHART:
 				return LineChart;
+			case VIZ_COLUMNCHART:
+				return ColumnChart;
 			default:
 				break;
 		}
