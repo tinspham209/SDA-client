@@ -42,16 +42,12 @@
 15. Refactor Toolbar component with Redux
 16. addNewNode & removeNode
 17. First layout of Node
-18. Viz Node in TreeView
-19. Set unique HeaderName of Node
-20. Viz AVG_HUMIDITY in TreeView
-21. Viz INDUSTRY in TreeView
+18. Viz `Climate/Humidity` in TreeView
 
 ### Next Steps:
 
-- handleBtnOnClickInNode doesn't send state to Store;
-- Fix item can't drag in Toolbar
-- Viz Node in Maps
+- Viz `Visualization/LineChart`
+- Viz `Visualization/ColumnChart`
 
 ### Directory Structure
 
@@ -70,14 +66,6 @@
     ├── assets
         └── img
     ├── components
-        ├── Dashboard
-            ├── Navbar
-            ├── Toolbar
-            ├── Content
-            ├── CustomNode
-            ├── TableTree
-            ├── Dashboard.jsx
-            └── index.js
         ├── Footer
         ├── InfoSection
         ├── Navbar
@@ -87,19 +75,15 @@
     ├── pages
         ├── About
             ├── About.js
-            ├── aboutSlice.js
             └── Data.js
         ├── Contact
             ├── Contact.js
-            ├── contactSlice.js
             └── Data.js
         ├── Dashboard
             ├── Dashboard.js
-            ├── dashboardSlice.js
             └── Data.js
         └── HomePage
             ├── Homepage.js
-            ├── homepageSlice.js
             └── Data.js
     ├── App.js
     ├── GlobalStyles.js
