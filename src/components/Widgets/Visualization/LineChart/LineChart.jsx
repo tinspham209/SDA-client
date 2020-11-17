@@ -6,11 +6,19 @@ import { IconButton, Button } from "@material-ui/core";
 import { AiFillCloseCircle } from "react-icons/ai";
 import LineChart from "../../../Visualization/Linechart/LineChart";
 
+import { useSelector } from "react-redux";
+
 const WidgetLineChart = ({ id, data, inputs, outputs }) => {
 	const classes = useStyles();
+
+	const itemIsSelect = useSelector(
+		(state) => state.dashboard.mashupContent.itemIsSelect
+	);
+
 	const handleOnClick = () => {
-		console.log("LineChartBtn onClick");
+		console.log("itemIsSelect", itemIsSelect);
 	};
+
 	return (
 		<div className={classes.node}>
 			<div className={classes.header}>
