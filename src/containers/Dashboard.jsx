@@ -4,6 +4,7 @@ import { useStyles } from "./Dashboard.elements";
 
 import { Toolbar } from "../components";
 import MashupContent from "./MashupContent/MashupContent";
+import OutputLog from "./OutputLog/OutputLog";
 
 import { listItems } from "../data";
 
@@ -13,6 +14,7 @@ const DashboardContainer = () => {
 		<div className={classes.dashboard}>
 			<Toolbar listItems={listItems} />
 			<MashupContent />
+			<OutputLog />
 		</div>
 	);
 };

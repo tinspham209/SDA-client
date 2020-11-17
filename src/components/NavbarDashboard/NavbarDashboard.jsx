@@ -20,9 +20,11 @@ const NavbarDashboard = () => {
 
 	return (
 		<div className={classes.navbar}>
-			<Link to="/">
-				<img className={classes.logoImg} src={LogoImg} alt="logo" />
-			</Link>
+			<div className={classes.logo}>
+				<Link to="/">
+					<img className={classes.logoImg} src={LogoImg} alt="logo" />
+				</Link>
+			</div>
 			<div className={classes.groupButton}>
 				<ButtonGroup
 					variant="contained"

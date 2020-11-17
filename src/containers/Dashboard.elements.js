@@ -5,5 +5,8 @@ export const useStyles = makeStyles((theme) => ({
 		display: "flex",
 		flexDirection: "row",
 		overflow: "hidden",
+		marginLeft: "2px",
+		marginRight: "2px",
+		marginBottom: "2px",
 	},
 }));

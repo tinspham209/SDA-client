@@ -10,6 +10,11 @@ export const useStyles = makeStyles((theme) => ({
 		background: theme.palette.primary.main,
 		marginBottom: "2px",
 	},
+	logo: {
+		width: "185px",
+		display: "flex",
+		justifyContent: "center",
+	},
 	logoImg: {
 		height: "60px",
 		padding: "5px",
