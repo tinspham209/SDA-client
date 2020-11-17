@@ -1,5 +1,5 @@
 import React from "react";
-import { InfoSection, Navbar } from "../../components";
+import { InfoSection, Navbar, Footer } from "../../components";
 import { homeObjOne, homeObjTwo } from "./Data";
 const Contact = () => {
 	return (
@@ -7,6 +7,7 @@ const Contact = () => {
 			<Navbar />
 			<InfoSection {...homeObjOne} />
 			<InfoSection {...homeObjTwo} />
+			<Footer />
 		</>
 	);
 };

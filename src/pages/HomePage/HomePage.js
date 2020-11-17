@@ -1,5 +1,5 @@
 import React from "react";
-import { InfoSection, Navbar } from "../../components";
+import { InfoSection, Navbar, Footer } from "../../components";
 import { homeObjOne, homeObjTwo, homeObjThree } from "./Data";
 
 const Home = () => {
@@ -9,6 +9,7 @@ const Home = () => {
 			<InfoSection {...homeObjOne} />
 			<InfoSection {...homeObjTwo} />
 			<InfoSection {...homeObjThree} />
+			<Footer />
 		</>
 	);
 };
