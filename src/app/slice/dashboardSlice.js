@@ -15,6 +15,10 @@ const dashboard = createSlice({
 				operators: false,
 				visualization: true,
 			},
+			isDragItem: "",
+		},
+		mashupContent: {
+			itemIsSelect: [],
 		},
 	},
 	reducers: {
@@ -26,11 +30,22 @@ const dashboard = createSlice({
 				action.payload
 			];
 		},
+		setIsDragItem: (state, action) => {
+			state.toolbar.isDragItem = action.payload;
+		},
+		setItemIsSelect: (state, action) => {
+			state.mashupContent.itemIsSelect = action.payload;
+		},
 	},
 });
 
 const { reducer, actions } = dashboard;
 
-export const { setNavbarBtnOnClick, setToolbarIsOpen } = actions;
+export const {
+	setNavbarBtnOnClick,
+	setToolbarIsOpen,
+	setIsDragItem,
+	setItemIsSelect,
+} = actions;
 
 export default reducer;
