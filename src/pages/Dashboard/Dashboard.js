@@ -4,8 +4,6 @@ import { useDispatch } from "react-redux";
 
 import { setDashboardNavbar } from "../../app/slice/dashboardSlice";
 
-import DashboardComponent from "../../components/Dashboard/Dashboard";
-
 const Dashboard = () => {
 	const dispatch = useDispatch();
 
@@ -15,7 +13,11 @@ const Dashboard = () => {
 		dispatch(action);
 	}
 
-	return <DashboardComponent />;
+	return (
+		<div className="">
+			<h2>dashboard</h2>
+		</div>
+	);
 };
 
 export default Dashboard;

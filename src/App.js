@@ -5,7 +5,7 @@ import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 
 import GlobalStyle from "./GlobalStyles";
-import { Navbar, Footer, NavbarDashboard } from "./components";
+import { Navbar, Footer } from "./components";
 import { NotFound, Spinner } from "./components/UI/";
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -25,7 +25,7 @@ function App() {
 				<DndProvider backend={HTML5Backend}>
 					<GlobalStyle />
 					<ScrollToTop />
-					{isDashboard ? <NavbarDashboard /> : <Navbar />}
+					<Navbar />
 					<Switch>
 						<Route path="/" exact component={HomePage} />
 						<Route path="/about" exact component={About} />
