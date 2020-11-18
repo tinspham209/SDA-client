@@ -6,7 +6,10 @@ import { ListItem, ListItemText } from "@material-ui/core";
 import { useDrag } from "react-dnd";
 import { useDispatch } from "react-redux";
 import { ITEM } from "../../../app/ItemTypes";
-import { setIsDragItem } from "../../../app/slice/dashboardSlice";
+import {
+	setIsDragItem,
+	setInfoWidget,
+} from "../../../app/slice/dashboardSlice";
 
 const ListItemComponent = ({ id, primary }) => {
 	const classes = useStyles();
@@ -26,7 +29,9 @@ const ListItemComponent = ({ id, primary }) => {
 	});
 
 	const dragging = (id) => {
-		const action = setIsDragItem(id);
+		let action = setIsDragItem(id);
+		dispatch(action);
+		action = setInfoWidget(id);
 		dispatch(action);
 	};
 
