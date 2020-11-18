@@ -292,7 +292,7 @@ export const widgetInfos = {
 		},
 		{
 			id: "Connect",
-			info: "Charts",
+			info: "Column, Line Chart",
 		},
 	],
 	industryItem: [
