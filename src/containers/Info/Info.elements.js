@@ -6,6 +6,7 @@ export const useStyles = makeStyles((theme) => ({
 		width: "320px",
 		border: "1px solid #000",
 		backgroundColor: "rgb(242, 242, 242)",
+		overflowY: "auto",
 	},
 	listItem: {
 		borderTop: "1px solid rgba(0,0,0,0.2)",
