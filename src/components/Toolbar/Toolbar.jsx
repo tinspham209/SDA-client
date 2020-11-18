@@ -39,7 +39,11 @@ const Toolbar = ({ listItems }) => {
 			>
 				{listItems.map((item) => (
 					<div key={item.id}>
-						<ListItem button onClick={() => handleClick(item.id)}>
+						<ListItem
+							className={classes.listItem}
+							button
+							onClick={() => handleClick(item.id)}
+						>
 							<ListItemText primary={item.name} />
 							{isOpen[item.id] ? <MdExpandLess /> : <MdExpandMore />}
 						</ListItem>

@@ -1,5 +1,6 @@
 import React from "react";
 
+import { useStyles } from "./ListItem.elements";
 import { ListItem, ListItemText } from "@material-ui/core";
 
 import { useDrag } from "react-dnd";
@@ -8,6 +9,7 @@ import { ITEM } from "../../../app/ItemTypes";
 import { setIsDragItem } from "../../../app/slice/dashboardSlice";
 
 const ListItemComponent = ({ id, primary }) => {
+	const classes = useStyles();
 	const dispatch = useDispatch();
 
 	const [, drag] = useDrag({
@@ -34,7 +36,7 @@ const ListItemComponent = ({ id, primary }) => {
 	};
 
 	return (
-		<ListItem button id={id} ref={drag}>
+		<ListItem className={classes.listItem} button id={id} ref={drag}>
 			<ListItemText primary={primary} />
 		</ListItem>
 	);

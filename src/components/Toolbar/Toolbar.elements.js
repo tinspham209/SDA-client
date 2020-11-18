@@ -16,4 +16,7 @@ export const useStyles = makeStyles((theme) => ({
 		paddingLeft: 10,
 		paddingRight: 10,
 	},
+	listItem: {
+		borderBottom: "1px solid rgba(0,0,0,0.2)",
+	},
 }));
