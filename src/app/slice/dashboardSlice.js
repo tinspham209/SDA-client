@@ -26,6 +26,7 @@ const dashboard = createSlice({
 				widgetInfos: true,
 				outputLog: true,
 			},
+			widget: "",
 		},
 	},
 	reducers: {
@@ -46,6 +47,9 @@ const dashboard = createSlice({
 		setInfoIsOpen: (state, action) => {
 			state.info.isOpen[action.payload] = !state.info.isOpen[action.payload];
 		},
+		setInfoWidget: (state, action) => {
+			state.info.widget = action.payload;
+		},
 	},
 });
 
@@ -57,6 +61,7 @@ export const {
 	setIsDragItem,
 	setItemIsSelect,
 	setInfoIsOpen,
+	setInfoWidget,
 } = actions;
 
 export default reducer;
