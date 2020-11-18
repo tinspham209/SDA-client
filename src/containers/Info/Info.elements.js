@@ -9,4 +9,8 @@ export const useStyles = makeStyles((theme) => ({
 	listItem: {
 		borderBottom: "1px solid rgba(0,0,0,0.2)",
 	},
+	collapse: {
+		paddingLeft: 10,
+		paddingRight: 10,
+	},
 }));
