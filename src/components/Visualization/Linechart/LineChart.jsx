@@ -40,6 +40,15 @@ const LineChart = (data) => {
 			},
 		],
 	});
+
+	// categories: ["2012", "2013", "2014"],
+	// series: [
+	// 	{
+	// 		name: "Cà Mau",
+	// 		data: [10, 20, 30],
+	// 	},
+	// ],
+
 	return (
 		<div className={classes.lineChart}>
 			<HighchartsReact highcharts={Highcharts} options={dataLineChart} />
