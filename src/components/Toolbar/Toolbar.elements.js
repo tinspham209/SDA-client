@@ -6,8 +6,8 @@ export const useStyles = makeStyles((theme) => ({
 		// 2px: marginBottom navbar
 		// 2px: marginBottom dashboard
 		height: "calc( 100vh - 60px - 2px - 2px)",
-		width: "185px",
-		overflow: "auto",
+		width: "195px",
+		overflowY: "scroll",
 		backgroundColor: "rgb(242, 242, 242)",
 		border: "1px solid #000",
 		marginRight: "2px",
