@@ -63,6 +63,7 @@ const Toolbar = ({ listItems }) => {
 										id={itemCollapse.id}
 										index={index}
 										indexCollapse={indexCollapse}
+										disabled={itemCollapse.disabled}
 									/>
 								))}
 							</List>
