@@ -40,7 +40,9 @@ const Toolbar = ({ listItems }) => {
 				{listItems.map((item) => (
 					<div key={item.id}>
 						<ListItem
-							className={classes.listItem}
+							className={`${classes.listItem} ${
+								isOpen[item.id] ? classes.isOpen : null
+							}`}
 							button
 							onClick={() => handleClick(item.id)}
 						>
