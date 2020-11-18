@@ -13,7 +13,7 @@ import {
 	setIndexCollapse,
 } from "../../../app/slice/dashboardSlice";
 
-const ListItemComponent = ({ id, primary, index, indexCollapse }) => {
+const ListItemComponent = ({ id, primary, index, indexCollapse, disabled }) => {
 	const classes = useStyles();
 	const dispatch = useDispatch();
 
@@ -51,7 +51,13 @@ const ListItemComponent = ({ id, primary, index, indexCollapse }) => {
 	};
 
 	return (
-		<ListItem className={classes.listItem} button id={id} ref={drag}>
+		<ListItem
+			className={classes.listItem}
+			button
+			id={id}
+			ref={drag}
+			disabled={disabled ? true : false}
+		>
 			<ListItemText primary={primary} />
 		</ListItem>
 	);
