@@ -8,6 +8,7 @@ export const listItems = [
 				name: "Average Temperature",
 				input: false,
 				output: true,
+				disabled: true,
 			},
 			{
 				id: "avgHumidity",
@@ -15,12 +16,14 @@ export const listItems = [
 				input: false,
 				output: true,
 				button: false,
+				disabled: false,
 			},
 			{
 				id: "avgRainfall",
 				name: "Average Rainfall",
 				input: false,
 				output: true,
+				disabled: true,
 			},
 		],
 	},
@@ -31,10 +34,12 @@ export const listItems = [
 			{
 				id: "airQualityStation",
 				name: "Air Quality Station",
+				disabled: true,
 			},
 			{
 				id: "airQualityFilter",
 				name: "Air Quality Filter",
+				disabled: true,
 			},
 		],
 	},
@@ -45,6 +50,7 @@ export const listItems = [
 			{
 				id: "populationItem",
 				name: "Population",
+				disabled: true,
 			},
 		],
 	},
@@ -58,6 +64,7 @@ export const listItems = [
 				input: false,
 				output: true,
 				button: false,
+				disabled: false,
 			},
 		],
 	},
@@ -68,10 +75,12 @@ export const listItems = [
 			{
 				id: "forestCoverArea",
 				name: "Forest Cover Area",
+				disabled: true,
 			},
 			{
 				id: "afForestation",
 				name: "AfForestation",
+				disabled: true,
 			},
 		],
 	},
@@ -82,10 +91,12 @@ export const listItems = [
 			{
 				id: "statisticsMerge",
 				name: "Statistics Merge",
+				disabled: true,
 			},
 			{
 				id: "simpleMerge",
 				name: "Simple Merge",
+				disabled: true,
 			},
 		],
 	},
@@ -99,6 +110,7 @@ export const listItems = [
 				input: true,
 				output: false,
 				button: true,
+				disabled: false,
 			},
 			{
 				id: "lineChart",
@@ -106,6 +118,7 @@ export const listItems = [
 				input: true,
 				output: false,
 				button: true,
+				disabled: false,
 			},
 			{
 				id: "pieChart",
@@ -113,6 +126,7 @@ export const listItems = [
 				input: true,
 				output: false,
 				button: true,
+				disabled: false,
 			},
 			{
 				id: "mapsViz",
@@ -120,6 +134,7 @@ export const listItems = [
 				input: true,
 				output: false,
 				button: true,
+				disabled: false,
 			},
 		],
 	},
