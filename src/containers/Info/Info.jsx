@@ -35,7 +35,9 @@ const Info = () => {
 				}
 			>
 				<ListItem
-					className={classes.listItem}
+					className={`${classes.listItem} ${
+						isOpen[PROPERTIES] ? classes.isOpen : null
+					}`}
 					button
 					onClick={() => handleClick(PROPERTIES)}
 				>
@@ -52,7 +54,9 @@ const Info = () => {
 				</Collapse>
 
 				<ListItem
-					className={classes.listItem}
+					className={`${classes.listItem} ${
+						isOpen[WIDGET_INFOS] ? classes.isOpen : null
+					}`}
 					button
 					onClick={() => handleClick(WIDGET_INFOS)}
 				>
@@ -69,7 +73,9 @@ const Info = () => {
 				</Collapse>
 
 				<ListItem
-					className={classes.listItem}
+					className={`${classes.listItem} ${
+						isOpen[OUTPUT_LOG] ? classes.isOpen : null
+					}`}
 					button
 					onClick={() => handleClick(OUTPUT_LOG)}
 				>

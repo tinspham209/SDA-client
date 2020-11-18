@@ -8,10 +8,20 @@ export const useStyles = makeStyles((theme) => ({
 		backgroundColor: "rgb(242, 242, 242)",
 	},
 	listItem: {
+		borderTop: "1px solid rgba(0,0,0,0.2)",
+
 		borderBottom: "1px solid rgba(0,0,0,0.2)",
 	},
 	collapse: {
 		paddingLeft: 10,
 		paddingRight: 10,
+	},
+	isOpen: {
+		backgroundColor: theme.palette.primary.main,
+		color: "white",
+
+		"&:hover": {
+			backgroundColor: theme.palette.primary.dark,
+		},
 	},
 }));
