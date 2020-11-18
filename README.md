@@ -43,6 +43,9 @@
 16. addNewNode & removeNode
 17. First layout of Node
 18. Viz `Climate/Humidity` in TreeView
+19. Initial `LineChart` & `ColumnChart`
+20. `Info` container
+21. `Properties` component
 
 ### Next Steps:
 
