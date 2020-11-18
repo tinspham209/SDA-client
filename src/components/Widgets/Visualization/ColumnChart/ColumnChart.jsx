@@ -4,12 +4,16 @@ import { useStyles } from "./ColumnChart.elements";
 import { IconButton, Button } from "@material-ui/core";
 
 import { AiFillCloseCircle } from "react-icons/ai";
+import { RiErrorWarningFill } from "react-icons/ri";
+
 import ColumnChart from "../../../Visualization/ColumnChart/ColumnChart";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setInfoWidget } from "../../../../app/slice/dashboardSlice";
 
 const WidgetColumnChart = ({ id, data, inputs, outputs }) => {
 	const classes = useStyles();
+	const dispatch = useDispatch();
 
 	const itemIsSelect = useSelector(
 		(state) => state.dashboard.mashupContent.itemIsSelect
@@ -19,14 +23,28 @@ const WidgetColumnChart = ({ id, data, inputs, outputs }) => {
 		console.log("itemIsSelect Column", itemIsSelect);
 	};
 
+	const handleQuestionButton = (id) => {
+		id = id.split("-")[0];
+		const action = setInfoWidget(id);
+		dispatch(action);
+	};
+
 	return (
 		<div className={classes.node}>
 			<div className={classes.header}>
 				<div className={classes.headerLeft} />
 				<div className={classes.headerCenter}>
-					<p className={classes.headerTitle}>Line Chart</p>
+					<p className={classes.headerTitle}>Column Chart</p>
 				</div>
 				<div className={classes.headerRight}>
+					<IconButton
+						aria-label="delete"
+						size="small"
+						color="inherit"
+						onClick={() => handleQuestionButton(id)}
+					>
+						<RiErrorWarningFill />
+					</IconButton>
 					<IconButton
 						aria-label="delete"
 						size="small"

@@ -4,12 +4,16 @@ import { useStyles } from "./LineChart.elements";
 import { IconButton, Button } from "@material-ui/core";
 
 import { AiFillCloseCircle } from "react-icons/ai";
+import { RiErrorWarningFill } from "react-icons/ri";
+
 import LineChart from "../../../Visualization/Linechart/LineChart";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setInfoWidget } from "../../../../app/slice/dashboardSlice";
 
 const WidgetLineChart = ({ id, data, inputs, outputs }) => {
 	const classes = useStyles();
+	const dispatch = useDispatch();
 
 	const itemIsSelect = useSelector(
 		(state) => state.dashboard.mashupContent.itemIsSelect
@@ -17,6 +21,12 @@ const WidgetLineChart = ({ id, data, inputs, outputs }) => {
 
 	const handleOnClick = () => {
 		console.log("itemIsSelect", itemIsSelect);
+	};
+
+	const handleQuestionButton = (id) => {
+		id = id.split("-")[0];
+		const action = setInfoWidget(id);
+		dispatch(action);
 	};
 
 	return (
@@ -27,6 +37,14 @@ const WidgetLineChart = ({ id, data, inputs, outputs }) => {
 					<p className={classes.headerTitle}>Line Chart</p>
 				</div>
 				<div className={classes.headerRight}>
+					<IconButton
+						aria-label="delete"
+						size="small"
+						color="inherit"
+						onClick={() => handleQuestionButton(id)}
+					>
+						<RiErrorWarningFill />
+					</IconButton>
 					<IconButton
 						aria-label="delete"
 						size="small"

@@ -5,9 +5,15 @@ import { IconButton } from "@material-ui/core";
 import { TreeView, TreeItem } from "@material-ui/lab";
 
 import { AiFillCloseCircle } from "react-icons/ai";
+import { RiErrorWarningFill } from "react-icons/ri";
 import { MdExpandLess, MdExpandMore, MdExitToApp } from "react-icons/md";
+
 import { treeHumidity } from "../../../../data";
-import { setItemIsSelect } from "../../../../app/slice/dashboardSlice";
+
+import {
+	setItemIsSelect,
+	setInfoWidget,
+} from "../../../../app/slice/dashboardSlice";
 import { useDispatch } from "react-redux";
 
 const Humidity = ({ id, data, inputs, outputs }) => {
@@ -27,6 +33,12 @@ const Humidity = ({ id, data, inputs, outputs }) => {
 		dispatch(action);
 	};
 
+	const handleQuestionButton = (id) => {
+		id = id.split("-")[0];
+		const action = setInfoWidget(id);
+		dispatch(action);
+	};
+
 	return (
 		<div className={classes.node}>
 			<div className={classes.header}>
@@ -35,6 +47,14 @@ const Humidity = ({ id, data, inputs, outputs }) => {
 					<p className={classes.headerTitle}>{treeHumidity.name}</p>
 				</div>
 				<div className={classes.headerRight}>
+					<IconButton
+						aria-label="delete"
+						size="small"
+						color="inherit"
+						onClick={() => handleQuestionButton(id)}
+					>
+						<RiErrorWarningFill />
+					</IconButton>
 					<IconButton
 						aria-label="delete"
 						size="small"
