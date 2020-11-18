@@ -37,7 +37,7 @@ const Toolbar = ({ listItems }) => {
 					</ListSubheader>
 				}
 			>
-				{listItems.map((item) => (
+				{listItems.map((item, index) => (
 					<div key={item.id}>
 						<ListItem
 							className={`${classes.listItem} ${
@@ -56,11 +56,13 @@ const Toolbar = ({ listItems }) => {
 							unmountOnExit
 						>
 							<List component="div" disablePadding>
-								{item.collapseItem.map((itemCollapse) => (
+								{item.collapseItem.map((itemCollapse, indexCollapse) => (
 									<ListItemComponent
 										key={itemCollapse.id}
 										primary={itemCollapse.name}
 										id={itemCollapse.id}
+										index={index}
+										indexCollapse={indexCollapse}
 									/>
 								))}
 							</List>

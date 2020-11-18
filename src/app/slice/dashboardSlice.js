@@ -16,6 +16,10 @@ const dashboard = createSlice({
 				visualization: true,
 			},
 			isDragItem: "",
+			item: {
+				index: "",
+				indexCollapse: "",
+			},
 		},
 		mashupContent: {
 			itemIsSelect: [],
@@ -50,6 +54,12 @@ const dashboard = createSlice({
 		setInfoWidget: (state, action) => {
 			state.info.widget = action.payload;
 		},
+		setItemIndex: (state, action) => {
+			state.toolbar.item.index = action.payload;
+		},
+		setIndexCollapse: (state, action) => {
+			state.toolbar.item.indexCollapse = action.payload;
+		},
 	},
 });
 
@@ -62,6 +72,8 @@ export const {
 	setItemIsSelect,
 	setInfoIsOpen,
 	setInfoWidget,
+	setItemIndex,
+	setIndexCollapse,
 } = actions;
 
 export default reducer;
