@@ -33,11 +33,11 @@ const ListItemComponent = ({ id, primary, index, indexCollapse }) => {
 	const dragging = (id, index, indexCollapse) => {
 		let action = setIsDragItem(id);
 		dispatch(action);
-		action = setInfoWidget(id);
-		dispatch(action);
 		action = setItemIndex(index);
 		dispatch(action);
 		action = setIndexCollapse(indexCollapse);
+		dispatch(action);
+		action = setInfoWidget(id);
 		dispatch(action);
 	};
 
