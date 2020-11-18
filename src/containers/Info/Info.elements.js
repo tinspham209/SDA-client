@@ -2,8 +2,13 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export const useStyles = makeStyles((theme) => ({
 	info: {
-		marginLeft: "2px",
+		// 60px: navbar
+		// 2px: marginBottom navbar
+		// 2px: marginBottom dashboard
+		height: "calc( 100vh - 60px - 2px - 2px)",
 		width: "320px",
+
+		marginLeft: "2px",
 		border: "1px solid #000",
 		backgroundColor: "rgb(242, 242, 242)",
 		overflowY: "auto",
