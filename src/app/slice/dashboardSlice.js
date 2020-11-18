@@ -31,6 +31,7 @@ const dashboard = createSlice({
 				outputLog: true,
 			},
 			widget: "",
+			output: [],
 		},
 	},
 	reducers: {
@@ -60,6 +61,13 @@ const dashboard = createSlice({
 		setIndexCollapse: (state, action) => {
 			state.toolbar.item.indexCollapse = action.payload;
 		},
+		setOutput: (state, action) => {
+			if (action.payload === "clear") {
+				state.info.output = [];
+			} else {
+				state.info.output.unshift(action.payload);
+			}
+		},
 	},
 });
 
@@ -74,6 +82,7 @@ export const {
 	setInfoWidget,
 	setItemIndex,
 	setIndexCollapse,
+	setOutput,
 } = actions;
 
 export default reducer;
