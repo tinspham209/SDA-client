@@ -20,6 +20,13 @@ const dashboard = createSlice({
 		mashupContent: {
 			itemIsSelect: [],
 		},
+		info: {
+			isOpen: {
+				properties: true,
+				widgetInfos: true,
+				outputLog: true,
+			},
+		},
 	},
 	reducers: {
 		setNavbarBtnOnClick: (state, action) => {
@@ -36,6 +43,9 @@ const dashboard = createSlice({
 		setItemIsSelect: (state, action) => {
 			state.mashupContent.itemIsSelect = action.payload;
 		},
+		setInfoIsOpen: (state, action) => {
+			state.info.isOpen[action.payload] = !state.info.isOpen[action.payload];
+		},
 	},
 });
 
@@ -46,6 +56,7 @@ export const {
 	setToolbarIsOpen,
 	setIsDragItem,
 	setItemIsSelect,
+	setInfoIsOpen,
 } = actions;
 
 export default reducer;
