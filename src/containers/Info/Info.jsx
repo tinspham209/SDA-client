@@ -82,7 +82,7 @@ const Info = () => {
 					timeout="auto"
 					unmountOnExit
 				>
-					<WidgetInfo />
+					<OutputLog />
 				</Collapse>
 			</List>
 		</div>
