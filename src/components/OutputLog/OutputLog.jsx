@@ -4,7 +4,7 @@ const OutputLog = () => {
 	const classes = useStyles();
 	return (
 		<div className={classes.outputLog}>
-			<h2>Output Log</h2>
+			<h2>OutputLog</h2>
 		</div>
 	);
 };
