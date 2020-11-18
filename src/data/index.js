@@ -182,3 +182,139 @@ export const treeHumidity = {
 		},
 	],
 };
+
+export const widgetInfos = {
+	columnChart: [
+		{
+			id: "Name",
+			info: "Column Chart",
+		},
+		{
+			id: "Description",
+			info: "Used to draw a Column chart, using HighCharts",
+		},
+		{
+			id: "Input",
+			info: "json data",
+		},
+		{
+			id: "Output",
+			info: "no",
+		},
+		{
+			id: "Connect",
+			info: "Statistics widgets",
+		},
+	],
+	lineChart: [
+		{
+			id: "Name",
+			info: "Line Chart",
+		},
+		{
+			id: "Description",
+			info: "Used to draw a Line chart, using HighCharts",
+		},
+		{
+			id: "Input",
+			info: "json data",
+		},
+		{
+			id: "Output",
+			info: "no",
+		},
+		{
+			id: "Connect",
+			info: "Statistics widgets",
+		},
+	],
+	pieChart: [
+		{
+			id: "Name",
+			info: "Pie Chart",
+		},
+		{
+			id: "Description",
+			info: "Used to draw a Pie chart, using HighCharts",
+		},
+		{
+			id: "Input",
+			info: "json data",
+		},
+		{
+			id: "Output",
+			info: "no",
+		},
+		{
+			id: "Connect",
+			info: "Statistics widgets",
+		},
+	],
+	mapsViz: [
+		{
+			id: "Name",
+			info: "Maps",
+		},
+		{
+			id: "Description",
+			info: "Used to display locations with their long & lat",
+		},
+		{
+			id: "Input",
+			info: "Json data with attribute point(long, lat)",
+		},
+		{
+			id: "Output",
+			info: "no",
+		},
+		{
+			id: "Connect",
+			info: "Industry, Average Temperature",
+		},
+	],
+	avgHumidity: [
+		{
+			id: "Name",
+			info: "Average Humidity",
+		},
+		{
+			id: "Description",
+			info:
+				"Used to get data of humidity each province from 2012 to 2019. Combine with Charts to view results",
+		},
+		{
+			id: "Input",
+			info: "No",
+		},
+		{
+			id: "Output",
+			info: "json",
+		},
+		{
+			id: "Connect",
+			info: "Charts",
+		},
+	],
+	industryItem: [
+		{
+			id: "Name",
+			info: "Industry Production",
+		},
+		{
+			id: "Description",
+			info: "aaaaaaaa",
+		},
+		{
+			id: "Input",
+			info: "No",
+		},
+		{
+			id: "Output",
+			info: "json",
+		},
+		{
+			id: "Connect",
+			info: "Maps",
+		},
+	],
+};
