@@ -26,7 +26,7 @@ const dashboard = createSlice({
 		},
 		info: {
 			isOpen: {
-				properties: true,
+				properties: false,
 				widgetInfos: true,
 				outputLog: true,
 			},
