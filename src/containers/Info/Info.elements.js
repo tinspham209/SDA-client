@@ -5,6 +5,7 @@ export const useStyles = makeStyles((theme) => ({
 		marginLeft: "2px",
 		width: "320px",
 		border: "1px solid #000",
+		backgroundColor: "rgb(242, 242, 242)",
 	},
 	listItem: {
 		borderBottom: "1px solid rgba(0,0,0,0.2)",
