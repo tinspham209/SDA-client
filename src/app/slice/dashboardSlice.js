@@ -35,6 +35,7 @@ const dashboard = createSlice({
 		},
 		viz: {
 			maps: {
+				title: "",
 				data: [],
 			},
 		},
@@ -74,7 +75,11 @@ const dashboard = createSlice({
 			}
 		},
 		setMapsData: (state, action) => {
-			console.log("action.payload", action.payload);
+			const data = action.payload;
+			data.map((item) => state.viz.maps.data.push(item));
+		},
+		setTitleMaps: (state, action) => {
+			state.viz.maps.title = action.payload;
 		},
 	},
 });
@@ -91,6 +96,8 @@ export const {
 	setItemIndex,
 	setIndexCollapse,
 	setOutput,
+	setTitleMaps,
+	setMapsData,
 } = actions;
 
 export default reducer;
