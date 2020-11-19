@@ -33,6 +33,11 @@ const dashboard = createSlice({
 			widget: "",
 			output: [],
 		},
+		viz: {
+			maps: {
+				data: [],
+			},
+		},
 	},
 	reducers: {
 		setNavbarBtnOnClick: (state, action) => {
@@ -67,6 +72,9 @@ const dashboard = createSlice({
 			} else {
 				state.info.output.unshift(action.payload);
 			}
+		},
+		setMapsData: (state, action) => {
+			console.log("action.payload", action.payload);
 		},
 	},
 });
