@@ -48,11 +48,12 @@
 21. `Properties` component
 22. `Widget Infos` component
 23. `Output Log` component
+24. Viz `Industry/IndustryProduction` in TreeView
+25. Initial `Maps`
+26. Viz `Industry/IndustryProduction` in Maps
 
 ### Next Steps:
 
-- Viz `Visualization/LineChart`
-- Viz `Visualization/ColumnChart`
 - Viz `Humidity` in `LineChart`
 - Viz `Humidity` in `ColumnChart`
 
