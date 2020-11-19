@@ -8,6 +8,7 @@ import { useDrop } from "react-dnd";
 import { useSelector } from "react-redux";
 import {
 	CLIMATE_HUMIDITY,
+	CLIMATE_TEMPERATURE,
 	ITEM,
 	VIZ_LINECHART,
 	VIZ_COLUMNCHART,
@@ -21,6 +22,7 @@ import {
 	ColumnChart,
 	Maps,
 	Industry,
+	Temperature,
 } from "../../components/Widgets";
 
 const initialSchema = {
@@ -54,6 +56,8 @@ const MashupContent = () => {
 				return Maps;
 			case INDUSTRY_PRODUCTION:
 				return Industry;
+			case CLIMATE_TEMPERATURE:
+				return Temperature;
 			default:
 				break;
 		}
