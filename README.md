@@ -8,14 +8,6 @@
 
 ### Releases
 
-```js
-// localhost:5000/sparql={
-    PREFIX qb: <http://purl.org/linked-data/cube#>
-        PREFIX prop: <http://www.sda-research.ml/dc/climate/prop/>
-        select ?city ?year ?humidity where {?obs a qb:Observation. ?obs prop:city ?city filter regex(?city,'${city}') . ?obs prop:year ?year filter (?year = ${year}).?obs prop:humidity ?humidity.}
-}
-```
-
 - https://sda-research.ml
 
 ### Screenshot
