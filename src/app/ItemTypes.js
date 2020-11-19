@@ -7,6 +7,7 @@ export const TOOLBAR = "TOOLBAR";
 export const CLIMATE_HUMIDITY = "avgHumidity";
 export const VIZ_LINECHART = "lineChart";
 export const VIZ_COLUMNCHART = "columnChart";
+export const VIZ_MAPS = "mapsViz";
 
 export const PROPERTIES = "properties";
 export const WIDGET_INFOS = "widgetInfos";
