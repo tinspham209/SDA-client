@@ -11,9 +11,15 @@ import {
 	ITEM,
 	VIZ_LINECHART,
 	VIZ_COLUMNCHART,
+	VIZ_MAPS,
 } from "../../app/ItemTypes";
 
-import { Humidity, LineChart, ColumnChart } from "../../components/Widgets";
+import {
+	Humidity,
+	LineChart,
+	ColumnChart,
+	Maps,
+} from "../../components/Widgets";
 
 const initialSchema = {
 	nodes: [],
@@ -42,6 +48,8 @@ const MashupContent = () => {
 				return LineChart;
 			case VIZ_COLUMNCHART:
 				return ColumnChart;
+			case VIZ_MAPS:
+				return Maps;
 			default:
 				break;
 		}
