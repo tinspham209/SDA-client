@@ -12,6 +12,7 @@ import {
 	VIZ_LINECHART,
 	VIZ_COLUMNCHART,
 	VIZ_MAPS,
+	INDUSTRY_PRODUCTION,
 } from "../../app/ItemTypes";
 
 import {
@@ -19,6 +20,7 @@ import {
 	LineChart,
 	ColumnChart,
 	Maps,
+	Industry,
 } from "../../components/Widgets";
 
 const initialSchema = {
@@ -50,6 +52,8 @@ const MashupContent = () => {
 				return ColumnChart;
 			case VIZ_MAPS:
 				return Maps;
+			case INDUSTRY_PRODUCTION:
+				return Industry;
 			default:
 				break;
 		}
