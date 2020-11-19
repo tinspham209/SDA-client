@@ -5,6 +5,19 @@
 ### Functions:
 
 - Scientific research: Environment Analysis System in Vietnam
+- Data Visualization in Charts, Maps:
+  - Climate:
+    - Temperature
+      - Filter by Year
+    - Humidity
+      - Filter by City
+    - Rainfall
+  - Atmosphere
+  - Population:
+  - Industry
+    - Filter by Year
+  - Forest
+  - Operators
 
 ### Releases
 
@@ -42,7 +55,7 @@
 23. `Output Log` component
 24. Viz `Industry/IndustryProduction` in TreeView
 25. Initial `Maps`
-26. Viz `Industry/IndustryProduction` in Maps
+26. Viz `Industry/IndustryProduction` 2012 in Maps
 
 ### Next Steps:
 
@@ -136,23 +149,25 @@ npm start
 
 ### Tech-Stack
 
-- React Hooks
-- react-router-dom
-- immutability-helper
-- react-dnd
-- react-dnd-html5-backend
-- react-redux
-- @reduxjs/toolkit
-- @material-ui/core
-- styled-components
+- react
+- @material-ui
 - react-icons
+- react-router-dom
+- styled-components
+- @reduxjs/toolkit
+- axios
+- react-dnd
+- beautiful-react-diagrams
+- highcharts
 
 ### Folder function
 
 - `app`: store redux
 - `assets`: store image
 - `components`:
+- `container`:
 - `pages`:
+- `api`
 
 ### Component function
 
