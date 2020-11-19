@@ -8,7 +8,7 @@ export const listItems = [
 				name: "Average Temperature",
 				input: false,
 				output: true,
-				disabled: true,
+				disabled: false,
 			},
 			{
 				id: "avgHumidity",
@@ -139,64 +139,6 @@ export const listItems = [
 		],
 	},
 ];
-
-export const treeIndustry = {
-	name: "Industry Production",
-	data: [
-		{
-			id: "industry",
-			name: "Industry",
-			children: [
-				{
-					id: "industryItem-2012",
-					name: "2012",
-				},
-				{
-					id: "industryItem-2013",
-					name: "2013",
-				},
-				{
-					id: "industryItem-2014",
-					name: "2014",
-				},
-				{
-					id: "industryItem-2015",
-					name: "2015",
-				},
-				{
-					id: "industryItem-2016",
-					name: "2016",
-				},
-				{
-					id: "industryItem-2017",
-					name: "2017",
-				},
-				{
-					id: "industryItem-2018",
-					name: "2018",
-				},
-				{
-					id: "industryItem-2019",
-					name: "2019",
-				},
-			],
-		},
-	],
-};
-
-export const treeHumidity = {
-	name: "Average Humidity",
-	data: [
-		{
-			id: "avgHumidity-camau",
-			name: "Cà Mau",
-		},
-		{
-			id: "avgHumidity-hanoi",
-			name: "Hà Nội",
-		},
-	],
-};
 
 export const widgetInfos = {
 	columnChart: [
@@ -330,6 +272,130 @@ export const widgetInfos = {
 		{
 			id: "Connect",
 			info: "Maps",
+		},
+	],
+	avgTemperature: [
+		{
+			id: "Name",
+			info: "Average Temperature",
+		},
+		{
+			id: "Description",
+			info: "aaaaaaaa",
+		},
+		{
+			id: "Input",
+			info: "No",
+		},
+		{
+			id: "Output",
+			info: "json",
+		},
+		{
+			id: "Connect",
+			info: "Maps",
+		},
+	],
+};
+
+export const treeIndustry = {
+	name: "Industry Production",
+	data: [
+		{
+			id: "industry",
+			name: "Industry",
+			children: [
+				{
+					id: "industryItem-2012",
+					name: "2012",
+				},
+				{
+					id: "industryItem-2013",
+					name: "2013",
+				},
+				{
+					id: "industryItem-2014",
+					name: "2014",
+				},
+				{
+					id: "industryItem-2015",
+					name: "2015",
+				},
+				{
+					id: "industryItem-2016",
+					name: "2016",
+				},
+				{
+					id: "industryItem-2017",
+					name: "2017",
+				},
+				{
+					id: "industryItem-2018",
+					name: "2018",
+				},
+				{
+					id: "industryItem-2019",
+					name: "2019",
+				},
+			],
+		},
+	],
+};
+
+export const treeTemperature = {
+	name: "Average Temperature",
+	data: [
+		{
+			id: "temperature",
+			name: "Temperature",
+			children: [
+				{
+					id: "avgTemperature-2012",
+					name: "2012",
+				},
+				{
+					id: "avgTemperature-2013",
+					name: "2013",
+				},
+				{
+					id: "avgTemperature-2014",
+					name: "2014",
+				},
+				{
+					id: "avgTemperature-2015",
+					name: "2015",
+				},
+				{
+					id: "avgTemperature-2016",
+					name: "2016",
+				},
+				{
+					id: "avgTemperature-2017",
+					name: "2017",
+				},
+				{
+					id: "avgTemperature-2018",
+					name: "2018",
+				},
+				{
+					id: "avgTemperature-2019",
+					name: "2019",
+				},
+			],
+		},
+	],
+};
+
+export const treeHumidity = {
+	name: "Average Humidity",
+	data: [
+		{
+			id: "avgHumidity-camau",
+			name: "Cà Mau",
+		},
+		{
+			id: "avgHumidity-hanoi",
+			name: "Hà Nội",
 		},
 	],
 };
