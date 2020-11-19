@@ -7,6 +7,7 @@ import HighchartsReact from "highcharts-react-official";
 const LineChart = (data) => {
 	const classes = useStyles();
 
+	// eslint-disable-next-line
 	const [dataLineChart, setDataLineChart] = useState({
 		chart: {
 			type: "line",
