@@ -15,7 +15,7 @@ import {
 import { useDispatch } from "react-redux";
 import { treeIndustry } from "../../../data";
 
-const Humidity = ({ id, data, inputs, outputs }) => {
+const IndustryProduction = ({ id, data, inputs, outputs }) => {
 	const classes = useStyles();
 	const dispatch = useDispatch();
 
@@ -104,4 +104,4 @@ const Humidity = ({ id, data, inputs, outputs }) => {
 	);
 };
 
-export default Humidity;
+export default IndustryProduction;
