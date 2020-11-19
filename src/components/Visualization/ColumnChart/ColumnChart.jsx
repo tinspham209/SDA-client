@@ -7,6 +7,7 @@ import HighchartsReact from "highcharts-react-official";
 const ColumnChart = (data) => {
 	const classes = useStyles();
 
+	// eslint-disable-next-line
 	const [dataColumnChart, setDataColumnChart] = useState({
 		chart: {
 			type: "column",
