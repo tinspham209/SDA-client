@@ -28,7 +28,7 @@ const IndustryProduction = ({ id, data, inputs, outputs }) => {
 
 	const handleSelect = (event, nodeIds) => {
 		setSelected(nodeIds);
-		const action = setItemIsSelect(nodeIds);
+		let action = setItemIsSelect(nodeIds);
 		dispatch(action);
 	};
 
@@ -64,7 +64,12 @@ const IndustryProduction = ({ id, data, inputs, outputs }) => {
 					</IconButton>
 				</div>
 			</div>
-			<div className={classes.body}>
+			<div
+				className={classes.body}
+				onDragStart={() => {
+					return false;
+				}}
+			>
 				<div className={classes.portOut}>
 					{outputs.map((port) =>
 						React.cloneElement(port, {
