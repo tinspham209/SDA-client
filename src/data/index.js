@@ -390,12 +390,24 @@ export const treeHumidity = {
 	name: "Average Humidity",
 	data: [
 		{
-			id: "avgHumidity-camau",
-			name: "Cà Mau",
+			id: "avgHumidity-danang",
+			name: "Đà Nẵng",
 		},
 		{
 			id: "avgHumidity-hanoi",
 			name: "Hà Nội",
+		},
+		{
+			id: "avgHumidity-hue",
+			name: "Huế",
+		},
+		{
+			id: "avgHumidity-laichau",
+			name: "Lai Châu",
+		},
+		{
+			id: "avgHumidity-vinh",
+			name: "Vinh",
 		},
 	],
 };
