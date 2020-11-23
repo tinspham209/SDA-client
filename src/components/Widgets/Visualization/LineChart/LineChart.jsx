@@ -9,7 +9,13 @@ import { RiErrorWarningFill } from "react-icons/ri";
 import LineChart from "../../../Visualization/Linechart/LineChart";
 
 import { useSelector, useDispatch } from "react-redux";
-import { setInfoWidget } from "../../../../app/slice/dashboardSlice";
+import {
+	setLineCategories,
+	setLineData,
+	setInfoWidget,
+} from "../../../../app/slice/dashboardSlice";
+import { humidity } from "../../../../api/humidity";
+import { CLIMATE_HUMIDITY } from "../../../../app/ItemTypes";
 
 const WidgetLineChart = ({ id, data, inputs, outputs }) => {
 	const classes = useStyles();
@@ -20,7 +26,33 @@ const WidgetLineChart = ({ id, data, inputs, outputs }) => {
 	);
 
 	const handleOnClick = () => {
-		console.log("itemIsSelect", itemIsSelect);
+		let series = [];
+		let categories = [];
+		if (itemIsSelect[0].split("-")[0] === CLIMATE_HUMIDITY) {
+			itemIsSelect.map((item) => {
+				const city = item.split("-")[1];
+				let object = {};
+				let name = "";
+				let data = [];
+				humidity[city].records.map((record) => {
+					name = record.city;
+					categories.push(record.year);
+					data.push(record.humidity);
+					return null;
+				});
+				object = {
+					name: name,
+					data: data,
+				};
+				series.push(object);
+
+				return null;
+			});
+			let action = setLineCategories(categories);
+			dispatch(action);
+			action = setLineData(series);
+			dispatch(action);
+		}
 	};
 
 	const handleQuestionButton = (id) => {
