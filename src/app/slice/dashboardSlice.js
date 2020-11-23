@@ -38,6 +38,14 @@ const dashboard = createSlice({
 				title: "",
 				data: [],
 			},
+			column: {
+				categories: [],
+				data: [],
+			},
+			line: {
+				categories: [],
+				data: [],
+			},
 		},
 	},
 	reducers: {
@@ -81,6 +89,20 @@ const dashboard = createSlice({
 		setTitleMaps: (state, action) => {
 			state.viz.maps.title = action.payload;
 		},
+		setColumnCategories: (state, action) => {
+			state.viz.column.categories = action.payload;
+		},
+		setColumnData: (state, action) => {
+			const data = action.payload;
+			state.viz.column.data = data;
+		},
+		setLineCategories: (state, action) => {
+			state.viz.line.categories = action.payload;
+		},
+		setLineData: (state, action) => {
+			const data = action.payload;
+			state.viz.line.data = data;
+		},
 	},
 });
 
@@ -98,6 +120,10 @@ export const {
 	setOutput,
 	setTitleMaps,
 	setMapsData,
+	setColumnCategories,
+	setColumnData,
+	setLineCategories,
+	setLineData,
 } = actions;
 
 export default reducer;
