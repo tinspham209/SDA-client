@@ -1,11 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useStyles } from "./LineChart.elements";
+
+import { useSelector } from "react-redux";
 
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
-const LineChart = (data) => {
+const LineChart = () => {
 	const classes = useStyles();
+
+	const categories = useSelector(
+		(state) => state.dashboard.viz.line.categories
+	);
+	const data = useSelector((state) => state.dashboard.viz.line.data);
 
 	// eslint-disable-next-line
 	const [dataLineChart, setDataLineChart] = useState({
@@ -19,7 +26,7 @@ const LineChart = (data) => {
 			text: "Source: aaaaaa",
 		},
 		xAxis: {
-			categories: ["2012", "2013", "2014"],
+			categories: [],
 		},
 		yAxis: {
 			title: {
@@ -34,21 +41,23 @@ const LineChart = (data) => {
 				enableMouseTracking: false,
 			},
 		},
-		series: [
-			{
-				name: "Cà Mau",
-				data: [10, 20, 30],
-			},
-		],
+		series: [],
 	});
 
-	// categories: ["2012", "2013", "2014"],
-	// series: [
-	// 	{
-	// 		name: "Cà Mau",
-	// 		data: [10, 20, 30],
-	// 	},
-	// ],
+	useEffect(() => {
+		if (data) {
+			const series = [];
+			data.map((item) => series.push(item));
+			setDataLineChart({
+				...dataLineChart,
+				xAxis: {
+					categories: categories,
+				},
+				series: series,
+			});
+		}
+		// eslint-disable-next-line
+	}, [data, categories]);
 
 	return (
 		<div className={classes.lineChart}>
