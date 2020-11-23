@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useStyles } from "./ColumnChart.elements";
-
+import { useSelector } from "react-redux";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
-const ColumnChart = (data) => {
+const ColumnChart = () => {
 	const classes = useStyles();
+	const categories = useSelector(
+		(state) => state.dashboard.viz.column.categories
+	);
+	const data = useSelector((state) => state.dashboard.viz.column.data);
 
 	// eslint-disable-next-line
 	const [dataColumnChart, setDataColumnChart] = useState({
@@ -19,7 +23,7 @@ const ColumnChart = (data) => {
 			text: "Source: aaaaaa",
 		},
 		xAxis: {
-			categories: ["2012", "2013", "2014"],
+			categories: [],
 		},
 		yAxis: {
 			title: {
@@ -34,13 +38,24 @@ const ColumnChart = (data) => {
 				enableMouseTracking: false,
 			},
 		},
-		series: [
-			{
-				name: "Cà Mau",
-				data: [10, 20, 30],
-			},
-		],
+		series: [],
 	});
+
+	useEffect(() => {
+		if (data) {
+			const series = [];
+			data.map((item) => series.push(item));
+			setDataColumnChart({
+				...dataColumnChart,
+				xAxis: {
+					categories: categories,
+				},
+				series: series,
+			});
+		}
+		// eslint-disable-next-line
+	}, [data, categories]);
+
 	return (
 		<div className={classes.columnChart}>
 			<HighchartsReact highcharts={Highcharts} options={dataColumnChart} />
