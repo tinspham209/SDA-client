@@ -9,7 +9,13 @@ import { RiErrorWarningFill } from "react-icons/ri";
 import ColumnChart from "../../../Visualization/ColumnChart/ColumnChart";
 
 import { useSelector, useDispatch } from "react-redux";
-import { setInfoWidget } from "../../../../app/slice/dashboardSlice";
+import {
+	setInfoWidget,
+	setColumnCategories,
+	setColumnData,
+} from "../../../../app/slice/dashboardSlice";
+import { humidity } from "../../../../api/humidity";
+import { CLIMATE_HUMIDITY } from "../../../../app/ItemTypes";
 
 const WidgetColumnChart = ({ id, data, inputs, outputs }) => {
 	const classes = useStyles();
@@ -20,7 +26,33 @@ const WidgetColumnChart = ({ id, data, inputs, outputs }) => {
 	);
 
 	const handleOnClick = () => {
-		console.log("itemIsSelect Column", itemIsSelect);
+		let series = [];
+		let categories = [];
+		if (itemIsSelect[0].split("-")[0] === CLIMATE_HUMIDITY) {
+			itemIsSelect.map((item) => {
+				const city = item.split("-")[1];
+				let object = {};
+				let name = "";
+				let data = [];
+				humidity[city].records.map((record) => {
+					name = record.city;
+					categories.push(record.year);
+					data.push(record.humidity);
+					return null;
+				});
+				object = {
+					name: name,
+					data: data,
+				};
+				series.push(object);
+
+				return null;
+			});
+			let action = setColumnCategories(categories);
+			dispatch(action);
+			action = setColumnData(series);
+			dispatch(action);
+		}
 	};
 
 	const handleQuestionButton = (id) => {
