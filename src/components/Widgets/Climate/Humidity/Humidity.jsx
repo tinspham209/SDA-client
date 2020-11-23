@@ -94,6 +94,9 @@ const Humidity = ({ id, data, inputs, outputs }) => {
 					))}
 				</TreeView>
 			</div>
+			<div className={classes.footer}>
+				<p> Tip: Control-Click to select multiple areas</p>
+			</div>
 		</div>
 	);
 };

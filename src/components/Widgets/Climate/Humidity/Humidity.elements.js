@@ -29,6 +29,9 @@ export const useStyles = makeStyles((theme) => ({
 		margin: "10px",
 		overflowY: "auto",
 	},
+	footer: {
+		margin: "10px",
+	},
 	portOut: {
 		position: "absolute",
 		top: "50%",
