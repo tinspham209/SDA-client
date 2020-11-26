@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
-import { setNavbarBtnOnClick } from "../../app/slice/dashboardSlice";
+import { setNavbarNewOnClick } from "../../app/slice/dashboardSlice";
 
 import LogoImg from "../../assets/img/logo.png";
 import { useStyles } from "./NavbarDashboard.elements";
@@ -14,7 +14,7 @@ const NavbarDashboard = () => {
 	const dispatch = useDispatch();
 
 	const handleButton = (id) => {
-		const action = setNavbarBtnOnClick(id);
+		let action = setNavbarNewOnClick(true);
 		dispatch(action);
 	};
 

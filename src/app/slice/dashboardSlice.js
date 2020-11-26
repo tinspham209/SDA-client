@@ -4,7 +4,13 @@ import { DASHBOARD } from "../ItemTypes";
 const dashboard = createSlice({
 	name: DASHBOARD,
 	initialState: {
-		navbarBtnOnClick: "",
+		navbar: {
+			newOnClick: false,
+			helpOnClick: false,
+			example1OnClick: false,
+			example2OnClick: false,
+			example3OnClick: false,
+		},
 		toolbar: {
 			isOpen: {
 				climate: true,
@@ -25,6 +31,7 @@ const dashboard = createSlice({
 			itemIsSelect: [],
 			port: [],
 			portCanLinked: false,
+			node: [],
 		},
 		info: {
 			isOpen: {
@@ -57,9 +64,6 @@ const dashboard = createSlice({
 		},
 	},
 	reducers: {
-		setNavbarBtnOnClick: (state, action) => {
-			state.navbarBtnOnClick = action.payload;
-		},
 		setToolbarIsOpen: (state, action) => {
 			state.toolbar.isOpen[action.payload] = !state.toolbar.isOpen[
 				action.payload
@@ -123,13 +127,21 @@ const dashboard = createSlice({
 		setPortCanLinked: (state, action) => {
 			state.mashupContent.portCanLinked = action.payload;
 		},
+		setIdNewNode: (state, action) => {
+			state.mashupContent.node.push(action.payload);
+		},
+		removeIdNode: (state, action) => {
+			state.mashupContent.node = [];
+		},
+		setNavbarNewOnClick: (state, action) => {
+			state.navbar.newOnClick = action.payload;
+		},
 	},
 });
 
 const { reducer, actions } = dashboard;
 
 export const {
-	setNavbarBtnOnClick,
 	setToolbarIsOpen,
 	setIsDragItem,
 	setItemIsSelect,
@@ -148,6 +160,9 @@ export const {
 	setTableData,
 	setPortIsLinked,
 	setPortCanLinked,
+	setIdNewNode,
+	removeIdNode,
+	setNavbarNewOnClick,
 } = actions;
 
 export default reducer;

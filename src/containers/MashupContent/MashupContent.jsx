@@ -5,7 +5,7 @@ import Diagram, { useSchema } from "beautiful-react-diagrams";
 import "beautiful-react-diagrams/styles.css";
 
 import { useDrop } from "react-dnd";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
 	CLIMATE_HUMIDITY,
 	CLIMATE_TEMPERATURE,
@@ -28,6 +28,12 @@ import {
 	StatisticsMerge,
 	Table,
 } from "../../components/Widgets";
+import {
+	removeIdNode,
+	setIdNewNode,
+	setNavbarNewOnClick,
+	setOutput,
+} from "../../app/slice/dashboardSlice";
 
 const initialSchema = {
 	nodes: [],
@@ -35,6 +41,7 @@ const initialSchema = {
 
 const MashupContent = () => {
 	const classes = useStyles();
+	const dispatch = useDispatch();
 
 	const [schema, { onChange, addNode, removeNode, connect }] = useSchema(
 		initialSchema
@@ -45,6 +52,10 @@ const MashupContent = () => {
 		(state) => state.dashboard.mashupContent.portCanLinked
 	);
 	const port = useSelector((state) => state.dashboard.mashupContent.port);
+	const navbarNewOnClick = useSelector(
+		(state) => state.dashboard.navbar.newOnClick
+	);
+	const nodeId = useSelector((state) => state.dashboard.mashupContent.node);
 
 	// dnd from list to container
 	const [, dropList] = useDrop({
@@ -84,14 +95,17 @@ const MashupContent = () => {
 	};
 
 	const addNewNode = (x, y) => {
+		const id = `${isDropItem}-${schema.nodes.length + 1}`;
 		const nextNode = {
-			id: `${isDropItem}-${schema.nodes.length + 1}`,
+			id: id,
 			coordinates: [x - 200, y - 70],
 			render: getWidget(isDropItem),
 			data: { onClick: deleteNodeFromSchema },
 			inputs: [{ id: `port-${isDropItem}` }],
 			outputs: [{ id: `port-${isDropItem}` }],
 		};
+		const action = setIdNewNode(id);
+		dispatch(action);
 
 		addNode(nextNode);
 	};
@@ -106,6 +120,20 @@ const MashupContent = () => {
 		}
 		// eslint-disable-next-line
 	}, [portCanLinked, port]);
+
+	useEffect(() => {
+		if (navbarNewOnClick === true) {
+			nodeId.map((id) => deleteNodeFromSchema(id));
+
+			let action = setNavbarNewOnClick(false);
+			dispatch(action);
+			action = removeIdNode();
+			dispatch(action);
+			action = setOutput("clear");
+			dispatch(action);
+		}
+		// eslint-disable-next-line
+	}, [navbarNewOnClick]);
 
 	return (
 		<div className={classes.mashupContent} ref={dropList}>
