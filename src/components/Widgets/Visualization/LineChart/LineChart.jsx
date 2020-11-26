@@ -63,11 +63,6 @@ const WidgetLineChart = ({ id, data, inputs, outputs }) => {
 			dispatch(action);
 			action = setLineData(series);
 			dispatch(action);
-
-			setTimeout(() => {
-				action = setPortCanLinked(false);
-				dispatch(action);
-			}, 1000);
 		}
 	};
 

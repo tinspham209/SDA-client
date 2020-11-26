@@ -62,11 +62,6 @@ const WidgetColumnChart = ({ id, data, inputs, outputs }) => {
 			dispatch(action);
 			action = setColumnData(series);
 			dispatch(action);
-
-			setTimeout(() => {
-				action = setPortCanLinked(false);
-				dispatch(action);
-			}, 1000);
 		}
 	};
 

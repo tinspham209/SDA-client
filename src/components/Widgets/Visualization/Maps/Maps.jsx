@@ -108,11 +108,6 @@ const WidgetMaps = ({ id, data, inputs, outputs }) => {
 		];
 		action = setMapsData(data);
 		dispatch(action);
-
-		setTimeout(() => {
-			action = setPortCanLinked(false);
-			dispatch(action);
-		}, 1000);
 	};
 
 	const handleQuestionButton = (id) => {

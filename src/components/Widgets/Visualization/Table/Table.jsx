@@ -57,10 +57,6 @@ const WidgetTable = ({ id, data, inputs, outputs }) => {
 			action = setTableData(data);
 			dispatch(action);
 		}
-		setTimeout(() => {
-			action = setPortCanLinked(false);
-			dispatch(action);
-		}, 1000);
 	};
 
 	const handleQuestionButton = (id) => {

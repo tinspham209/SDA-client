@@ -33,6 +33,7 @@ import {
 	setIdNewNode,
 	setNavbarNewOnClick,
 	setOutput,
+	setPortCanLinked,
 } from "../../app/slice/dashboardSlice";
 
 const initialSchema = {
@@ -117,9 +118,11 @@ const MashupContent = () => {
 	useEffect(() => {
 		if (portCanLinked === true) {
 			connectNode(port[0], port[1]);
+			let action = setPortCanLinked(false);
+			dispatch(action);
 		}
 		// eslint-disable-next-line
-	}, [portCanLinked, port]);
+	}, [portCanLinked]);
 
 	useEffect(() => {
 		if (navbarNewOnClick === true) {
