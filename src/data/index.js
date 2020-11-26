@@ -91,7 +91,7 @@ export const listItems = [
 			{
 				id: "statisticsMerge",
 				name: "Statistics Merge",
-				disabled: true,
+				disabled: false,
 			},
 			{
 				id: "simpleMerge",
@@ -294,6 +294,29 @@ export const widgetInfos = {
 		{
 			id: "Connect",
 			info: "Maps",
+		},
+	],
+	statisticsMerge: [
+		{
+			id: "Name",
+			info: "Statistics Merge",
+		},
+		{
+			id: "Description",
+			info:
+				"	Used to merge two sources of statistical data, based on their common field",
+		},
+		{
+			id: "Input",
+			info: "Two Json arrays",
+		},
+		{
+			id: "Output",
+			info: "The new Json array",
+		},
+		{
+			id: "Connect",
+			info: "2 statistical data widget, Charts, Maps,...",
 		},
 	],
 };
