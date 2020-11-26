@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useStyles } from "./MashupContent.elements";
 
 import Diagram, { useSchema } from "beautiful-react-diagrams";
@@ -36,8 +36,15 @@ const initialSchema = {
 const MashupContent = () => {
 	const classes = useStyles();
 
-	const [schema, { onChange, addNode, removeNode }] = useSchema(initialSchema);
+	const [schema, { onChange, addNode, removeNode, connect }] = useSchema(
+		initialSchema
+	);
 	const isDropItem = useSelector((state) => state.dashboard.toolbar.isDragItem);
+
+	const portCanLinked = useSelector(
+		(state) => state.dashboard.mashupContent.portCanLinked
+	);
+	const port = useSelector((state) => state.dashboard.mashupContent.port);
 
 	// dnd from list to container
 	const [, dropList] = useDrop({
@@ -82,12 +89,23 @@ const MashupContent = () => {
 			coordinates: [x - 200, y - 70],
 			render: getWidget(isDropItem),
 			data: { onClick: deleteNodeFromSchema },
-			inputs: [{ id: `port-${Math.random()}` }],
-			outputs: [{ id: `port-${Math.random()}` }],
+			inputs: [{ id: `port-${isDropItem}` }],
+			outputs: [{ id: `port-${isDropItem}` }],
 		};
 
 		addNode(nextNode);
 	};
+
+	const connectNode = (inputId, outputId) => {
+		connect(inputId, outputId);
+	};
+
+	useEffect(() => {
+		if (portCanLinked === true) {
+			connectNode(port[0], port[1]);
+		}
+		// eslint-disable-next-line
+	}, [portCanLinked, port]);
 
 	return (
 		<div className={classes.mashupContent} ref={dropList}>

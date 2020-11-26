@@ -13,6 +13,8 @@ import {
 	setInfoWidget,
 	setColumnCategories,
 	setColumnData,
+	setPortIsLinked,
+	setPortCanLinked,
 } from "../../../../app/slice/dashboardSlice";
 import { humidity } from "../../../../api/humidity";
 import { CLIMATE_HUMIDITY } from "../../../../app/ItemTypes";
@@ -26,9 +28,17 @@ const WidgetColumnChart = ({ id, data, inputs, outputs }) => {
 	);
 
 	const handleOnClick = () => {
-		let series = [];
-		let categories = [];
 		if (itemIsSelect[0].split("-")[0] === CLIMATE_HUMIDITY) {
+			let series = [];
+			let categories = [];
+			const portWidget = itemIsSelect[0].split("-")[0];
+			const portViz = id.split("-")[0];
+			const portLinked = [`port-${portWidget}`, `port-${portViz}`];
+			let action = setPortIsLinked(portLinked);
+			dispatch(action);
+			action = setPortCanLinked(true);
+			dispatch(action);
+
 			itemIsSelect.map((item) => {
 				const city = item.split("-")[1];
 				let object = {};
@@ -48,10 +58,15 @@ const WidgetColumnChart = ({ id, data, inputs, outputs }) => {
 
 				return null;
 			});
-			let action = setColumnCategories(categories);
+			action = setColumnCategories(categories);
 			dispatch(action);
 			action = setColumnData(series);
 			dispatch(action);
+
+			setTimeout(() => {
+				action = setPortCanLinked(false);
+				dispatch(action);
+			}, 1000);
 		}
 	};
 

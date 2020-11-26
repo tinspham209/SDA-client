@@ -23,6 +23,8 @@ const dashboard = createSlice({
 		},
 		mashupContent: {
 			itemIsSelect: [],
+			port: [],
+			portCanLinked: false,
 		},
 		info: {
 			isOpen: {
@@ -115,6 +117,12 @@ const dashboard = createSlice({
 		setTableData: (state, action) => {
 			state.viz.table.data = action.payload;
 		},
+		setPortIsLinked: (state, action) => {
+			state.mashupContent.port = action.payload;
+		},
+		setPortCanLinked: (state, action) => {
+			state.mashupContent.portCanLinked = action.payload;
+		},
 	},
 });
 
@@ -138,6 +146,8 @@ export const {
 	setLineData,
 	setModal,
 	setTableData,
+	setPortIsLinked,
+	setPortCanLinked,
 } = actions;
 
 export default reducer;

@@ -10,6 +10,8 @@ import { useSelector, useDispatch } from "react-redux";
 import {
 	setInfoWidget,
 	setTableData,
+	setPortIsLinked,
+	setPortCanLinked,
 } from "../../../../app/slice/dashboardSlice";
 
 import TableComponent from "../../../Visualization/Table/Table";
@@ -25,8 +27,15 @@ const WidgetTable = ({ id, data, inputs, outputs }) => {
 	);
 
 	const handleOnClick = () => {
-		console.log("handleOnClick");
 		console.log("itemIsSelect: ", itemIsSelect);
+		const portWidget = itemIsSelect[0].split("-")[0];
+		const portViz = id.split("-")[0];
+		const portLinked = [`port-${portWidget}`, `port-${portViz}`];
+		let action = setPortIsLinked(portLinked);
+		dispatch(action);
+		action = setPortCanLinked(true);
+		dispatch(action);
+
 		if (itemIsSelect[0].split("-")[0] === CLIMATE_HUMIDITY) {
 			let data = [];
 			itemIsSelect.map((item) => {
@@ -45,9 +54,13 @@ const WidgetTable = ({ id, data, inputs, outputs }) => {
 				});
 				return null;
 			});
-			let action = setTableData(data);
+			action = setTableData(data);
 			dispatch(action);
 		}
+		setTimeout(() => {
+			action = setPortCanLinked(false);
+			dispatch(action);
+		}, 1000);
 	};
 
 	const handleQuestionButton = (id) => {

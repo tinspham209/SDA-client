@@ -12,6 +12,8 @@ import { useSelector, useDispatch } from "react-redux";
 import {
 	setInfoWidget,
 	setMapsData,
+	setPortCanLinked,
+	setPortIsLinked,
 	setTitleMaps,
 } from "../../../../app/slice/dashboardSlice";
 
@@ -25,8 +27,18 @@ const WidgetMaps = ({ id, data, inputs, outputs }) => {
 
 	const handleOnClick = () => {
 		console.log("itemIsSelect", itemIsSelect);
+
+		const portWidget = itemIsSelect.split("-")[0];
+		console.log("portWidget: ", portWidget);
+		const portViz = id.split("-")[0];
+		const portLinked = [`port-${portWidget}`, `port-${portViz}`];
+		let action = setPortIsLinked(portLinked);
+		dispatch(action);
+		action = setPortCanLinked(true);
+		dispatch(action);
+
 		const name = itemIsSelect.split("-")[1];
-		let action = setTitleMaps(name);
+		action = setTitleMaps(name);
 		dispatch(action);
 		const data = [
 			["vn-3655", 0], //viet nam
@@ -96,6 +108,11 @@ const WidgetMaps = ({ id, data, inputs, outputs }) => {
 		];
 		action = setMapsData(data);
 		dispatch(action);
+
+		setTimeout(() => {
+			action = setPortCanLinked(false);
+			dispatch(action);
+		}, 1000);
 	};
 
 	const handleQuestionButton = (id) => {
