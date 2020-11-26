@@ -19,8 +19,6 @@ import { useDispatch } from "react-redux";
 const Temperature = ({ id, data, inputs, outputs }) => {
 	const classes = useStyles();
 	const dispatch = useDispatch();
-	console.log("treeTemperature", treeTemperature);
-	console.log("id", id);
 
 	const [expanded, setExpanded] = React.useState([]);
 	const [selected, setSelected] = React.useState([]);
