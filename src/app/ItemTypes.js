@@ -14,3 +14,4 @@ export const VIZ_MAPS = "mapsViz";
 export const PROPERTIES = "properties";
 export const WIDGET_INFOS = "widgetInfos";
 export const OUTPUT_LOG = "outputLog";
+export const OPERATOR_STATISTIC_MERGE = "statisticsMerge";

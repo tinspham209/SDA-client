@@ -14,6 +14,7 @@ import {
 	VIZ_COLUMNCHART,
 	VIZ_MAPS,
 	INDUSTRY_PRODUCTION,
+	OPERATOR_STATISTIC_MERGE,
 } from "../../app/ItemTypes";
 
 import {
@@ -23,6 +24,7 @@ import {
 	Maps,
 	Industry,
 	Temperature,
+	StatisticsMerge,
 } from "../../components/Widgets";
 
 const initialSchema = {
@@ -58,6 +60,8 @@ const MashupContent = () => {
 				return Industry;
 			case CLIMATE_TEMPERATURE:
 				return Temperature;
+			case OPERATOR_STATISTIC_MERGE:
+				return StatisticsMerge;
 			default:
 				break;
 		}
