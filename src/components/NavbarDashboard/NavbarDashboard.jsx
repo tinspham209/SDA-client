@@ -14,8 +14,10 @@ const NavbarDashboard = () => {
 	const dispatch = useDispatch();
 
 	const handleButton = (id) => {
-		let action = setNavbarNewOnClick(true);
-		dispatch(action);
+		if (id === "new") {
+			let action = setNavbarNewOnClick(true);
+			dispatch(action);
+		}
 	};
 
 	return (
