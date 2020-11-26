@@ -7,10 +7,10 @@ const dashboard = createSlice({
 		navbarBtnOnClick: "",
 		toolbar: {
 			isOpen: {
-				climate: false,
+				climate: true,
 				atmosphere: false,
 				population: false,
-				industry: false,
+				industry: true,
 				forest: false,
 				operators: false,
 				visualization: true,
