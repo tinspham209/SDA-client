@@ -15,6 +15,7 @@ import {
 	VIZ_MAPS,
 	INDUSTRY_PRODUCTION,
 	OPERATOR_STATISTIC_MERGE,
+	VIZ_TABLE,
 } from "../../app/ItemTypes";
 
 import {
@@ -25,6 +26,7 @@ import {
 	Industry,
 	Temperature,
 	StatisticsMerge,
+	Table,
 } from "../../components/Widgets";
 
 const initialSchema = {
@@ -62,6 +64,8 @@ const MashupContent = () => {
 				return Temperature;
 			case OPERATOR_STATISTIC_MERGE:
 				return StatisticsMerge;
+			case VIZ_TABLE:
+				return Table;
 			default:
 				break;
 		}

@@ -8,3 +8,4 @@ export { default as StatisticsMerge } from "./Operators/StatisticsMerge/Statisti
 export { default as LineChart } from "./Visualization/LineChart/LineChart";
 export { default as ColumnChart } from "./Visualization/ColumnChart/ColumnChart";
 export { default as Maps } from "./Visualization/Maps/Maps";
+export { default as Table } from "./Visualization/Table/Table";

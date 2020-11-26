@@ -46,6 +46,9 @@ const dashboard = createSlice({
 				categories: [],
 				data: [],
 			},
+			table: {
+				data: [],
+			},
 		},
 		modal: {
 			isDevelop: false,
@@ -109,6 +112,9 @@ const dashboard = createSlice({
 		setModal: (state, action) => {
 			state.modal[action.payload] = !state.modal[action.payload];
 		},
+		setTableData: (state, action) => {
+			state.viz.table.data = action.payload;
+		},
 	},
 });
 
@@ -131,6 +137,7 @@ export const {
 	setLineCategories,
 	setLineData,
 	setModal,
+	setTableData,
 } = actions;
 
 export default reducer;

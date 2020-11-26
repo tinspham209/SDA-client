@@ -105,6 +105,14 @@ export const listItems = [
 		name: "Visualization",
 		collapseItem: [
 			{
+				id: "table",
+				name: "Table",
+				input: true,
+				output: false,
+				button: true,
+				disabled: false,
+			},
+			{
 				id: "columnChart",
 				name: "Column Chart",
 				input: true,
@@ -317,6 +325,28 @@ export const widgetInfos = {
 		{
 			id: "Connect",
 			info: "2 statistical data widget, Charts, Maps,...",
+		},
+	],
+	table: [
+		{
+			id: "Name",
+			info: "Table",
+		},
+		{
+			id: "Description",
+			info: "aaaaaaaaaaaaaaaa",
+		},
+		{
+			id: "Input",
+			info: "Json",
+		},
+		{
+			id: "Output",
+			info: "No",
+		},
+		{
+			id: "Connect",
+			info: "Industry Production, Average Temperature,...",
 		},
 	],
 };
