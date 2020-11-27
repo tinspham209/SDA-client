@@ -16,8 +16,8 @@ import {
 	setPortIsLinked,
 	setPortCanLinked,
 } from "../../../../app/slice/dashboardSlice";
-import { humidity } from "../../../../api/humidity";
 import { CLIMATE_HUMIDITY } from "../../../../app/ItemTypes";
+import { humidity } from "../../../../api/humidity";
 
 const WidgetColumnChart = ({ id, data, inputs, outputs }) => {
 	const classes = useStyles();
