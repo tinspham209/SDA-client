@@ -1,7 +1,5 @@
 import axios from "axios";
 
-const urlCaMau = "http://localhost:5000/results";
-const urlHaNoi = "http://localhost:5001/results";
 const url = `http://server.sda-research.ml:9876`;
 
 // - /climate/humidity/city/:cityid;
@@ -42,20 +40,24 @@ export const getIndustryByYear = async (year) => {
 	}
 };
 
-export const getHumidityData = async () => {
+export const getTemperatureByYear = async (year) => {
 	try {
-		const { data } = await axios.get(`${urlCaMau}`);
+		const { data } = await axios.get(`${url}/climate/temperature/year/${year}`);
+		console.log("data: ", data);
+
 		return data;
 	} catch (error) {
-		console.log("error", error);
+		console.log("error: ", error);
 	}
 };
 
-export const getHumidityDataHanoi = async () => {
+export const getRainfallByYear = async (year) => {
 	try {
-		const { data } = await axios.get(`${urlHaNoi}`);
+		const { data } = await axios.get(`${url}/climate/rainfall/year/${year}`);
+		console.log("data: ", data);
+
 		return data;
 	} catch (error) {
-		console.log("error", error);
+		console.log("error: ", error);
 	}
 };
