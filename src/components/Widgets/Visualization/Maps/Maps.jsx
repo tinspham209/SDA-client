@@ -18,9 +18,16 @@ import {
 } from "../../../../app/slice/dashboardSlice";
 import {
 	CLIMATE_HUMIDITY,
+	CLIMATE_RAINFALL,
+	CLIMATE_TEMPERATURE,
 	INDUSTRY_PRODUCTION,
 } from "../../../../app/ItemTypes";
-import { getHumidityByYear, getIndustryByYear } from "../../../../api";
+import {
+	getHumidityByYear,
+	getIndustryByYear,
+	getRainfallByYear,
+	getTemperatureByYear,
+} from "../../../../api";
 import { vn } from "../../../../api/vnId";
 
 const WidgetMaps = ({ id, data, inputs, outputs }) => {
@@ -102,6 +109,100 @@ const WidgetMaps = ({ id, data, inputs, outputs }) => {
 						.then((values) => {
 							values[0].results.bindings.map((item) => {
 								let city = item.city.value;
+								const cityId = vn.find((item) => {
+									return city === item.name;
+								});
+								const id = cityId.id;
+								const value = Number(item.value.value).toPrecision();
+								const object = [id, value];
+								dataMaps.push(object);
+								return null;
+							});
+							action = setMapsData(dataMaps);
+							dispatch(action);
+						})
+						.catch((error) => console.log("error: ", error));
+				};
+				fetchAPI();
+			}
+		} else if (itemIsSelect.split("-")[0] === CLIMATE_TEMPERATURE) {
+			if (itemIsSelect.split("-")[1] === "year") {
+				const year = itemIsSelect.split("-")[2];
+				const nameTitle = `Temperature of VN ${year}`;
+				action = setTitleMaps(nameTitle);
+				dispatch(action);
+
+				const fetchAPI = async () => {
+					Promise.all([await getTemperatureByYear(year)])
+						.then((values) => {
+							values[0].results.bindings.map((item) => {
+								let city = item.city.value;
+
+								if (city === "Bãi Cháy") {
+									city = "Quảng Ninh";
+								} else if (city === "Đà Lạt") {
+									city = "Lâm Đồng";
+								} else if (city === "Huế") {
+									city = "Thừa Thiên Huế";
+								} else if (city === "Nha Trang") {
+									city = "Khánh Hoà";
+								} else if (city === "Pleiku") {
+									city = "Gia Lai";
+								} else if (city === "Qui Nhơn") {
+									city = "Bình Định";
+								} else if (city === "Vinh") {
+									city = "Nghệ An";
+								} else if (city === "Vũng Tàu") {
+									city = "Bà Rịa - Vũng Tàu";
+								}
+
+								const cityId = vn.find((item) => {
+									return city === item.name;
+								});
+								const id = cityId.id;
+								const value = Number(item.value.value).toPrecision();
+								const object = [id, value];
+								dataMaps.push(object);
+								return null;
+							});
+							action = setMapsData(dataMaps);
+							dispatch(action);
+						})
+						.catch((error) => console.log("error: ", error));
+				};
+				fetchAPI();
+			}
+		} else if (itemIsSelect.split("-")[0] === CLIMATE_RAINFALL) {
+			if (itemIsSelect.split("-")[1] === "year") {
+				const year = itemIsSelect.split("-")[2];
+				const nameTitle = `Temperature of VN ${year}`;
+				action = setTitleMaps(nameTitle);
+				dispatch(action);
+
+				const fetchAPI = async () => {
+					Promise.all([await getRainfallByYear(year)])
+						.then((values) => {
+							values[0].results.bindings.map((item) => {
+								let city = item.city.value;
+
+								if (city === "Bãi Cháy") {
+									city = "Quảng Ninh";
+								} else if (city === "Đà Lạt") {
+									city = "Lâm Đồng";
+								} else if (city === "Huế") {
+									city = "Thừa Thiên Huế";
+								} else if (city === "Nha Trang") {
+									city = "Khánh Hoà";
+								} else if (city === "Pleiku") {
+									city = "Gia Lai";
+								} else if (city === "Qui Nhơn") {
+									city = "Bình Định";
+								} else if (city === "Vinh") {
+									city = "Nghệ An";
+								} else if (city === "Vũng Tàu") {
+									city = "Bà Rịa - Vũng Tàu";
+								}
+
 								const cityId = vn.find((item) => {
 									return city === item.name;
 								});
