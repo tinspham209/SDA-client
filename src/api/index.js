@@ -24,6 +24,7 @@ export const getHumidityByYear = async (year) => {
 	try {
 		const { data } = await axios.get(`${url}/climate/humidity/year/${year}`);
 		console.log("data: ", data);
+
 		return data;
 	} catch (error) {
 		console.log("error: ", error);
