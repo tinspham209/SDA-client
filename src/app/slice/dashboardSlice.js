@@ -10,6 +10,7 @@ const dashboard = createSlice({
 			example1OnClick: false,
 			example2OnClick: false,
 			example3OnClick: false,
+			spinner: false,
 		},
 		toolbar: {
 			isOpen: {
@@ -136,6 +137,9 @@ const dashboard = createSlice({
 		setNavbarNewOnClick: (state, action) => {
 			state.navbar.newOnClick = action.payload;
 		},
+		setSpinner: (state, action) => {
+			state.navbar.spinner = action.payload;
+		},
 	},
 });
 
@@ -163,6 +167,7 @@ export const {
 	setIdNewNode,
 	removeIdNode,
 	setNavbarNewOnClick,
+	setSpinner,
 } = actions;
 
 export default reducer;
