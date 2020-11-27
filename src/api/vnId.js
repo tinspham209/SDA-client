@@ -41,14 +41,14 @@ export const vn = [
 	},
 	{
 		id: "vn-hc",
-		name: "TP. Hồ Chí Minh",
+		name: "TP.Hồ Chí Minh",
 		city: "hochiminh",
 		lat: "10.409",
 		lon: "106.926",
 	},
 	{
 		id: "vn-br",
-		name: "Bến tre",
+		name: "Bến Tre",
 		city: "bentre",
 		lat: "10.171",
 		lon: "106.496",
@@ -76,7 +76,7 @@ export const vn = [
 	},
 	{
 		id: "vn-hd",
-		name: "Yên Bái",
+		name: "Hải Dương",
 		lat: "20.9613",
 		lon: "106.364",
 		city: "haiduong",
@@ -90,7 +90,7 @@ export const vn = [
 	},
 	{
 		id: "vn-317",
-		name: "Bắc Ninh",
+		name: "Hưng Yên",
 		lat: "20.8085",
 		lon: "106.076",
 		city: "hungyen",
@@ -153,7 +153,7 @@ export const vn = [
 	},
 	{
 		id: "vn-bp",
-		name: "Lâm Đồng",
+		name: "Bình Phước",
 		lat: "11.6805",
 		lon: "106.897",
 		city: "binhphuoc",
