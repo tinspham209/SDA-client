@@ -31,6 +31,17 @@ export const getHumidityByYear = async (year) => {
 	}
 };
 
+export const getIndustryByYear = async (year) => {
+	try {
+		const { data } = await axios.get(`${url}/industry/year/${year}`);
+		console.log("data: ", data);
+
+		return data;
+	} catch (error) {
+		console.log("error: ", error);
+	}
+};
+
 export const getHumidityData = async () => {
 	try {
 		const { data } = await axios.get(`${urlCaMau}`);

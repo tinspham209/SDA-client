@@ -133,6 +133,23 @@ const dashboard = createSlice({
 		},
 		removeIdNode: (state, action) => {
 			state.mashupContent.node = [];
+			state.viz = {
+				maps: {
+					title: "",
+					data: [],
+				},
+				column: {
+					categories: [],
+					data: [],
+				},
+				line: {
+					categories: [],
+					data: [],
+				},
+				table: {
+					data: [],
+				},
+			};
 		},
 		setNavbarNewOnClick: (state, action) => {
 			state.navbar.newOnClick = action.payload;

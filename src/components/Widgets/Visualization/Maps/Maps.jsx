@@ -16,8 +16,11 @@ import {
 	setPortIsLinked,
 	setTitleMaps,
 } from "../../../../app/slice/dashboardSlice";
-import { CLIMATE_HUMIDITY } from "../../../../app/ItemTypes";
-import { getHumidityByYear } from "../../../../api";
+import {
+	CLIMATE_HUMIDITY,
+	INDUSTRY_PRODUCTION,
+} from "../../../../app/ItemTypes";
+import { getHumidityByYear, getIndustryByYear } from "../../../../api";
 import { vn } from "../../../../api/vnId";
 
 const WidgetMaps = ({ id, data, inputs, outputs }) => {
@@ -27,27 +30,29 @@ const WidgetMaps = ({ id, data, inputs, outputs }) => {
 	const itemIsSelect = useSelector(
 		(state) => state.dashboard.mashupContent.itemIsSelect
 	);
+	const port = useSelector((state) => state.dashboard.mashupContent.port);
 
 	const handleOnClick = () => {
 		console.log("itemIsSelect", itemIsSelect);
-
+		let action;
 		const portWidget = itemIsSelect.split("-")[0];
 		const portViz = id.split("-")[0];
 		const portLinked = [`port-${portWidget}`, `port-${portViz}`];
-		let action = setPortIsLinked(portLinked);
-		dispatch(action);
-		action = setPortCanLinked(true);
-		dispatch(action);
-
-		const year = itemIsSelect.split("-")[2];
-		const name = `Humidity of VN ${year}`;
-		action = setTitleMaps(name);
-		dispatch(action);
+		if (portLinked !== port) {
+			action = setPortIsLinked(portLinked);
+			dispatch(action);
+			action = setPortCanLinked(true);
+			dispatch(action);
+		}
 
 		const dataMaps = [];
 		if (itemIsSelect.split("-")[0] === CLIMATE_HUMIDITY) {
 			if (itemIsSelect.split("-")[1] === "year") {
 				const year = itemIsSelect.split("-")[2];
+				const nameTitle = `Humidity of VN ${year}`;
+				action = setTitleMaps(nameTitle);
+				dispatch(action);
+
 				const fetchAPI = async () => {
 					Promise.all([await getHumidityByYear(year)]).then((values) => {
 						values[0].results.bindings.map((item) => {
@@ -82,6 +87,34 @@ const WidgetMaps = ({ id, data, inputs, outputs }) => {
 						action = setMapsData(dataMaps);
 						dispatch(action);
 					});
+				};
+				fetchAPI();
+			}
+		} else if (itemIsSelect.split("-")[0] === INDUSTRY_PRODUCTION) {
+			if (itemIsSelect.split("-")[1] === "year") {
+				const year = itemIsSelect.split("-")[2];
+				const nameTitle = `Industry of VN ${year}`;
+				action = setTitleMaps(nameTitle);
+				dispatch(action);
+
+				const fetchAPI = async () => {
+					Promise.all([await getIndustryByYear(year)])
+						.then((values) => {
+							values[0].results.bindings.map((item) => {
+								let city = item.city.value;
+								const cityId = vn.find((item) => {
+									return city === item.name;
+								});
+								const id = cityId.id;
+								const value = Number(item.value.value).toPrecision();
+								const object = [id, value];
+								dataMaps.push(object);
+								return null;
+							});
+							action = setMapsData(dataMaps);
+							dispatch(action);
+						})
+						.catch((error) => console.log("error: ", error));
 				};
 				fetchAPI();
 			}

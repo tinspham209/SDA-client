@@ -28,6 +28,7 @@ const IndustryProduction = ({ id, data, inputs, outputs }) => {
 
 	const handleSelect = (event, nodeIds) => {
 		setSelected(nodeIds);
+		console.log("nodeIds: ", nodeIds);
 		let action = setItemIsSelect(nodeIds);
 		dispatch(action);
 	};
@@ -93,10 +94,14 @@ const IndustryProduction = ({ id, data, inputs, outputs }) => {
 					onNodeSelect={handleSelect}
 				>
 					{treeIndustry.data.map((item) => (
-						<TreeItem nodeId={item.id} label={item.name} key={item.id}>
+						<TreeItem
+							nodeId={`${treeIndustry.id}-${item.id}`}
+							label={item.name}
+							key={item.id}
+						>
 							{item.children.map((children) => (
 								<TreeItem
-									nodeId={children.id}
+									nodeId={`${treeIndustry.id}-${item.id}-${children.id}`}
 									label={children.name}
 									key={children.id}
 								/>

@@ -6,7 +6,7 @@ export const TOOLBAR = "TOOLBAR";
 
 export const CLIMATE_HUMIDITY = "humidity";
 export const CLIMATE_TEMPERATURE = "avgTemperature";
-export const INDUSTRY_PRODUCTION = "industryItem";
+export const INDUSTRY_PRODUCTION = "industry";
 
 export const VIZ_TABLE = "table";
 export const VIZ_LINECHART = "lineChart";

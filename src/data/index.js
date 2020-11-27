@@ -59,7 +59,7 @@ export const listItems = [
 		name: "Industry",
 		collapseItem: [
 			{
-				id: "industryItem",
+				id: "industry",
 				name: "Industry Production",
 				input: false,
 				output: true,
@@ -260,7 +260,7 @@ export const widgetInfos = {
 			info: "Column, Line Chart",
 		},
 	],
-	industryItem: [
+	industry: [
 		{
 			id: "Name",
 			info: "Industry Production",
@@ -353,41 +353,42 @@ export const widgetInfos = {
 
 export const treeIndustry = {
 	name: "Industry Production",
+	id: "industry",
 	data: [
 		{
-			id: "industry",
-			name: "Industry",
+			id: "year",
+			name: "Year",
 			children: [
 				{
-					id: "industryItem-2012",
+					id: "2012",
 					name: "2012",
 				},
 				{
-					id: "industryItem-2013",
+					id: "2013",
 					name: "2013",
 				},
 				{
-					id: "industryItem-2014",
+					id: "2014",
 					name: "2014",
 				},
 				{
-					id: "industryItem-2015",
+					id: "2015",
 					name: "2015",
 				},
 				{
-					id: "industryItem-2016",
+					id: "2016",
 					name: "2016",
 				},
 				{
-					id: "industryItem-2017",
+					id: "2017",
 					name: "2017",
 				},
 				{
-					id: "industryItem-2018",
+					id: "2018",
 					name: "2018",
 				},
 				{
-					id: "industryItem-2019",
+					id: "2019",
 					name: "2019",
 				},
 			],
