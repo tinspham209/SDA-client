@@ -4,7 +4,7 @@ export const CONTENT = "CONTENT";
 export const DASHBOARD = "DASHBOARD";
 export const TOOLBAR = "TOOLBAR";
 
-export const CLIMATE_HUMIDITY = "avgHumidity";
+export const CLIMATE_HUMIDITY = "humidity";
 export const CLIMATE_TEMPERATURE = "avgTemperature";
 export const INDUSTRY_PRODUCTION = "industryItem";
 

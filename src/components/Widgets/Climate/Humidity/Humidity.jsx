@@ -29,6 +29,7 @@ const Humidity = ({ id, data, inputs, outputs }) => {
 
 	const handleSelect = (event, nodeIds) => {
 		setSelected(nodeIds);
+		console.log("nodeIds: ", nodeIds);
 		const action = setItemIsSelect(nodeIds);
 		dispatch(action);
 	};
@@ -87,10 +88,21 @@ const Humidity = ({ id, data, inputs, outputs }) => {
 					selected={selected}
 					onNodeToggle={handleToggle}
 					onNodeSelect={handleSelect}
-					multiSelect
 				>
 					{treeHumidity.data.map((item) => (
-						<TreeItem nodeId={item.id} label={item.name} key={item.id} />
+						<TreeItem
+							nodeId={`${treeHumidity.id}-${item.id}`}
+							label={item.name}
+							key={item.id}
+						>
+							{item.children.map((children) => (
+								<TreeItem
+									nodeId={`${treeHumidity.id}-${item.id}-${children.id}`}
+									label={children.name}
+									key={children.id}
+								/>
+							))}
+						</TreeItem>
 					))}
 				</TreeView>
 			</div>
