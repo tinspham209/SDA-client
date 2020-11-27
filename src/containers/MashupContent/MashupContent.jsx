@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
 	CLIMATE_HUMIDITY,
 	CLIMATE_TEMPERATURE,
+	CLIMATE_RAINFALL,
 	ITEM,
 	VIZ_LINECHART,
 	VIZ_COLUMNCHART,
@@ -27,6 +28,7 @@ import {
 	Temperature,
 	StatisticsMerge,
 	Table,
+	Rainfall,
 } from "../../components/Widgets";
 import {
 	removeIdNode,
@@ -85,6 +87,8 @@ const MashupContent = () => {
 				return StatisticsMerge;
 			case VIZ_TABLE:
 				return Table;
+			case CLIMATE_RAINFALL:
+				return Rainfall;
 			default:
 				break;
 		}

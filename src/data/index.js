@@ -4,7 +4,7 @@ export const listItems = [
 		name: "Climate",
 		collapseItem: [
 			{
-				id: "avgTemperature",
+				id: "temperature",
 				name: "Average Temperature",
 				input: false,
 				output: true,
@@ -19,11 +19,11 @@ export const listItems = [
 				disabled: false,
 			},
 			{
-				id: "avgRainfall",
+				id: "rainfall",
 				name: "Average Rainfall",
 				input: false,
 				output: true,
-				disabled: true,
+				disabled: false,
 			},
 		],
 	},
@@ -282,10 +282,32 @@ export const widgetInfos = {
 			info: "Maps",
 		},
 	],
-	avgTemperature: [
+	temperature: [
 		{
 			id: "Name",
 			info: "Average Temperature",
+		},
+		{
+			id: "Description",
+			info: "aaaaaaaa",
+		},
+		{
+			id: "Input",
+			info: "No",
+		},
+		{
+			id: "Output",
+			info: "json",
+		},
+		{
+			id: "Connect",
+			info: "Maps",
+		},
+	],
+	rainfall: [
+		{
+			id: "Name",
+			info: "Average Rainfall",
 		},
 		{
 			id: "Description",
@@ -398,41 +420,42 @@ export const treeIndustry = {
 
 export const treeTemperature = {
 	name: "Average Temperature",
+	id: "temperature",
 	data: [
 		{
-			id: "temperature",
-			name: "Temperature",
+			id: "year",
+			name: "Year",
 			children: [
 				{
-					id: "avgTemperature-2012",
+					id: "2012",
 					name: "2012",
 				},
 				{
-					id: "avgTemperature-2013",
+					id: "2013",
 					name: "2013",
 				},
 				{
-					id: "avgTemperature-2014",
+					id: "2014",
 					name: "2014",
 				},
 				{
-					id: "avgTemperature-2015",
+					id: "2015",
 					name: "2015",
 				},
 				{
-					id: "avgTemperature-2016",
+					id: "2016",
 					name: "2016",
 				},
 				{
-					id: "avgTemperature-2017",
+					id: "2017",
 					name: "2017",
 				},
 				{
-					id: "avgTemperature-2018",
+					id: "2018",
 					name: "2018",
 				},
 				{
-					id: "avgTemperature-2019",
+					id: "2019",
 					name: "2019",
 				},
 			],
@@ -443,6 +466,51 @@ export const treeTemperature = {
 export const treeHumidity = {
 	name: "Average Humidity",
 	id: "humidity",
+	data: [
+		{
+			id: "year",
+			name: "Year",
+			children: [
+				{
+					id: "2012",
+					name: "2012",
+				},
+				{
+					id: "2013",
+					name: "2013",
+				},
+				{
+					id: "2014",
+					name: "2014",
+				},
+				{
+					id: "2015",
+					name: "2015",
+				},
+				{
+					id: "2016",
+					name: "2016",
+				},
+				{
+					id: "2017",
+					name: "2017",
+				},
+				{
+					id: "2018",
+					name: "2018",
+				},
+				{
+					id: "2019",
+					name: "2019",
+				},
+			],
+		},
+	],
+};
+
+export const treeRainfall = {
+	name: "Average Rainfall",
+	id: "rainfall",
 	data: [
 		{
 			id: "year",
