@@ -32,7 +32,6 @@ export const getHumidityByYear = async (year) => {
 export const getIndustryByYear = async (year) => {
 	try {
 		const { data } = await axios.get(`${url}/industry/year/${year}`);
-		console.log("data: ", data);
 
 		return data;
 	} catch (error) {
@@ -43,7 +42,6 @@ export const getIndustryByYear = async (year) => {
 export const getTemperatureByYear = async (year) => {
 	try {
 		const { data } = await axios.get(`${url}/climate/temperature/year/${year}`);
-		console.log("data: ", data);
 
 		return data;
 	} catch (error) {
@@ -54,7 +52,6 @@ export const getTemperatureByYear = async (year) => {
 export const getRainfallByYear = async (year) => {
 	try {
 		const { data } = await axios.get(`${url}/climate/rainfall/year/${year}`);
-		console.log("data: ", data);
 
 		return data;
 	} catch (error) {
