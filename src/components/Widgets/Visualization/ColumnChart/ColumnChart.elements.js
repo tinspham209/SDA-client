@@ -28,6 +28,7 @@ export const useStyles = makeStyles((theme) => ({
 		border: "1px solid #000",
 		margin: "10px",
 		overflowY: "auto",
+		minHeight: "100px",
 	},
 	portIn: {
 		position: "absolute",
