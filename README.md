@@ -60,6 +60,8 @@
 28. Viz `Humidity` in `ColumnChart`
 29. Draw connector when onClick on RUN btn
 30. Clear all node when onClick on NEW btn
+31. Fetch API viz Humidity year in Maps
+32. Fetch API viz Industry year in Maps
 
 ### Next Steps:
 
