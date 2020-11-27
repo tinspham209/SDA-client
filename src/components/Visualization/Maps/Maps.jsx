@@ -98,7 +98,7 @@ const Maps = () => {
 		setMapsOptions({
 			...mapsOptions,
 			title: {
-				text: `Industry of VN ${dataTitleMaps}`,
+				text: `${dataTitleMaps}`,
 			},
 			series: [
 				{
