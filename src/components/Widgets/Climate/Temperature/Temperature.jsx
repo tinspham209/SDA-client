@@ -89,10 +89,14 @@ const Temperature = ({ id, data, inputs, outputs }) => {
 					onNodeSelect={handleSelect}
 				>
 					{treeTemperature.data.map((item) => (
-						<TreeItem nodeId={item.id} label={item.name} key={item.id}>
+						<TreeItem
+							nodeId={`${treeTemperature.id}-${item.id}`}
+							label={item.name}
+							key={item.id}
+						>
 							{item.children.map((children) => (
 								<TreeItem
-									nodeId={children.id}
+									nodeId={`${treeTemperature.id}-${item.id}-${children.id}`}
 									label={children.name}
 									key={children.id}
 								/>

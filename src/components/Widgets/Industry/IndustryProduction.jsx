@@ -28,7 +28,6 @@ const IndustryProduction = ({ id, data, inputs, outputs }) => {
 
 	const handleSelect = (event, nodeIds) => {
 		setSelected(nodeIds);
-		console.log("nodeIds: ", nodeIds);
 		let action = setItemIsSelect(nodeIds);
 		dispatch(action);
 	};
