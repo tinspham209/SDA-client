@@ -1,384 +1,448 @@
-export const vn = {
-	vietnam: {
+export const vn = [
+	{
 		id: "vn-3655",
+		city: "vietnam",
 		name: "Việt Nam",
 	},
-	quangninh: {
+	{
 		id: "vn-qn",
 		name: "Quảng Ninh",
+		city: "quangninh",
 		lat: "21.223",
 		lon: "107.181",
 	},
-	khanhhoa: {
+	{
 		id: "vn-kh",
 		name: "Khánh Hoà",
+		city: "khanhhoa",
 		lat: "12.6049",
 		lon: "109.359",
 	},
-	tiengiang: {
+	{
 		id: "vn-tg",
 		name: "Tiền Giang",
+		city: "tiengiang",
 		lat: "10.4581",
 		lon: "106.217",
 	},
-	bariavungtau: {
+	{
 		id: "vn-bv",
 		name: "Bà Rịa - Vũng Tàu",
+		city: "bariavungtau",
 		lat: "10.3969",
 		lon: "107.143",
 	},
-	binhthuan: {
+	{
 		id: "vn-bu",
 		name: "Bình Thuận",
+		city: "binhthuan",
 		lat: "11.1284",
 		lon: "108.232",
 	},
-	hochiminh: {
+	{
 		id: "vn-hc",
 		name: "TP. Hồ Chí Minh",
+		city: "hochiminh",
 		lat: "10.409",
 		lon: "106.926",
 	},
-	bentre: {
+	{
 		id: "vn-br",
 		name: "Bến tre",
+		city: "bentre",
 		lat: "10.171",
 		lon: "106.496",
 	},
-	soctrang: {
+	{
 		id: "vn-st",
 		name: "Sóc Trăng",
+		city: "soctrang",
 		lat: "9.561400000000001",
 		lon: "105.9",
 	},
-	phutho: {
+	{
 		id: "vn-pt",
 		name: "Phú Thọ",
 		lat: "21.3127",
 		lon: "105.143",
+		city: "phutho",
 	},
-	yenbai: {
+	{
 		id: "vn-yb",
 		name: "Yên Bái",
 		lat: "21.7484",
 		lon: "104.512",
+		city: "yenbai",
 	},
-	haiduong: {
+	{
 		id: "vn-hd",
 		name: "Yên Bái",
 		lat: "20.9613",
 		lon: "106.364",
+		city: "haiduong",
 	},
-	bacninh: {
+	{
 		id: "vn-bn",
 		name: "Bắc Ninh",
 		lat: "21.098",
 		lon: "106.117",
+		city: "bacninh",
 	},
-	hungyen: {
+	{
 		id: "vn-317",
 		name: "Bắc Ninh",
 		lat: "20.8085",
 		lon: "106.076",
+		city: "hungyen",
 	},
-	ninhbinh: {
+	{
 		id: "vn-nb",
 		name: "Ninh Bình",
 		lat: "20.2722",
 		lon: "105.852",
+		city: "ninhbinh",
 	},
-	hanam: {
+	{
 		id: "vn-hm",
 		name: "Hà Nam",
 		lat: "20.5569",
 		lon: "105.985",
+		city: "hanam",
 	},
-	hoabinh: {
+	{
 		id: "vn-ho",
 		name: "Hoà Bình",
 		lat: "20.7292",
 		lon: "105.34",
+		city: "hoabinh",
 	},
-	vinhphuc: {
+	{
 		id: "vn-vc",
 		name: "Vĩnh Phúc",
 		lat: "21.3455",
 		lon: "105.549",
+		city: "vinhphuc",
 	},
-	hanoi: {
+	{
 		id: "vn-318",
 		name: "Hà Nội",
 		lat: "21.1306",
 		lon: "105.872",
+		city: "hanoi",
 	},
-	bacgiang: {
+	{
 		id: "vn-bg",
 		name: "Bắc Giang",
 		lat: "21.3512",
 		lon: "106.493",
+		city: "bacgiang",
 	},
-	thaibinh: {
+	{
 		id: "vn-tb",
 		name: "Thái Bình",
 		lat: "20.5303",
 		lon: "106.371",
+		city: "thaibinh",
 	},
-	lamdong: {
+	{
 		id: "vn-ld",
 		name: "Lâm Đồng",
 		lat: "11.5362",
 		lon: "108",
+		city: "lamdong",
 	},
-	binhphuoc: {
+	{
 		id: "vn-bp",
 		name: "Lâm Đồng",
 		lat: "11.6805",
 		lon: "106.897",
+		city: "binhphuoc",
 	},
-	phuyen: {
+	{
 		id: "vn-py",
 		name: "Phú Yên",
 		lat: "13.1647",
 		lon: "109.064",
+		city: "phuyen",
 	},
-	binhdinh: {
+	{
 		id: "vn-bd",
 		name: "Bình Định",
 		lat: "14.1075",
 		lon: "108.971",
+		city: "binhdinh",
 	},
-	gialai: {
+	{
 		id: "vn-724",
 		name: "Gia Lai",
 		lat: "13.8493",
 		lon: "108.156",
+		city: "gialai",
 	},
-	quangngai: {
+	{
 		id: "vn-qg",
 		name: "Quảng Ngãi",
 		lat: "14.9971",
 		lon: "108.686",
+		city: "quangngai",
 	},
-	dongnai: {
+	{
 		id: "vn-331",
 		name: "Đồng Nai",
 		lat: "14.9971",
 		lon: "108.686",
+		city: "dongnai",
 	},
-	dongthap: {
+	{
 		id: "vn-dt",
 		name: "Đồng Tháp",
 		lat: "10.6644",
 		lon: "105.586",
+		city: "dongthap",
 	},
-	longan: {
+	{
 		id: "vn-la",
 		name: "Long An",
 		lat: "10.6869",
 		lon: "106.134",
+		city: "longan",
 	},
-	haiphong: {
+	{
 		id: "vn-3623",
 		name: "Hải Phòng",
 		lat: "20.79",
 		lon: "106.635",
+		city: "haiphong",
 	},
-	haugiang: {
+	{
 		id: "vn-337",
 		name: "Hậu Giang",
 		lat: "9.843529999999999",
 		lon: "105.663",
+		city: "haugiang",
 	},
-	baclieu: {
+	{
 		id: "vn-bl",
 		name: "Bạc Liêu",
 		lat: "9.339410000000001",
 		lon: "105.573",
+		city: "baclieu",
 	},
-	vinhlong: {
+	{
 		id: "vn-vl",
 		name: "Vĩnh Long",
 		lat: "10.1042",
 		lon: "105.969",
+		city: "vinhlong",
 	},
-	tayninh: {
+	{
 		id: "vn-tn",
 		name: "Tây Ninh",
 		lat: "11.4121",
 		lon: "106.14",
+		city: "tayninh",
 	},
-	thainguyen: {
+	{
 		id: "vn-ty",
 		name: "Thái Nguyên",
 		lat: "21.5812",
 		lon: "105.887",
+		city: "thainguyen",
 	},
-	laichau: {
+	{
 		id: "vn-li",
 		name: "Lai Châu",
 		lat: "22.3502",
 		lon: "103.255",
+		city: "laichau",
 	},
-	sonla: {
+	{
 		id: "vn-311",
 		name: "Sơn La",
 		lat: "21.3011",
 		lon: "104.159",
+		city: "sonla",
 	},
-	hagiang: {
+	{
 		id: "vn-hg",
 		name: "Hà Giang",
 		lat: "22.7655",
 		lon: "104.965",
+		city: "hagiang",
 	},
-	namdinh: {
+	{
 		id: "vn-nd",
 		name: "Nam Định",
 		lat: "20.2343",
 		lon: "106.254",
+		city: "namdinh",
 	},
-	hatinh: {
+	{
 		id: "vn-328",
 		name: "Hà Tĩnh",
 		lat: "18.3563",
 		lon: "105.799",
+		city: "hatinh",
 	},
-	nghean: {
+	{
 		id: "vn-na",
 		name: "Nghệ An",
 		lat: "19.3548",
 		lon: "104.827",
+		city: "nghean",
 	},
-	quangbinh: {
+	{
 		id: "vn-qb",
 		name: "Quảng Bình",
 		lat: "17.4691",
 		lon: "106.357",
+		city: "quangbinh",
 	},
-	daklak: {
+	{
 		id: "vn-723",
 		name: "Đắk Lắk",
 		lat: "12.7691",
 		lon: "108.133",
+		city: "daklak",
 	},
-	ninhthuan: {
+	{
 		id: "vn-nt",
 		name: "Ninh Thuận",
 		lat: "11.6242",
 		lon: "108.925",
+		city: "ninhthuan",
 	},
-	daknong: {
+	{
 		id: "vn-6365",
 		name: "Đắk Nông",
 		lat: "12.1425",
 		lon: "107.66",
+		city: "daknong",
 	},
-	kontum: {
+	{
 		id: "vn-299",
 		name: "Kon Tum",
 		lat: "14.7451",
 		lon: "107.969",
+		city: "kontum",
 	},
-	quangnam: {
+	{
 		id: "vn-300",
 		name: "Quảng Nam",
 		lat: "15.6535",
 		lon: "107.955",
+		city: "quangnam",
 	},
-	quangtri: {
+	{
 		id: "vn-qt",
 		name: "Quảng Trị",
 		lat: "16.7204",
 		lon: "106.973",
+		city: "quangtri",
 	},
-	thuathienhue: {
+	{
 		id: "vn-tt",
 		name: "Thừa Thiên Huế",
 		lat: "16.312",
 		lon: "107.634",
+		city: "thuathienhue",
 	},
-	danang: {
+	{
 		id: "vn-da",
 		name: "Đà Nẵng",
 		lat: "16.0912",
 		lon: "108.102",
+		city: "danang",
 	},
-	angiang: {
+	{
 		id: "vn-ag",
 		name: "An Giang",
 		lat: "10.5736",
 		lon: "105.154",
+		city: "angiang",
 	},
-	camau: {
+	{
 		id: "vn-cm",
 		name: "Cà Mau",
 		lat: "9.05545",
 		lon: "105.073",
+		city: "camau",
 	},
-	travinh: {
+	{
 		id: "vn-tv",
 		name: "Trà Vinh",
 		lat: "9.82817",
 		lon: "106.289",
+		city: "travinh",
 	},
-	caobang: {
+	{
 		id: "vn-cb",
 		name: "Cao Bằng",
 		lat: "22.7595",
 		lon: "106.047",
+		city: "caobang",
 	},
-	kiengiang: {
+	{
 		id: "vn-kg",
 		name: "Kiên Giang",
 		lat: "9.85962",
 		lon: "105.284",
+		city: "kiengiang",
 	},
-	laocai: {
+	{
 		id: "vn-lo",
 		name: "Lào Cai",
 		lat: "22.3559",
 		lon: "104.096",
+		city: "laocai",
 	},
-	dienbien: {
+	{
 		id: "vn-db",
 		name: "Điện Biên",
 		lat: "21.7487",
 		lon: "103.226",
+		city: "dienbien",
 	},
-	langson: {
+	{
 		id: "vn-ls",
 		name: "Lạng Sơn",
 		lat: "21.7826",
 		lon: "106.724",
+		city: "langson",
 	},
-	thanhhoa: {
+	{
 		id: "vn-th",
 		name: "Thanh Hoá",
 		lat: "20.0917",
 		lon: "105.215",
+		city: "thanhhoa",
 	},
-	backan: {
+	{
 		id: "vn-307",
 		name: "Bắc Kạn",
 		lat: "22.1476",
 		lon: "105.874",
+		city: "backan",
 	},
-	tuyenquang: {
+	{
 		id: "vn-tq",
 		name: "Tuyên Quang",
 		lat: "22.131",
 		lon: "105.229",
+		city: "tuyenquang",
 	},
-	binhduong: {
+	{
 		id: "vn-bi",
 		name: "Bình Dương",
 		lat: "11.1382",
 		lon: "106.659",
+		city: "binhduong",
 	},
-	cantho: {
+	{
 		id: "vn-333",
 		name: "Cần Thơ",
 		lat: "10.2421",
 		lon: "105.685",
+		city: "cantho",
 	},
-};
+];

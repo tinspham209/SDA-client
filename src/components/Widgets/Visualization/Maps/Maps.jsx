@@ -46,10 +46,8 @@ const WidgetMaps = ({ id, data, inputs, outputs }) => {
 
 		const dataMaps = [];
 		if (itemIsSelect.split("-")[0] === CLIMATE_HUMIDITY) {
-			console.log('itemIsSelect.split("-")[1]: ', itemIsSelect.split("-")[1]);
 			if (itemIsSelect.split("-")[1] === "year") {
 				const year = itemIsSelect.split("-")[2];
-				console.log("year: ", year);
 				const fetchAPI = async () => {
 					Promise.all([await getHumidityByYear(year)]).then((values) => {
 						values[0].results.bindings.map((item) => {
@@ -78,11 +76,9 @@ const WidgetMaps = ({ id, data, inputs, outputs }) => {
 							const id = cityId.id;
 							const value = Number(item.value.value).toPrecision();
 							const object = [id, value];
-							console.log("object: ", object);
 							dataMaps.push(object);
 							return null;
 						});
-						console.log("dataMaps", dataMaps);
 						action = setMapsData(dataMaps);
 						dispatch(action);
 					});
