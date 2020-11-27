@@ -1,17 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setNavbarNewOnClick } from "../../app/slice/dashboardSlice";
 
 import LogoImg from "../../assets/img/logo.png";
 import { useStyles } from "./NavbarDashboard.elements";
-import { ButtonGroup, Button } from "@material-ui/core";
+import { ButtonGroup, Button, CircularProgress } from "@material-ui/core";
 import { FaPlusCircle, FaQuestionCircle } from "react-icons/fa";
 
 const NavbarDashboard = () => {
 	const classes = useStyles();
 	const dispatch = useDispatch();
+	const spinner = useSelector((state) => state.dashboard.navbar.spinner);
 
 	const handleButton = (id) => {
 		if (id === "new") {
@@ -49,6 +50,7 @@ const NavbarDashboard = () => {
 					<Button onClick={() => handleButton("example-2")}>Example 2</Button>
 					<Button onClick={() => handleButton("example-3")}>Example 3</Button>
 				</ButtonGroup>
+				{spinner ? <CircularProgress color="secondary" /> : null}
 			</div>
 		</div>
 	);
