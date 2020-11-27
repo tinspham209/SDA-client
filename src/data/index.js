@@ -11,7 +11,7 @@ export const listItems = [
 				disabled: false,
 			},
 			{
-				id: "avgHumidity",
+				id: "humidity",
 				name: "Average Humidity",
 				input: false,
 				output: true,
@@ -237,7 +237,7 @@ export const widgetInfos = {
 			info: "Industry, Average Temperature",
 		},
 	],
-	avgHumidity: [
+	humidity: [
 		{
 			id: "Name",
 			info: "Average Humidity",
@@ -441,26 +441,45 @@ export const treeTemperature = {
 
 export const treeHumidity = {
 	name: "Average Humidity",
+	id: "humidity",
 	data: [
 		{
-			id: "avgHumidity-danang",
-			name: "Đà Nẵng",
-		},
-		{
-			id: "avgHumidity-hanoi",
-			name: "Hà Nội",
-		},
-		{
-			id: "avgHumidity-hue",
-			name: "Huế",
-		},
-		{
-			id: "avgHumidity-laichau",
-			name: "Lai Châu",
-		},
-		{
-			id: "avgHumidity-vinh",
-			name: "Vinh",
+			id: "year",
+			name: "Year",
+			children: [
+				{
+					id: "2012",
+					name: "2012",
+				},
+				{
+					id: "2013",
+					name: "2013",
+				},
+				{
+					id: "2014",
+					name: "2014",
+				},
+				{
+					id: "2015",
+					name: "2015",
+				},
+				{
+					id: "2016",
+					name: "2016",
+				},
+				{
+					id: "2017",
+					name: "2017",
+				},
+				{
+					id: "2018",
+					name: "2018",
+				},
+				{
+					id: "2019",
+					name: "2019",
+				},
+			],
 		},
 	],
 };
