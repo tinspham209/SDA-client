@@ -115,6 +115,18 @@ const WidgetMaps = ({ id, data, inputs, outputs }) => {
 				const nameTitle = `Industry of VN ${year}`;
 				action = setTitleMaps(nameTitle);
 				dispatch(action);
+				const dataClasses = [
+					{
+						to: 80,
+					},
+					{ from: 80, to: 100 },
+					{ from: 100, to: 110 },
+					{ from: 110, to: 120 },
+					{ from: 120, to: 130 },
+					{ from: 130 },
+				];
+				action = setColorRange(dataClasses);
+				dispatch(action);
 
 				const fetchAPI = async () => {
 					Promise.all([await getIndustryByYear(year)])
@@ -142,6 +154,17 @@ const WidgetMaps = ({ id, data, inputs, outputs }) => {
 				const year = itemIsSelect.split("-")[2];
 				const nameTitle = `Temperature of VN ${year}`;
 				action = setTitleMaps(nameTitle);
+				dispatch(action);
+				const dataClasses = [
+					{
+						to: 18,
+					},
+					{ from: 18, to: 22 },
+					{ from: 22, to: 25 },
+					{ from: 25, to: 28 },
+					{ from: 28 },
+				];
+				action = setColorRange(dataClasses);
 				dispatch(action);
 
 				const fetchAPI = async () => {
@@ -177,6 +200,7 @@ const WidgetMaps = ({ id, data, inputs, outputs }) => {
 								dataMaps.push(object);
 								return null;
 							});
+
 							action = setMapsData(dataMaps);
 							dispatch(action);
 						})
@@ -187,8 +211,20 @@ const WidgetMaps = ({ id, data, inputs, outputs }) => {
 		} else if (itemIsSelect.split("-")[0] === CLIMATE_RAINFALL) {
 			if (itemIsSelect.split("-")[1] === "year") {
 				const year = itemIsSelect.split("-")[2];
-				const nameTitle = `Temperature of VN ${year}`;
+				const nameTitle = `Rainfall of VN ${year}`;
 				action = setTitleMaps(nameTitle);
+				dispatch(action);
+
+				const dataClasses = [
+					{
+						to: 1000,
+					},
+					{ from: 1000, to: 1500 },
+					{ from: 1500, to: 2000 },
+					{ from: 2000, to: 2800 },
+					{ from: 2800 },
+				];
+				action = setColorRange(dataClasses);
 				dispatch(action);
 
 				const fetchAPI = async () => {
