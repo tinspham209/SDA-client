@@ -15,6 +15,9 @@ const Maps = () => {
 
 	const dataMaps = useSelector((state) => state.dashboard.viz.maps.data);
 	const dataTitleMaps = useSelector((state) => state.dashboard.viz.maps.title);
+	const dataClasses = useSelector(
+		(state) => state.dashboard.viz.maps.dataClasses
+	);
 
 	const [mapsOptions, setMapsOptions] = useState({
 		title: {
@@ -106,9 +109,13 @@ const Maps = () => {
 					data: dataMap,
 				},
 			],
+			colorAxis: {
+				...mapsOptions.colorAxis,
+				dataClasses: dataClasses,
+			},
 		});
 		// eslint-disable-next-line
-	}, [dataMaps, dataTitleMaps]);
+	}, [dataMaps, dataTitleMaps, dataClasses]);
 
 	return (
 		<div className={classes.maps}>

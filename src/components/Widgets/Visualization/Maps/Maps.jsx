@@ -10,6 +10,7 @@ import Maps from "../../../Visualization/Maps/Maps";
 
 import { useSelector, useDispatch } from "react-redux";
 import {
+	setColorRange,
 	setInfoWidget,
 	setMapsData,
 	setPortCanLinked,
@@ -58,6 +59,17 @@ const WidgetMaps = ({ id, data, inputs, outputs }) => {
 				const year = itemIsSelect.split("-")[2];
 				const nameTitle = `Humidity of VN ${year}`;
 				action = setTitleMaps(nameTitle);
+				dispatch(action);
+				const dataClasses = [
+					{
+						to: 70,
+					},
+					{ from: 70, to: 75 },
+					{ from: 75, to: 80 },
+					{ from: 80, to: 85 },
+					{ from: 85 },
+				];
+				action = setColorRange(dataClasses);
 				dispatch(action);
 
 				const fetchAPI = async () => {

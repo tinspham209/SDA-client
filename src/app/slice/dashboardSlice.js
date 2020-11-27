@@ -47,6 +47,16 @@ const dashboard = createSlice({
 			maps: {
 				title: "",
 				data: [],
+				dataClasses: [
+					{
+						to: 80,
+					},
+					{ from: 80, to: 100 },
+					{ from: 100, to: 110 },
+					{ from: 110, to: 120 },
+					{ from: 120, to: 130 },
+					{ from: 130 },
+				],
 			},
 			column: {
 				categories: [],
@@ -157,6 +167,9 @@ const dashboard = createSlice({
 		setSpinner: (state, action) => {
 			state.navbar.spinner = action.payload;
 		},
+		setColorRange: (state, action) => {
+			state.viz.maps.dataClasses = action.payload;
+		},
 	},
 });
 
@@ -185,6 +198,7 @@ export const {
 	removeIdNode,
 	setNavbarNewOnClick,
 	setSpinner,
+	setColorRange,
 } = actions;
 
 export default reducer;
