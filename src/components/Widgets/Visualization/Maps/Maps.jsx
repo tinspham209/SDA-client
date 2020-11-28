@@ -43,7 +43,7 @@ const WidgetMaps = ({ id, data, inputs, outputs }) => {
 	const handleOnClick = () => {
 		console.log("itemIsSelect", itemIsSelect);
 		let action;
-		const portWidget = itemIsSelect.split("-")[0];
+		const portWidget = itemIsSelect[0].split("-")[0];
 		const portViz = id.split("-")[0];
 		const portLinked = [`port-${portWidget}`, `port-${portViz}`];
 		if (portLinked !== port) {
@@ -54,9 +54,9 @@ const WidgetMaps = ({ id, data, inputs, outputs }) => {
 		}
 
 		const dataMaps = [];
-		if (itemIsSelect.split("-")[0] === CLIMATE_HUMIDITY) {
-			if (itemIsSelect.split("-")[1] === "year") {
-				const year = itemIsSelect.split("-")[2];
+		if (itemIsSelect[0].split("-")[0] === CLIMATE_HUMIDITY) {
+			if (itemIsSelect[0].split("-")[1] === "year") {
+				const year = itemIsSelect[0].split("-")[2];
 				const nameTitle = `Humidity of VN ${year}`;
 				action = setTitleMaps(nameTitle);
 				dispatch(action);
@@ -109,9 +109,9 @@ const WidgetMaps = ({ id, data, inputs, outputs }) => {
 				};
 				fetchAPI();
 			}
-		} else if (itemIsSelect.split("-")[0] === INDUSTRY_PRODUCTION) {
-			if (itemIsSelect.split("-")[1] === "year") {
-				const year = itemIsSelect.split("-")[2];
+		} else if (itemIsSelect[0].split("-")[0] === INDUSTRY_PRODUCTION) {
+			if (itemIsSelect[0].split("-")[1] === "year") {
+				const year = itemIsSelect[0].split("-")[2];
 				const nameTitle = `Industry of VN ${year}`;
 				action = setTitleMaps(nameTitle);
 				dispatch(action);
@@ -149,9 +149,9 @@ const WidgetMaps = ({ id, data, inputs, outputs }) => {
 				};
 				fetchAPI();
 			}
-		} else if (itemIsSelect.split("-")[0] === CLIMATE_TEMPERATURE) {
-			if (itemIsSelect.split("-")[1] === "year") {
-				const year = itemIsSelect.split("-")[2];
+		} else if (itemIsSelect[0].split("-")[0] === CLIMATE_TEMPERATURE) {
+			if (itemIsSelect[0].split("-")[1] === "year") {
+				const year = itemIsSelect[0].split("-")[2];
 				const nameTitle = `Temperature of VN ${year}`;
 				action = setTitleMaps(nameTitle);
 				dispatch(action);
@@ -208,9 +208,9 @@ const WidgetMaps = ({ id, data, inputs, outputs }) => {
 				};
 				fetchAPI();
 			}
-		} else if (itemIsSelect.split("-")[0] === CLIMATE_RAINFALL) {
-			if (itemIsSelect.split("-")[1] === "year") {
-				const year = itemIsSelect.split("-")[2];
+		} else if (itemIsSelect[0].split("-")[0] === CLIMATE_RAINFALL) {
+			if (itemIsSelect[0].split("-")[1] === "year") {
+				const year = itemIsSelect[0].split("-")[2];
 				const nameTitle = `Rainfall of VN ${year}`;
 				action = setTitleMaps(nameTitle);
 				dispatch(action);

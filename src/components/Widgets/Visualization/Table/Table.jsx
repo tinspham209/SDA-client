@@ -37,9 +37,9 @@ const WidgetTable = ({ id, data, inputs, outputs }) => {
 	);
 
 	const handleOnClick = () => {
-		console.log("itemIsSelect: ", itemIsSelect);
+		console.log("itemIsSelect: ", itemIsSelect[0]);
 		let action;
-		const portWidget = itemIsSelect.split("-")[0];
+		const portWidget = itemIsSelect[0].split("-")[0];
 		const portViz = id.split("-")[0];
 		const portLinked = [`port-${portWidget}`, `port-${portViz}`];
 		action = setPortIsLinked(portLinked);
@@ -49,9 +49,9 @@ const WidgetTable = ({ id, data, inputs, outputs }) => {
 
 		const dataTable = [];
 
-		if (itemIsSelect.split("-")[0] === CLIMATE_HUMIDITY) {
-			if (itemIsSelect.split("-")[1] === "year") {
-				const year = itemIsSelect.split("-")[2];
+		if (itemIsSelect[0].split("-")[0] === CLIMATE_HUMIDITY) {
+			if (itemIsSelect[0].split("-")[1] === "year") {
+				const year = itemIsSelect[0].split("-")[2];
 
 				const fetchAPI = async () => {
 					Promise.all([await getHumidityByYear(year)]).then((values) => {
@@ -69,9 +69,9 @@ const WidgetTable = ({ id, data, inputs, outputs }) => {
 				};
 				fetchAPI();
 			}
-		} else if (itemIsSelect.split("-")[0] === INDUSTRY_PRODUCTION) {
-			if (itemIsSelect.split("-")[1] === "year") {
-				const year = itemIsSelect.split("-")[2];
+		} else if (itemIsSelect[0].split("-")[0] === INDUSTRY_PRODUCTION) {
+			if (itemIsSelect[0].split("-")[1] === "year") {
+				const year = itemIsSelect[0].split("-")[2];
 
 				const fetchAPI = async () => {
 					Promise.all([await getIndustryByYear(year)]).then((values) => {
@@ -89,9 +89,9 @@ const WidgetTable = ({ id, data, inputs, outputs }) => {
 				};
 				fetchAPI();
 			}
-		} else if (itemIsSelect.split("-")[0] === CLIMATE_TEMPERATURE) {
-			if (itemIsSelect.split("-")[1] === "year") {
-				const year = itemIsSelect.split("-")[2];
+		} else if (itemIsSelect[0].split("-")[0] === CLIMATE_TEMPERATURE) {
+			if (itemIsSelect[0].split("-")[1] === "year") {
+				const year = itemIsSelect[0].split("-")[2];
 
 				const fetchAPI = async () => {
 					Promise.all([await getTemperatureByYear(year)]).then((values) => {
@@ -109,9 +109,9 @@ const WidgetTable = ({ id, data, inputs, outputs }) => {
 				};
 				fetchAPI();
 			}
-		} else if (itemIsSelect.split("-")[0] === CLIMATE_RAINFALL) {
-			if (itemIsSelect.split("-")[1] === "year") {
-				const year = itemIsSelect.split("-")[2];
+		} else if (itemIsSelect[0].split("-")[0] === CLIMATE_RAINFALL) {
+			if (itemIsSelect[0].split("-")[1] === "year") {
+				const year = itemIsSelect[0].split("-")[2];
 
 				const fetchAPI = async () => {
 					Promise.all([await getRainfallByYear(year)]).then((values) => {
