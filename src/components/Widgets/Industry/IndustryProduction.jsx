@@ -91,6 +91,7 @@ const IndustryProduction = ({ id, data, inputs, outputs }) => {
 					selected={selected}
 					onNodeToggle={handleToggle}
 					onNodeSelect={handleSelect}
+					multiSelect
 				>
 					{treeIndustry.data.map((item) => (
 						<TreeItem
@@ -108,6 +109,9 @@ const IndustryProduction = ({ id, data, inputs, outputs }) => {
 						</TreeItem>
 					))}
 				</TreeView>
+			</div>
+			<div className={classes.footer}>
+				<p> Tip: Control-Click to select multiple provinces</p>
 			</div>
 		</div>
 	);

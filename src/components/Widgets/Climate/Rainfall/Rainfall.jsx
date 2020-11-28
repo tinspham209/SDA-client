@@ -87,6 +87,7 @@ const Rainfall = ({ id, data, inputs, outputs }) => {
 					selected={selected}
 					onNodeToggle={handleToggle}
 					onNodeSelect={handleSelect}
+					multiSelect
 				>
 					{treeRainfall.data.map((item) => (
 						<TreeItem
@@ -104,6 +105,9 @@ const Rainfall = ({ id, data, inputs, outputs }) => {
 						</TreeItem>
 					))}
 				</TreeView>
+			</div>
+			<div className={classes.footer}>
+				<p> Tip: Control-Click to select multiple provinces</p>
 			</div>
 		</div>
 	);

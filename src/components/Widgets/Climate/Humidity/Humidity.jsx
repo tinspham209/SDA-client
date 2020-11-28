@@ -87,6 +87,7 @@ const Humidity = ({ id, data, inputs, outputs }) => {
 					selected={selected}
 					onNodeToggle={handleToggle}
 					onNodeSelect={handleSelect}
+					multiSelect
 				>
 					{treeHumidity.data.map((item) => (
 						<TreeItem
@@ -106,7 +107,7 @@ const Humidity = ({ id, data, inputs, outputs }) => {
 				</TreeView>
 			</div>
 			<div className={classes.footer}>
-				<p> Tip: Control-Click to select multiple areas</p>
+				<p> Tip: Control-Click to select multiple provinces</p>
 			</div>
 		</div>
 	);
