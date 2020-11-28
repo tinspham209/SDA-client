@@ -15,8 +15,18 @@ import {
 } from "../../../../app/slice/dashboardSlice";
 
 import TableComponent from "../../../Visualization/Table/Table";
-import { CLIMATE_HUMIDITY } from "../../../../app/ItemTypes";
-import { humidity } from "../../../../api/humidity";
+import {
+	CLIMATE_HUMIDITY,
+	CLIMATE_RAINFALL,
+	CLIMATE_TEMPERATURE,
+	INDUSTRY_PRODUCTION,
+} from "../../../../app/ItemTypes";
+import {
+	getHumidityByYear,
+	getIndustryByYear,
+	getRainfallByYear,
+	getTemperatureByYear,
+} from "../../../../api";
 
 const WidgetTable = ({ id, data, inputs, outputs }) => {
 	const classes = useStyles();
@@ -28,34 +38,97 @@ const WidgetTable = ({ id, data, inputs, outputs }) => {
 
 	const handleOnClick = () => {
 		console.log("itemIsSelect: ", itemIsSelect);
-		const portWidget = itemIsSelect[0].split("-")[0];
+		let action;
+		const portWidget = itemIsSelect.split("-")[0];
 		const portViz = id.split("-")[0];
 		const portLinked = [`port-${portWidget}`, `port-${portViz}`];
-		let action = setPortIsLinked(portLinked);
+		action = setPortIsLinked(portLinked);
 		dispatch(action);
 		action = setPortCanLinked(true);
 		dispatch(action);
 
-		if (itemIsSelect[0].split("-")[0] === CLIMATE_HUMIDITY) {
-			let data = [];
-			itemIsSelect.map((item) => {
-				const cityIsSelect = item.split("-")[1];
-				let yearData = {};
-				let year = "";
-				let value = "";
-				let city = "";
-				humidity[cityIsSelect].records.map((record) => {
-					city = record.city;
-					year = record.year;
-					value = record.humidity;
-					yearData = { city, year, value };
-					data.push(yearData);
-					return null;
-				});
-				return null;
-			});
-			action = setTableData(data);
-			dispatch(action);
+		const dataTable = [];
+
+		if (itemIsSelect.split("-")[0] === CLIMATE_HUMIDITY) {
+			if (itemIsSelect.split("-")[1] === "year") {
+				const year = itemIsSelect.split("-")[2];
+
+				const fetchAPI = async () => {
+					Promise.all([await getHumidityByYear(year)]).then((values) => {
+						values[0].results.bindings.map((item) => {
+							let itemData = {};
+							let city = item.city.value;
+							let value = Number(item.value.value).toPrecision();
+							itemData = { city, year, value };
+							dataTable.push(itemData);
+							return null;
+						});
+						action = setTableData(dataTable);
+						dispatch(action);
+					});
+				};
+				fetchAPI();
+			}
+		} else if (itemIsSelect.split("-")[0] === INDUSTRY_PRODUCTION) {
+			if (itemIsSelect.split("-")[1] === "year") {
+				const year = itemIsSelect.split("-")[2];
+
+				const fetchAPI = async () => {
+					Promise.all([await getIndustryByYear(year)]).then((values) => {
+						values[0].results.bindings.map((item) => {
+							let itemData = {};
+							let city = item.city.value;
+							let value = Number(item.value.value).toPrecision();
+							itemData = { city, year, value };
+							dataTable.push(itemData);
+							return null;
+						});
+						action = setTableData(dataTable);
+						dispatch(action);
+					});
+				};
+				fetchAPI();
+			}
+		} else if (itemIsSelect.split("-")[0] === CLIMATE_TEMPERATURE) {
+			if (itemIsSelect.split("-")[1] === "year") {
+				const year = itemIsSelect.split("-")[2];
+
+				const fetchAPI = async () => {
+					Promise.all([await getTemperatureByYear(year)]).then((values) => {
+						values[0].results.bindings.map((item) => {
+							let itemData = {};
+							let city = item.city.value;
+							let value = Number(item.value.value).toPrecision();
+							itemData = { city, year, value };
+							dataTable.push(itemData);
+							return null;
+						});
+						action = setTableData(dataTable);
+						dispatch(action);
+					});
+				};
+				fetchAPI();
+			}
+		} else if (itemIsSelect.split("-")[0] === CLIMATE_RAINFALL) {
+			if (itemIsSelect.split("-")[1] === "year") {
+				const year = itemIsSelect.split("-")[2];
+
+				const fetchAPI = async () => {
+					Promise.all([await getRainfallByYear(year)]).then((values) => {
+						values[0].results.bindings.map((item) => {
+							let itemData = {};
+							let city = item.city.value;
+							let value = Number(item.value.value).toPrecision();
+							itemData = { city, year, value };
+							dataTable.push(itemData);
+							return null;
+						});
+						action = setTableData(dataTable);
+						dispatch(action);
+					});
+				};
+				fetchAPI();
+			}
 		}
 	};
 
