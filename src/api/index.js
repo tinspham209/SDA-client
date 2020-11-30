@@ -58,3 +58,47 @@ export const getRainfallByYear = async (year) => {
 		console.log("error: ", error);
 	}
 };
+
+export const getHumidityByCity = async (city) => {
+	try {
+		const { data } = await axios.get(`${url}/climate/humidity/city/${city}`);
+		console.log("data: ", data);
+
+		return data;
+	} catch (error) {
+		console.log("error: ", error);
+	}
+};
+
+export const getTemperatureByCity = async (city) => {
+	try {
+		const { data } = await axios.get(`${url}/climate/temperature/city/${city}`);
+		console.log("data: ", data);
+
+		return data;
+	} catch (error) {
+		console.log("error: ", error);
+	}
+};
+
+export const getRainfallByCity = async (city) => {
+	try {
+		const { data } = await axios.get(`${url}/climate/rainfall/city/${city}`);
+		console.log("data: ", data);
+
+		return data;
+	} catch (error) {
+		console.log("error: ", error);
+	}
+};
+
+export const getIndustryByCity = async (city) => {
+	try {
+		const { data } = await axios.get(`${url}/industry/city/${city}`);
+		console.log("data: ", data);
+
+		return data;
+	} catch (error) {
+		console.log("error: ", error);
+	}
+};

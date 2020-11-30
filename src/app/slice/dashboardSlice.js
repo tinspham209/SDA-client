@@ -59,10 +59,12 @@ const dashboard = createSlice({
 				],
 			},
 			column: {
+				title: "",
 				categories: [],
 				data: [],
 			},
 			line: {
+				title: "",
 				categories: [],
 				data: [],
 			},
@@ -151,10 +153,12 @@ const dashboard = createSlice({
 				column: {
 					categories: [],
 					data: [],
+					unit: "",
 				},
 				line: {
 					categories: [],
 					data: [],
+					unit: "",
 				},
 				table: {
 					data: [],
@@ -169,6 +173,18 @@ const dashboard = createSlice({
 		},
 		setColorRange: (state, action) => {
 			state.viz.maps.dataClasses = action.payload;
+		},
+		setColumnTitle: (state, action) => {
+			state.viz.column.title = action.payload;
+		},
+		setLineTitle: (state, action) => {
+			state.viz.Line.title = action.payload;
+		},
+		setColumnUnit: (state, action) => {
+			state.viz.column.unit = action.payload;
+		},
+		setLineUnit: (state, action) => {
+			state.viz.line.unit = action.payload;
 		},
 	},
 });
@@ -199,6 +215,10 @@ export const {
 	setNavbarNewOnClick,
 	setSpinner,
 	setColorRange,
+	setColumnTitle,
+	setLineTitle,
+	setColumnUnit,
+	setLineUnit,
 } = actions;
 
 export default reducer;

@@ -723,10 +723,6 @@ export const treeTemperature = {
 			name: "City",
 			children: [
 				{
-					id: "baichay",
-					name: "Bãi Cháy",
-				},
-				{
 					id: "camau",
 					name: "Cà Mau",
 				},
