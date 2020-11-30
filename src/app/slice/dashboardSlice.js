@@ -72,6 +72,7 @@ const dashboard = createSlice({
 			},
 			table: {
 				data: [],
+				unit: "",
 			},
 		},
 		modal: {
@@ -116,12 +117,8 @@ const dashboard = createSlice({
 		setTitleMaps: (state, action) => {
 			state.viz.maps.title = action.payload;
 		},
-
 		setModal: (state, action) => {
 			state.modal[action.payload] = !state.modal[action.payload];
-		},
-		setTableData: (state, action) => {
-			state.viz.table.data = action.payload;
 		},
 		setPortIsLinked: (state, action) => {
 			state.mashupContent.port = action.payload;
@@ -143,14 +140,18 @@ const dashboard = createSlice({
 					categories: [],
 					data: [],
 					unit: "",
+					title: "",
 				},
 				line: {
 					categories: [],
 					data: [],
 					unit: "",
+					title: "",
 				},
 				table: {
+					title: "",
 					data: [],
+					unit: "",
 				},
 			};
 		},
@@ -166,12 +167,15 @@ const dashboard = createSlice({
 		setColumnCategories: (state, action) => {
 			state.viz.column.categories = action.payload;
 		},
+		setLineCategories: (state, action) => {
+			state.viz.line.categories = action.payload;
+		},
 		setColumnData: (state, action) => {
 			const data = action.payload;
 			state.viz.column.data = data;
 		},
-		setLineCategories: (state, action) => {
-			state.viz.line.categories = action.payload;
+		setTableData: (state, action) => {
+			state.viz.table.data = action.payload;
 		},
 		setLineData: (state, action) => {
 			const data = action.payload;
@@ -183,11 +187,17 @@ const dashboard = createSlice({
 		setLineTitle: (state, action) => {
 			state.viz.line.title = action.payload;
 		},
+		setTableTitle: (state, action) => {
+			state.viz.table.title = action.payload;
+		},
 		setColumnUnit: (state, action) => {
 			state.viz.column.unit = action.payload;
 		},
 		setLineUnit: (state, action) => {
 			state.viz.line.unit = action.payload;
+		},
+		setTableUnit: (state, action) => {
+			state.viz.table.unit = action.payload;
 		},
 	},
 });
@@ -222,6 +232,8 @@ export const {
 	setLineTitle,
 	setColumnUnit,
 	setLineUnit,
+	setTableUnit,
+	setTableTitle,
 } = actions;
 
 export default reducer;
