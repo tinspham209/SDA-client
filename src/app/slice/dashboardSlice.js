@@ -62,11 +62,13 @@ const dashboard = createSlice({
 				title: "",
 				categories: [],
 				data: [],
+				unit: "",
 			},
 			line: {
 				title: "",
 				categories: [],
 				data: [],
+				unit: "",
 			},
 			table: {
 				data: [],
@@ -114,20 +116,7 @@ const dashboard = createSlice({
 		setTitleMaps: (state, action) => {
 			state.viz.maps.title = action.payload;
 		},
-		setColumnCategories: (state, action) => {
-			state.viz.column.categories = action.payload;
-		},
-		setColumnData: (state, action) => {
-			const data = action.payload;
-			state.viz.column.data = data;
-		},
-		setLineCategories: (state, action) => {
-			state.viz.line.categories = action.payload;
-		},
-		setLineData: (state, action) => {
-			const data = action.payload;
-			state.viz.line.data = data;
-		},
+
 		setModal: (state, action) => {
 			state.modal[action.payload] = !state.modal[action.payload];
 		},
@@ -174,11 +163,25 @@ const dashboard = createSlice({
 		setColorRange: (state, action) => {
 			state.viz.maps.dataClasses = action.payload;
 		},
+		setColumnCategories: (state, action) => {
+			state.viz.column.categories = action.payload;
+		},
+		setColumnData: (state, action) => {
+			const data = action.payload;
+			state.viz.column.data = data;
+		},
+		setLineCategories: (state, action) => {
+			state.viz.line.categories = action.payload;
+		},
+		setLineData: (state, action) => {
+			const data = action.payload;
+			state.viz.line.data = data;
+		},
 		setColumnTitle: (state, action) => {
 			state.viz.column.title = action.payload;
 		},
 		setLineTitle: (state, action) => {
-			state.viz.Line.title = action.payload;
+			state.viz.line.title = action.payload;
 		},
 		setColumnUnit: (state, action) => {
 			state.viz.column.unit = action.payload;
