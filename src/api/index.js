@@ -62,7 +62,6 @@ export const getRainfallByYear = async (year) => {
 export const getHumidityByCity = async (city) => {
 	try {
 		const { data } = await axios.get(`${url}/climate/humidity/city/${city}`);
-		console.log("data: ", data);
 
 		return data;
 	} catch (error) {
@@ -73,7 +72,6 @@ export const getHumidityByCity = async (city) => {
 export const getTemperatureByCity = async (city) => {
 	try {
 		const { data } = await axios.get(`${url}/climate/temperature/city/${city}`);
-		console.log("data: ", data);
 
 		return data;
 	} catch (error) {
@@ -84,7 +82,6 @@ export const getTemperatureByCity = async (city) => {
 export const getRainfallByCity = async (city) => {
 	try {
 		const { data } = await axios.get(`${url}/climate/rainfall/city/${city}`);
-		console.log("data: ", data);
 
 		return data;
 	} catch (error) {
@@ -95,7 +92,6 @@ export const getRainfallByCity = async (city) => {
 export const getIndustryByCity = async (city) => {
 	try {
 		const { data } = await axios.get(`${url}/industry/city/${city}`);
-		console.log("data: ", data);
 
 		return data;
 	} catch (error) {
