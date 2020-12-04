@@ -13,23 +13,23 @@
   - [ ] Atmosphere
   - [ ] Population:
   - Industry
-    - Industry Production [x]
+    - [x] Industry Production
   - Forest
-    - Forest Cover Area [ ]
-    - AfForestation [x]
+    - [ ] Forest Cover Area
+    - [x] AfForestation
 - Feature:
-  - Filter by year [x]
-  - Filter by city [x]
-  - Filter by period of city [x]
-  - Statistics merge [ ]
-  - Simple Merge [ ]
+  - [x] Filter by year
+  - [x] Filter by city
+  - [x] Filter by period of city
+  - [ ] Statistics merge
+  - [ ] Simple Merge
 - Visualization
-  - Maps [x]
-  - Table [x]
+  - [x] Maps
+  - [x] Table
   - Charts
-    - Column [x]
-    - Line [x]
-    - Pie [ ]
+    - [x] Column
+    - [x] Line
+    - [ ] Pie
 
 ### Releases
 
