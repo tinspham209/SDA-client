@@ -7,11 +7,11 @@
 - Scientific research: Environment Analysis System in Vietnam
 - Dataset:
   - Climate:
-    - Temperature [x]
-    - Humidity [x]
-    - Rainfall [x]
-  - Atmosphere [ ]
-  - Population: [ ]
+    - [x] Temperature
+    - [x] Humidity
+    - [x] Rainfall
+  - [ ] Atmosphere
+  - [ ] Population:
   - Industry
     - Industry Production [x]
   - Forest
