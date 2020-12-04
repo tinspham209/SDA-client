@@ -14,18 +14,47 @@ const dashboard = createSlice({
 		},
 		toolbar: {
 			isOpen: {
-				climate: true,
-				atmosphere: false,
-				population: false,
-				industry: true,
-				forest: false,
-				operators: false,
-				visualization: true,
+				climate: {
+					isOpen: true,
+					children: {
+						temperature: true,
+						humidity: false,
+						rainfall: false,
+					},
+				},
+				atmosphere: {
+					isOpen: false,
+				},
+				population: {
+					isOpen: false,
+				},
+				industry: {
+					isOpen: true,
+					children: {
+						production: false,
+					},
+				},
+				forest: {
+					isOpen: false,
+					children: {
+						afforestation: false,
+					},
+				},
+				operators: {
+					isOpen: false,
+				},
+				visualization: {
+					isOpen: true,
+					children: {
+						chart: true,
+					},
+				},
 			},
 			isDragItem: "",
 			item: {
-				index: "",
-				indexCollapse: "",
+				indexItems: "",
+				indexItem: "",
+				indexChildren: "",
 			},
 		},
 		mashupContent: {
@@ -81,9 +110,16 @@ const dashboard = createSlice({
 	},
 	reducers: {
 		setToolbarIsOpen: (state, action) => {
-			state.toolbar.isOpen[action.payload] = !state.toolbar.isOpen[
+			state.toolbar.isOpen[action.payload].isOpen = !state.toolbar.isOpen[
 				action.payload
-			];
+			].isOpen;
+		},
+		setToolbarChildrenIsOpen: (state, action) => {
+			const cube = action.payload.split("-")[0];
+			const idChildren = action.payload.split("-")[1];
+			state.toolbar.isOpen[cube].children[idChildren] = !state.toolbar.isOpen[
+				cube
+			].children[idChildren];
 		},
 		setIsDragItem: (state, action) => {
 			state.toolbar.isDragItem = action.payload;
@@ -97,11 +133,14 @@ const dashboard = createSlice({
 		setInfoWidget: (state, action) => {
 			state.info.widget = action.payload;
 		},
-		setItemIndex: (state, action) => {
-			state.toolbar.item.index = action.payload;
+		setIndexItems: (state, action) => {
+			state.toolbar.item.indexItems = action.payload;
 		},
-		setIndexCollapse: (state, action) => {
-			state.toolbar.item.indexCollapse = action.payload;
+		setIndexItem: (state, action) => {
+			state.toolbar.item.indexItem = action.payload;
+		},
+		setIndexChildren: (state, action) => {
+			state.toolbar.item.indexChildren = action.payload;
 		},
 		setOutput: (state, action) => {
 			if (action.payload === "clear") {
@@ -210,8 +249,9 @@ export const {
 	setItemIsSelect,
 	setInfoIsOpen,
 	setInfoWidget,
-	setItemIndex,
-	setIndexCollapse,
+	setIndexItems,
+	setIndexItem,
+	setIndexChildren,
 	setOutput,
 	setTitleMaps,
 	setMapsData,
@@ -234,6 +274,7 @@ export const {
 	setLineUnit,
 	setTableUnit,
 	setTableTitle,
+	setToolbarChildrenIsOpen,
 } = actions;
 
 export default reducer;

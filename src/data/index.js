@@ -255,233 +255,512 @@ export const listItems = [
 ];
 
 export const widgetInfos = {
-	column: [
-		{
-			id: "Name",
-			info: "Column Chart",
+	visualization: {
+		chart: {
+			column: [
+				{
+					id: "Name",
+					info: "Column Chart",
+				},
+				{
+					id: "Description",
+					info: "Used to draw a Column chart, using HighCharts",
+				},
+				{
+					id: "Input",
+					info: "json data",
+				},
+				{
+					id: "Output",
+					info: "no",
+				},
+				{
+					id: "Connect",
+					info: "Statistics widgets",
+				},
+			],
+			line: [
+				{
+					id: "Name",
+					info: "Line Chart",
+				},
+				{
+					id: "Description",
+					info: "Used to draw a Line chart, using HighCharts",
+				},
+				{
+					id: "Input",
+					info: "json data",
+				},
+				{
+					id: "Output",
+					info: "no",
+				},
+				{
+					id: "Connect",
+					info: "Statistics widgets",
+				},
+			],
+			pie: [
+				{
+					id: "Name",
+					info: "Pie Chart",
+				},
+				{
+					id: "Description",
+					info: "Used to draw a Pie chart, using HighCharts",
+				},
+				{
+					id: "Input",
+					info: "json data",
+				},
+				{
+					id: "Output",
+					info: "no",
+				},
+				{
+					id: "Connect",
+					info: "Statistics widgets",
+				},
+			],
 		},
-		{
-			id: "Description",
-			info: "Used to draw a Column chart, using HighCharts",
+		maps: [
+			{
+				id: "Name",
+				info: "Maps",
+			},
+			{
+				id: "Description",
+				info: "Used to display locations with their long & lat",
+			},
+			{
+				id: "Input",
+				info: "Json data with attribute point(long, lat)",
+			},
+			{
+				id: "Output",
+				info: "no",
+			},
+			{
+				id: "Connect",
+				info: "Industry, Average Temperature",
+			},
+		],
+		table: [
+			{
+				id: "Name",
+				info: "Table",
+			},
+			{
+				id: "Description",
+				info: "aaaaaaaaaaaaaaaa",
+			},
+			{
+				id: "Input",
+				info: "Json",
+			},
+			{
+				id: "Output",
+				info: "No",
+			},
+			{
+				id: "Connect",
+				info: "Industry Production, Average Temperature,...",
+			},
+		],
+	},
+	climate: {
+		humidity: {
+			year: [
+				{
+					id: "Name",
+					info: "Average Humidity",
+				},
+				{
+					id: "Description",
+					info:
+						"Get humidity data of Vietnam's provinces in a specific year. Combine with Maps to view results",
+				},
+				{
+					id: "Input",
+					info: "No",
+				},
+				{
+					id: "Output",
+					info: "json",
+				},
+				{
+					id: "Connect",
+					info: "Maps, Table",
+				},
+			],
+			city: [
+				{
+					id: "Name",
+					info: "Average Humidity",
+				},
+				{
+					id: "Description",
+					info:
+						"Get humidity data of a specific city from 2012 to 2019. Combine with Charts to view results",
+				},
+				{
+					id: "Input",
+					info: "No",
+				},
+				{
+					id: "Output",
+					info: "json",
+				},
+				{
+					id: "Connect",
+					info: "Line, Column chart, Table",
+				},
+			],
+			periodOfCity: [
+				{
+					id: "Name",
+					info: "Average Humidity",
+				},
+				{
+					id: "Description",
+					info:
+						"Get humidity data of a specific city in the a years range. Combine with Charts to view results",
+				},
+				{
+					id: "Input",
+					info: "No",
+				},
+				{
+					id: "Output",
+					info: "json",
+				},
+				{
+					id: "Connect",
+					info: "Line, Column chart, Table",
+				},
+			],
 		},
-		{
-			id: "Input",
-			info: "json data",
+		temperature: {
+			year: [
+				{
+					id: "Name",
+					info: "Average Temperature",
+				},
+				{
+					id: "Description",
+					info:
+						"Get temperature data of Vietnam's provinces in a specific year. Combine with Maps to view results",
+				},
+				{
+					id: "Input",
+					info: "No",
+				},
+				{
+					id: "Output",
+					info: "json",
+				},
+				{
+					id: "Connect",
+					info: "Maps, Table",
+				},
+			],
+			city: [
+				{
+					id: "Name",
+					info: "Average Temperature",
+				},
+				{
+					id: "Description",
+					info:
+						"Get temperature data of a specific city from 2012 to 2019. Combine with Charts to view results",
+				},
+				{
+					id: "Input",
+					info: "No",
+				},
+				{
+					id: "Output",
+					info: "json",
+				},
+				{
+					id: "Connect",
+					info: "Line, Column chart, Table",
+				},
+			],
+			periodOfCity: [
+				{
+					id: "Name",
+					info: "Average Temperature",
+				},
+				{
+					id: "Description",
+					info:
+						"Get temperature data of a specific city in the a years range. Combine with Charts to view results",
+				},
+				{
+					id: "Input",
+					info: "No",
+				},
+				{
+					id: "Output",
+					info: "json",
+				},
+				{
+					id: "Connect",
+					info: "Line, Column chart, Table",
+				},
+			],
 		},
-		{
-			id: "Output",
-			info: "no",
+		rainfall: {
+			year: [
+				{
+					id: "Name",
+					info: "Average Rainfall",
+				},
+				{
+					id: "Description",
+					info:
+						"Get rainfall data of Vietnam's provinces in a specific year. Combine with Maps to view results",
+				},
+				{
+					id: "Input",
+					info: "No",
+				},
+				{
+					id: "Output",
+					info: "json",
+				},
+				{
+					id: "Connect",
+					info: "Maps, Table",
+				},
+			],
+			city: [
+				{
+					id: "Name",
+					info: "Average Temperature",
+				},
+				{
+					id: "Description",
+					info:
+						"Get rainfall data of a specific city from 2012 to 2019. Combine with Charts to view results",
+				},
+				{
+					id: "Input",
+					info: "No",
+				},
+				{
+					id: "Output",
+					info: "json",
+				},
+				{
+					id: "Connect",
+					info: "Line, Column chart, Table",
+				},
+			],
+			periodOfCity: [
+				{
+					id: "Name",
+					info: "Average Temperature",
+				},
+				{
+					id: "Description",
+					info:
+						"Get rainfall data of a specific city in the a years range. Combine with Charts to view results",
+				},
+				{
+					id: "Input",
+					info: "No",
+				},
+				{
+					id: "Output",
+					info: "json",
+				},
+				{
+					id: "Connect",
+					info: "Line, Column chart, Table",
+				},
+			],
 		},
-		{
-			id: "Connect",
-			info: "Statistics widgets",
+	},
+
+	industry: {
+		production: {
+			year: [
+				{
+					id: "Name",
+					info: "Industry Production",
+				},
+				{
+					id: "Description",
+					info:
+						"Get industry data of Vietnam's provinces in a specific year. Combine with Maps to view results",
+				},
+				{
+					id: "Input",
+					info: "No",
+				},
+				{
+					id: "Output",
+					info: "json",
+				},
+				{
+					id: "Connect",
+					info: "Maps, Table",
+				},
+			],
+			city: [
+				{
+					id: "Name",
+					info: "Industry Production",
+				},
+				{
+					id: "Description",
+					info:
+						"Get industry data of a specific city from 2012 to 2019. Combine with Charts to view results",
+				},
+				{
+					id: "Input",
+					info: "No",
+				},
+				{
+					id: "Output",
+					info: "json",
+				},
+				{
+					id: "Connect",
+					info: "Line, Column chart, Table",
+				},
+			],
+			periodOfCity: [
+				{
+					id: "Name",
+					info: "Industry Production",
+				},
+				{
+					id: "Description",
+					info:
+						"Get industry data of a specific city in the a years range. Combine with Charts to view results",
+				},
+				{
+					id: "Input",
+					info: "No",
+				},
+				{
+					id: "Output",
+					info: "json",
+				},
+				{
+					id: "Connect",
+					info: "Line, Column chart, Table",
+				},
+			],
 		},
-	],
-	line: [
-		{
-			id: "Name",
-			info: "Line Chart",
+	},
+	forest: {
+		afForestation: {
+			year: [
+				{
+					id: "Name",
+					info: "AfForestation",
+				},
+				{
+					id: "Description",
+					info:
+						"Get AfForestation data of Vietnam's provinces in a specific year. Combine with Maps to view results",
+				},
+				{
+					id: "Input",
+					info: "No",
+				},
+				{
+					id: "Output",
+					info: "json",
+				},
+				{
+					id: "Connect",
+					info: "Maps, Table",
+				},
+			],
+			city: [
+				{
+					id: "Name",
+					info: "AfForestation",
+				},
+				{
+					id: "Description",
+					info:
+						"Get AfForestation data of a specific city from 2012 to 2019. Combine with Charts to view results",
+				},
+				{
+					id: "Input",
+					info: "No",
+				},
+				{
+					id: "Output",
+					info: "json",
+				},
+				{
+					id: "Connect",
+					info: "Line, Column chart, Table",
+				},
+			],
+			periodOfCity: [
+				{
+					id: "Name",
+					info: "AfForestation",
+				},
+				{
+					id: "Description",
+					info:
+						"Get AfForestation data of a specific city in the a years range. Combine with Charts to view results",
+				},
+				{
+					id: "Input",
+					info: "No",
+				},
+				{
+					id: "Output",
+					info: "json",
+				},
+				{
+					id: "Connect",
+					info: "Line, Column chart, Table",
+				},
+			],
 		},
-		{
-			id: "Description",
-			info: "Used to draw a Line chart, using HighCharts",
-		},
-		{
-			id: "Input",
-			info: "json data",
-		},
-		{
-			id: "Output",
-			info: "no",
-		},
-		{
-			id: "Connect",
-			info: "Statistics widgets",
-		},
-	],
-	pie: [
-		{
-			id: "Name",
-			info: "Pie Chart",
-		},
-		{
-			id: "Description",
-			info: "Used to draw a Pie chart, using HighCharts",
-		},
-		{
-			id: "Input",
-			info: "json data",
-		},
-		{
-			id: "Output",
-			info: "no",
-		},
-		{
-			id: "Connect",
-			info: "Statistics widgets",
-		},
-	],
-	maps: [
-		{
-			id: "Name",
-			info: "Maps",
-		},
-		{
-			id: "Description",
-			info: "Used to display locations with their long & lat",
-		},
-		{
-			id: "Input",
-			info: "Json data with attribute point(long, lat)",
-		},
-		{
-			id: "Output",
-			info: "no",
-		},
-		{
-			id: "Connect",
-			info: "Industry, Average Temperature",
-		},
-	],
-	humidity: [
-		{
-			id: "Name",
-			info: "Average Humidity",
-		},
-		{
-			id: "Description",
-			info:
-				"Used to get data of humidity each province from 2012 to 2019. Combine with Charts to view results",
-		},
-		{
-			id: "Input",
-			info: "No",
-		},
-		{
-			id: "Output",
-			info: "json",
-		},
-		{
-			id: "Connect",
-			info: "Column, Line Chart",
-		},
-	],
-	industry: [
-		{
-			id: "Name",
-			info: "Industry Production",
-		},
-		{
-			id: "Description",
-			info: "aaaaaaaa",
-		},
-		{
-			id: "Input",
-			info: "No",
-		},
-		{
-			id: "Output",
-			info: "json",
-		},
-		{
-			id: "Connect",
-			info: "Maps",
-		},
-	],
-	temperature: [
-		{
-			id: "Name",
-			info: "Average Temperature",
-		},
-		{
-			id: "Description",
-			info: "aaaaaaaa",
-		},
-		{
-			id: "Input",
-			info: "No",
-		},
-		{
-			id: "Output",
-			info: "json",
-		},
-		{
-			id: "Connect",
-			info: "Maps",
-		},
-	],
-	rainfall: [
-		{
-			id: "Name",
-			info: "Average Rainfall",
-		},
-		{
-			id: "Description",
-			info: "aaaaaaaa",
-		},
-		{
-			id: "Input",
-			info: "No",
-		},
-		{
-			id: "Output",
-			info: "json",
-		},
-		{
-			id: "Connect",
-			info: "Maps",
-		},
-	],
-	statisticsMerge: [
-		{
-			id: "Name",
-			info: "Statistics Merge",
-		},
-		{
-			id: "Description",
-			info:
-				"	Used to merge two sources of statistical data, based on their common field",
-		},
-		{
-			id: "Input",
-			info: "Two Json arrays",
-		},
-		{
-			id: "Output",
-			info: "The new Json array",
-		},
-		{
-			id: "Connect",
-			info: "2 statistical data widget, Charts, Maps,...",
-		},
-	],
-	table: [
-		{
-			id: "Name",
-			info: "Table",
-		},
-		{
-			id: "Description",
-			info: "aaaaaaaaaaaaaaaa",
-		},
-		{
-			id: "Input",
-			info: "Json",
-		},
-		{
-			id: "Output",
-			info: "No",
-		},
-		{
-			id: "Connect",
-			info: "Industry Production, Average Temperature,...",
-		},
-	],
+	},
+	operators: {
+		statisticsMerge: [
+			{
+				id: "Name",
+				info: "Statistics Merge",
+			},
+			{
+				id: "Description",
+				info:
+					"	Used to merge two sources of statistical data, based on their common field",
+			},
+			{
+				id: "Input",
+				info: "Two Json arrays",
+			},
+			{
+				id: "Output",
+				info: "The new Json array",
+			},
+			{
+				id: "Connect",
+				info: "2 statistical data widget, Charts, Maps,...",
+			},
+		],
+	},
 };
 
 export const treeIndustry = {
 	name: "Industry Production",
-	id: "industry",
+	id: "industry-production",
 	data: [
 		{
 			id: "year",
