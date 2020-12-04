@@ -5,19 +5,31 @@
 ### Functions:
 
 - Scientific research: Environment Analysis System in Vietnam
-- Data Visualization in Charts, Maps:
+- Dataset:
   - Climate:
-    - Temperature
-      - Filter by Year
-    - Humidity
-      - Filter by City
-    - Rainfall
-  - Atmosphere
-  - Population:
+    - Temperature [x]
+    - Humidity [x]
+    - Rainfall [x]
+  - Atmosphere [ ]
+  - Population: [ ]
   - Industry
-    - Filter by Year
+    - Industry Production [x]
   - Forest
-  - Operators
+    - Forest Cover Area [ ]
+    - AfForestation [x]
+- Feature:
+  - Filter by year [x]
+  - Filter by city [x]
+  - Filter by period of city [x]
+  - Statistics merge [ ]
+  - Simple Merge [ ]
+- Visualization
+  - Maps [x]
+  - Table [x]
+  - Charts
+    - Column [x]
+    - Line [x]
+    - Pie [ ]
 
 ### Releases
 
