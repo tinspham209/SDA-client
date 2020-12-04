@@ -6,24 +6,83 @@ export const listItems = [
 			{
 				id: "temperature",
 				name: "Average Temperature",
-				input: false,
-				output: true,
-				disabled: false,
+				children: [
+					{
+						id: "year",
+						name: "Filter by Year",
+						input: false,
+						output: true,
+						disabled: false,
+					},
+					{
+						id: "city",
+						name: "Filer by City",
+						input: false,
+						output: true,
+						disabled: false,
+					},
+					{
+						id: "periodOfCity",
+						name: "Filter by period of city",
+						input: false,
+						output: true,
+						disabled: false,
+					},
+				],
 			},
 			{
 				id: "humidity",
 				name: "Average Humidity",
-				input: false,
-				output: true,
-				button: false,
-				disabled: false,
+				children: [
+					{
+						id: "year",
+						name: "Filter by Year",
+						input: false,
+						output: true,
+						disabled: false,
+					},
+					{
+						id: "city",
+						name: "Filer by City",
+						input: false,
+						output: true,
+						disabled: false,
+					},
+					{
+						id: "periodOfCity",
+						name: "Filter by period of city",
+						input: false,
+						output: true,
+						disabled: false,
+					},
+				],
 			},
 			{
 				id: "rainfall",
 				name: "Average Rainfall",
-				input: false,
-				output: true,
-				disabled: false,
+				children: [
+					{
+						id: "year",
+						name: "Filter by Year",
+						input: false,
+						output: true,
+						disabled: false,
+					},
+					{
+						id: "city",
+						name: "Filer by City",
+						input: false,
+						output: true,
+						disabled: false,
+					},
+					{
+						id: "periodOfCity",
+						name: "Filter by period of city",
+						input: false,
+						output: true,
+						disabled: false,
+					},
+				],
 			},
 		],
 	},
@@ -59,12 +118,31 @@ export const listItems = [
 		name: "Industry",
 		collapseItem: [
 			{
-				id: "industry",
+				id: "production",
 				name: "Industry Production",
-				input: false,
-				output: true,
-				button: false,
-				disabled: false,
+				children: [
+					{
+						id: "year",
+						name: "Filter by Year",
+						input: false,
+						output: true,
+						disabled: false,
+					},
+					{
+						id: "city",
+						name: "Filer by City",
+						input: false,
+						output: true,
+						disabled: false,
+					},
+					{
+						id: "periodOfCity",
+						name: "Filter by period of city",
+						input: false,
+						output: true,
+						disabled: false,
+					},
+				],
 			},
 		],
 	},
@@ -80,7 +158,29 @@ export const listItems = [
 			{
 				id: "afForestation",
 				name: "AfForestation",
-				disabled: true,
+				children: [
+					{
+						id: "year",
+						name: "Filter by Year",
+						input: false,
+						output: true,
+						disabled: false,
+					},
+					{
+						id: "city",
+						name: "Filer by City",
+						input: false,
+						output: true,
+						disabled: false,
+					},
+					{
+						id: "periodOfCity",
+						name: "Filter by period of city",
+						input: false,
+						output: true,
+						disabled: false,
+					},
+				],
 			},
 		],
 	},
@@ -113,31 +213,37 @@ export const listItems = [
 				disabled: false,
 			},
 			{
-				id: "columnChart",
-				name: "Column Chart",
-				input: true,
-				output: false,
-				button: true,
-				disabled: false,
+				id: "chart",
+				name: "Charts",
+				children: [
+					{
+						id: "column",
+						name: "Column Chart",
+						input: true,
+						output: false,
+						button: true,
+						disabled: false,
+					},
+					{
+						id: "line",
+						name: "Line Chart",
+						input: true,
+						output: false,
+						button: true,
+						disabled: false,
+					},
+					{
+						id: "pie",
+						name: "Pie Chart",
+						input: true,
+						output: false,
+						button: true,
+						disabled: false,
+					},
+				],
 			},
 			{
-				id: "lineChart",
-				name: "Line Chart",
-				input: true,
-				output: false,
-				button: true,
-				disabled: false,
-			},
-			{
-				id: "pieChart",
-				name: "Pie Chart",
-				input: true,
-				output: false,
-				button: true,
-				disabled: false,
-			},
-			{
-				id: "mapsViz",
+				id: "maps",
 				name: "Maps",
 				input: true,
 				output: false,
@@ -149,7 +255,7 @@ export const listItems = [
 ];
 
 export const widgetInfos = {
-	columnChart: [
+	column: [
 		{
 			id: "Name",
 			info: "Column Chart",
@@ -171,7 +277,7 @@ export const widgetInfos = {
 			info: "Statistics widgets",
 		},
 	],
-	lineChart: [
+	line: [
 		{
 			id: "Name",
 			info: "Line Chart",
@@ -193,7 +299,7 @@ export const widgetInfos = {
 			info: "Statistics widgets",
 		},
 	],
-	pieChart: [
+	pie: [
 		{
 			id: "Name",
 			info: "Pie Chart",
@@ -215,7 +321,7 @@ export const widgetInfos = {
 			info: "Statistics widgets",
 		},
 	],
-	mapsViz: [
+	maps: [
 		{
 			id: "Name",
 			info: "Maps",
