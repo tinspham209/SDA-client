@@ -34,7 +34,6 @@ const OutputLog = () => {
 
 	useEffect(() => {
 		if (widget) {
-			console.log("widget: ", widget);
 			const name = nameOutput(widget);
 			const action = setOutput(name);
 			dispatch(action);
