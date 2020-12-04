@@ -7,28 +7,28 @@ import "beautiful-react-diagrams/styles.css";
 import { useDrop } from "react-dnd";
 import { useSelector, useDispatch } from "react-redux";
 import {
-	CLIMATE_HUMIDITY,
-	CLIMATE_TEMPERATURE,
-	CLIMATE_RAINFALL,
 	ITEM,
-	VIZ_LINECHART,
-	VIZ_COLUMNCHART,
-	VIZ_MAPS,
-	INDUSTRY_PRODUCTION,
-	OPERATOR_STATISTIC_MERGE,
-	VIZ_TABLE,
+	CLIMATE,
+	HUMIDITY,
+	TEMPERATURE,
+	RAINFALL,
+	YEAR,
+	CITY,
+	PERIOD_OF_CITY,
 } from "../../app/ItemTypes";
 
 import {
-	Humidity,
-	LineChart,
-	ColumnChart,
-	Maps,
-	Industry,
-	Temperature,
-	StatisticsMerge,
-	Table,
-	Rainfall,
+	HumidityYear,
+	HumidityCity,
+	HumidityPeriodOfCity,
+	// LineChart,
+	// ColumnChart,
+	// Maps,
+	// Industry,
+	// Temperature,
+	// StatisticsMerge,
+	// Table,
+	// Rainfall,
 } from "../../components/Widgets";
 import {
 	removeIdNode,
@@ -50,6 +50,7 @@ const MashupContent = () => {
 		initialSchema
 	);
 	const isDropItem = useSelector((state) => state.dashboard.toolbar.isDragItem);
+	console.log("isDropItem: ", isDropItem);
 
 	const portCanLinked = useSelector(
 		(state) => state.dashboard.mashupContent.portCanLinked
@@ -70,25 +71,22 @@ const MashupContent = () => {
 	});
 
 	const getWidget = (id) => {
-		switch (id) {
-			case CLIMATE_HUMIDITY:
-				return Humidity;
-			case VIZ_LINECHART:
-				return LineChart;
-			case VIZ_COLUMNCHART:
-				return ColumnChart;
-			case VIZ_MAPS:
-				return Maps;
-			case INDUSTRY_PRODUCTION:
-				return Industry;
-			case CLIMATE_TEMPERATURE:
-				return Temperature;
-			case OPERATOR_STATISTIC_MERGE:
-				return StatisticsMerge;
-			case VIZ_TABLE:
-				return Table;
-			case CLIMATE_RAINFALL:
-				return Rainfall;
+		const idArray = id.split("-");
+		const dataCube = idArray[0];
+		const dataSet = idArray[1];
+		const filter = idArray[2];
+
+		switch (dataCube) {
+			case CLIMATE:
+				if (dataSet === HUMIDITY) {
+					if (filter === YEAR) {
+						return HumidityYear;
+					} else if (filter === CITY) {
+						return HumidityCity;
+					} else {
+						return HumidityPeriodOfCity;
+					}
+				}
 			default:
 				break;
 		}

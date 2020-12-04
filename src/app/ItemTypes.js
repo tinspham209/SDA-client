@@ -4,18 +4,27 @@ export const CONTENT = "CONTENT";
 export const DASHBOARD = "DASHBOARD";
 export const TOOLBAR = "TOOLBAR";
 
-export const CLIMATE_HUMIDITY = "humidity";
-export const CLIMATE_TEMPERATURE = "temperature";
-export const CLIMATE_RAINFALL = "rainfall";
+export const CLIMATE = "climate";
+export const HUMIDITY = "humidity";
+export const TEMPERATURE = "temperature";
+export const RAINFALL = "rainfall";
 
-export const INDUSTRY_PRODUCTION = "industry";
+export const INDUSTRY_PRODUCTION = "production";
 
 export const VIZ_TABLE = "table";
-export const VIZ_LINECHART = "lineChart";
-export const VIZ_COLUMNCHART = "columnChart";
-export const VIZ_MAPS = "mapsViz";
+export const VIZ_LINECHART = "line";
+export const VIZ_COLUMNCHART = "column";
+export const VIZ_MAPS = "maps";
 
 export const PROPERTIES = "properties";
 export const WIDGET_INFOS = "widgetInfos";
 export const OUTPUT_LOG = "outputLog";
 export const OPERATOR_STATISTIC_MERGE = "statisticsMerge";
+
+export const YEAR = "year";
+export const CITY = "city";
+export const PERIOD_OF_CITY = "periodOfCity";
+
+export const CLIMATE_HUMIDITY = "humidity";
+export const CLIMATE_TEMPERATURE = "temperature";
+export const CLIMATE_RAINFALL = "rainfall";

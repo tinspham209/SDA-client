@@ -1170,113 +1170,111 @@ export const treeTemperature = {
 
 export const treeHumidity = {
 	name: "Average Humidity",
-	id: "humidity",
-	data: [
-		{
-			id: "year",
-			name: "Year",
-			children: [
-				{
-					id: "2012",
-					name: "2012",
-				},
-				{
-					id: "2013",
-					name: "2013",
-				},
-				{
-					id: "2014",
-					name: "2014",
-				},
-				{
-					id: "2015",
-					name: "2015",
-				},
-				{
-					id: "2016",
-					name: "2016",
-				},
-				{
-					id: "2017",
-					name: "2017",
-				},
-				{
-					id: "2018",
-					name: "2018",
-				},
-				{
-					id: "2019",
-					name: "2019",
-				},
-			],
-		},
-		{
-			id: "city",
-			name: "City",
-			children: [
-				{
-					id: "baichay",
-					name: "Bãi Cháy",
-				},
-				{
-					id: "camau",
-					name: "Cà Mau",
-				},
-				{
-					id: "dalat",
-					name: "Đà Lạt",
-				},
-				{
-					id: "danang",
-					name: "Đà Nẵng",
-				},
-				{
-					id: "hanoi",
-					name: "Hà Nội",
-				},
-				{
-					id: "hue",
-					name: "Huế",
-				},
-				{
-					id: "laichau",
-					name: "Lai Châu",
-				},
-				{
-					id: "namdinh",
-					name: "Nam Định",
-				},
-				{
-					id: "nhatrang",
-					name: "Nha Trang",
-				},
-				{
-					id: "pleiku",
-					name: "Pleiku",
-				},
-				{
-					id: "quinhon",
-					name: "Qui Nhơn",
-				},
-				{
-					id: "sonla",
-					name: "Sơn La",
-				},
-				{
-					id: "tuyenquang",
-					name: "Tuyên Quang",
-				},
-				{
-					id: "vinh",
-					name: "Vinh",
-				},
-				{
-					id: "vungtau",
-					name: "Vũng Tàu",
-				},
-			],
-		},
-	],
+	id: "climate-humidity",
+	year: {
+		id: "year",
+		name: "Year",
+		children: [
+			{
+				id: "2012",
+				name: "2012",
+			},
+			{
+				id: "2013",
+				name: "2013",
+			},
+			{
+				id: "2014",
+				name: "2014",
+			},
+			{
+				id: "2015",
+				name: "2015",
+			},
+			{
+				id: "2016",
+				name: "2016",
+			},
+			{
+				id: "2017",
+				name: "2017",
+			},
+			{
+				id: "2018",
+				name: "2018",
+			},
+			{
+				id: "2019",
+				name: "2019",
+			},
+		],
+	},
+	city: {
+		id: "city",
+		name: "City",
+		children: [
+			{
+				id: "baichay",
+				name: "Bãi Cháy",
+			},
+			{
+				id: "camau",
+				name: "Cà Mau",
+			},
+			{
+				id: "dalat",
+				name: "Đà Lạt",
+			},
+			{
+				id: "danang",
+				name: "Đà Nẵng",
+			},
+			{
+				id: "hanoi",
+				name: "Hà Nội",
+			},
+			{
+				id: "hue",
+				name: "Huế",
+			},
+			{
+				id: "laichau",
+				name: "Lai Châu",
+			},
+			{
+				id: "namdinh",
+				name: "Nam Định",
+			},
+			{
+				id: "nhatrang",
+				name: "Nha Trang",
+			},
+			{
+				id: "pleiku",
+				name: "Pleiku",
+			},
+			{
+				id: "quinhon",
+				name: "Qui Nhơn",
+			},
+			{
+				id: "sonla",
+				name: "Sơn La",
+			},
+			{
+				id: "tuyenquang",
+				name: "Tuyên Quang",
+			},
+			{
+				id: "vinh",
+				name: "Vinh",
+			},
+			{
+				id: "vungtau",
+				name: "Vũng Tàu",
+			},
+		],
+	},
 };
 
 export const treeRainfall = {

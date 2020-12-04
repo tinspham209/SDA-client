@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useStyles } from "./Humidity.elements";
+import { useStyles } from "./HumidityYear.elements";
 import { IconButton } from "@material-ui/core";
 import { TreeView, TreeItem } from "@material-ui/lab";
 
@@ -8,15 +8,15 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import { RiErrorWarningFill } from "react-icons/ri";
 import { MdExpandLess, MdExpandMore, MdExitToApp } from "react-icons/md";
 
-import { treeHumidity } from "../../../../data";
+import { treeHumidity } from "../../../../../data/index";
 
 import {
 	setItemIsSelect,
 	setInfoWidget,
-} from "../../../../app/slice/dashboardSlice";
+} from "../../../../../app/slice/dashboardSlice";
 import { useDispatch } from "react-redux";
 
-const Humidity = ({ id, data, inputs, outputs }) => {
+const HumidityYear = ({ id, data, inputs, outputs }) => {
 	const classes = useStyles();
 	const dispatch = useDispatch();
 
@@ -28,13 +28,13 @@ const Humidity = ({ id, data, inputs, outputs }) => {
 	};
 
 	const handleSelect = (event, nodeIds) => {
+		console.log("nodeIds: ", nodeIds);
 		setSelected(nodeIds);
 		const action = setItemIsSelect(nodeIds);
 		dispatch(action);
 	};
 
 	const handleQuestionButton = (id) => {
-		id = id.split("-")[0];
 		const action = setInfoWidget(id);
 		dispatch(action);
 	};
@@ -89,28 +89,22 @@ const Humidity = ({ id, data, inputs, outputs }) => {
 					onNodeSelect={handleSelect}
 					multiSelect
 				>
-					{treeHumidity.data.map((item) => (
-						<TreeItem
-							nodeId={`${treeHumidity.id}-${item.id}`}
-							label={item.name}
-							key={item.id}
-						>
-							{item.children.map((children) => (
-								<TreeItem
-									nodeId={`${treeHumidity.id}-${item.id}-${children.id}`}
-									label={children.name}
-									key={children.id}
-								/>
-							))}
-						</TreeItem>
-					))}
+					<TreeItem
+						nodeId={`${treeHumidity.id}-${treeHumidity.year.id}`}
+						label={treeHumidity.year.name}
+					>
+						{treeHumidity.year.children.map((item) => (
+							<TreeItem
+								nodeId={`${treeHumidity.id}-${treeHumidity.year.id}-${item.id}`}
+								label={item.name}
+								key={item.id}
+							/>
+						))}
+					</TreeItem>
 				</TreeView>
-			</div>
-			<div className={classes.footer}>
-				<p> Tip: Control-Click to select multiple provinces</p>
 			</div>
 		</div>
 	);
 };
 
-export default Humidity;
+export default HumidityYear;
