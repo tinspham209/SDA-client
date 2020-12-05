@@ -13,3 +13,7 @@ export { default as Table } from "./Visualization/Table/Table";
 export { default as HumidityYear } from "./Climate/Humidity/HumidityYear/HumidityYear";
 export { default as HumidityCity } from "./Climate/Humidity/HumidityCity/HumidityCity";
 export { default as HumidityPeriodOfCity } from "./Climate/Humidity/HumidityPeriodOfCity/HumidityPeriodOfCity";
+
+export { default as TemperatureYear } from "./Climate/Temperature/TemperatureYear/TemperatureYear";
+export { default as TemperatureCity } from "./Climate/Temperature/TemperatureCity/TemperatureCity";
+export { default as TemperaturePeriodOfCity } from "./Climate/Temperature/TemperaturePeriodOfCity/TemperaturePeriodOfCity";

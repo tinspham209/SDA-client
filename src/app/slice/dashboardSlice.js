@@ -17,8 +17,8 @@ const dashboard = createSlice({
 				climate: {
 					isOpen: true,
 					children: {
-						temperature: false,
-						humidity: true,
+						temperature: true,
+						humidity: false,
 						rainfall: false,
 					},
 				},

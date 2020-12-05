@@ -19,6 +19,7 @@ import {
 	LINE,
 	MAPS,
 	TABLE,
+	TEMPERATURE,
 } from "../../app/ItemTypes";
 
 import {
@@ -29,6 +30,9 @@ import {
 	Maps,
 	LineChart,
 	Table,
+	TemperatureCity,
+	TemperatureYear,
+	TemperaturePeriodOfCity,
 } from "../../components/Widgets";
 import {
 	removeIdNode,
@@ -84,6 +88,14 @@ const MashupContent = () => {
 						return HumidityCity;
 					} else if (filter === PERIOD_OF_CITY) {
 						return HumidityPeriodOfCity;
+					}
+				} else if (dataSet === TEMPERATURE) {
+					if (filter === YEAR) {
+						return TemperatureYear;
+					} else if (filter === CITY) {
+						return TemperatureCity;
+					} else if (filter === PERIOD_OF_CITY) {
+						return TemperaturePeriodOfCity;
 					}
 				}
 				break;
