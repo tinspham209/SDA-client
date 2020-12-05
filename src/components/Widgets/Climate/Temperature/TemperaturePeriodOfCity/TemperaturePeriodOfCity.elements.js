@@ -5,7 +5,7 @@ export const useStyles = makeStyles((theme) => ({
 		border: "1px solid #000",
 		borderRadius: "5px",
 		backgroundColor: "rgb(255, 255, 255, 0.9)",
-		width: "200px",
+		width: "250px",
 	},
 	header: {
 		width: "100%",

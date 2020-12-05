@@ -17,7 +17,12 @@ import {
 	setPortIsLinked,
 	setTitleMaps,
 } from "../../../../app/slice/dashboardSlice";
-import { CLIMATE, HUMIDITY, YEAR } from "../../../../app/ItemTypes";
+import {
+	CLIMATE,
+	HUMIDITY,
+	TEMPERATURE,
+	YEAR,
+} from "../../../../app/ItemTypes";
 import {
 	getHumidityByYear,
 	getIndustryByYear,
@@ -27,7 +32,6 @@ import {
 import { vn } from "../../../../api/vnId";
 
 const WidgetMaps = ({ id, data, inputs, outputs }) => {
-	console.log("id: ", id);
 	const classes = useStyles();
 	const dispatch = useDispatch();
 
@@ -117,6 +121,64 @@ const WidgetMaps = ({ id, data, inputs, outputs }) => {
 							{ from: 75, to: 80 },
 							{ from: 80, to: 85 },
 							{ from: 85 },
+						];
+						action = setColorRange(dataClasses);
+						dispatch(action);
+
+						action = setMapsData(dataMaps);
+						dispatch(action);
+					});
+				}
+			} else if (dataSet === TEMPERATURE) {
+				if (filter === YEAR) {
+					const year = idArray[3];
+
+					const fetchTemperatureByYear = async (year) => {
+						return await getTemperatureByYear(year).then((items) =>
+							items.results.bindings.map((item) => {
+								let city = item.city.value;
+								if (city === "Bãi Cháy") {
+									city = "Quảng Ninh";
+								} else if (city === "Đà Lạt") {
+									city = "Lâm Đồng";
+								} else if (city === "Huế") {
+									city = "Thừa Thiên Huế";
+								} else if (city === "Nha Trang") {
+									city = "Khánh Hoà";
+								} else if (city === "Pleiku") {
+									city = "Gia Lai";
+								} else if (city === "Qui Nhơn") {
+									city = "Bình Định";
+								} else if (city === "Vinh") {
+									city = "Nghệ An";
+								} else if (city === "Vũng Tàu") {
+									city = "Bà Rịa - Vũng Tàu";
+								}
+
+								const cityId = vn.find((item) => {
+									return city === item.name;
+								});
+								const id = cityId.id;
+								const value = Number(item.value.value).toPrecision();
+								const object = [id, value];
+								dataMaps.push(object);
+								return null;
+							})
+						);
+					};
+					fetchTemperatureByYear(year).then(() => {
+						const nameTitle = `Temperature of VN ${year}`;
+						action = setTitleMaps(nameTitle);
+						dispatch(action);
+
+						const dataClasses = [
+							{
+								to: 18,
+							},
+							{ from: 18, to: 22 },
+							{ from: 22, to: 25 },
+							{ from: 25, to: 28 },
+							{ from: 28 },
 						];
 						action = setColorRange(dataClasses);
 						dispatch(action);

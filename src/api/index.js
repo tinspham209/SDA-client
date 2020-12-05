@@ -19,6 +19,19 @@ const url = `http://server.sda-research.ml`;
 // - /industry/year/:yearid;
 // - /industry/city/:cityid/year/yearid;
 
+export const getTemperatureByPeriodOfCity = async (city, fYear, tYear) => {
+	try {
+		const { data } = await axios.get(
+			`${url}/climate/temperature/city/${city}/fYear/${fYear}/tYear/${tYear}`
+		);
+		console.log("data: ", data);
+
+		return data;
+	} catch (error) {
+		console.log("error: ", error);
+	}
+};
+
 export const getHumidityByPeriodOfCity = async (city, fYear, tYear) => {
 	try {
 		const { data } = await axios.get(

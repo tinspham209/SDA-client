@@ -1,4 +1,3 @@
-export { default as Temperature } from "./Climate/Temperature/Temperature";
 export { default as Rainfall } from "./Climate/Rainfall/Rainfall";
 
 export { default as Industry } from "./Industry/IndustryProduction";

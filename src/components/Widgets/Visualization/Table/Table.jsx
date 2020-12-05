@@ -17,15 +17,24 @@ import {
 } from "../../../../app/slice/dashboardSlice";
 
 import TableComponent from "../../../Visualization/Table/Table";
-import { CITY, CLIMATE, HUMIDITY, YEAR } from "../../../../app/ItemTypes";
+import {
+	CITY,
+	CLIMATE,
+	HUMIDITY,
+	PERIOD_OF_CITY,
+	TEMPERATURE,
+	YEAR,
+} from "../../../../app/ItemTypes";
 import {
 	getHumidityByCity,
+	getHumidityByPeriodOfCity,
 	getHumidityByYear,
 	getIndustryByCity,
 	getIndustryByYear,
 	getRainfallByCity,
 	getRainfallByYear,
 	getTemperatureByCity,
+	getTemperatureByPeriodOfCity,
 	getTemperatureByYear,
 } from "../../../../api";
 
@@ -38,6 +47,12 @@ const WidgetTable = ({ id, data, inputs, outputs }) => {
 	);
 
 	const port = useSelector((state) => state.dashboard.mashupContent.port);
+
+	const periodCity = [
+		useSelector((state) => state.dashboard.mashupContent.periodOfCity.city),
+		useSelector((state) => state.dashboard.mashupContent.periodOfCity.fromYear),
+		useSelector((state) => state.dashboard.mashupContent.periodOfCity.toYear),
+	];
 
 	const handleOnClick = () => {
 		let action;
@@ -127,6 +142,120 @@ const WidgetTable = ({ id, data, inputs, outputs }) => {
 						action = setTableUnit("%");
 						dispatch(action);
 						action = setTableTitle("Yearly Humidity");
+						dispatch(action);
+					});
+				} else if (filter === PERIOD_OF_CITY) {
+					const fetchHumidityByPeriodOfCity = async (cityId, fYear, tYear) => {
+						let cityData = {};
+						return await getHumidityByPeriodOfCity(cityId, fYear, tYear).then(
+							(items) =>
+								items.results.bindings.map((item) => {
+									const city = item.city.value;
+									const year = item.year.value;
+									const value = Number(item.value.value).toPrecision();
+									cityData = { city, year, value };
+									dataTable.push(cityData);
+
+									return null;
+								})
+						);
+					};
+					fetchHumidityByPeriodOfCity(
+						periodCity[0],
+						periodCity[1],
+						periodCity[2]
+					).then(() => {
+						action = setTableData(dataTable);
+						dispatch(action);
+						action = setTableUnit("%");
+						dispatch(action);
+						action = setTableTitle("Yearly Humidity");
+						dispatch(action);
+					});
+				}
+			} else if (dataSet === TEMPERATURE) {
+				if (filter === CITY) {
+					const fetchTemperatureByCity = async (cities) => {
+						const requests = cities.map(async (city) => {
+							let cityData = {};
+							return await getTemperatureByCity(city).then((items) => {
+								items.results.bindings.map((item) => {
+									const city = item.city.value;
+									const year = item.year.value;
+									const value = Number(item.value.value).toPrecision();
+									cityData = { city, year, value };
+									dataTable.push(cityData);
+
+									return null;
+								});
+							});
+						});
+						return Promise.all(requests);
+					};
+					fetchTemperatureByCity(cities).then(() => {
+						action = setTableData(dataTable);
+						dispatch(action);
+						action = setTableUnit("%");
+						dispatch(action);
+						action = setTableTitle("Yearly Temperature");
+						dispatch(action);
+					});
+				} else if (filter === YEAR) {
+					const fetchTemperatureByYear = async (year) => {
+						let cityData = {};
+						return await getTemperatureByYear(year).then((items) =>
+							items.results.bindings.map((item) => {
+								const city = item.city.value;
+								const year = item.year.value;
+								const value = Number(item.value.value).toPrecision();
+								cityData = { city, year, value };
+								dataTable.push(cityData);
+
+								return null;
+							})
+						);
+					};
+					fetchTemperatureByYear(value).then(() => {
+						action = setTableData(dataTable);
+						dispatch(action);
+						action = setTableUnit("%");
+						dispatch(action);
+						action = setTableTitle("Yearly Temperature");
+						dispatch(action);
+					});
+				} else if (filter === PERIOD_OF_CITY) {
+					const fetchTemperatureByPeriodOfCity = async (
+						cityId,
+						fYear,
+						tYear
+					) => {
+						let cityData = {};
+						return await getTemperatureByPeriodOfCity(
+							cityId,
+							fYear,
+							tYear
+						).then((items) =>
+							items.results.bindings.map((item) => {
+								const city = item.city.value;
+								const year = item.year.value;
+								const value = Number(item.value.value).toPrecision();
+								cityData = { city, year, value };
+								dataTable.push(cityData);
+
+								return null;
+							})
+						);
+					};
+					fetchTemperatureByPeriodOfCity(
+						periodCity[0],
+						periodCity[1],
+						periodCity[2]
+					).then(() => {
+						action = setTableData(dataTable);
+						dispatch(action);
+						action = setTableUnit("%");
+						dispatch(action);
+						action = setTableTitle("Yearly Temperature");
 						dispatch(action);
 					});
 				}

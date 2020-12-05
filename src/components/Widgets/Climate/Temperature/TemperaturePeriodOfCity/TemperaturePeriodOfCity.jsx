@@ -14,7 +14,7 @@ import {
 import { AiFillCloseCircle } from "react-icons/ai";
 import { RiErrorWarningFill } from "react-icons/ri";
 
-import { treeHumidity } from "../../../../../data/index";
+import { treeTemperature } from "../../../../../data/index";
 
 import {
 	setItemIsSelect,
@@ -28,6 +28,7 @@ import {
 	CLIMATE,
 	HUMIDITY,
 	PERIOD_OF_CITY,
+	TEMPERATURE,
 } from "../../../../../app/ItemTypes";
 
 const TemperaturePeriodOfCity = ({ id, data, inputs, outputs }) => {
@@ -70,7 +71,7 @@ const TemperaturePeriodOfCity = ({ id, data, inputs, outputs }) => {
 			dispatch(action);
 			action = setPeriodOfCityToYear(toYear);
 			dispatch(action);
-			const itemIsSelect = [`${CLIMATE}-${HUMIDITY}-${PERIOD_OF_CITY}`];
+			const itemIsSelect = [`${CLIMATE}-${TEMPERATURE}-${PERIOD_OF_CITY}`];
 			action = setItemIsSelect(itemIsSelect);
 			dispatch(action);
 		}
@@ -81,7 +82,7 @@ const TemperaturePeriodOfCity = ({ id, data, inputs, outputs }) => {
 			<div className={classes.header}>
 				<div className={classes.headerLeft} />
 				<div className={classes.headerCenter}>
-					<p className={classes.headerTitle}>{treeHumidity.name}</p>
+					<p className={classes.headerTitle}>{treeTemperature.name}</p>
 				</div>
 				<div className={classes.headerRight}>
 					<IconButton
@@ -131,7 +132,7 @@ const TemperaturePeriodOfCity = ({ id, data, inputs, outputs }) => {
 						<MenuItem value="">
 							<em>None</em>
 						</MenuItem>
-						{treeHumidity.city.children.map((item) => (
+						{treeTemperature.city.children.map((item) => (
 							<MenuItem key={item.id} value={item.id}>
 								{item.name}
 							</MenuItem>
@@ -152,7 +153,7 @@ const TemperaturePeriodOfCity = ({ id, data, inputs, outputs }) => {
 						<MenuItem value="">
 							<em>None</em>
 						</MenuItem>
-						{treeHumidity.year.children.map((item) => (
+						{treeTemperature.year.children.map((item) => (
 							<MenuItem key={item.id} value={item.id}>
 								{item.name}
 							</MenuItem>
@@ -173,7 +174,7 @@ const TemperaturePeriodOfCity = ({ id, data, inputs, outputs }) => {
 						<MenuItem value="">
 							<em>None</em>
 						</MenuItem>
-						{treeHumidity.year.children.map((item) => (
+						{treeTemperature.year.children.map((item) => (
 							<MenuItem key={item.id} value={item.id}>
 								{item.name}
 							</MenuItem>
