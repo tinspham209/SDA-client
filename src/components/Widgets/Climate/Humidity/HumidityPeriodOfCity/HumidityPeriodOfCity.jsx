@@ -126,6 +126,7 @@ const HumidityPeriodOfCity = ({ id, data, inputs, outputs }) => {
 						value={city}
 						onChange={handleCityChange}
 						className={classes.selectEmpty}
+						MenuProps={{ classes: { paper: classes.menuPaper } }}
 					>
 						<MenuItem value="">
 							<em>None</em>
@@ -146,6 +147,7 @@ const HumidityPeriodOfCity = ({ id, data, inputs, outputs }) => {
 						value={fromYear}
 						onChange={handleFromYearChange}
 						className={classes.selectEmpty}
+						MenuProps={{ classes: { paper: classes.menuPaper } }}
 					>
 						<MenuItem value="">
 							<em>None</em>
@@ -166,6 +168,7 @@ const HumidityPeriodOfCity = ({ id, data, inputs, outputs }) => {
 						value={toYear}
 						onChange={handleToYearChange}
 						className={classes.selectEmpty}
+						MenuProps={{ classes: { paper: classes.menuPaper } }}
 					>
 						<MenuItem value="">
 							<em>None</em>

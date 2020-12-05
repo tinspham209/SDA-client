@@ -53,4 +53,7 @@ export const useStyles = makeStyles((theme) => ({
 	footer: {
 		margin: "10px",
 	},
+	menuPaper: {
+		maxHeight: "250px",
+	},
 }));
