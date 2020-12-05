@@ -20,6 +20,7 @@ import {
 	MAPS,
 	TABLE,
 	TEMPERATURE,
+	RAINFALL,
 } from "../../app/ItemTypes";
 
 import {
@@ -33,6 +34,9 @@ import {
 	TemperatureCity,
 	TemperatureYear,
 	TemperaturePeriodOfCity,
+	RainfallYear,
+	RainfallCity,
+	RainfallPeriodOfCity,
 } from "../../components/Widgets";
 import {
 	removeIdNode,
@@ -96,6 +100,14 @@ const MashupContent = () => {
 						return TemperatureCity;
 					} else if (filter === PERIOD_OF_CITY) {
 						return TemperaturePeriodOfCity;
+					}
+				} else if (dataSet === RAINFALL) {
+					if (filter === YEAR) {
+						return RainfallYear;
+					} else if (filter === CITY) {
+						return RainfallCity;
+					} else if (filter === PERIOD_OF_CITY) {
+						return RainfallPeriodOfCity;
 					}
 				}
 				break;

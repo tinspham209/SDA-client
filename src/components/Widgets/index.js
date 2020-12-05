@@ -16,3 +16,7 @@ export { default as HumidityPeriodOfCity } from "./Climate/Humidity/HumidityPeri
 export { default as TemperatureYear } from "./Climate/Temperature/TemperatureYear/TemperatureYear";
 export { default as TemperatureCity } from "./Climate/Temperature/TemperatureCity/TemperatureCity";
 export { default as TemperaturePeriodOfCity } from "./Climate/Temperature/TemperaturePeriodOfCity/TemperaturePeriodOfCity";
+
+export { default as RainfallYear } from "./Climate/Rainfall/RainfallYear/RainfallYear";
+export { default as RainfallCity } from "./Climate/Rainfall/RainfallCity/RainfallCity";
+export { default as RainfallPeriodOfCity } from "./Climate/Rainfall/RainfallPeriodOfCity/RainfallPeriodOfCity";
