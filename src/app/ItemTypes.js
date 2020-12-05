@@ -11,6 +11,13 @@ export const RAINFALL = "rainfall";
 
 export const INDUSTRY_PRODUCTION = "production";
 
+export const VISUALIZATION = "visualization";
+export const CHART = "chart";
+export const COLUMN = "column";
+export const LINE = "line";
+export const MAPS = "maps";
+export const TABLE = "table";
+
 export const VIZ_TABLE = "table";
 export const VIZ_LINECHART = "line";
 export const VIZ_COLUMNCHART = "column";

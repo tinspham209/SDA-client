@@ -10,25 +10,25 @@ import {
 	ITEM,
 	CLIMATE,
 	HUMIDITY,
-	TEMPERATURE,
-	RAINFALL,
 	YEAR,
 	CITY,
 	PERIOD_OF_CITY,
+	VISUALIZATION,
+	CHART,
+	COLUMN,
+	LINE,
+	MAPS,
+	TABLE,
 } from "../../app/ItemTypes";
 
 import {
 	HumidityYear,
 	HumidityCity,
 	HumidityPeriodOfCity,
-	// LineChart,
-	// ColumnChart,
-	// Maps,
-	// Industry,
-	// Temperature,
-	// StatisticsMerge,
-	// Table,
-	// Rainfall,
+	ColumnChart,
+	Maps,
+	LineChart,
+	Table,
 } from "../../components/Widgets";
 import {
 	removeIdNode,
@@ -50,7 +50,6 @@ const MashupContent = () => {
 		initialSchema
 	);
 	const isDropItem = useSelector((state) => state.dashboard.toolbar.isDragItem);
-	console.log("isDropItem: ", isDropItem);
 
 	const portCanLinked = useSelector(
 		(state) => state.dashboard.mashupContent.portCanLinked
@@ -83,10 +82,24 @@ const MashupContent = () => {
 						return HumidityYear;
 					} else if (filter === CITY) {
 						return HumidityCity;
-					} else {
+					} else if (filter === PERIOD_OF_CITY) {
 						return HumidityPeriodOfCity;
 					}
 				}
+				break;
+			case VISUALIZATION:
+				if (dataSet === CHART) {
+					if (filter === COLUMN) {
+						return ColumnChart;
+					} else if (filter === LINE) {
+						return LineChart;
+					}
+				} else if (dataSet === MAPS) {
+					return Maps;
+				} else if (dataSet === TABLE) {
+					return Table;
+				}
+				break;
 			default:
 				break;
 		}

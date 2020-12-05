@@ -17,12 +17,7 @@ import {
 } from "../../../../app/slice/dashboardSlice";
 
 import TableComponent from "../../../Visualization/Table/Table";
-import {
-	CLIMATE_HUMIDITY,
-	CLIMATE_RAINFALL,
-	CLIMATE_TEMPERATURE,
-	INDUSTRY_PRODUCTION,
-} from "../../../../app/ItemTypes";
+import { CITY, CLIMATE, HUMIDITY, YEAR } from "../../../../app/ItemTypes";
 import {
 	getHumidityByCity,
 	getHumidityByYear,
@@ -42,92 +37,79 @@ const WidgetTable = ({ id, data, inputs, outputs }) => {
 		(state) => state.dashboard.mashupContent.itemIsSelect
 	);
 
+	const port = useSelector((state) => state.dashboard.mashupContent.port);
+
 	const handleOnClick = () => {
 		let action;
-		const portWidget = itemIsSelects[0].split("-")[0];
-		const portViz = id.split("-")[0];
-		const portLinked = [`port-${portWidget}`, `port-${portViz}`];
-		action = setPortIsLinked(portLinked);
-		dispatch(action);
-		action = setPortCanLinked(true);
-		dispatch(action);
 
-		let state = {
-			isHumidity: false,
-			isTemperature: false,
-			isRainfall: false,
-			isIndustry: false,
-			isCity: false,
-			isYear: false,
-		};
+		const idArray = itemIsSelects[0].split("-");
+		const dataCube = idArray[0];
+		const dataSet = idArray[1];
+		const filter = idArray[2];
+		const value = idArray[3];
+
+		let portWidget;
+		let portViz = id
+			.split("-")
+			.filter((item) => item.length > 2)
+			.join("-");
+		if (filter === undefined) {
+			portWidget = `${dataCube}-${dataSet}`;
+		} else {
+			portWidget = `${dataCube}-${dataSet}-${filter}`;
+		}
+
+		const portLinked = [`port-${portWidget}`, `port-${portViz}`];
+
+		if (portLinked !== port) {
+			action = setPortIsLinked(portLinked);
+			dispatch(action);
+			action = setPortCanLinked(true);
+			dispatch(action);
+		}
 
 		let dataTable = [];
 		let cities = [];
 
-		itemIsSelects.map((itemIsSelect) => {
-			if (itemIsSelect.split("-")[0] === CLIMATE_HUMIDITY) {
-				state.isHumidity = true;
-				if (itemIsSelect.split("-")[1] === "year") {
-					state.isYear = true;
-				} else if (itemIsSelect.split("-")[1] === "city") {
-					state.isCity = true;
-					const citySelect = itemIsSelect.split("-")[2];
-					cities.push(citySelect);
-				} else {
-					state.isYear = false;
-					state.isCity = false;
-					cities = [];
-				}
-			} else if (itemIsSelect.split("-")[0] === CLIMATE_TEMPERATURE) {
-				state.isTemperature = true;
-				if (itemIsSelect.split("-")[1] === "year") {
-					state.isYear = true;
-				} else if (itemIsSelect.split("-")[1] === "city") {
-					state.isCity = true;
-					const citySelect = itemIsSelect.split("-")[2];
-					cities.push(citySelect);
-				} else {
-					state.isYear = false;
-					state.isCity = false;
-					cities = [];
-				}
-			} else if (itemIsSelect.split("-")[0] === CLIMATE_RAINFALL) {
-				state.isRainfall = true;
-				if (itemIsSelect.split("-")[1] === "year") {
-					state.isYear = true;
-				} else if (itemIsSelect.split("-")[1] === "city") {
-					state.isCity = true;
-					const citySelect = itemIsSelect.split("-")[2];
-					cities.push(citySelect);
-				} else {
-					state.isYear = false;
-					state.isCity = false;
-					cities = [];
-				}
-			} else if (itemIsSelect.split("-")[0] === INDUSTRY_PRODUCTION) {
-				state.isIndustry = true;
-				if (itemIsSelect.split("-")[1] === "year") {
-					state.isYear = true;
-				} else if (itemIsSelect.split("-")[1] === "city") {
-					state.isCity = true;
-					const citySelect = itemIsSelect.split("-")[2];
-					cities.push(citySelect);
-				} else {
-					state.isYear = false;
-					state.isCity = false;
-					cities = [];
-				}
-			}
+		if (filter === CITY) {
+			itemIsSelects.map((item) => cities.push(item.split("-")[3]));
+		} else if (filter === YEAR) {
+			cities = [];
+		}
+		console.log("cities: ", cities);
 
-			return null;
-		});
+		if (dataCube === CLIMATE) {
+			if (dataSet === HUMIDITY) {
+				if (filter === CITY) {
+					const fetchHumidityByCity = async (cities) => {
+						const requests = cities.map(async (city) => {
+							let cityData = {};
+							return await getHumidityByCity(city).then((items) => {
+								items.results.bindings.map((item) => {
+									const city = item.city.value;
+									const year = item.year.value;
+									const value = Number(item.value.value).toPrecision();
+									cityData = { city, year, value };
+									dataTable.push(cityData);
 
-		if (state.isHumidity === true) {
-			if (state.isCity === true) {
-				const fetchHumidityByCity = async (cities) => {
-					const requests = cities.map(async (city) => {
+									return null;
+								});
+							});
+						});
+						return Promise.all(requests);
+					};
+					fetchHumidityByCity(cities).then(() => {
+						action = setTableData(dataTable);
+						dispatch(action);
+						action = setTableUnit("%");
+						dispatch(action);
+						action = setTableTitle("Yearly Humidity");
+						dispatch(action);
+					});
+				} else if (filter === YEAR) {
+					const fetchHumidityByYear = async (year) => {
 						let cityData = {};
-						return await getHumidityByCity(city).then((items) => {
+						return await getHumidityByYear(year).then((items) =>
 							items.results.bindings.map((item) => {
 								const city = item.city.value;
 								const year = item.year.value;
@@ -136,109 +118,217 @@ const WidgetTable = ({ id, data, inputs, outputs }) => {
 								dataTable.push(cityData);
 
 								return null;
-							});
-						});
+							})
+						);
+					};
+					fetchHumidityByYear(value).then(() => {
+						action = setTableData(dataTable);
+						dispatch(action);
+						action = setTableUnit("%");
+						dispatch(action);
+						action = setTableTitle("Yearly Humidity");
+						dispatch(action);
 					});
-					return Promise.all(requests);
-				};
-				fetchHumidityByCity(cities).then(() => {
-					action = setTableData(dataTable);
-					dispatch(action);
-					action = setTableUnit("%");
-					dispatch(action);
-					action = setTableTitle("Yearly Humidity");
-					dispatch(action);
-				});
-			} else if (state.isYear === true) {
-			}
-		} else if (state.isTemperature === true) {
-			if (state.isCity === true) {
-				const fetchTemperatureByCity = async (cities) => {
-					const requests = cities.map(async (city) => {
-						let cityData = {};
-						return await getTemperatureByCity(city).then((items) => {
-							items.results.bindings.map((item) => {
-								const city = item.city.value;
-								const year = item.year.value;
-								const value = Number(item.value.value).toPrecision();
-								cityData = { city, year, value };
-								dataTable.push(cityData);
-
-								return null;
-							});
-						});
-					});
-					return Promise.all(requests);
-				};
-				fetchTemperatureByCity(cities).then(() => {
-					action = setTableData(dataTable);
-					dispatch(action);
-					action = setTableUnit("°C");
-					dispatch(action);
-					action = setTableTitle("Yearly Temperature");
-					dispatch(action);
-				});
-			} else if (state.isYear === true) {
-			}
-		} else if (state.isRainfall === true) {
-			if (state.isCity === true) {
-				const fetchRainfallByCity = async (cities) => {
-					const requests = cities.map(async (city) => {
-						let cityData = {};
-						return await getRainfallByCity(city).then((items) => {
-							items.results.bindings.map((item) => {
-								const city = item.city.value;
-								const year = item.year.value;
-								const value = Number(item.value.value).toPrecision();
-								cityData = { city, year, value };
-								dataTable.push(cityData);
-
-								return null;
-							});
-						});
-					});
-					return Promise.all(requests);
-				};
-				fetchRainfallByCity(cities).then(() => {
-					action = setTableData(dataTable);
-					dispatch(action);
-					action = setTableUnit("mm");
-					dispatch(action);
-					action = setTableTitle("Yearly Rainfall");
-					dispatch(action);
-				});
-			} else if (state.isYear === true) {
-			}
-		} else if (state.isIndustry === true) {
-			if (state.isCity === true) {
-				const fetchIndustryByCity = async (cities) => {
-					const requests = cities.map(async (city) => {
-						let cityData = {};
-						return await getIndustryByCity(city).then((items) => {
-							items.results.bindings.map((item) => {
-								const city = item.city.value;
-								const year = item.year.value;
-								const value = Number(item.value.value).toPrecision();
-								cityData = { city, year, value };
-								dataTable.push(cityData);
-
-								return null;
-							});
-						});
-					});
-					return Promise.all(requests);
-				};
-				fetchIndustryByCity(cities).then(() => {
-					action = setTableData(dataTable);
-					dispatch(action);
-					action = setTableUnit("IPI");
-					dispatch(action);
-					action = setTableTitle("Yearly Industry");
-					dispatch(action);
-				});
-			} else if (state.isYear === true) {
+				}
 			}
 		}
+
+		// let action;
+		// const portWidget = itemIsSelects[0].split("-")[0];
+		// const portViz = id.split("-")[0];
+		// const portLinked = [`port-${portWidget}`, `port-${portViz}`];
+		// action = setPortIsLinked(portLinked);
+		// dispatch(action);
+		// action = setPortCanLinked(true);
+		// dispatch(action);
+
+		// let state = {
+		// 	isHumidity: false,
+		// 	isTemperature: false,
+		// 	isRainfall: false,
+		// 	isIndustry: false,
+		// 	isCity: false,
+		// 	isYear: false,
+		// };
+
+		// let dataTable = [];
+		// let cities = [];
+
+		// itemIsSelects.map((itemIsSelect) => {
+		// 	if (itemIsSelect.split("-")[0] === CLIMATE_HUMIDITY) {
+		// 		state.isHumidity = true;
+		// 		if (itemIsSelect.split("-")[1] === "year") {
+		// 			state.isYear = true;
+		// 		} else if (itemIsSelect.split("-")[1] === "city") {
+		// 			state.isCity = true;
+		// 			const citySelect = itemIsSelect.split("-")[2];
+		// 			cities.push(citySelect);
+		// 		} else {
+		// 			state.isYear = false;
+		// 			state.isCity = false;
+		// 			cities = [];
+		// 		}
+		// 	} else if (itemIsSelect.split("-")[0] === CLIMATE_TEMPERATURE) {
+		// 		state.isTemperature = true;
+		// 		if (itemIsSelect.split("-")[1] === "year") {
+		// 			state.isYear = true;
+		// 		} else if (itemIsSelect.split("-")[1] === "city") {
+		// 			state.isCity = true;
+		// 			const citySelect = itemIsSelect.split("-")[2];
+		// 			cities.push(citySelect);
+		// 		} else {
+		// 			state.isYear = false;
+		// 			state.isCity = false;
+		// 			cities = [];
+		// 		}
+		// 	} else if (itemIsSelect.split("-")[0] === CLIMATE_RAINFALL) {
+		// 		state.isRainfall = true;
+		// 		if (itemIsSelect.split("-")[1] === "year") {
+		// 			state.isYear = true;
+		// 		} else if (itemIsSelect.split("-")[1] === "city") {
+		// 			state.isCity = true;
+		// 			const citySelect = itemIsSelect.split("-")[2];
+		// 			cities.push(citySelect);
+		// 		} else {
+		// 			state.isYear = false;
+		// 			state.isCity = false;
+		// 			cities = [];
+		// 		}
+		// 	} else if (itemIsSelect.split("-")[0] === INDUSTRY_PRODUCTION) {
+		// 		state.isIndustry = true;
+		// 		if (itemIsSelect.split("-")[1] === "year") {
+		// 			state.isYear = true;
+		// 		} else if (itemIsSelect.split("-")[1] === "city") {
+		// 			state.isCity = true;
+		// 			const citySelect = itemIsSelect.split("-")[2];
+		// 			cities.push(citySelect);
+		// 		} else {
+		// 			state.isYear = false;
+		// 			state.isCity = false;
+		// 			cities = [];
+		// 		}
+		// 	}
+
+		// 	return null;
+		// });
+
+		// if (state.isHumidity === true) {
+		// 	if (state.isCity === true) {
+		// 		const fetchHumidityByCity = async (cities) => {
+		// 			const requests = cities.map(async (city) => {
+		// 				let cityData = {};
+		// 				return await getHumidityByCity(city).then((items) => {
+		// 					items.results.bindings.map((item) => {
+		// 						const city = item.city.value;
+		// 						const year = item.year.value;
+		// 						const value = Number(item.value.value).toPrecision();
+		// 						cityData = { city, year, value };
+		// 						dataTable.push(cityData);
+
+		// 						return null;
+		// 					});
+		// 				});
+		// 			});
+		// 			return Promise.all(requests);
+		// 		};
+		// 		fetchHumidityByCity(cities).then(() => {
+		// 			action = setTableData(dataTable);
+		// 			dispatch(action);
+		// 			action = setTableUnit("%");
+		// 			dispatch(action);
+		// 			action = setTableTitle("Yearly Humidity");
+		// 			dispatch(action);
+		// 		});
+		// 	} else if (state.isYear === true) {
+		// 	}
+		// } else if (state.isTemperature === true) {
+		// 	if (state.isCity === true) {
+		// 		const fetchTemperatureByCity = async (cities) => {
+		// 			const requests = cities.map(async (city) => {
+		// 				let cityData = {};
+		// 				return await getTemperatureByCity(city).then((items) => {
+		// 					items.results.bindings.map((item) => {
+		// 						const city = item.city.value;
+		// 						const year = item.year.value;
+		// 						const value = Number(item.value.value).toPrecision();
+		// 						cityData = { city, year, value };
+		// 						dataTable.push(cityData);
+
+		// 						return null;
+		// 					});
+		// 				});
+		// 			});
+		// 			return Promise.all(requests);
+		// 		};
+		// 		fetchTemperatureByCity(cities).then(() => {
+		// 			action = setTableData(dataTable);
+		// 			dispatch(action);
+		// 			action = setTableUnit("°C");
+		// 			dispatch(action);
+		// 			action = setTableTitle("Yearly Temperature");
+		// 			dispatch(action);
+		// 		});
+		// 	} else if (state.isYear === true) {
+		// 	}
+		// } else if (state.isRainfall === true) {
+		// 	if (state.isCity === true) {
+		// 		const fetchRainfallByCity = async (cities) => {
+		// 			const requests = cities.map(async (city) => {
+		// 				let cityData = {};
+		// 				return await getRainfallByCity(city).then((items) => {
+		// 					items.results.bindings.map((item) => {
+		// 						const city = item.city.value;
+		// 						const year = item.year.value;
+		// 						const value = Number(item.value.value).toPrecision();
+		// 						cityData = { city, year, value };
+		// 						dataTable.push(cityData);
+
+		// 						return null;
+		// 					});
+		// 				});
+		// 			});
+		// 			return Promise.all(requests);
+		// 		};
+		// 		fetchRainfallByCity(cities).then(() => {
+		// 			action = setTableData(dataTable);
+		// 			dispatch(action);
+		// 			action = setTableUnit("mm");
+		// 			dispatch(action);
+		// 			action = setTableTitle("Yearly Rainfall");
+		// 			dispatch(action);
+		// 		});
+		// 	} else if (state.isYear === true) {
+		// 	}
+		// } else if (state.isIndustry === true) {
+		// 	if (state.isCity === true) {
+		// 		const fetchIndustryByCity = async (cities) => {
+		// 			const requests = cities.map(async (city) => {
+		// 				let cityData = {};
+		// 				return await getIndustryByCity(city).then((items) => {
+		// 					items.results.bindings.map((item) => {
+		// 						const city = item.city.value;
+		// 						const year = item.year.value;
+		// 						const value = Number(item.value.value).toPrecision();
+		// 						cityData = { city, year, value };
+		// 						dataTable.push(cityData);
+
+		// 						return null;
+		// 					});
+		// 				});
+		// 			});
+		// 			return Promise.all(requests);
+		// 		};
+		// 		fetchIndustryByCity(cities).then(() => {
+		// 			action = setTableData(dataTable);
+		// 			dispatch(action);
+		// 			action = setTableUnit("IPI");
+		// 			dispatch(action);
+		// 			action = setTableTitle("Yearly Industry");
+		// 			dispatch(action);
+		// 		});
+		// 	} else if (state.isYear === true) {
+		// 	}
+		// }
 	};
 
 	// if (itemIsSelect[0].split("-")[0] === CLIMATE_HUMIDITY) {

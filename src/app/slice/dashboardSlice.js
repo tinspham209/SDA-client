@@ -62,6 +62,11 @@ const dashboard = createSlice({
 			port: [],
 			portCanLinked: false,
 			node: [],
+			periodOfCity: {
+				city: "",
+				fromYear: "",
+				toYear: "",
+			},
 		},
 		info: {
 			isOpen: {
@@ -238,6 +243,15 @@ const dashboard = createSlice({
 		setTableUnit: (state, action) => {
 			state.viz.table.unit = action.payload;
 		},
+		setPeriodOfCityName: (state, action) => {
+			state.mashupContent.periodOfCity.city = action.payload;
+		},
+		setPeriodOfCityFromYear: (state, action) => {
+			state.mashupContent.periodOfCity.fromYear = action.payload;
+		},
+		setPeriodOfCityToYear: (state, action) => {
+			state.mashupContent.periodOfCity.toYear = action.payload;
+		},
 	},
 });
 
@@ -275,6 +289,9 @@ export const {
 	setTableUnit,
 	setTableTitle,
 	setToolbarChildrenIsOpen,
+	setPeriodOfCityName,
+	setPeriodOfCityFromYear,
+	setPeriodOfCityToYear,
 } = actions;
 
 export default reducer;

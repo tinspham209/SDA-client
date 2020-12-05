@@ -16,8 +16,19 @@ import { RiErrorWarningFill } from "react-icons/ri";
 
 import { treeHumidity } from "../../../../../data/index";
 
-import { setInfoWidget } from "../../../../../app/slice/dashboardSlice";
+import {
+	setItemIsSelect,
+	setInfoWidget,
+	setPeriodOfCityFromYear,
+	setPeriodOfCityName,
+	setPeriodOfCityToYear,
+} from "../../../../../app/slice/dashboardSlice";
 import { useDispatch } from "react-redux";
+import {
+	CLIMATE,
+	HUMIDITY,
+	PERIOD_OF_CITY,
+} from "../../../../../app/ItemTypes";
 
 const HumidityPeriodOfCity = ({ id, data, inputs, outputs }) => {
 	const classes = useStyles();
@@ -36,23 +47,34 @@ const HumidityPeriodOfCity = ({ id, data, inputs, outputs }) => {
 	const handleCityChange = (event) => {
 		setCity(event.target.value);
 	};
+
 	const handleFromYearChange = (event) => {
 		setFromYear(event.target.value);
 	};
+
 	const handleToYearChange = (event) => {
-		setToYear(event.target.value);
+		if (fromYear !== "" && Number(event.target.value) > Number(fromYear)) {
+			setToYear(event.target.value);
+			setWarning("");
+		} else {
+			setWarning(`"To Year" field must be large than "From Year" field`);
+		}
 	};
 
 	useEffect(() => {
-		if (fromYear && toYear) {
-			if (Number(fromYear) > Number(toYear)) {
-				setToYear("");
-				setWarning(`"To Year" field must be large than "From Year" field`);
-			} else {
-				setWarning("");
-			}
+		if (city !== "" && fromYear !== "" && toYear !== "" && warning === "") {
+			let action;
+			action = setPeriodOfCityName(city);
+			dispatch(action);
+			action = setPeriodOfCityFromYear(fromYear);
+			dispatch(action);
+			action = setPeriodOfCityToYear(toYear);
+			dispatch(action);
+			const itemIsSelect = [`${CLIMATE}-${HUMIDITY}-${PERIOD_OF_CITY}`];
+			action = setItemIsSelect(itemIsSelect);
+			dispatch(action);
 		}
-	}, [fromYear, toYear]);
+	}, [city, fromYear, toYear, warning, dispatch]);
 
 	return (
 		<div className={classes.node}>

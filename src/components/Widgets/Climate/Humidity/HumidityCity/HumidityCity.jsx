@@ -28,7 +28,6 @@ const HumidityCity = ({ id, data, inputs, outputs }) => {
 	};
 
 	const handleSelect = (event, nodeIds) => {
-		console.log("nodeIds: ", nodeIds);
 		setSelected(nodeIds);
 		const action = setItemIsSelect(nodeIds);
 		dispatch(action);
