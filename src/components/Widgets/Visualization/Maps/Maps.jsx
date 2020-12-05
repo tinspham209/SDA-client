@@ -20,6 +20,7 @@ import {
 import {
 	CLIMATE,
 	HUMIDITY,
+	RAINFALL,
 	TEMPERATURE,
 	YEAR,
 } from "../../../../app/ItemTypes";
@@ -179,6 +180,64 @@ const WidgetMaps = ({ id, data, inputs, outputs }) => {
 							{ from: 22, to: 25 },
 							{ from: 25, to: 28 },
 							{ from: 28 },
+						];
+						action = setColorRange(dataClasses);
+						dispatch(action);
+
+						action = setMapsData(dataMaps);
+						dispatch(action);
+					});
+				}
+			} else if (dataSet === RAINFALL) {
+				if (filter === YEAR) {
+					const year = idArray[3];
+
+					const fetchRainfallByYear = async (year) => {
+						return await getRainfallByYear(year).then((items) =>
+							items.results.bindings.map((item) => {
+								let city = item.city.value;
+								if (city === "Bãi Cháy") {
+									city = "Quảng Ninh";
+								} else if (city === "Đà Lạt") {
+									city = "Lâm Đồng";
+								} else if (city === "Huế") {
+									city = "Thừa Thiên Huế";
+								} else if (city === "Nha Trang") {
+									city = "Khánh Hoà";
+								} else if (city === "Pleiku") {
+									city = "Gia Lai";
+								} else if (city === "Qui Nhơn") {
+									city = "Bình Định";
+								} else if (city === "Vinh") {
+									city = "Nghệ An";
+								} else if (city === "Vũng Tàu") {
+									city = "Bà Rịa - Vũng Tàu";
+								}
+
+								const cityId = vn.find((item) => {
+									return city === item.name;
+								});
+								const id = cityId.id;
+								const value = Number(item.value.value).toPrecision();
+								const object = [id, value];
+								dataMaps.push(object);
+								return null;
+							})
+						);
+					};
+					fetchRainfallByYear(year).then(() => {
+						const nameTitle = `Rainfall of VN ${year}`;
+						action = setTitleMaps(nameTitle);
+						dispatch(action);
+
+						const dataClasses = [
+							{
+								to: 1000,
+							},
+							{ from: 1000, to: 1500 },
+							{ from: 1500, to: 2000 },
+							{ from: 2000, to: 2800 },
+							{ from: 2800 },
 						];
 						action = setColorRange(dataClasses);
 						dispatch(action);

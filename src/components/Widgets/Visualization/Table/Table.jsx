@@ -22,6 +22,7 @@ import {
 	CLIMATE,
 	HUMIDITY,
 	PERIOD_OF_CITY,
+	RAINFALL,
 	TEMPERATURE,
 	YEAR,
 } from "../../../../app/ItemTypes";
@@ -32,6 +33,7 @@ import {
 	getIndustryByCity,
 	getIndustryByYear,
 	getRainfallByCity,
+	getRainfallByPeriodOfCity,
 	getRainfallByYear,
 	getTemperatureByCity,
 	getTemperatureByPeriodOfCity,
@@ -256,6 +258,85 @@ const WidgetTable = ({ id, data, inputs, outputs }) => {
 						action = setTableUnit("%");
 						dispatch(action);
 						action = setTableTitle("Yearly Temperature");
+						dispatch(action);
+					});
+				}
+			} else if (dataSet === RAINFALL) {
+				if (filter === CITY) {
+					const fetchRainfallByCity = async (cities) => {
+						const requests = cities.map(async (city) => {
+							let cityData = {};
+							return await getRainfallByCity(city).then((items) => {
+								items.results.bindings.map((item) => {
+									const city = item.city.value;
+									const year = item.year.value;
+									const value = Number(item.value.value).toPrecision();
+									cityData = { city, year, value };
+									dataTable.push(cityData);
+
+									return null;
+								});
+							});
+						});
+						return Promise.all(requests);
+					};
+					fetchRainfallByCity(cities).then(() => {
+						action = setTableData(dataTable);
+						dispatch(action);
+						action = setTableUnit("%");
+						dispatch(action);
+						action = setTableTitle("Yearly Rainfall");
+						dispatch(action);
+					});
+				} else if (filter === YEAR) {
+					const fetchRainfallByYear = async (year) => {
+						let cityData = {};
+						return await getRainfallByYear(year).then((items) =>
+							items.results.bindings.map((item) => {
+								const city = item.city.value;
+								const year = item.year.value;
+								const value = Number(item.value.value).toPrecision();
+								cityData = { city, year, value };
+								dataTable.push(cityData);
+
+								return null;
+							})
+						);
+					};
+					fetchRainfallByYear(value).then(() => {
+						action = setTableData(dataTable);
+						dispatch(action);
+						action = setTableUnit("%");
+						dispatch(action);
+						action = setTableTitle("Yearly Rainfall");
+						dispatch(action);
+					});
+				} else if (filter === PERIOD_OF_CITY) {
+					const fetchRainfallByPeriodOfCity = async (cityId, fYear, tYear) => {
+						let cityData = {};
+						return await getRainfallByPeriodOfCity(cityId, fYear, tYear).then(
+							(items) =>
+								items.results.bindings.map((item) => {
+									const city = item.city.value;
+									const year = item.year.value;
+									const value = Number(item.value.value).toPrecision();
+									cityData = { city, year, value };
+									dataTable.push(cityData);
+
+									return null;
+								})
+						);
+					};
+					fetchRainfallByPeriodOfCity(
+						periodCity[0],
+						periodCity[1],
+						periodCity[2]
+					).then(() => {
+						action = setTableData(dataTable);
+						dispatch(action);
+						action = setTableUnit("%");
+						dispatch(action);
+						action = setTableTitle("Yearly Rainfall");
 						dispatch(action);
 					});
 				}

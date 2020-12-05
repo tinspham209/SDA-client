@@ -23,6 +23,7 @@ import {
 	CLIMATE,
 	HUMIDITY,
 	PERIOD_OF_CITY,
+	RAINFALL,
 	TEMPERATURE,
 } from "../../../../app/ItemTypes";
 import {
@@ -30,6 +31,7 @@ import {
 	getHumidityByPeriodOfCity,
 	getIndustryByCity,
 	getRainfallByCity,
+	getRainfallByPeriodOfCity,
 	getTemperatureByCity,
 	getTemperatureByPeriodOfCity,
 } from "../../../../api";
@@ -278,6 +280,100 @@ const WidgetLineChart = ({ id, data, inputs, outputs }) => {
 							action = setLineData(series);
 							dispatch(action);
 							action = setLineTitle("Yearly Temperature");
+							dispatch(action);
+							action = setLineUnit("%");
+							dispatch(action);
+						});
+					}
+				}
+			} else if (dataSet === RAINFALL) {
+				if (filter === CITY) {
+					const fetchRainfallByCity = async (cities) => {
+						const requests = cities.map(async (city) => {
+							let object = {};
+							let name = "";
+							return await getRainfallByCity(city).then((item) => {
+								const data = [];
+								const category = [];
+
+								item.results.bindings.map((item) => {
+									name = item.city.value;
+									const year = item.year.value;
+									const value = Number(item.value.value);
+									category.push(year);
+									data.push(value);
+
+									return null;
+								});
+
+								object = {
+									...object,
+									name: name,
+									data: data,
+								};
+								categories = category;
+								series = [...series, object];
+							});
+						});
+						return Promise.all(requests);
+					};
+
+					fetchRainfallByCity(cities).then(() => {
+						action = setLineCategories(categories);
+						dispatch(action);
+						action = setLineData(series);
+						dispatch(action);
+						action = setLineTitle("Yearly Rainfall (%)");
+						dispatch(action);
+						action = setLineUnit("%");
+						dispatch(action);
+					});
+				} else if (filter === PERIOD_OF_CITY) {
+					const fetchRainfallByPeriodOfCity = async (cityId, fYear, tYear) => {
+						let object = {};
+						let name = "";
+						return await getRainfallByPeriodOfCity(cityId, fYear, tYear).then(
+							(item) => {
+								const data = [];
+								const category = [];
+
+								item.results.bindings.map((item) => {
+									name = item.city.value;
+									const year = item.year.value;
+									const value = Number(item.value.value);
+									category.push(year);
+									data.push(value);
+
+									return null;
+								});
+
+								object = {
+									...object,
+									name: name,
+									data: data,
+								};
+								categories = category;
+								series = [...series, object];
+
+								return null;
+							}
+						);
+					};
+					if (
+						periodCity[0] !== "" &&
+						periodCity[1] !== "" &&
+						periodCity[2] !== ""
+					) {
+						fetchRainfallByPeriodOfCity(
+							periodCity[0],
+							periodCity[1],
+							periodCity[2]
+						).then(() => {
+							action = setLineCategories(categories);
+							dispatch(action);
+							action = setLineData(series);
+							dispatch(action);
+							action = setLineTitle("Yearly Rainfall");
 							dispatch(action);
 							action = setLineUnit("%");
 							dispatch(action);
