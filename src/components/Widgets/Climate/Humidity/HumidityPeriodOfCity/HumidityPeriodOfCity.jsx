@@ -22,8 +22,9 @@ import {
 	setPeriodOfCityFromYear,
 	setPeriodOfCityName,
 	setPeriodOfCityToYear,
+	setMerge,
 } from "../../../../../app/slice/dashboardSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
 	CLIMATE,
 	HUMIDITY,
@@ -38,6 +39,8 @@ const HumidityPeriodOfCity = ({ id, data, inputs, outputs }) => {
 		const action = setInfoWidget(id);
 		dispatch(action);
 	};
+
+	const merge = useSelector((state) => state.dashboard.mashupContent.merge);
 
 	const [city, setCity] = useState("");
 	const [fromYear, setFromYear] = useState("");
@@ -73,7 +76,12 @@ const HumidityPeriodOfCity = ({ id, data, inputs, outputs }) => {
 			const itemIsSelect = [`${CLIMATE}-${HUMIDITY}-${PERIOD_OF_CITY}`];
 			action = setItemIsSelect(itemIsSelect);
 			dispatch(action);
+			const idMerge = `${CLIMATE}-${HUMIDITY}-${city}-${fromYear}-${toYear}`;
+			const newMerge = [...merge, idMerge];
+			action = setMerge(newMerge);
+			dispatch(action);
 		}
+		// eslint-disable-next-line
 	}, [city, fromYear, toYear, warning, dispatch]);
 
 	return (

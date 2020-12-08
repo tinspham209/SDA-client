@@ -101,6 +101,13 @@
 - /industry/year/:yearid;
 - /industry/city/:cityid/year/yearid;
 
+- /merge/dc1/:dc1/dc2/:dc2/s1/:s1/s2/:s2/city/:cityId/fYear/:fYear/tYear/:tYear
+
+  - /merge/dc1/dcclimate/dc2/dcclimate/s1/rainfall/s2/temperature/city/danang/fyear/2012/tyear/2018
+
+- /merge/dc1/:dc1/dc2/:dc2/dc3/:dc3/s1/:s1/s2/:s2/s3:/s3/city/:cityId/fYear/:fYear/tYear/:tYear
+  - /merge/dc1/dcclimate/dc2/dcindustry/dc3/dcforest/s1/rainfall/s2/industry/s3/forestcover/city/danang/fyear/2012/tyear/2018
+
 ### Directory Structure
 
 ```

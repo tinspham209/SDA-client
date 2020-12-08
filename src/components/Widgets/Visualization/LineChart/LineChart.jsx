@@ -51,7 +51,13 @@ const WidgetLineChart = ({ id, data, inputs, outputs }) => {
 		useSelector((state) => state.dashboard.mashupContent.periodOfCity.fromYear),
 		useSelector((state) => state.dashboard.mashupContent.periodOfCity.toYear),
 	];
-	console.log("periodCity: ", periodCity);
+
+	const dataMerge = [
+		useSelector((state) => state.dashboard.viz.merge.categories),
+		useSelector((state) => state.dashboard.viz.merge.data),
+		useSelector((state) => state.dashboard.viz.merge.title),
+	];
+	console.log("dataMerge: ", dataMerge);
 
 	const handleOnClick = () => {
 		let action;
@@ -382,7 +388,6 @@ const WidgetLineChart = ({ id, data, inputs, outputs }) => {
 				}
 			}
 		}
-
 		// const portWidget = itemIsSelects[0].split("-")[0];
 		// const portViz = id.split("-")[0];
 		// const portLinked = [`port-${portWidget}`, `port-${portViz}`];

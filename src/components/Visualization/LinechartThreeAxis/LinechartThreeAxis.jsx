@@ -1,20 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { useStyles } from "./LineChart.elements";
+import { useStyles } from "./LinechartThreeAxis.elements";
 
 import { useSelector } from "react-redux";
 
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
-const LineChart = () => {
+const LinechartThreeAxis = () => {
 	const classes = useStyles();
 
-	const lineCategories = useSelector(
-		(state) => state.dashboard.viz.line.categories
+	const lineSeries = useSelector(
+		(state) => state.dashboard.viz.lineTwoAxis.data
 	);
-	const lineSeries = useSelector((state) => state.dashboard.viz.line.data);
-	const lineTitle = useSelector((state) => state.dashboard.viz.line.title);
-	const lineUnit = useSelector((state) => state.dashboard.viz.line.unit);
+	const lineTitle = useSelector(
+		(state) => state.dashboard.viz.lineTwoAxis.title
+	);
+	const lineYAxis = useSelector(
+		(state) => state.dashboard.viz.lineTwoAxis.yAxis
+	);
+	const lineCategories = useSelector(
+		(state) => state.dashboard.viz.lineTwoAxis.categories
+	);
+
 	console.log("lineCategories: ", lineCategories);
 	console.log("lineSeries: ", lineSeries);
 	console.log("lineTitle: ", lineTitle);
@@ -43,11 +50,7 @@ const LineChart = () => {
 			],
 			crosshair: true,
 		},
-		yAxis: {
-			title: {
-				text: "",
-			},
-		},
+		yAxis: [],
 		tooltip: {
 			headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
 			pointFormat:
@@ -67,7 +70,7 @@ const LineChart = () => {
 	});
 
 	useEffect(() => {
-		if (lineSeries && lineCategories && lineTitle && lineUnit) {
+		if (lineSeries && lineCategories && lineTitle && lineYAxis) {
 			setDataLineChart({
 				...dataLineChart,
 				xAxis: {
@@ -78,16 +81,11 @@ const LineChart = () => {
 				title: {
 					text: lineTitle,
 				},
-				yAxis: {
-					title: {
-						text: lineUnit,
-					},
-				},
+				yAxis: lineYAxis,
 			});
 		}
-
 		// eslint-disable-next-line
-	}, [lineSeries, lineCategories, lineTitle, lineUnit]);
+	}, [lineSeries, lineCategories, lineTitle, lineYAxis]);
 
 	return (
 		<div className={classes.lineChart}>
@@ -96,4 +94,4 @@ const LineChart = () => {
 	);
 };
 
-export default LineChart;
+export default LinechartThreeAxis;

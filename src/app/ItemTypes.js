@@ -16,6 +16,8 @@ export const VISUALIZATION = "visualization";
 export const CHART = "chart";
 export const COLUMN = "column";
 export const LINE = "line";
+export const LINE_TWO_AXIS = "lineTwoAxis";
+export const LINE_THREE_AXIS = "lineThreeAxis";
 export const MAPS = "maps";
 export const TABLE = "table";
 
@@ -27,6 +29,9 @@ export const VIZ_MAPS = "maps";
 export const PROPERTIES = "properties";
 export const WIDGET_INFOS = "widgetInfos";
 export const OUTPUT_LOG = "outputLog";
+
+export const OPERATORS = "operators";
+export const STATISTICS_MERGE = "statisticsMerge";
 export const OPERATOR_STATISTIC_MERGE = "statisticsMerge";
 
 export const YEAR = "year";

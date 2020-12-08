@@ -22,11 +22,11 @@ import {
 	setPeriodOfCityFromYear,
 	setPeriodOfCityName,
 	setPeriodOfCityToYear,
+	setMerge,
 } from "../../../../../app/slice/dashboardSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
 	CLIMATE,
-	HUMIDITY,
 	PERIOD_OF_CITY,
 	TEMPERATURE,
 } from "../../../../../app/ItemTypes";
@@ -34,6 +34,8 @@ import {
 const TemperaturePeriodOfCity = ({ id, data, inputs, outputs }) => {
 	const classes = useStyles();
 	const dispatch = useDispatch();
+
+	const merge = useSelector((state) => state.dashboard.mashupContent.merge);
 
 	const handleQuestionButton = (id) => {
 		const action = setInfoWidget(id);
@@ -74,7 +76,13 @@ const TemperaturePeriodOfCity = ({ id, data, inputs, outputs }) => {
 			const itemIsSelect = [`${CLIMATE}-${TEMPERATURE}-${PERIOD_OF_CITY}`];
 			action = setItemIsSelect(itemIsSelect);
 			dispatch(action);
+
+			const idMerge = `${CLIMATE}-${TEMPERATURE}-${city}-${fromYear}-${toYear}`;
+			const newMerge = [...merge, idMerge];
+			action = setMerge(newMerge);
+			dispatch(action);
 		}
+		// eslint-disable-next-line
 	}, [city, fromYear, toYear, warning, dispatch]);
 
 	return (

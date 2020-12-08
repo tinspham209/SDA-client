@@ -21,6 +21,10 @@ import {
 	TABLE,
 	TEMPERATURE,
 	RAINFALL,
+	STATISTICS_MERGE,
+	OPERATORS,
+	LINE_TWO_AXIS,
+	LINE_THREE_AXIS,
 } from "../../app/ItemTypes";
 
 import {
@@ -37,13 +41,18 @@ import {
 	RainfallYear,
 	RainfallCity,
 	RainfallPeriodOfCity,
+	StatisticsMerge,
+	LineChartTwoAxis,
+	LineChartThreeAxis,
 } from "../../components/Widgets";
 import {
 	removeIdNode,
 	setIdNewNode,
+	setMerge,
 	setNavbarNewOnClick,
 	setOutput,
 	setPortCanLinked,
+	setPortIsLinked,
 } from "../../app/slice/dashboardSlice";
 
 const initialSchema = {
@@ -111,12 +120,21 @@ const MashupContent = () => {
 					}
 				}
 				break;
+			case OPERATORS:
+				if (dataSet === STATISTICS_MERGE) {
+					return StatisticsMerge;
+				}
+				break;
 			case VISUALIZATION:
 				if (dataSet === CHART) {
 					if (filter === COLUMN) {
 						return ColumnChart;
 					} else if (filter === LINE) {
 						return LineChart;
+					} else if (filter === LINE_TWO_AXIS) {
+						return LineChartTwoAxis;
+					} else if (filter === LINE_THREE_AXIS) {
+						return LineChartThreeAxis;
 					}
 				} else if (dataSet === MAPS) {
 					return Maps;
@@ -141,7 +159,7 @@ const MashupContent = () => {
 			coordinates: [x - 200, y - 70],
 			render: getWidget(isDropItem),
 			data: { onClick: deleteNodeFromSchema },
-			inputs: [{ id: `port-${isDropItem}` }],
+			inputs: [{ id: `portOut-${isDropItem}` }],
 			outputs: [{ id: `port-${isDropItem}` }],
 		};
 		const action = setIdNewNode(id);
@@ -172,6 +190,10 @@ const MashupContent = () => {
 			action = removeIdNode();
 			dispatch(action);
 			action = setOutput("clear");
+			dispatch(action);
+			action = setPortIsLinked([]);
+			dispatch(action);
+			action = setMerge([]);
 			dispatch(action);
 		}
 		// eslint-disable-next-line

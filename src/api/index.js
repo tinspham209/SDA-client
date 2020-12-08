@@ -19,6 +19,58 @@ const url = `http://server.sda-research.ml`;
 // - /industry/year/:yearid;
 // - /industry/city/:cityid/year/yearid;
 
+export const getDataMergeThreeWidgetPeriodOfCity = async (
+	dataCube1,
+	dataSet1,
+	dataCube2,
+	dataSet2,
+	dataCube3,
+	dataSet3,
+	city,
+	fYear,
+	tYear
+) => {
+	try {
+		console.log(
+			"url",
+			`${url}/merge/dc1/dc${dataCube1}/dc2/dc${dataCube2}/dc3/dc${dataCube3}/s1/${dataSet1}/s2/${dataSet2}/s3/${dataSet3}/city/${city}/fyear/${fYear}/tyear/${tYear}`
+		);
+		const { data } = await axios.get(
+			`${url}/merge/dc1/dc${dataCube1}/dc2/dc${dataCube2}/dc3/dc${dataCube3}/s1/${dataSet1}/s2/${dataSet2}/s3/${dataSet3}/city/${city}/fyear/${fYear}/tyear/${tYear}`
+		);
+		console.log("data: ", data);
+
+		return data;
+	} catch (error) {
+		console.log("error: ", error);
+	}
+};
+
+export const getDataMergeTwoWidgetPeriodOfCity = async (
+	dataCube1,
+	dataSet1,
+	dataCube2,
+	dataSet2,
+	city,
+	fYear,
+	tYear
+) => {
+	try {
+		console.log(
+			"url",
+			`${url}/merge/dc1/dc${dataCube1}/dc2/dc${dataCube2}/s1/${dataSet1}/s2/${dataSet2}/city/${city}/fyear/${fYear}/tyear/${tYear}`
+		);
+		const { data } = await axios.get(
+			`${url}/merge/dc1/dc${dataCube1}/dc2/dc${dataCube2}/s1/${dataSet1}/s2/${dataSet2}/city/${city}/fyear/${fYear}/tyear/${tYear}`
+		);
+		console.log("data: ", data);
+
+		return data;
+	} catch (error) {
+		console.log("error: ", error);
+	}
+};
+
 export const getRainfallByPeriodOfCity = async (city, fYear, tYear) => {
 	try {
 		const { data } = await axios.get(

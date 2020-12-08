@@ -16,6 +16,13 @@ const ColumnChart = () => {
 	const [dataColumnChart, setDataColumnChart] = useState({
 		chart: {
 			type: "column",
+			options3d: {
+				enabled: true,
+				alpha: 15,
+				beta: 15,
+				depth: 50,
+				viewDistance: 25,
+			},
 		},
 		title: {
 			text: "",
@@ -35,6 +42,12 @@ const ColumnChart = () => {
 				"2019",
 			],
 			crosshair: true,
+			labels: {
+				skew3d: true,
+				style: {
+					fontSize: "16px",
+				},
+			},
 		},
 		yAxis: {
 			min: 0,
@@ -53,8 +66,8 @@ const ColumnChart = () => {
 		},
 		plotOptions: {
 			column: {
-				pointPadding: 0.2,
-				borderWidth: 0,
+				stacking: "normal",
+				depth: 40,
 			},
 		},
 		series: [],

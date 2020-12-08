@@ -17,7 +17,7 @@ const dashboard = createSlice({
 				climate: {
 					isOpen: true,
 					children: {
-						temperature: false,
+						temperature: true,
 						humidity: false,
 						rainfall: true,
 					},
@@ -41,7 +41,7 @@ const dashboard = createSlice({
 					},
 				},
 				operators: {
-					isOpen: false,
+					isOpen: true,
 				},
 				visualization: {
 					isOpen: true,
@@ -67,6 +67,7 @@ const dashboard = createSlice({
 				fromYear: "",
 				toYear: "",
 			},
+			merge: [],
 		},
 		info: {
 			isOpen: {
@@ -104,9 +105,27 @@ const dashboard = createSlice({
 				data: [],
 				unit: "",
 			},
+			lineTwoAxis: {
+				title: "",
+				yAxis: [],
+				data: [],
+				categories: [],
+			},
+			lineThreeAxis: {
+				title: "",
+				yAxis: [],
+				data: [],
+				categories: [],
+			},
 			table: {
 				data: [],
 				unit: "",
+			},
+			merge: {
+				categories: [],
+				data: [],
+				title: "",
+				yAxis: [],
 			},
 		},
 		modal: {
@@ -252,6 +271,45 @@ const dashboard = createSlice({
 		setPeriodOfCityToYear: (state, action) => {
 			state.mashupContent.periodOfCity.toYear = action.payload;
 		},
+		setMerge: (state, action) => {
+			state.mashupContent.merge = action.payload;
+		},
+		setMergeCategories: (state, action) => {
+			state.viz.merge.categories = action.payload;
+		},
+		setMergeData: (state, action) => {
+			state.viz.merge.data = action.payload;
+		},
+		setMergeTitle: (state, action) => {
+			state.viz.merge.title = action.payload;
+		},
+		setMergeYAxis: (state, action) => {
+			state.viz.merge.yAxis = action.payload;
+		},
+		setLineTwoAxisTitle: (state, action) => {
+			state.viz.lineTwoAxis.title = action.payload;
+		},
+		setLineTwoAxisYAxis: (state, action) => {
+			state.viz.lineTwoAxis.yAxis = action.payload;
+		},
+		setLineTwoAxisData: (state, action) => {
+			state.viz.lineTwoAxis.data = action.payload;
+		},
+		setLineTwoAxisCategories: (state, action) => {
+			state.viz.lineTwoAxis.categories = action.payload;
+		},
+		setLineThreeAxisTitle: (state, action) => {
+			state.viz.lineThreeAxis.title = action.payload;
+		},
+		setLineThreeAxisYAxis: (state, action) => {
+			state.viz.lineThreeAxis.yAxis = action.payload;
+		},
+		setLineThreeAxisData: (state, action) => {
+			state.viz.lineThreeAxis.data = action.payload;
+		},
+		setLineThreeAxisCategories: (state, action) => {
+			state.viz.lineThreeAxis.categories = action.payload;
+		},
 	},
 });
 
@@ -292,6 +350,19 @@ export const {
 	setPeriodOfCityName,
 	setPeriodOfCityFromYear,
 	setPeriodOfCityToYear,
+	setMerge,
+	setMergeCategories,
+	setMergeTitle,
+	setMergeData,
+	setLineTwoAxisTitle,
+	setLineTwoAxisYAxis,
+	setLineTwoAxisData,
+	setMergeYAxis,
+	setLineTwoAxisCategories,
+	setLineThreeAxisTitle,
+	setLineThreeAxisYAxis,
+	setLineThreeAxisData,
+	setLineThreeAxisCategories,
 } = actions;
 
 export default reducer;

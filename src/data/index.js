@@ -233,6 +233,22 @@ export const listItems = [
 						disabled: false,
 					},
 					{
+						id: "lineTwoAxis",
+						name: "Two Y-Axis Line Chart ",
+						input: true,
+						output: false,
+						button: true,
+						disabled: false,
+					},
+					{
+						id: "lineThreeAxis",
+						name: "Three Y-Axis Line Chart ",
+						input: true,
+						output: false,
+						button: true,
+						disabled: false,
+					},
+					{
 						id: "pie",
 						name: "Pie Chart",
 						input: true,
@@ -299,6 +315,50 @@ export const widgetInfos = {
 				{
 					id: "Connect",
 					info: "Statistics widgets",
+				},
+			],
+			lineTwoAxis: [
+				{
+					id: "Name",
+					info: "Line Chart with Two Y-Axis",
+				},
+				{
+					id: "Description",
+					info: "Used to draw a Line chart, when merge two widgets ",
+				},
+				{
+					id: "Input",
+					info: "json data",
+				},
+				{
+					id: "Output",
+					info: "no",
+				},
+				{
+					id: "Connect",
+					info: "Statistics Merge",
+				},
+			],
+			lineThreeAxis: [
+				{
+					id: "Name",
+					info: "Line Chart with Two Y-Axis",
+				},
+				{
+					id: "Description",
+					info: "Used to draw a Line chart, when merge three widgets ",
+				},
+				{
+					id: "Input",
+					info: "json data",
+				},
+				{
+					id: "Output",
+					info: "no",
+				},
+				{
+					id: "Connect",
+					info: "Statistics Merge",
 				},
 			],
 			pie: [
