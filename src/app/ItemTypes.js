@@ -10,7 +10,7 @@ export const TEMPERATURE = "temperature";
 export const RAINFALL = "rainfall";
 
 export const INDUSTRY = "industry";
-export const INDUSTRY_PRODUCTION = "production";
+export const INDUSTRY_PRODUCTION = "industry";
 
 export const VISUALIZATION = "visualization";
 export const CHART = "chart";

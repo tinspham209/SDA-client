@@ -22,6 +22,8 @@ import {
 	CITY,
 	CLIMATE,
 	HUMIDITY,
+	INDUSTRY,
+	INDUSTRY_PRODUCTION,
 	PERIOD_OF_CITY,
 	RAINFALL,
 	TEMPERATURE,
@@ -30,6 +32,7 @@ import {
 	getHumidityByCity,
 	getHumidityByPeriodOfCity,
 	getIndustryByCity,
+	getIndustryByPeriodOfCity,
 	getRainfallByCity,
 	getRainfallByPeriodOfCity,
 	getTemperatureByCity,
@@ -52,13 +55,6 @@ const WidgetLineChart = ({ id, data, inputs, outputs }) => {
 		useSelector((state) => state.dashboard.mashupContent.periodOfCity.toYear),
 	];
 
-	const dataMerge = [
-		useSelector((state) => state.dashboard.viz.merge.categories),
-		useSelector((state) => state.dashboard.viz.merge.data),
-		useSelector((state) => state.dashboard.viz.merge.title),
-	];
-	console.log("dataMerge: ", dataMerge);
-
 	const handleOnClick = () => {
 		let action;
 
@@ -79,7 +75,7 @@ const WidgetLineChart = ({ id, data, inputs, outputs }) => {
 			portWidget = `${dataCube}-${dataSet}-${filter}`;
 		}
 
-		const portLinked = [`port-${portWidget}`, `port-${portViz}`];
+		const portLinked = [`port-${portWidget}`, `portOut-${portViz}`];
 
 		if (portLinked !== port) {
 			action = setPortIsLinked(portLinked);
@@ -95,7 +91,6 @@ const WidgetLineChart = ({ id, data, inputs, outputs }) => {
 		if (city !== undefined) {
 			itemIsSelects.map((item) => cities.push(item.split("-")[3]));
 		}
-		console.log("cities: ", cities);
 
 		if (dataCube === CLIMATE) {
 			if (dataSet === HUMIDITY) {
@@ -382,6 +377,102 @@ const WidgetLineChart = ({ id, data, inputs, outputs }) => {
 							action = setLineTitle("Yearly Rainfall");
 							dispatch(action);
 							action = setLineUnit("%");
+							dispatch(action);
+						});
+					}
+				}
+			}
+		} else if (dataCube === INDUSTRY) {
+			if (dataSet === INDUSTRY_PRODUCTION) {
+				if (filter === CITY) {
+					const fetchIndustryByCity = async (cities) => {
+						const requests = cities.map(async (city) => {
+							let object = {};
+							let name = "";
+							return await getIndustryByCity(city).then((item) => {
+								const data = [];
+								const category = [];
+
+								item.results.bindings.map((item) => {
+									name = item.city.value;
+									const year = item.year.value;
+									const value = Number(item.value.value);
+									category.push(year);
+									data.push(value);
+
+									return null;
+								});
+
+								object = {
+									...object,
+									name: name,
+									data: data,
+								};
+								categories = category;
+								series = [...series, object];
+							});
+						});
+						return Promise.all(requests);
+					};
+
+					fetchIndustryByCity(cities).then(() => {
+						action = setLineCategories(categories);
+						dispatch(action);
+						action = setLineData(series);
+						dispatch(action);
+						action = setLineTitle("Yearly Industry (IPI)");
+						dispatch(action);
+						action = setLineUnit("IPI");
+						dispatch(action);
+					});
+				} else if (filter === PERIOD_OF_CITY) {
+					const fetchIndustryByPeriodOfCity = async (cityId, fYear, tYear) => {
+						let object = {};
+						let name = "";
+						return await getIndustryByPeriodOfCity(cityId, fYear, tYear).then(
+							(item) => {
+								const data = [];
+								const category = [];
+
+								item.results.bindings.map((item) => {
+									name = item.city.value;
+									const year = item.year.value;
+									const value = Number(item.value.value);
+									category.push(year);
+									data.push(value);
+
+									return null;
+								});
+
+								object = {
+									...object,
+									name: name,
+									data: data,
+								};
+								categories = category;
+								series = [...series, object];
+
+								return null;
+							}
+						);
+					};
+					if (
+						periodCity[0] !== "" &&
+						periodCity[1] !== "" &&
+						periodCity[2] !== ""
+					) {
+						fetchIndustryByPeriodOfCity(
+							periodCity[0],
+							periodCity[1],
+							periodCity[2]
+						).then(() => {
+							action = setLineCategories(categories);
+							dispatch(action);
+							action = setLineData(series);
+							dispatch(action);
+							action = setLineTitle("Yearly Industry");
+							dispatch(action);
+							action = setLineUnit("IPI");
 							dispatch(action);
 						});
 					}

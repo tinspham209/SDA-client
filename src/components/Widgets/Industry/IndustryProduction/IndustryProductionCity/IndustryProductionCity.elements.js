@@ -29,6 +29,10 @@ export const useStyles = makeStyles((theme) => ({
 		border: "1px solid #000",
 		margin: "10px",
 		overflowY: "auto",
+		maxHeight: "300px",
+	},
+	footer: {
+		margin: "10px",
 	},
 	portOut: {
 		position: "absolute",
@@ -38,9 +42,5 @@ export const useStyles = makeStyles((theme) => ({
 	treeView: {
 		height: "216px",
 		flexGrow: "1",
-		maxWidth: "400px",
-	},
-	footer: {
-		margin: "10px",
 	},
 }));

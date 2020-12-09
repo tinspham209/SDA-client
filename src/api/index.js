@@ -15,9 +15,9 @@ const url = `http://server.sda-research.ml`;
 // - /climate/temperature/year/:yearid;
 // - /climate/temperature/city/:cityid/year/yearid;
 
-// - /industry/city/:cityid;
-// - /industry/year/:yearid;
-// - /industry/city/:cityid/year/yearid;
+// - /industry/industry/city/:cityid;
+// - /industry/industry/year/:yearid;
+// - /industry/industry/city/:cityid/year/yearid;
 
 export const getDataMergeThreeWidgetPeriodOfCity = async (
 	dataCube1,
@@ -62,6 +62,19 @@ export const getDataMergeTwoWidgetPeriodOfCity = async (
 		);
 		const { data } = await axios.get(
 			`${url}/merge/dc1/dc${dataCube1}/dc2/dc${dataCube2}/s1/${dataSet1}/s2/${dataSet2}/city/${city}/fyear/${fYear}/tyear/${tYear}`
+		);
+		console.log("data: ", data);
+
+		return data;
+	} catch (error) {
+		console.log("error: ", error);
+	}
+};
+
+export const getIndustryByPeriodOfCity = async (city, fYear, tYear) => {
+	try {
+		const { data } = await axios.get(
+			`${url}/industry/industry/city/${city}/fYear/${fYear}/tYear/${tYear}`
 		);
 		console.log("data: ", data);
 
@@ -123,7 +136,7 @@ export const getHumidityByYear = async (year) => {
 
 export const getIndustryByYear = async (year) => {
 	try {
-		const { data } = await axios.get(`${url}/industry/year/${year}`);
+		const { data } = await axios.get(`${url}/industry/industry/year/${year}`);
 
 		return data;
 	} catch (error) {
@@ -183,7 +196,7 @@ export const getRainfallByCity = async (city) => {
 
 export const getIndustryByCity = async (city) => {
 	try {
-		const { data } = await axios.get(`${url}/industry/city/${city}`);
+		const { data } = await axios.get(`${url}/industry/industry/city/${city}`);
 
 		return data;
 	} catch (error) {

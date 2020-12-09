@@ -15,9 +15,6 @@ const LineChart = () => {
 	const lineSeries = useSelector((state) => state.dashboard.viz.line.data);
 	const lineTitle = useSelector((state) => state.dashboard.viz.line.title);
 	const lineUnit = useSelector((state) => state.dashboard.viz.line.unit);
-	console.log("lineCategories: ", lineCategories);
-	console.log("lineSeries: ", lineSeries);
-	console.log("lineTitle: ", lineTitle);
 
 	// eslint-disable-next-line
 	const [dataLineChart, setDataLineChart] = useState({

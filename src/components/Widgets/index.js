@@ -1,5 +1,3 @@
-export { default as Industry } from "./Industry/IndustryProduction";
-
 export { default as StatisticsMerge } from "./Operators/StatisticsMerge/StatisticsMerge";
 
 export { default as LineChart } from "./Visualization/LineChart/LineChart";
@@ -20,3 +18,7 @@ export { default as TemperaturePeriodOfCity } from "./Climate/Temperature/Temper
 export { default as RainfallYear } from "./Climate/Rainfall/RainfallYear/RainfallYear";
 export { default as RainfallCity } from "./Climate/Rainfall/RainfallCity/RainfallCity";
 export { default as RainfallPeriodOfCity } from "./Climate/Rainfall/RainfallPeriodOfCity/RainfallPeriodOfCity";
+
+export { default as IndustryProductionYear } from "./Industry/IndustryProduction/IndustryProductionYear/IndustryProductionYear";
+export { default as IndustryProductionCity } from "./Industry/IndustryProduction/IndustryProductionCity/IndustryProductionCity";
+export { default as IndustryProductionPeriodOfCity } from "./Industry/IndustryProduction/IndustryProductionPeriodOfCity/IndustryProductionPeriodOfCity";

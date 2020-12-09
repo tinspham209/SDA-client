@@ -22,6 +22,8 @@ import {
 	CITY,
 	CLIMATE,
 	HUMIDITY,
+	INDUSTRY,
+	INDUSTRY_PRODUCTION,
 	PERIOD_OF_CITY,
 	RAINFALL,
 	TEMPERATURE,
@@ -30,6 +32,7 @@ import {
 	getHumidityByCity,
 	getHumidityByPeriodOfCity,
 	getIndustryByCity,
+	getIndustryByPeriodOfCity,
 	getRainfallByCity,
 	getRainfallByPeriodOfCity,
 	getTemperatureByCity,
@@ -72,7 +75,7 @@ const WidgetColumnChart = ({ id, data, inputs, outputs }) => {
 			portWidget = `${dataCube}-${dataSet}-${filter}`;
 		}
 
-		const portLinked = [`port-${portWidget}`, `port-${portViz}`];
+		const portLinked = [`port-${portWidget}`, `portOut-${portViz}`];
 
 		if (portLinked !== port) {
 			action = setPortIsLinked(portLinked);
@@ -375,6 +378,102 @@ const WidgetColumnChart = ({ id, data, inputs, outputs }) => {
 							action = setColumnTitle("Yearly Rainfall");
 							dispatch(action);
 							action = setColumnUnit("%");
+							dispatch(action);
+						});
+					}
+				}
+			}
+		} else if (dataCube === INDUSTRY) {
+			if (dataSet === INDUSTRY_PRODUCTION) {
+				if (filter === CITY) {
+					const fetchIndustryByCity = async (cities) => {
+						const requests = cities.map(async (city) => {
+							let object = {};
+							let name = "";
+							return await getIndustryByCity(city).then((item) => {
+								const data = [];
+								const category = [];
+
+								item.results.bindings.map((item) => {
+									name = item.city.value;
+									const year = item.year.value;
+									const value = Number(item.value.value);
+									category.push(year);
+									data.push(value);
+
+									return null;
+								});
+
+								object = {
+									...object,
+									name: name,
+									data: data,
+								};
+								categories = category;
+								series = [...series, object];
+							});
+						});
+						return Promise.all(requests);
+					};
+
+					fetchIndustryByCity(cities).then(() => {
+						action = setColumnCategories(categories);
+						dispatch(action);
+						action = setColumnData(series);
+						dispatch(action);
+						action = setColumnTitle("Yearly Industry (IPI)");
+						dispatch(action);
+						action = setColumnUnit("IPI");
+						dispatch(action);
+					});
+				} else if (filter === PERIOD_OF_CITY) {
+					const fetchIndustryByPeriodOfCity = async (cityId, fYear, tYear) => {
+						let object = {};
+						let name = "";
+						return await getIndustryByPeriodOfCity(cityId, fYear, tYear).then(
+							(item) => {
+								const data = [];
+								const category = [];
+
+								item.results.bindings.map((item) => {
+									name = item.city.value;
+									const year = item.year.value;
+									const value = Number(item.value.value);
+									category.push(year);
+									data.push(value);
+
+									return null;
+								});
+
+								object = {
+									...object,
+									name: name,
+									data: data,
+								};
+								categories = category;
+								series = [...series, object];
+
+								return null;
+							}
+						);
+					};
+					if (
+						periodCity[0] !== "" &&
+						periodCity[1] !== "" &&
+						periodCity[2] !== ""
+					) {
+						fetchIndustryByPeriodOfCity(
+							periodCity[0],
+							periodCity[1],
+							periodCity[2]
+						).then(() => {
+							action = setColumnCategories(categories);
+							dispatch(action);
+							action = setColumnData(series);
+							dispatch(action);
+							action = setColumnTitle("Yearly Industry (IPI)");
+							dispatch(action);
+							action = setColumnUnit("IPI");
 							dispatch(action);
 						});
 					}

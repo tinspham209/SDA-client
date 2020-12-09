@@ -25,6 +25,8 @@ import {
 	OPERATORS,
 	LINE_TWO_AXIS,
 	LINE_THREE_AXIS,
+	INDUSTRY,
+	INDUSTRY_PRODUCTION,
 } from "../../app/ItemTypes";
 
 import {
@@ -44,6 +46,9 @@ import {
 	StatisticsMerge,
 	LineChartTwoAxis,
 	LineChartThreeAxis,
+	IndustryProductionYear,
+	IndustryProductionCity,
+	IndustryProductionPeriodOfCity,
 } from "../../components/Widgets";
 import {
 	removeIdNode,
@@ -117,6 +122,17 @@ const MashupContent = () => {
 						return RainfallCity;
 					} else if (filter === PERIOD_OF_CITY) {
 						return RainfallPeriodOfCity;
+					}
+				}
+				break;
+			case INDUSTRY:
+				if (dataSet === INDUSTRY_PRODUCTION) {
+					if (filter === YEAR) {
+						return IndustryProductionYear;
+					} else if (filter === CITY) {
+						return IndustryProductionCity;
+					} else if (filter === PERIOD_OF_CITY) {
+						return IndustryProductionPeriodOfCity;
 					}
 				}
 				break;

@@ -118,7 +118,7 @@ export const listItems = [
 		name: "Industry",
 		collapseItem: [
 			{
-				id: "production",
+				id: "industry",
 				name: "Industry Production",
 				children: [
 					{
@@ -646,7 +646,7 @@ export const widgetInfos = {
 	},
 
 	industry: {
-		production: {
+		industry: {
 			year: [
 				{
 					id: "Name",
@@ -816,309 +816,6 @@ export const widgetInfos = {
 			},
 		],
 	},
-};
-
-export const treeIndustry = {
-	name: "Industry Production",
-	id: "industry-production",
-	data: [
-		{
-			id: "year",
-			name: "Year",
-			children: [
-				{
-					id: "2012",
-					name: "2012",
-				},
-				{
-					id: "2013",
-					name: "2013",
-				},
-				{
-					id: "2014",
-					name: "2014",
-				},
-				{
-					id: "2015",
-					name: "2015",
-				},
-				{
-					id: "2016",
-					name: "2016",
-				},
-				{
-					id: "2017",
-					name: "2017",
-				},
-				{
-					id: "2018",
-					name: "2018",
-				},
-				{
-					id: "2019",
-					name: "2019",
-				},
-			],
-		},
-		{
-			id: "city",
-			name: "City",
-			children: [
-				{
-					name: "Quảng Ninh",
-					id: "quangninh",
-				},
-				{
-					name: "Khánh Hoà",
-					id: "khanhhoa",
-				},
-				{
-					name: "Tiền Giang",
-					id: "tiengiang",
-				},
-				{
-					name: "Bà Rịa - Vũng Tàu",
-					id: "bariavungtau",
-				},
-				{
-					name: "Bình Thuận",
-					id: "binhthuan",
-				},
-				{
-					name: "TP.Hồ Chí Minh",
-					id: "hochiminh",
-				},
-				{
-					name: "Bến Tre",
-					id: "bentre",
-				},
-				{
-					name: "Sóc Trăng",
-					id: "soctrang",
-				},
-				{
-					name: "Phú Thọ",
-					id: "phutho",
-				},
-				{
-					name: "Yên Bái",
-					id: "yenbai",
-				},
-				{
-					name: "Hải Dương",
-					id: "haiduong",
-				},
-				{
-					name: "Bắc Ninh",
-					id: "bacninh",
-				},
-				{
-					name: "Hưng Yên",
-					id: "hungyen",
-				},
-				{
-					name: "Ninh Bình",
-					id: "ninhbinh",
-				},
-				{
-					name: "Hà Nam",
-					id: "hanam",
-				},
-				{
-					name: "Hoà Bình",
-					id: "hoabinh",
-				},
-				{
-					name: "Vĩnh Phúc",
-					id: "vinhphuc",
-				},
-				{
-					name: "Hà Nội",
-					id: "hanoi",
-				},
-				{
-					name: "Bắc Giang",
-					id: "bacgiang",
-				},
-				{
-					name: "Thái Bình",
-					id: "thaibinh",
-				},
-				{
-					name: "Lâm Đồng",
-					id: "lamdong",
-				},
-				{
-					name: "Bình Phước",
-					id: "binhphuoc",
-				},
-				{
-					name: "Phú Yên",
-					id: "phuyen",
-				},
-				{
-					name: "Bình Định",
-					id: "binhdinh",
-				},
-				{
-					name: "Gia Lai",
-					id: "gialai",
-				},
-				{
-					name: "Quảng Ngãi",
-					id: "quangngai",
-				},
-				{
-					name: "Đồng Nai",
-					id: "dongnai",
-				},
-				{
-					name: "Đồng Tháp",
-					id: "dongthap",
-				},
-				{
-					name: "Long An",
-					id: "longan",
-				},
-				{
-					name: "Hải Phòng",
-					id: "haiphong",
-				},
-				{
-					name: "Hậu Giang",
-					id: "haugiang",
-				},
-				{
-					name: "Bạc Liêu",
-					id: "baclieu",
-				},
-				{
-					name: "Vĩnh Long",
-					id: "vinhlong",
-				},
-				{
-					name: "Tây Ninh",
-					id: "tayninh",
-				},
-				{
-					name: "Thái Nguyên",
-					id: "thainguyen",
-				},
-				{
-					name: "Lai Châu",
-					id: "laichau",
-				},
-				{
-					name: "Sơn La",
-					id: "sonla",
-				},
-				{
-					name: "Hà Giang",
-					id: "hagiang",
-				},
-				{
-					name: "Nam Định",
-					id: "namdinh",
-				},
-				{
-					name: "Hà Tĩnh",
-					id: "hatinh",
-				},
-				{
-					name: "Nghệ An",
-					id: "nghean",
-				},
-				{
-					name: "Quảng Bình",
-					id: "quangbinh",
-				},
-				{
-					name: "Đắk Lắk",
-					id: "daklak",
-				},
-				{
-					name: "Ninh Thuận",
-					id: "ninhthuan",
-				},
-				{
-					name: "Đắk Nông",
-					id: "daknong",
-				},
-				{
-					name: "Kon Tum",
-					id: "kontum",
-				},
-				{
-					name: "Quảng Nam",
-					id: "quangnam",
-				},
-				{
-					name: "Quảng Trị",
-					id: "quangtri",
-				},
-				{
-					name: "Thừa Thiên Huế",
-					id: "thuathienhue",
-				},
-				{
-					name: "Đà Nẵng",
-					id: "danang",
-				},
-				{
-					name: "An Giang",
-					id: "angiang",
-				},
-				{
-					name: "Cà Mau",
-					id: "camau",
-				},
-				{
-					name: "Trà Vinh",
-					id: "travinh",
-				},
-				{
-					name: "Cao Bằng",
-					id: "caobang",
-				},
-				{
-					name: "Kiên Giang",
-					id: "kiengiang",
-				},
-				{
-					name: "Lào Cai",
-					id: "laocai",
-				},
-				{
-					name: "Điện Biên",
-					id: "dienbien",
-				},
-				{
-					name: "Lạng Sơn",
-					id: "langson",
-				},
-				{
-					name: "Thanh Hoá",
-					id: "thanhhoa",
-				},
-				{
-					name: "Bắc Kạn",
-					id: "backan",
-				},
-				{
-					name: "Tuyên Quang",
-					id: "tuyenquang",
-				},
-				{
-					name: "Bình Dương",
-					id: "binhduong",
-				},
-				{
-					name: "Cần Thơ",
-					id: "cantho",
-				},
-			],
-		},
-	],
 };
 
 export const treeHumidity = {
@@ -1439,6 +1136,307 @@ export const treeRainfall = {
 			{
 				id: "vungtau",
 				name: "Vũng Tàu",
+			},
+		],
+	},
+};
+
+export const treeIndustryProduction = {
+	name: "Industry Production",
+	id: "industry-industry",
+	year: {
+		id: "year",
+		name: "Year",
+		children: [
+			{
+				id: "2012",
+				name: "2012",
+			},
+			{
+				id: "2013",
+				name: "2013",
+			},
+			{
+				id: "2014",
+				name: "2014",
+			},
+			{
+				id: "2015",
+				name: "2015",
+			},
+			{
+				id: "2016",
+				name: "2016",
+			},
+			{
+				id: "2017",
+				name: "2017",
+			},
+			{
+				id: "2018",
+				name: "2018",
+			},
+			{
+				id: "2019",
+				name: "2019",
+			},
+		],
+	},
+	city: {
+		id: "city",
+		name: "City",
+		children: [
+			{
+				name: "Quảng Ninh",
+				id: "quangninh",
+			},
+			{
+				name: "Khánh Hoà",
+				id: "khanhhoa",
+			},
+			{
+				name: "Tiền Giang",
+				id: "tiengiang",
+			},
+			{
+				name: "Bà Rịa - Vũng Tàu",
+				id: "bariavungtau",
+			},
+			{
+				name: "Bình Thuận",
+				id: "binhthuan",
+			},
+			{
+				name: "TP.Hồ Chí Minh",
+				id: "hochiminh",
+			},
+			{
+				name: "Bến Tre",
+				id: "bentre",
+			},
+			{
+				name: "Sóc Trăng",
+				id: "soctrang",
+			},
+			{
+				name: "Phú Thọ",
+				id: "phutho",
+			},
+			{
+				name: "Yên Bái",
+				id: "yenbai",
+			},
+			{
+				name: "Hải Dương",
+				id: "haiduong",
+			},
+			{
+				name: "Bắc Ninh",
+				id: "bacninh",
+			},
+			{
+				name: "Hưng Yên",
+				id: "hungyen",
+			},
+			{
+				name: "Ninh Bình",
+				id: "ninhbinh",
+			},
+			{
+				name: "Hà Nam",
+				id: "hanam",
+			},
+			{
+				name: "Hoà Bình",
+				id: "hoabinh",
+			},
+			{
+				name: "Vĩnh Phúc",
+				id: "vinhphuc",
+			},
+			{
+				name: "Hà Nội",
+				id: "hanoi",
+			},
+			{
+				name: "Bắc Giang",
+				id: "bacgiang",
+			},
+			{
+				name: "Thái Bình",
+				id: "thaibinh",
+			},
+			{
+				name: "Lâm Đồng",
+				id: "lamdong",
+			},
+			{
+				name: "Bình Phước",
+				id: "binhphuoc",
+			},
+			{
+				name: "Phú Yên",
+				id: "phuyen",
+			},
+			{
+				name: "Bình Định",
+				id: "binhdinh",
+			},
+			{
+				name: "Gia Lai",
+				id: "gialai",
+			},
+			{
+				name: "Quảng Ngãi",
+				id: "quangngai",
+			},
+			{
+				name: "Đồng Nai",
+				id: "dongnai",
+			},
+			{
+				name: "Đồng Tháp",
+				id: "dongthap",
+			},
+			{
+				name: "Long An",
+				id: "longan",
+			},
+			{
+				name: "Hải Phòng",
+				id: "haiphong",
+			},
+			{
+				name: "Hậu Giang",
+				id: "haugiang",
+			},
+			{
+				name: "Bạc Liêu",
+				id: "baclieu",
+			},
+			{
+				name: "Vĩnh Long",
+				id: "vinhlong",
+			},
+			{
+				name: "Tây Ninh",
+				id: "tayninh",
+			},
+			{
+				name: "Thái Nguyên",
+				id: "thainguyen",
+			},
+			{
+				name: "Lai Châu",
+				id: "laichau",
+			},
+			{
+				name: "Sơn La",
+				id: "sonla",
+			},
+			{
+				name: "Hà Giang",
+				id: "hagiang",
+			},
+			{
+				name: "Nam Định",
+				id: "namdinh",
+			},
+			{
+				name: "Hà Tĩnh",
+				id: "hatinh",
+			},
+			{
+				name: "Nghệ An",
+				id: "nghean",
+			},
+			{
+				name: "Quảng Bình",
+				id: "quangbinh",
+			},
+			{
+				name: "Đắk Lắk",
+				id: "daklak",
+			},
+			{
+				name: "Ninh Thuận",
+				id: "ninhthuan",
+			},
+			{
+				name: "Đắk Nông",
+				id: "daknong",
+			},
+			{
+				name: "Kon Tum",
+				id: "kontum",
+			},
+			{
+				name: "Quảng Nam",
+				id: "quangnam",
+			},
+			{
+				name: "Quảng Trị",
+				id: "quangtri",
+			},
+			{
+				name: "Thừa Thiên Huế",
+				id: "thuathienhue",
+			},
+			{
+				name: "Đà Nẵng",
+				id: "danang",
+			},
+			{
+				name: "An Giang",
+				id: "angiang",
+			},
+			{
+				name: "Cà Mau",
+				id: "camau",
+			},
+			{
+				name: "Trà Vinh",
+				id: "travinh",
+			},
+			{
+				name: "Cao Bằng",
+				id: "caobang",
+			},
+			{
+				name: "Kiên Giang",
+				id: "kiengiang",
+			},
+			{
+				name: "Lào Cai",
+				id: "laocai",
+			},
+			{
+				name: "Điện Biên",
+				id: "dienbien",
+			},
+			{
+				name: "Lạng Sơn",
+				id: "langson",
+			},
+			{
+				name: "Thanh Hoá",
+				id: "thanhhoa",
+			},
+			{
+				name: "Bắc Kạn",
+				id: "backan",
+			},
+			{
+				name: "Tuyên Quang",
+				id: "tuyenquang",
+			},
+			{
+				name: "Bình Dương",
+				id: "binhduong",
+			},
+			{
+				name: "Cần Thơ",
+				id: "cantho",
 			},
 		],
 	},

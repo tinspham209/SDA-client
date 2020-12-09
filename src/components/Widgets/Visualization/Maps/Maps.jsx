@@ -20,6 +20,8 @@ import {
 import {
 	CLIMATE,
 	HUMIDITY,
+	INDUSTRY,
+	INDUSTRY_PRODUCTION,
 	RAINFALL,
 	TEMPERATURE,
 	YEAR,
@@ -60,7 +62,7 @@ const WidgetMaps = ({ id, data, inputs, outputs }) => {
 			portWidget = `${dataCube}-${dataSet}-${filter}`;
 		}
 
-		const portLinked = [`port-${portWidget}`, `port-${portViz}`];
+		const portLinked = [`port-${portWidget}`, `portOut-${portViz}`];
 
 		if (portLinked !== port) {
 			action = setPortIsLinked(portLinked);
@@ -406,6 +408,50 @@ const WidgetMaps = ({ id, data, inputs, outputs }) => {
 			// 		};
 			// 		fetchAPI();
 			// 	}
+		} else if (dataCube === INDUSTRY) {
+			if (dataSet === INDUSTRY_PRODUCTION) {
+				if (filter === YEAR) {
+					const year = idArray[3];
+
+					const fetchIndustryByYear = async (year) => {
+						return await getIndustryByYear(year).then((items) =>
+							items.results.bindings.map((item) => {
+								let city = item.city.value;
+
+								const cityId = vn.find((item) => {
+									return city === item.name;
+								});
+								const id = cityId.id;
+								const value = Number(item.value.value).toPrecision();
+								const object = [id, value];
+								dataMaps.push(object);
+								return null;
+							})
+						);
+					};
+					fetchIndustryByYear(year).then(() => {
+						const nameTitle = `Industry of VN ${year}`;
+						action = setTitleMaps(nameTitle);
+						dispatch(action);
+
+						const dataClasses = [
+							{
+								to: 80,
+							},
+							{ from: 80, to: 100 },
+							{ from: 100, to: 110 },
+							{ from: 110, to: 120 },
+							{ from: 120, to: 130 },
+							{ from: 130 },
+						];
+						action = setColorRange(dataClasses);
+						dispatch(action);
+
+						action = setMapsData(dataMaps);
+						dispatch(action);
+					});
+				}
+			}
 		}
 	};
 

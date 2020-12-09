@@ -21,6 +21,8 @@ import {
 	CITY,
 	CLIMATE,
 	HUMIDITY,
+	INDUSTRY,
+	INDUSTRY_PRODUCTION,
 	PERIOD_OF_CITY,
 	RAINFALL,
 	TEMPERATURE,
@@ -31,6 +33,7 @@ import {
 	getHumidityByPeriodOfCity,
 	getHumidityByYear,
 	getIndustryByCity,
+	getIndustryByPeriodOfCity,
 	getIndustryByYear,
 	getRainfallByCity,
 	getRainfallByPeriodOfCity,
@@ -76,7 +79,7 @@ const WidgetTable = ({ id, data, inputs, outputs }) => {
 			portWidget = `${dataCube}-${dataSet}-${filter}`;
 		}
 
-		const portLinked = [`port-${portWidget}`, `port-${portViz}`];
+		const portLinked = [`port-${portWidget}`, `portOut-${portViz}`];
 
 		if (portLinked !== port) {
 			action = setPortIsLinked(portLinked);
@@ -337,6 +340,87 @@ const WidgetTable = ({ id, data, inputs, outputs }) => {
 						action = setTableUnit("%");
 						dispatch(action);
 						action = setTableTitle("Yearly Rainfall");
+						dispatch(action);
+					});
+				}
+			}
+		} else if (dataCube === INDUSTRY) {
+			if (dataSet === INDUSTRY_PRODUCTION) {
+				if (filter === CITY) {
+					const fetchIndustryByCity = async (cities) => {
+						const requests = cities.map(async (city) => {
+							let cityData = {};
+							return await getIndustryByCity(city).then((items) => {
+								items.results.bindings.map((item) => {
+									const city = item.city.value;
+									const year = item.year.value;
+									const value = Number(item.value.value).toPrecision();
+									cityData = { city, year, value };
+									dataTable.push(cityData);
+
+									return null;
+								});
+							});
+						});
+						return Promise.all(requests);
+					};
+					fetchIndustryByCity(cities).then(() => {
+						action = setTableData(dataTable);
+						dispatch(action);
+						action = setTableUnit("%");
+						dispatch(action);
+						action = setTableTitle("Yearly Industry");
+						dispatch(action);
+					});
+				} else if (filter === YEAR) {
+					const fetchIndustryByYear = async (year) => {
+						let cityData = {};
+						return await getIndustryByYear(year).then((items) =>
+							items.results.bindings.map((item) => {
+								const city = item.city.value;
+								const year = item.year.value;
+								const value = Number(item.value.value).toPrecision();
+								cityData = { city, year, value };
+								dataTable.push(cityData);
+
+								return null;
+							})
+						);
+					};
+					fetchIndustryByYear(value).then(() => {
+						action = setTableData(dataTable);
+						dispatch(action);
+						action = setTableUnit("%");
+						dispatch(action);
+						action = setTableTitle("Yearly Industry");
+						dispatch(action);
+					});
+				} else if (filter === PERIOD_OF_CITY) {
+					const fetchIndustryByPeriodOfCity = async (cityId, fYear, tYear) => {
+						let cityData = {};
+						return await getIndustryByPeriodOfCity(cityId, fYear, tYear).then(
+							(items) =>
+								items.results.bindings.map((item) => {
+									const city = item.city.value;
+									const year = item.year.value;
+									const value = Number(item.value.value).toPrecision();
+									cityData = { city, year, value };
+									dataTable.push(cityData);
+
+									return null;
+								})
+						);
+					};
+					fetchIndustryByPeriodOfCity(
+						periodCity[0],
+						periodCity[1],
+						periodCity[2]
+					).then(() => {
+						action = setTableData(dataTable);
+						dispatch(action);
+						action = setTableUnit("IPI");
+						dispatch(action);
+						action = setTableTitle("Yearly Industry");
 						dispatch(action);
 					});
 				}

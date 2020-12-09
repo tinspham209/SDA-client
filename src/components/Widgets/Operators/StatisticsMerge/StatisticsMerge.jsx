@@ -24,6 +24,7 @@ import {
 } from "../../../../api";
 import {
 	HUMIDITY,
+	INDUSTRY_PRODUCTION,
 	OPERATORS,
 	PERIOD_OF_CITY,
 	RAINFALL,
@@ -48,6 +49,9 @@ const StatisticsMerge = ({ id, data, inputs, outputs }) => {
 				break;
 			case RAINFALL:
 				unit = "mm";
+				break;
+			case INDUSTRY_PRODUCTION:
+				unit = "IPI";
 				break;
 			default:
 				unit = "";
