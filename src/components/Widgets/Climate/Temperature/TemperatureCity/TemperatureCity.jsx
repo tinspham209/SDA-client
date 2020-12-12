@@ -13,6 +13,7 @@ import { treeTemperature } from "../../../../../data/index";
 import {
 	setItemIsSelect,
 	setInfoWidget,
+	setItemIsSelectCity,
 } from "../../../../../app/slice/dashboardSlice";
 import { useDispatch } from "react-redux";
 
@@ -29,7 +30,9 @@ const TemperatureCity = ({ id, data, inputs, outputs }) => {
 
 	const handleSelect = (event, nodeIds) => {
 		setSelected(nodeIds);
-		const action = setItemIsSelect(nodeIds);
+		let action = setItemIsSelect(nodeIds);
+		dispatch(action);
+		action = setItemIsSelectCity(nodeIds);
 		dispatch(action);
 	};
 

@@ -15,8 +15,6 @@ import {
 	setMergeData,
 	setMergeTitle,
 	setMergeYAxis,
-	setPortCanLinked,
-	setPortIsLinked,
 } from "../../../../app/slice/dashboardSlice";
 import {
 	getDataMergeThreeWidgetPeriodOfCity,
@@ -26,7 +24,6 @@ import {
 	HUMIDITY,
 	INDUSTRY_PRODUCTION,
 	OPERATORS,
-	PERIOD_OF_CITY,
 	RAINFALL,
 	STATISTICS_MERGE,
 	TEMPERATURE,
@@ -60,7 +57,7 @@ const StatisticsMerge = ({ id, data, inputs, outputs }) => {
 		return unit;
 	};
 
-	const handleOnClick = () => {
+	const handleOnClick = async () => {
 		let action;
 		console.log("merge: ", merge);
 
@@ -82,23 +79,6 @@ const StatisticsMerge = ({ id, data, inputs, outputs }) => {
 		checkCity = merge.every((itemMerge) => itemMerge.split("-")[2] === city);
 		checkFYear = merge.every((itemMerge) => itemMerge.split("-")[3] === fYear);
 		checkTYear = merge.every((itemMerge) => itemMerge.split("-")[4] === tYear);
-
-		merge.map((itemMerge) => {
-			setTimeout(() => {
-				const idArray = itemMerge.split("-");
-				let portWidget;
-				let portMerge = id.split("-").slice(0, -1).join("-");
-				portWidget = `${idArray[0]}-${idArray[1]}-${PERIOD_OF_CITY}`;
-				const portLinked = [`port-${portWidget}`, `portOut-${portMerge}`];
-
-				action = setPortIsLinked(portLinked);
-				dispatch(action);
-				action = setPortCanLinked(true);
-				dispatch(action);
-			}, 500);
-
-			return null;
-		});
 
 		if (checkCity && checkFYear && checkTYear) {
 			if (merge.length === 2) {
@@ -177,9 +157,16 @@ const StatisticsMerge = ({ id, data, inputs, outputs }) => {
 							};
 							yAxisObject.push(yAxisData);
 
+							let type = "";
+							if (name === RAINFALL) {
+								type = "column";
+							} else {
+								type = "spline";
+							}
+
 							let object = {
 								name: name,
-								type: "spline",
+								type: type,
 								yAxis: index,
 								data: dataObject[index],
 							};
@@ -292,9 +279,17 @@ const StatisticsMerge = ({ id, data, inputs, outputs }) => {
 								opposite: opposite,
 							};
 							yAxisObject.push(yAxisData);
+
+							let type = "";
+							if (name === RAINFALL) {
+								type = "column";
+							} else {
+								type = "spline";
+							}
+
 							let object = {
 								name: name,
-								type: "spline",
+								type: type,
 								yAxis: index,
 								data: dataObject[index],
 							};

@@ -15,10 +15,10 @@ const dashboard = createSlice({
 		toolbar: {
 			isOpen: {
 				climate: {
-					isOpen: false,
+					isOpen: true,
 					children: {
 						temperature: false,
-						humidity: false,
+						humidity: true,
 						rainfall: false,
 					},
 				},
@@ -29,9 +29,9 @@ const dashboard = createSlice({
 					isOpen: false,
 				},
 				industry: {
-					isOpen: true,
+					isOpen: false,
 					children: {
-						production: true,
+						production: false,
 					},
 				},
 				forest: {
@@ -58,6 +58,8 @@ const dashboard = createSlice({
 			},
 		},
 		mashupContent: {
+			itemIsSelectYear: [],
+			itemIsSelectCity: [],
 			itemIsSelect: [],
 			port: [],
 			portCanLinked: false,
@@ -310,6 +312,12 @@ const dashboard = createSlice({
 		setLineThreeAxisCategories: (state, action) => {
 			state.viz.lineThreeAxis.categories = action.payload;
 		},
+		setItemIsSelectYear: (state, action) => {
+			state.mashupContent.itemIsSelectYear = action.payload;
+		},
+		setItemIsSelectCity: (state, action) => {
+			state.mashupContent.itemIsSelectCity = action.payload;
+		},
 	},
 });
 
@@ -363,6 +371,8 @@ export const {
 	setLineThreeAxisYAxis,
 	setLineThreeAxisData,
 	setLineThreeAxisCategories,
+	setItemIsSelectYear,
+	setItemIsSelectCity,
 } = actions;
 
 export default reducer;

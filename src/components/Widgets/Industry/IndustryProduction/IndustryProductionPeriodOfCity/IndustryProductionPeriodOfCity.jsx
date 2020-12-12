@@ -17,12 +17,12 @@ import { RiErrorWarningFill } from "react-icons/ri";
 import { treeIndustryProduction } from "../../../../../data/index";
 
 import {
-	setItemIsSelect,
 	setInfoWidget,
 	setPeriodOfCityFromYear,
 	setPeriodOfCityName,
 	setPeriodOfCityToYear,
 	setMerge,
+	setItemIsSelectCity,
 } from "../../../../../app/slice/dashboardSlice";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -76,7 +76,7 @@ const IndustryProductionPeriodOfCity = ({ id, data, inputs, outputs }) => {
 			const itemIsSelect = [
 				`${INDUSTRY}-${INDUSTRY_PRODUCTION}-${PERIOD_OF_CITY}`,
 			];
-			action = setItemIsSelect(itemIsSelect);
+			action = setItemIsSelectCity(itemIsSelect);
 			dispatch(action);
 
 			const idMerge = `${INDUSTRY}-${INDUSTRY_PRODUCTION}-${city}-${fromYear}-${toYear}`;

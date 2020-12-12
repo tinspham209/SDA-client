@@ -13,12 +13,11 @@ import { treeIndustryProduction } from "../../../../../data/index";
 import {
 	setItemIsSelect,
 	setInfoWidget,
+	setItemIsSelectYear,
 } from "../../../../../app/slice/dashboardSlice";
 import { useDispatch } from "react-redux";
 
 const IndustryProductionYear = ({ id, data, inputs, outputs }) => {
-	console.log("outputs: ", outputs);
-	console.log("id: ", id);
 	const classes = useStyles();
 	const dispatch = useDispatch();
 
@@ -31,7 +30,9 @@ const IndustryProductionYear = ({ id, data, inputs, outputs }) => {
 
 	const handleSelect = (event, nodeIds) => {
 		setSelected(nodeIds);
-		const action = setItemIsSelect(nodeIds);
+		let action = setItemIsSelect(nodeIds);
+		dispatch(action);
+		action = setItemIsSelectYear(nodeIds);
 		dispatch(action);
 	};
 

@@ -254,7 +254,7 @@ export const listItems = [
 						input: true,
 						output: false,
 						button: true,
-						disabled: false,
+						disabled: true,
 					},
 				],
 			},
@@ -973,10 +973,6 @@ export const treeTemperature = {
 		name: "City",
 		children: [
 			{
-				id: "baichay",
-				name: "Bãi Cháy",
-			},
-			{
 				id: "camau",
 				name: "Cà Mau",
 			},
@@ -1081,6 +1077,10 @@ export const treeRainfall = {
 		id: "city",
 		name: "City",
 		children: [
+			{
+				id: "baichay",
+				name: "Bãi Cháy",
+			},
 			{
 				id: "camau",
 				name: "Cà Mau",

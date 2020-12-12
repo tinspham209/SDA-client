@@ -13,6 +13,7 @@ import { treeHumidity } from "../../../../../data/index";
 import {
 	setItemIsSelect,
 	setInfoWidget,
+	setItemIsSelectYear,
 } from "../../../../../app/slice/dashboardSlice";
 import { useDispatch } from "react-redux";
 
@@ -30,7 +31,9 @@ const HumidityYear = ({ id, data, inputs, outputs }) => {
 	const handleSelect = (event, nodeIds) => {
 		console.log("nodeIds: ", nodeIds);
 		setSelected(nodeIds);
-		const action = setItemIsSelect(nodeIds);
+		let action = setItemIsSelect(nodeIds);
+		dispatch(action);
+		action = setItemIsSelectYear(nodeIds);
 		dispatch(action);
 	};
 

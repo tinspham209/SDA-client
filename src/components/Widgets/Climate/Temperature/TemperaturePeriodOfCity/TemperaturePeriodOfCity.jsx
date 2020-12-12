@@ -17,12 +17,12 @@ import { RiErrorWarningFill } from "react-icons/ri";
 import { treeTemperature } from "../../../../../data/index";
 
 import {
-	setItemIsSelect,
 	setInfoWidget,
 	setPeriodOfCityFromYear,
 	setPeriodOfCityName,
 	setPeriodOfCityToYear,
 	setMerge,
+	setItemIsSelectCity,
 } from "../../../../../app/slice/dashboardSlice";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -74,7 +74,7 @@ const TemperaturePeriodOfCity = ({ id, data, inputs, outputs }) => {
 			action = setPeriodOfCityToYear(toYear);
 			dispatch(action);
 			const itemIsSelect = [`${CLIMATE}-${TEMPERATURE}-${PERIOD_OF_CITY}`];
-			action = setItemIsSelect(itemIsSelect);
+			action = setItemIsSelectCity(itemIsSelect);
 			dispatch(action);
 
 			const idMerge = `${CLIMATE}-${TEMPERATURE}-${city}-${fromYear}-${toYear}`;

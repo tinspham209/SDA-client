@@ -52,12 +52,39 @@ import {
 } from "../../components/Widgets";
 import {
 	removeIdNode,
+	setColorRange,
+	setColumnCategories,
+	setColumnData,
+	setColumnTitle,
+	setColumnUnit,
 	setIdNewNode,
+	setItemIsSelectCity,
+	setItemIsSelectYear,
+	setLineCategories,
+	setLineData,
+	// setLineThreeAxisCategories,
+	// setLineThreeAxisData,
+	// setLineThreeAxisTitle,
+	// setLineThreeAxisYAxis,
+	setLineTitle,
+	// setLineTwoAxisCategories,
+	// setLineTwoAxisData,
+	// setLineTwoAxisTitle,
+	// setLineTwoAxisYAxis,
+	setLineUnit,
 	setMerge,
+	// setMergeCategories,
+	// setMergeData,
+	// setMergeTitle,
+	// setMergeYAxis,
 	setNavbarNewOnClick,
 	setOutput,
-	setPortCanLinked,
-	setPortIsLinked,
+	setPeriodOfCityFromYear,
+	setPeriodOfCityName,
+	setPeriodOfCityToYear,
+	setTableData,
+	setTableTitle,
+	setTableUnit,
 } from "../../app/slice/dashboardSlice";
 
 const initialSchema = {
@@ -68,15 +95,9 @@ const MashupContent = () => {
 	const classes = useStyles();
 	const dispatch = useDispatch();
 
-	const [schema, { onChange, addNode, removeNode, connect }] = useSchema(
-		initialSchema
-	);
+	const [schema, { onChange, addNode, removeNode }] = useSchema(initialSchema);
 	const isDropItem = useSelector((state) => state.dashboard.toolbar.isDragItem);
 
-	const portCanLinked = useSelector(
-		(state) => state.dashboard.mashupContent.portCanLinked
-	);
-	const port = useSelector((state) => state.dashboard.mashupContent.port);
 	const navbarNewOnClick = useSelector(
 		(state) => state.dashboard.navbar.newOnClick
 	);
@@ -184,19 +205,6 @@ const MashupContent = () => {
 		addNode(nextNode);
 	};
 
-	const connectNode = (inputId, outputId) => {
-		connect(inputId, outputId);
-	};
-
-	useEffect(() => {
-		if (portCanLinked === true) {
-			connectNode(port[0], port[1]);
-			let action = setPortCanLinked(false);
-			dispatch(action);
-		}
-		// eslint-disable-next-line
-	}, [portCanLinked]);
-
 	useEffect(() => {
 		if (navbarNewOnClick === true) {
 			nodeId.map((id) => deleteNodeFromSchema(id));
@@ -207,10 +215,66 @@ const MashupContent = () => {
 			dispatch(action);
 			action = setOutput("clear");
 			dispatch(action);
-			action = setPortIsLinked([]);
-			dispatch(action);
 			action = setMerge([]);
 			dispatch(action);
+			action = setItemIsSelectYear([]);
+			dispatch(action);
+			action = setItemIsSelectCity([]);
+			dispatch(action);
+			action = setPeriodOfCityName("");
+			dispatch(action);
+			action = setPeriodOfCityFromYear("");
+			dispatch(action);
+			action = setPeriodOfCityToYear("");
+			dispatch(action);
+			action = setColorRange([]);
+			dispatch(action);
+			action = setColumnCategories([]);
+			dispatch(action);
+			action = setLineCategories([]);
+			dispatch(action);
+			action = setColumnData([]);
+			dispatch(action);
+			action = setTableData([]);
+			dispatch(action);
+			action = setLineData([]);
+			dispatch(action);
+			action = setColumnTitle("");
+			dispatch(action);
+			action = setLineTitle("");
+			dispatch(action);
+			action = setTableTitle("");
+			dispatch(action);
+			action = setColumnUnit("");
+			dispatch(action);
+			action = setLineUnit("");
+			dispatch(action);
+			action = setTableUnit("");
+			dispatch(action);
+			// action = setMergeCategories([]);
+			// dispatch(action);
+			// action = setMergeData([]);
+			// dispatch(action);
+			// action = setMergeTitle("");
+			// dispatch(action);
+			// action = setMergeYAxis([]);
+			// dispatch(action);
+			// action = setLineTwoAxisTitle("");
+			// dispatch(action);
+			// action = setLineTwoAxisYAxis([]);
+			// dispatch(action);
+			// action = setLineTwoAxisData([]);
+			// dispatch(action);
+			// action = setLineTwoAxisCategories([]);
+			// dispatch(action);
+			// action = setLineThreeAxisTitle("");
+			// dispatch(action);
+			// action = setLineThreeAxisYAxis([]);
+			// dispatch(action);
+			// action = setLineThreeAxisData([]);
+			// dispatch(action);
+			// action = setLineThreeAxisCategories([]);
+			// dispatch(action);
 		}
 		// eslint-disable-next-line
 	}, [navbarNewOnClick]);

@@ -88,6 +88,7 @@
 - /climate/humidity/city/:cityid;
 - /climate/humidity/year/:yearid;
 - /climate/humidity/city/:cityid/year/yearid;
+- /climate/humidity/city/danang/year/2018
 
 - /climate/rainfall/city/:cityid;
 - /climate/rainfall/year/:yearid;

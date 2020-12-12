@@ -29,6 +29,7 @@ import {
 	TEMPERATURE,
 } from "../../../../app/ItemTypes";
 import {
+	getDataCityInYear,
 	getHumidityByCity,
 	getHumidityByPeriodOfCity,
 	getIndustryByCity,
@@ -47,42 +48,27 @@ const WidgetLineChart = ({ id, data, inputs, outputs }) => {
 		(state) => state.dashboard.mashupContent.itemIsSelect
 	);
 
-	const port = useSelector((state) => state.dashboard.mashupContent.port);
-
 	const periodCity = [
 		useSelector((state) => state.dashboard.mashupContent.periodOfCity.city),
 		useSelector((state) => state.dashboard.mashupContent.periodOfCity.fromYear),
 		useSelector((state) => state.dashboard.mashupContent.periodOfCity.toYear),
 	];
 
+	const itemIsSelectCity = useSelector(
+		(state) => state.dashboard.mashupContent.itemIsSelectCity
+	);
+	const itemIsSelectYear = useSelector(
+		(state) => state.dashboard.mashupContent.itemIsSelectYear
+	);
+
 	const handleOnClick = () => {
 		let action;
 
-		const idArray = itemIsSelects[0].split("-");
+		const idArray = itemIsSelectCity[0].split("-");
 		const dataCube = idArray[0];
 		const dataSet = idArray[1];
 		const filter = idArray[2];
 		const city = idArray[3];
-
-		let portWidget;
-		let portViz = id
-			.split("-")
-			.filter((item) => item.length > 2)
-			.join("-");
-		if (filter === undefined) {
-			portWidget = `${dataCube}-${dataSet}`;
-		} else {
-			portWidget = `${dataCube}-${dataSet}-${filter}`;
-		}
-
-		const portLinked = [`port-${portWidget}`, `portOut-${portViz}`];
-
-		if (portLinked !== port) {
-			action = setPortIsLinked(portLinked);
-			dispatch(action);
-			action = setPortCanLinked(true);
-			dispatch(action);
-		}
 
 		let series = [];
 		let categories = [];
@@ -92,90 +78,43 @@ const WidgetLineChart = ({ id, data, inputs, outputs }) => {
 			itemIsSelects.map((item) => cities.push(item.split("-")[3]));
 		}
 
-		if (dataCube === CLIMATE) {
-			if (dataSet === HUMIDITY) {
-				if (filter === CITY) {
-					const fetchHumidityByCity = async (cities) => {
-						const requests = cities.map(async (city) => {
-							let object = {};
-							let name = "";
-							return await getHumidityByCity(city).then((item) => {
-								const data = [];
-								const category = [];
+		if (itemIsSelectYear.length !== 0) {
+		} else {
+			// In city
+			if (dataCube === CLIMATE) {
+				if (dataSet === HUMIDITY) {
+					if (filter === CITY) {
+						const fetchHumidityByCity = async (cities) => {
+							const requests = cities.map(async (city) => {
+								let object = {};
+								let name = "";
+								return await getHumidityByCity(city).then((item) => {
+									const data = [];
+									const category = [];
 
-								item.results.bindings.map((item) => {
-									name = item.city.value;
-									const year = item.year.value;
-									const value = Number(item.value.value);
-									category.push(year);
-									data.push(value);
+									item.results.bindings.map((item) => {
+										name = item.city.value;
+										const year = item.year.value;
+										const value = Number(item.value.value);
+										category.push(year);
+										data.push(value);
 
-									return null;
+										return null;
+									});
+
+									object = {
+										...object,
+										name: name,
+										data: data,
+									};
+									categories = category;
+									series = [...series, object];
 								});
-
-								object = {
-									...object,
-									name: name,
-									data: data,
-								};
-								categories = category;
-								series = [...series, object];
 							});
-						});
-						return Promise.all(requests);
-					};
+							return Promise.all(requests);
+						};
 
-					fetchHumidityByCity(cities).then(() => {
-						action = setLineCategories(categories);
-						dispatch(action);
-						action = setLineData(series);
-						dispatch(action);
-						action = setLineTitle("Yearly Humidity (%)");
-						dispatch(action);
-						action = setLineUnit("%");
-						dispatch(action);
-					});
-				} else if (filter === PERIOD_OF_CITY) {
-					const fetchHumidityByPeriodOfCity = async (cityId, fYear, tYear) => {
-						let object = {};
-						let name = "";
-						return await getHumidityByPeriodOfCity(cityId, fYear, tYear).then(
-							(item) => {
-								const data = [];
-								const category = [];
-
-								item.results.bindings.map((item) => {
-									name = item.city.value;
-									const year = item.year.value;
-									const value = Number(item.value.value);
-									category.push(year);
-									data.push(value);
-
-									return null;
-								});
-
-								object = {
-									...object,
-									name: name,
-									data: data,
-								};
-								categories = category;
-								series = [...series, object];
-
-								return null;
-							}
-						);
-					};
-					if (
-						periodCity[0] !== "" &&
-						periodCity[1] !== "" &&
-						periodCity[2] !== ""
-					) {
-						fetchHumidityByPeriodOfCity(
-							periodCity[0],
-							periodCity[1],
-							periodCity[2]
-						).then(() => {
+						fetchHumidityByCity(cities).then(() => {
 							action = setLineCategories(categories);
 							dispatch(action);
 							action = setLineData(series);
@@ -185,156 +124,117 @@ const WidgetLineChart = ({ id, data, inputs, outputs }) => {
 							action = setLineUnit("%");
 							dispatch(action);
 						});
-					}
-				}
-			} else if (dataSet === TEMPERATURE) {
-				if (filter === CITY) {
-					const fetchTemperatureByCity = async (cities) => {
-						const requests = cities.map(async (city) => {
-							let object = {};
-							let name = "";
-							return await getTemperatureByCity(city).then((item) => {
-								const data = [];
-								const category = [];
-
-								item.results.bindings.map((item) => {
-									name = item.city.value;
-									const year = item.year.value;
-									const value = Number(item.value.value);
-									category.push(year);
-									data.push(value);
-
-									return null;
-								});
-
-								object = {
-									...object,
-									name: name,
-									data: data,
-								};
-								categories = category;
-								series = [...series, object];
-							});
-						});
-						return Promise.all(requests);
-					};
-
-					fetchTemperatureByCity(cities).then(() => {
-						action = setLineCategories(categories);
-						dispatch(action);
-						action = setLineData(series);
-						dispatch(action);
-						action = setLineTitle("Yearly Temperature (%)");
-						dispatch(action);
-						action = setLineUnit("%");
-						dispatch(action);
-					});
-				} else if (filter === PERIOD_OF_CITY) {
-					const fetchTemperatureByPeriodOfCity = async (
-						cityId,
-						fYear,
-						tYear
-					) => {
-						let object = {};
+					} else if (filter === PERIOD_OF_CITY) {
 						let name = "";
-						return await getTemperatureByPeriodOfCity(
+						const fetchHumidityByPeriodOfCity = async (
 							cityId,
 							fYear,
 							tYear
-						).then((item) => {
-							const data = [];
-							const category = [];
+						) => {
+							let object = {};
+							return await getHumidityByPeriodOfCity(cityId, fYear, tYear).then(
+								(item) => {
+									const data = [];
+									const category = [];
 
-							item.results.bindings.map((item) => {
-								name = item.city.value;
-								const year = item.year.value;
-								const value = Number(item.value.value);
-								category.push(year);
-								data.push(value);
+									item.results.bindings.map((item) => {
+										name = item.city.value;
+										const year = item.year.value;
+										const value = Number(item.value.value);
+										category.push(year);
+										data.push(value);
 
-								return null;
+										return null;
+									});
+
+									object = {
+										...object,
+										name: name,
+										data: data,
+									};
+									categories = category;
+									series = [...series, object];
+
+									return null;
+								}
+							);
+						};
+						if (
+							periodCity[0] !== "" &&
+							periodCity[1] !== "" &&
+							periodCity[2] !== ""
+						) {
+							fetchHumidityByPeriodOfCity(
+								periodCity[0],
+								periodCity[1],
+								periodCity[2]
+							).then(() => {
+								action = setLineCategories(categories);
+								dispatch(action);
+								action = setLineData(series);
+								dispatch(action);
+								action = setLineTitle(`Yearly Humidity of ${name}`);
+								dispatch(action);
+								action = setLineUnit("%");
+								dispatch(action);
 							});
+						}
+					}
+				} else if (dataSet === TEMPERATURE) {
+					if (filter === CITY) {
+						const fetchTemperatureByCity = async (cities) => {
+							const requests = cities.map(async (city) => {
+								let object = {};
+								let name = "";
+								return await getTemperatureByCity(city).then((item) => {
+									const data = [];
+									const category = [];
 
-							object = {
-								...object,
-								name: name,
-								data: data,
-							};
-							categories = category;
-							series = [...series, object];
+									item.results.bindings.map((item) => {
+										name = item.city.value;
+										const year = item.year.value;
+										const value = Number(item.value.value);
+										category.push(year);
+										data.push(value);
 
-							return null;
-						});
-					};
-					if (
-						periodCity[0] !== "" &&
-						periodCity[1] !== "" &&
-						periodCity[2] !== ""
-					) {
-						fetchTemperatureByPeriodOfCity(
-							periodCity[0],
-							periodCity[1],
-							periodCity[2]
-						).then(() => {
+										return null;
+									});
+
+									object = {
+										...object,
+										name: name,
+										data: data,
+									};
+									categories = category;
+									series = [...series, object];
+								});
+							});
+							return Promise.all(requests);
+						};
+
+						fetchTemperatureByCity(cities).then(() => {
 							action = setLineCategories(categories);
 							dispatch(action);
 							action = setLineData(series);
 							dispatch(action);
 							action = setLineTitle("Yearly Temperature");
 							dispatch(action);
-							action = setLineUnit("%");
+							action = setLineUnit("°C");
 							dispatch(action);
 						});
-					}
-				}
-			} else if (dataSet === RAINFALL) {
-				if (filter === CITY) {
-					const fetchRainfallByCity = async (cities) => {
-						const requests = cities.map(async (city) => {
-							let object = {};
-							let name = "";
-							return await getRainfallByCity(city).then((item) => {
-								const data = [];
-								const category = [];
-
-								item.results.bindings.map((item) => {
-									name = item.city.value;
-									const year = item.year.value;
-									const value = Number(item.value.value);
-									category.push(year);
-									data.push(value);
-
-									return null;
-								});
-
-								object = {
-									...object,
-									name: name,
-									data: data,
-								};
-								categories = category;
-								series = [...series, object];
-							});
-						});
-						return Promise.all(requests);
-					};
-
-					fetchRainfallByCity(cities).then(() => {
-						action = setLineCategories(categories);
-						dispatch(action);
-						action = setLineData(series);
-						dispatch(action);
-						action = setLineTitle("Yearly Rainfall (%)");
-						dispatch(action);
-						action = setLineUnit("%");
-						dispatch(action);
-					});
-				} else if (filter === PERIOD_OF_CITY) {
-					const fetchRainfallByPeriodOfCity = async (cityId, fYear, tYear) => {
-						let object = {};
+					} else if (filter === PERIOD_OF_CITY) {
 						let name = "";
-						return await getRainfallByPeriodOfCity(cityId, fYear, tYear).then(
-							(item) => {
+						const fetchTemperatureByPeriodOfCity = async (
+							cityId,
+							fYear,
+							tYear
+						) => {
+							let object = {};
+							return await getTemperatureByPeriodOfCity(
+								cityId,
+								fYear,
+								tYear
+							).then((item) => {
 								const data = [];
 								const category = [];
 
@@ -357,19 +257,62 @@ const WidgetLineChart = ({ id, data, inputs, outputs }) => {
 								series = [...series, object];
 
 								return null;
-							}
-						);
-					};
-					if (
-						periodCity[0] !== "" &&
-						periodCity[1] !== "" &&
-						periodCity[2] !== ""
-					) {
-						fetchRainfallByPeriodOfCity(
-							periodCity[0],
-							periodCity[1],
-							periodCity[2]
-						).then(() => {
+							});
+						};
+						if (
+							periodCity[0] !== "" &&
+							periodCity[1] !== "" &&
+							periodCity[2] !== ""
+						) {
+							fetchTemperatureByPeriodOfCity(
+								periodCity[0],
+								periodCity[1],
+								periodCity[2]
+							).then(() => {
+								action = setLineCategories(categories);
+								dispatch(action);
+								action = setLineData(series);
+								dispatch(action);
+								action = setLineTitle(`Yearly Temperature of ${name}`);
+								dispatch(action);
+								action = setLineUnit("°C");
+								dispatch(action);
+							});
+						}
+					}
+				} else if (dataSet === RAINFALL) {
+					if (filter === CITY) {
+						const fetchRainfallByCity = async (cities) => {
+							const requests = cities.map(async (city) => {
+								let object = {};
+								let name = "";
+								return await getRainfallByCity(city).then((item) => {
+									const data = [];
+									const category = [];
+
+									item.results.bindings.map((item) => {
+										name = item.city.value;
+										const year = item.year.value;
+										const value = Number(item.value.value);
+										category.push(year);
+										data.push(value);
+
+										return null;
+									});
+
+									object = {
+										...object,
+										name: name,
+										data: data,
+									};
+									categories = category;
+									series = [...series, object];
+								});
+							});
+							return Promise.all(requests);
+						};
+
+						fetchRainfallByCity(cities).then(() => {
 							action = setLineCategories(categories);
 							dispatch(action);
 							action = setLineData(series);
@@ -379,93 +322,97 @@ const WidgetLineChart = ({ id, data, inputs, outputs }) => {
 							action = setLineUnit("%");
 							dispatch(action);
 						});
+					} else if (filter === PERIOD_OF_CITY) {
+						let name = "";
+						const fetchRainfallByPeriodOfCity = async (
+							cityId,
+							fYear,
+							tYear
+						) => {
+							let object = {};
+							return await getRainfallByPeriodOfCity(cityId, fYear, tYear).then(
+								(item) => {
+									const data = [];
+									const category = [];
+
+									item.results.bindings.map((item) => {
+										name = item.city.value;
+										const year = item.year.value;
+										const value = Number(item.value.value);
+										category.push(year);
+										data.push(value);
+
+										return null;
+									});
+
+									object = {
+										...object,
+										name: name,
+										data: data,
+									};
+									categories = category;
+									series = [...series, object];
+
+									return null;
+								}
+							);
+						};
+						if (
+							periodCity[0] !== "" &&
+							periodCity[1] !== "" &&
+							periodCity[2] !== ""
+						) {
+							fetchRainfallByPeriodOfCity(
+								periodCity[0],
+								periodCity[1],
+								periodCity[2]
+							).then(() => {
+								action = setLineCategories(categories);
+								dispatch(action);
+								action = setLineData(series);
+								dispatch(action);
+								action = setLineTitle(`Yearly Rainfall of ${name}`);
+								dispatch(action);
+								action = setLineUnit("mm");
+								dispatch(action);
+							});
+						}
 					}
 				}
-			}
-		} else if (dataCube === INDUSTRY) {
-			if (dataSet === INDUSTRY_PRODUCTION) {
-				if (filter === CITY) {
-					const fetchIndustryByCity = async (cities) => {
-						const requests = cities.map(async (city) => {
-							let object = {};
-							let name = "";
-							return await getIndustryByCity(city).then((item) => {
-								const data = [];
-								const category = [];
+			} else if (dataCube === INDUSTRY) {
+				if (dataSet === INDUSTRY_PRODUCTION) {
+					if (filter === CITY) {
+						const fetchIndustryByCity = async (cities) => {
+							const requests = cities.map(async (city) => {
+								let object = {};
+								let name = "";
+								return await getIndustryByCity(city).then((item) => {
+									const data = [];
+									const category = [];
 
-								item.results.bindings.map((item) => {
-									name = item.city.value;
-									const year = item.year.value;
-									const value = Number(item.value.value);
-									category.push(year);
-									data.push(value);
+									item.results.bindings.map((item) => {
+										name = item.city.value;
+										const year = item.year.value;
+										const value = Number(item.value.value);
+										category.push(year);
+										data.push(value);
 
-									return null;
+										return null;
+									});
+
+									object = {
+										...object,
+										name: name,
+										data: data,
+									};
+									categories = category;
+									series = [...series, object];
 								});
-
-								object = {
-									...object,
-									name: name,
-									data: data,
-								};
-								categories = category;
-								series = [...series, object];
 							});
-						});
-						return Promise.all(requests);
-					};
+							return Promise.all(requests);
+						};
 
-					fetchIndustryByCity(cities).then(() => {
-						action = setLineCategories(categories);
-						dispatch(action);
-						action = setLineData(series);
-						dispatch(action);
-						action = setLineTitle("Yearly Industry (IPI)");
-						dispatch(action);
-						action = setLineUnit("IPI");
-						dispatch(action);
-					});
-				} else if (filter === PERIOD_OF_CITY) {
-					const fetchIndustryByPeriodOfCity = async (cityId, fYear, tYear) => {
-						let object = {};
-						let name = "";
-						return await getIndustryByPeriodOfCity(cityId, fYear, tYear).then(
-							(item) => {
-								const data = [];
-								const category = [];
-
-								item.results.bindings.map((item) => {
-									name = item.city.value;
-									const year = item.year.value;
-									const value = Number(item.value.value);
-									category.push(year);
-									data.push(value);
-
-									return null;
-								});
-
-								object = {
-									...object,
-									name: name,
-									data: data,
-								};
-								categories = category;
-								series = [...series, object];
-
-								return null;
-							}
-						);
-					};
-					if (
-						periodCity[0] !== "" &&
-						periodCity[1] !== "" &&
-						periodCity[2] !== ""
-					) {
-						fetchIndustryByPeriodOfCity(
-							periodCity[0],
-							periodCity[1],
-							periodCity[2]
-						).then(() => {
+						fetchIndustryByCity(cities).then(() => {
 							action = setLineCategories(categories);
 							dispatch(action);
 							action = setLineData(series);
@@ -475,240 +422,453 @@ const WidgetLineChart = ({ id, data, inputs, outputs }) => {
 							action = setLineUnit("IPI");
 							dispatch(action);
 						});
+					} else if (filter === PERIOD_OF_CITY) {
+						let name = "";
+						const fetchIndustryByPeriodOfCity = async (
+							cityId,
+							fYear,
+							tYear
+						) => {
+							let object = {};
+							return await getIndustryByPeriodOfCity(cityId, fYear, tYear).then(
+								(item) => {
+									const data = [];
+									const category = [];
+
+									item.results.bindings.map((item) => {
+										name = item.city.value;
+										const year = item.year.value;
+										const value = Number(item.value.value);
+										category.push(year);
+										data.push(value);
+
+										return null;
+									});
+
+									object = {
+										...object,
+										name: name,
+										data: data,
+									};
+									categories = category;
+									series = [...series, object];
+
+									return null;
+								}
+							);
+						};
+						if (
+							periodCity[0] !== "" &&
+							periodCity[1] !== "" &&
+							periodCity[2] !== ""
+						) {
+							fetchIndustryByPeriodOfCity(
+								periodCity[0],
+								periodCity[1],
+								periodCity[2]
+							).then(() => {
+								action = setLineCategories(categories);
+								dispatch(action);
+								action = setLineData(series);
+								dispatch(action);
+								action = setLineTitle(`Yearly Industry of ${name}`);
+								dispatch(action);
+								action = setLineUnit("IPI");
+								dispatch(action);
+							});
+						}
 					}
+				} else {
 				}
 			}
 		}
-		// const portWidget = itemIsSelects[0].split("-")[0];
-		// const portViz = id.split("-")[0];
-		// const portLinked = [`port-${portWidget}`, `port-${portViz}`];
-		// action = setPortIsLinked(portLinked);
-		// dispatch(action);
-		// action = setPortCanLinked(true);
-		// dispatch(action);
 
-		// let series = [];
-		// let categories = [];
+		// if (dataCube === CLIMATE) {
+		// 	if (dataSet === HUMIDITY) {
+		// 		if (filter === CITY) {
+		// 			const fetchHumidityByCity = async (cities) => {
+		// 				const requests = cities.map(async (city) => {
+		// 					let object = {};
+		// 					let name = "";
+		// 					return await getHumidityByCity(city).then((item) => {
+		// 						const data = [];
+		// 						const category = [];
 
-		// let state = {
-		// 	isHumidity: false,
-		// 	isTemperature: false,
-		// 	isRainfall: false,
-		// 	isIndustry: false,
-		// 	isCity: false,
-		// };
+		// 						item.results.bindings.map((item) => {
+		// 							name = item.city.value;
+		// 							const year = item.year.value;
+		// 							const value = Number(item.value.value);
+		// 							category.push(year);
+		// 							data.push(value);
 
-		// let cities = [];
+		// 							return null;
+		// 						});
 
-		// itemIsSelects.map((itemIsSelect) => {
-		// 	if (itemIsSelect.split("-")[0] === CLIMATE_HUMIDITY) {
-		// 		state.isHumidity = true;
-		// 		if (itemIsSelect.split("-")[1] === "city") {
-		// 			state.isCity = true;
-		// 			const citySelect = itemIsSelect.split("-")[2];
-		// 			cities.push(citySelect);
-		// 		} else {
-		// 			state.isCity = false;
-		// 			cities = [];
+		// 						object = {
+		// 							...object,
+		// 							name: name,
+		// 							data: data,
+		// 						};
+		// 						categories = category;
+		// 						series = [...series, object];
+		// 					});
+		// 				});
+		// 				return Promise.all(requests);
+		// 			};
+
+		// 			fetchHumidityByCity(cities).then(() => {
+		// 				action = setLineCategories(categories);
+		// 				dispatch(action);
+		// 				action = setLineData(series);
+		// 				dispatch(action);
+		// 				action = setLineTitle("Yearly Humidity (%)");
+		// 				dispatch(action);
+		// 				action = setLineUnit("%");
+		// 				dispatch(action);
+		// 			});
+		// 		} else if (filter === PERIOD_OF_CITY) {
+		// 			const fetchHumidityByPeriodOfCity = async (cityId, fYear, tYear) => {
+		// 				let object = {};
+		// 				let name = "";
+		// 				return await getHumidityByPeriodOfCity(cityId, fYear, tYear).then(
+		// 					(item) => {
+		// 						const data = [];
+		// 						const category = [];
+
+		// 						item.results.bindings.map((item) => {
+		// 							name = item.city.value;
+		// 							const year = item.year.value;
+		// 							const value = Number(item.value.value);
+		// 							category.push(year);
+		// 							data.push(value);
+
+		// 							return null;
+		// 						});
+
+		// 						object = {
+		// 							...object,
+		// 							name: name,
+		// 							data: data,
+		// 						};
+		// 						categories = category;
+		// 						series = [...series, object];
+
+		// 						return null;
+		// 					}
+		// 				);
+		// 			};
+		// 			if (
+		// 				periodCity[0] !== "" &&
+		// 				periodCity[1] !== "" &&
+		// 				periodCity[2] !== ""
+		// 			) {
+		// 				fetchHumidityByPeriodOfCity(
+		// 					periodCity[0],
+		// 					periodCity[1],
+		// 					periodCity[2]
+		// 				).then(() => {
+		// 					action = setLineCategories(categories);
+		// 					dispatch(action);
+		// 					action = setLineData(series);
+		// 					dispatch(action);
+		// 					action = setLineTitle("Yearly Humidity");
+		// 					dispatch(action);
+		// 					action = setLineUnit("%");
+		// 					dispatch(action);
+		// 				});
+		// 			}
 		// 		}
-		// 	} else if (itemIsSelect.split("-")[0] === CLIMATE_TEMPERATURE) {
-		// 		state.isTemperature = true;
-		// 		if (itemIsSelect.split("-")[1] === "city") {
-		// 			state.isCity = true;
-		// 			const citySelect = itemIsSelect.split("-")[2];
-		// 			cities.push(citySelect);
-		// 		} else {
-		// 			state.isCity = false;
-		// 			cities = [];
+		// 	} else if (dataSet === TEMPERATURE) {
+		// 		if (filter === CITY) {
+		// 			const fetchTemperatureByCity = async (cities) => {
+		// 				const requests = cities.map(async (city) => {
+		// 					let object = {};
+		// 					let name = "";
+		// 					return await getTemperatureByCity(city).then((item) => {
+		// 						const data = [];
+		// 						const category = [];
+
+		// 						item.results.bindings.map((item) => {
+		// 							name = item.city.value;
+		// 							const year = item.year.value;
+		// 							const value = Number(item.value.value);
+		// 							category.push(year);
+		// 							data.push(value);
+
+		// 							return null;
+		// 						});
+
+		// 						object = {
+		// 							...object,
+		// 							name: name,
+		// 							data: data,
+		// 						};
+		// 						categories = category;
+		// 						series = [...series, object];
+		// 					});
+		// 				});
+		// 				return Promise.all(requests);
+		// 			};
+
+		// 			fetchTemperatureByCity(cities).then(() => {
+		// 				action = setLineCategories(categories);
+		// 				dispatch(action);
+		// 				action = setLineData(series);
+		// 				dispatch(action);
+		// 				action = setLineTitle("Yearly Temperature (%)");
+		// 				dispatch(action);
+		// 				action = setLineUnit("%");
+		// 				dispatch(action);
+		// 			});
+		// 		} else if (filter === PERIOD_OF_CITY) {
+		// 			const fetchTemperatureByPeriodOfCity = async (
+		// 				cityId,
+		// 				fYear,
+		// 				tYear
+		// 			) => {
+		// 				let object = {};
+		// 				let name = "";
+		// 				return await getTemperatureByPeriodOfCity(
+		// 					cityId,
+		// 					fYear,
+		// 					tYear
+		// 				).then((item) => {
+		// 					const data = [];
+		// 					const category = [];
+
+		// 					item.results.bindings.map((item) => {
+		// 						name = item.city.value;
+		// 						const year = item.year.value;
+		// 						const value = Number(item.value.value);
+		// 						category.push(year);
+		// 						data.push(value);
+
+		// 						return null;
+		// 					});
+
+		// 					object = {
+		// 						...object,
+		// 						name: name,
+		// 						data: data,
+		// 					};
+		// 					categories = category;
+		// 					series = [...series, object];
+
+		// 					return null;
+		// 				});
+		// 			};
+		// 			if (
+		// 				periodCity[0] !== "" &&
+		// 				periodCity[1] !== "" &&
+		// 				periodCity[2] !== ""
+		// 			) {
+		// 				fetchTemperatureByPeriodOfCity(
+		// 					periodCity[0],
+		// 					periodCity[1],
+		// 					periodCity[2]
+		// 				).then(() => {
+		// 					action = setLineCategories(categories);
+		// 					dispatch(action);
+		// 					action = setLineData(series);
+		// 					dispatch(action);
+		// 					action = setLineTitle("Yearly Temperature");
+		// 					dispatch(action);
+		// 					action = setLineUnit("%");
+		// 					dispatch(action);
+		// 				});
+		// 			}
 		// 		}
-		// 	} else if (itemIsSelect.split("-")[0] === CLIMATE_RAINFALL) {
-		// 		state.isRainfall = true;
-		// 		if (itemIsSelect.split("-")[1] === "city") {
-		// 			state.isCity = true;
-		// 			const citySelect = itemIsSelect.split("-")[2];
-		// 			cities.push(citySelect);
-		// 		} else {
-		// 			state.isCity = false;
-		// 			cities = [];
-		// 		}
-		// 	} else if (itemIsSelect.split("-")[0] === INDUSTRY_PRODUCTION) {
-		// 		state.isIndustry = true;
-		// 		if (itemIsSelect.split("-")[1] === "city") {
-		// 			state.isCity = true;
-		// 			const citySelect = itemIsSelect.split("-")[2];
-		// 			cities.push(citySelect);
-		// 		} else {
-		// 			state.isCity = false;
-		// 			cities = [];
+		// 	} else if (dataSet === RAINFALL) {
+		// 		if (filter === CITY) {
+		// 			const fetchRainfallByCity = async (cities) => {
+		// 				const requests = cities.map(async (city) => {
+		// 					let object = {};
+		// 					let name = "";
+		// 					return await getRainfallByCity(city).then((item) => {
+		// 						const data = [];
+		// 						const category = [];
+
+		// 						item.results.bindings.map((item) => {
+		// 							name = item.city.value;
+		// 							const year = item.year.value;
+		// 							const value = Number(item.value.value);
+		// 							category.push(year);
+		// 							data.push(value);
+
+		// 							return null;
+		// 						});
+
+		// 						object = {
+		// 							...object,
+		// 							name: name,
+		// 							data: data,
+		// 						};
+		// 						categories = category;
+		// 						series = [...series, object];
+		// 					});
+		// 				});
+		// 				return Promise.all(requests);
+		// 			};
+
+		// 			fetchRainfallByCity(cities).then(() => {
+		// 				action = setLineCategories(categories);
+		// 				dispatch(action);
+		// 				action = setLineData(series);
+		// 				dispatch(action);
+		// 				action = setLineTitle("Yearly Rainfall (%)");
+		// 				dispatch(action);
+		// 				action = setLineUnit("%");
+		// 				dispatch(action);
+		// 			});
+		// 		} else if (filter === PERIOD_OF_CITY) {
+		// 			const fetchRainfallByPeriodOfCity = async (cityId, fYear, tYear) => {
+		// 				let object = {};
+		// 				let name = "";
+		// 				return await getRainfallByPeriodOfCity(cityId, fYear, tYear).then(
+		// 					(item) => {
+		// 						const data = [];
+		// 						const category = [];
+
+		// 						item.results.bindings.map((item) => {
+		// 							name = item.city.value;
+		// 							const year = item.year.value;
+		// 							const value = Number(item.value.value);
+		// 							category.push(year);
+		// 							data.push(value);
+
+		// 							return null;
+		// 						});
+
+		// 						object = {
+		// 							...object,
+		// 							name: name,
+		// 							data: data,
+		// 						};
+		// 						categories = category;
+		// 						series = [...series, object];
+
+		// 						return null;
+		// 					}
+		// 				);
+		// 			};
+		// 			if (
+		// 				periodCity[0] !== "" &&
+		// 				periodCity[1] !== "" &&
+		// 				periodCity[2] !== ""
+		// 			) {
+		// 				fetchRainfallByPeriodOfCity(
+		// 					periodCity[0],
+		// 					periodCity[1],
+		// 					periodCity[2]
+		// 				).then(() => {
+		// 					action = setLineCategories(categories);
+		// 					dispatch(action);
+		// 					action = setLineData(series);
+		// 					dispatch(action);
+		// 					action = setLineTitle("Yearly Rainfall");
+		// 					dispatch(action);
+		// 					action = setLineUnit("%");
+		// 					dispatch(action);
+		// 				});
+		// 			}
 		// 		}
 		// 	}
-		// 	return null;
-		// });
+		// } else if (dataCube === INDUSTRY) {
+		// 	if (dataSet === INDUSTRY_PRODUCTION) {
+		// 		if (filter === CITY) {
+		// 			const fetchIndustryByCity = async (cities) => {
+		// 				const requests = cities.map(async (city) => {
+		// 					let object = {};
+		// 					let name = "";
+		// 					return await getIndustryByCity(city).then((item) => {
+		// 						const data = [];
+		// 						const category = [];
 
-		// if (state.isHumidity === true && state.isCity === true) {
-		// 	const fetchHumidityByCity = async (cities) => {
-		// 		const requests = cities.map(async (city) => {
-		// 			let object = {};
-		// 			let name = "";
-		// 			return await getHumidityByCity(city).then((item) => {
-		// 				const data = [];
-		// 				const category = [];
+		// 						item.results.bindings.map((item) => {
+		// 							name = item.city.value;
+		// 							const year = item.year.value;
+		// 							const value = Number(item.value.value);
+		// 							category.push(year);
+		// 							data.push(value);
 
-		// 				item.results.bindings.map((item) => {
-		// 					name = item.city.value;
-		// 					const year = item.year.value;
-		// 					const value = Number(item.value.value);
-		// 					category.push(year);
-		// 					data.push(value);
+		// 							return null;
+		// 						});
 
-		// 					return null;
+		// 						object = {
+		// 							...object,
+		// 							name: name,
+		// 							data: data,
+		// 						};
+		// 						categories = category;
+		// 						series = [...series, object];
+		// 					});
 		// 				});
+		// 				return Promise.all(requests);
+		// 			};
 
-		// 				object = {
-		// 					...object,
-		// 					name: name,
-		// 					data: data,
-		// 				};
-		// 				categories = category;
-		// 				series = [...series, object];
+		// 			fetchIndustryByCity(cities).then(() => {
+		// 				action = setLineCategories(categories);
+		// 				dispatch(action);
+		// 				action = setLineData(series);
+		// 				dispatch(action);
+		// 				action = setLineTitle("Yearly Industry (IPI)");
+		// 				dispatch(action);
+		// 				action = setLineUnit("IPI");
+		// 				dispatch(action);
 		// 			});
-		// 		});
-		// 		return Promise.all(requests);
-		// 	};
+		// 		} else if (filter === PERIOD_OF_CITY) {
+		// 			const fetchIndustryByPeriodOfCity = async (cityId, fYear, tYear) => {
+		// 				let object = {};
+		// 				let name = "";
+		// 				return await getIndustryByPeriodOfCity(cityId, fYear, tYear).then(
+		// 					(item) => {
+		// 						const data = [];
+		// 						const category = [];
 
-		// 	fetchHumidityByCity(cities).then(() => {
-		// 		action = setLineCategories(categories);
-		// 		dispatch(action);
-		// 		action = setLineData(series);
-		// 		dispatch(action);
-		// 		action = setLineTitle("Yearly Humidity (%)");
-		// 		dispatch(action);
-		// 		action = setLineUnit("%");
-		// 		dispatch(action);
-		// 	});
-		// } else if (state.isTemperature === true && state.isCity === true) {
-		// 	const fetchTemperatureByCity = async (cities) => {
-		// 		const requests = cities.map(async (city) => {
-		// 			let object = {};
-		// 			let name = "";
-		// 			return await getTemperatureByCity(city).then((item) => {
-		// 				const data = [];
-		// 				const category = [];
+		// 						item.results.bindings.map((item) => {
+		// 							name = item.city.value;
+		// 							const year = item.year.value;
+		// 							const value = Number(item.value.value);
+		// 							category.push(year);
+		// 							data.push(value);
 
-		// 				item.results.bindings.map((item) => {
-		// 					name = item.city.value;
-		// 					const year = item.year.value;
-		// 					const value = Number(item.value.value);
-		// 					category.push(year);
-		// 					data.push(value);
+		// 							return null;
+		// 						});
 
-		// 					return null;
+		// 						object = {
+		// 							...object,
+		// 							name: name,
+		// 							data: data,
+		// 						};
+		// 						categories = category;
+		// 						series = [...series, object];
+
+		// 						return null;
+		// 					}
+		// 				);
+		// 			};
+		// 			if (
+		// 				periodCity[0] !== "" &&
+		// 				periodCity[1] !== "" &&
+		// 				periodCity[2] !== ""
+		// 			) {
+		// 				fetchIndustryByPeriodOfCity(
+		// 					periodCity[0],
+		// 					periodCity[1],
+		// 					periodCity[2]
+		// 				).then(() => {
+		// 					action = setLineCategories(categories);
+		// 					dispatch(action);
+		// 					action = setLineData(series);
+		// 					dispatch(action);
+		// 					action = setLineTitle("Yearly Industry");
+		// 					dispatch(action);
+		// 					action = setLineUnit("IPI");
+		// 					dispatch(action);
 		// 				});
-
-		// 				object = {
-		// 					...object,
-		// 					name: name,
-		// 					data: data,
-		// 				};
-		// 				categories = category;
-		// 				series = [...series, object];
-		// 			});
-		// 		});
-		// 		return Promise.all(requests);
-		// 	};
-
-		// 	fetchTemperatureByCity(cities).then(() => {
-		// 		action = setLineCategories(categories);
-		// 		dispatch(action);
-		// 		action = setLineData(series);
-		// 		dispatch(action);
-		// 		action = setLineTitle("Yearly Temperature (°C)");
-		// 		dispatch(action);
-		// 		action = setLineUnit("°C");
-		// 		dispatch(action);
-		// 	});
-		// } else if (state.isRainfall === true && state.isCity === true) {
-		// 	const fetchRainfallByCity = async (cities) => {
-		// 		const requests = cities.map(async (city) => {
-		// 			let object = {};
-		// 			let name = "";
-		// 			return await getRainfallByCity(city).then((item) => {
-		// 				const data = [];
-		// 				const category = [];
-
-		// 				item.results.bindings.map((item) => {
-		// 					name = item.city.value;
-		// 					const year = item.year.value;
-		// 					const value = Number(item.value.value);
-		// 					category.push(year);
-		// 					data.push(value);
-
-		// 					return null;
-		// 				});
-
-		// 				object = {
-		// 					...object,
-		// 					name: name,
-		// 					data: data,
-		// 				};
-		// 				categories = category;
-		// 				series = [...series, object];
-		// 			});
-		// 		});
-		// 		return Promise.all(requests);
-		// 	};
-
-		// 	fetchRainfallByCity(cities).then(() => {
-		// 		action = setLineCategories(categories);
-		// 		dispatch(action);
-		// 		action = setLineData(series);
-		// 		dispatch(action);
-		// 		action = setLineTitle("Yearly Rainfall (mm)");
-		// 		dispatch(action);
-		// 		action = setLineUnit("mm");
-		// 		dispatch(action);
-		// 	});
-		// } else if (state.isIndustry === true && state.isCity === true) {
-		// 	const fetchIndustryByCity = async (cities) => {
-		// 		const requests = cities.map(async (city) => {
-		// 			let object = {};
-		// 			let name = "";
-		// 			return await getIndustryByCity(city).then((item) => {
-		// 				const data = [];
-		// 				const category = [];
-
-		// 				item.results.bindings.map((item) => {
-		// 					name = item.city.value;
-		// 					const year = item.year.value;
-		// 					const value = Number(item.value.value);
-		// 					category.push(year);
-		// 					data.push(value);
-
-		// 					return null;
-		// 				});
-
-		// 				object = {
-		// 					...object,
-		// 					name: name,
-		// 					data: data,
-		// 				};
-		// 				categories = category;
-		// 				series = [...series, object];
-		// 			});
-		// 		});
-		// 		return Promise.all(requests);
-		// 	};
-
-		// 	fetchIndustryByCity(cities).then(() => {
-		// 		action = setLineCategories(categories);
-		// 		dispatch(action);
-		// 		action = setLineData(series);
-		// 		dispatch(action);
-		// 		action = setLineTitle("Yearly Industry (IPI)");
-		// 		dispatch(action);
-		// 		action = setLineUnit("Industrial Index (IPI)");
-		// 		dispatch(action);
-		// 	});
+		// 			}
+		// 		}
+		// 	}
 		// }
 	};
 

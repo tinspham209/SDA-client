@@ -23,6 +23,7 @@ import {
 	setPeriodOfCityName,
 	setPeriodOfCityToYear,
 	setMerge,
+	setItemIsSelectCity,
 } from "../../../../../app/slice/dashboardSlice";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -74,7 +75,7 @@ const HumidityPeriodOfCity = ({ id, data, inputs, outputs }) => {
 			action = setPeriodOfCityToYear(toYear);
 			dispatch(action);
 			const itemIsSelect = [`${CLIMATE}-${HUMIDITY}-${PERIOD_OF_CITY}`];
-			action = setItemIsSelect(itemIsSelect);
+			action = setItemIsSelectCity(itemIsSelect);
 			dispatch(action);
 			const idMerge = `${CLIMATE}-${HUMIDITY}-${city}-${fromYear}-${toYear}`;
 			const newMerge = [...merge, idMerge];
