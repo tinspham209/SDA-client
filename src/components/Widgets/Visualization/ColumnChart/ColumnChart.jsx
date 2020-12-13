@@ -81,7 +81,6 @@ const WidgetColumnChart = ({ id, data, inputs, outputs }) => {
 			// In City In Year
 			const year = itemIsSelectYear[0].split("-").pop();
 			const category = [];
-			let nameTitle = "";
 
 			const fetchDataCityInYear = async (dataCube, dataSet, cities, year) => {
 				const requests = cities.map(async (city) => {
@@ -93,7 +92,6 @@ const WidgetColumnChart = ({ id, data, inputs, outputs }) => {
 
 							items.data.results.bindings.map((item) => {
 								name = item.city.value;
-								nameTitle = item.year.value;
 								const value = Number(item.value.value);
 								category.push(name);
 								data.push(value);
@@ -537,8 +535,17 @@ const WidgetColumnChart = ({ id, data, inputs, outputs }) => {
 	};
 
 	const handleQuestionButton = (id) => {
-		id = id.split("-")[0];
-		const action = setInfoWidget(id);
+		const arrayId = id.split("-");
+		const newId = arrayId.pop();
+		const indexNewId = arrayId.indexOf(newId);
+
+		if (indexNewId > -1) {
+			arrayId.splice(indexNewId, 1);
+		}
+
+		const newIdString = arrayId.join("-");
+
+		const action = setInfoWidget(newIdString);
 		dispatch(action);
 	};
 

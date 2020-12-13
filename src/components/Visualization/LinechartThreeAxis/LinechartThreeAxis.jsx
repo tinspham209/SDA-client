@@ -22,10 +22,6 @@ const LinechartThreeAxis = () => {
 		(state) => state.dashboard.viz.lineTwoAxis.categories
 	);
 
-	console.log("lineCategories: ", lineCategories);
-	console.log("lineSeries: ", lineSeries);
-	console.log("lineTitle: ", lineTitle);
-
 	// eslint-disable-next-line
 	const [dataLineChart, setDataLineChart] = useState({
 		chart: {

@@ -11,8 +11,6 @@ import LineChart from "../../../Visualization/Linechart/LineChart";
 import { useSelector, useDispatch } from "react-redux";
 import {
 	setInfoWidget,
-	setPortIsLinked,
-	setPortCanLinked,
 	setLineCategories,
 	setLineData,
 	setLineTitle,
@@ -29,7 +27,6 @@ import {
 	TEMPERATURE,
 } from "../../../../app/ItemTypes";
 import {
-	getDataCityInYear,
 	getHumidityByCity,
 	getHumidityByPeriodOfCity,
 	getIndustryByCity,
@@ -873,8 +870,17 @@ const WidgetLineChart = ({ id, data, inputs, outputs }) => {
 	};
 
 	const handleQuestionButton = (id) => {
-		id = id.split("-")[0];
-		const action = setInfoWidget(id);
+		const arrayId = id.split("-");
+		const newId = arrayId.pop();
+		const indexNewId = arrayId.indexOf(newId);
+
+		if (indexNewId > -1) {
+			arrayId.splice(indexNewId, 1);
+		}
+
+		const newIdString = arrayId.join("-");
+
+		const action = setInfoWidget(newIdString);
 		dispatch(action);
 	};
 

@@ -84,8 +84,17 @@ const WidgetLineChartTwoAxis = ({ id, data, inputs, outputs }) => {
 	};
 
 	const handleQuestionButton = (id) => {
-		id = id.split("-")[0];
-		const action = setInfoWidget(id);
+		const arrayId = id.split("-");
+		const newId = arrayId.pop();
+		const indexNewId = arrayId.indexOf(newId);
+
+		if (indexNewId > -1) {
+			arrayId.splice(indexNewId, 1);
+		}
+
+		const newIdString = arrayId.join("-");
+
+		const action = setInfoWidget(newIdString);
 		dispatch(action);
 	};
 

@@ -38,7 +38,6 @@ const WidgetLinechartThreeAxis = ({ id, data, inputs, outputs }) => {
 		useSelector((state) => state.dashboard.viz.merge.title),
 		useSelector((state) => state.dashboard.viz.merge.yAxis),
 	];
-	console.log("dataMerge: ", dataMerge);
 
 	const handleOnClick = () => {
 		let action;
@@ -85,8 +84,17 @@ const WidgetLinechartThreeAxis = ({ id, data, inputs, outputs }) => {
 	};
 
 	const handleQuestionButton = (id) => {
-		id = id.split("-")[0];
-		const action = setInfoWidget(id);
+		const arrayId = id.split("-");
+		const newId = arrayId.pop();
+		const indexNewId = arrayId.indexOf(newId);
+
+		if (indexNewId > -1) {
+			arrayId.splice(indexNewId, 1);
+		}
+
+		const newIdString = arrayId.join("-");
+
+		const action = setInfoWidget(newIdString);
 		dispatch(action);
 	};
 

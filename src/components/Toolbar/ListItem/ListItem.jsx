@@ -47,6 +47,7 @@ const ListItemComponent = ({
 		dispatch(action);
 		action = setIndexChildren(indexChildren);
 		dispatch(action);
+		console.log("id: ", id);
 		action = setInfoWidget(id);
 		dispatch(action);
 	};
