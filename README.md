@@ -11,7 +11,7 @@
     - [x] Humidity
     - [x] Rainfall
   - [ ] Atmosphere
-  - [ ] Population:
+  - [x] Population:
   - Industry
     - [x] Industry Production
   - Forest
@@ -21,7 +21,7 @@
   - [x] Filter by year
   - [x] Filter by city
   - [x] Filter by period of city
-  - [ ] Statistics merge
+  - [x] Statistics merge
   - [ ] Simple Merge
 - Visualization
   - [x] Maps
@@ -30,10 +30,16 @@
     - [x] Column
     - [x] Line
     - [ ] Pie
+    - [x] Two Axis Charts
+    - [x] Three Axis Charts
 
 ### Releases
 
 - https://sda-research.ml
+
+### Server Endpoint:
+
+http://server.sda-research.ml
 
 ### Screenshot
 
@@ -72,42 +78,20 @@
 28. Viz `Humidity` in `ColumnChart`
 29. Draw connector when onClick on RUN btn
 30. Clear all node when onClick on NEW btn
-31. Fetch API year viz in Maps
-32. Fetch API year viz in Table
-33. Fetch API City viz in Column Chart
-34. Fetch API City viz in Line Chart
-35. Fetch API City viz in Table
+31. Visualization `Humidity`
+32. Visualization `Temperature`
+33. Visualization `Rainfall`
+34. Visualization `Industry`
+35. Visualization `Forestation`
+36. Visualization `Population`
+37. Merge two data cube
+38. Visualization when merge two data cube
+39. Merge three data cube
+40. Visualization when merge three data cube
 
 ### Next Steps:
 
-- Fetch API humidity year viz in Chart
-- Fetch API rainfall year viz in Chart
-
-### API:
-
-- /climate/humidity/city/:cityid;
-- /climate/humidity/year/:yearid;
-- /climate/humidity/city/:cityid/year/yearid;
-- /climate/humidity/city/danang/year/2018
-
-- /climate/rainfall/city/:cityid;
-- /climate/rainfall/year/:yearid;
-- /climate/rainfall/city/:cityid/year/yearid;
-
-- /climate/temperature/city/:cityid;
-- /climate/temperature/year/:yearid;
-- /climate/temperature/city/:cityid/year/yearid;
-
-- /industry/city/:cityid;
-- /industry/year/:yearid;
-- /industry/city/:cityid/year/yearid;
-
-- /merge/dc1/:dc1/dc2/:dc2/s1/:s1/s2/:s2/city/:cityId/fYear/:fYear/tYear/:tYear
-
-  - /merge/dc1/dcclimate/dc2/dcclimate/s1/rainfall/s2/temperature/city/danang/fyear/2012/tyear/2018
-
-- /merge/dc1/:dc1/dc2/:dc2/dc3/:dc3/s1/:s1/s2/:s2/s3:/s3/city/:cityId/fYear/:fYear/tYear/:tYear
-  - /merge/dc1/dcclimate/dc2/dcindustry/dc3/dcforest/s1/rainfall/s2/industry/s3/forestcover/city/danang/fyear/2012/tyear/2018
+- Visualization `Forest Cover Area`
 
 ### Directory Structure
 
@@ -121,32 +105,77 @@
 ├── firebase.json
 ├── .gitignore
 └── src
+    ├── api
+        ├── vnId.js
+        └── index.js
     ├── app
         ├── store.js
+        ├── ItemTypes.js
+        ├── slice
+          └── dashboardSlice.js
     ├── assets
         └── img
     ├── components
         ├── Footer
         ├── InfoSection
+        ├── Modal
         ├── Navbar
+        ├── NavbarDashboard
+        ├── OutputLog
+        ├── Properties
+        ├── Toolbar
+          └── ListItem
         ├── UI
+          ├── NotFound
+          ├── Spinner
+          └── index.js
+        ├── Visualization
+          ├── ColumnChart
+          ├── LineChart
+          ├── LineChartThreeAxis
+          ├── LineChartTwoAxis
+          ├── Maps
+          ├── Table
+        ├── WidgetInfo
+        ├── Widget
+          ├── Climate
+            ├── Humidity
+            ├── Rainfall
+            └── Temperature
+          ├── Forest
+            └── Afforestation
+          ├── Industry
+            └── Industry Production
+          ├── Operators
+            └── Statistic Merge
+          ├── Population
+           └── Population
+          ├── Visualization
+            ├── ColumnChart
+            ├── LineChart
+            ├── LineChartThreeAxis
+            ├── LineChartTwoAxis
+            ├── Maps
+            └── Table
+          └── index.js
         ├── index.js
         └── ScrollToTop.jsx
+    ├── containers
+        ├── Info
+        ├── MashupContent
+        ├── ModalIsDevelop
+        └── Dashboard
+    ├── data
+        └── index.js
     ├── pages
         ├── About
-            ├── About.js
-            └── Data.js
         ├── Contact
-            ├── Contact.js
-            └── Data.js
         ├── Dashboard
-            ├── Dashboard.js
-            └── Data.js
         └── HomePage
-            ├── Homepage.js
-            └── Data.js
     ├── App.js
     ├── GlobalStyles.js
+    ├── deploy-firebase
+    ├── deploy-surge
     └── index.js
 ```
 
@@ -156,6 +185,9 @@ For the project to build, these must exist with exact filenames:
 - `src/index.js` is the entry point
 - `src/GlobalStyles.js` is the Global Styles
 - `src/App.js` is the Router
+- `src/api` is
+- `src/containers` is
+- `src/data` is
 
 ## Installation Guide
 
