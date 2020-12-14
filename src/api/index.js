@@ -5,7 +5,7 @@ const url = `http://server.sda-research.ml`;
 // - /climate/humidity/city/:cityid;
 // - /climate/humidity/year/:yearid;
 // - /climate/humidity/city/:cityid/year/yearid;
-// - /climate/humidity/city/:cityid/fYear/:fromYear/tYear/:toYear
+// - /climate/humidity/city/danang/year/2018
 
 // - /climate/rainfall/city/:cityid;
 // - /climate/rainfall/year/:yearid;
@@ -15,9 +15,24 @@ const url = `http://server.sda-research.ml`;
 // - /climate/temperature/year/:yearid;
 // - /climate/temperature/city/:cityid/year/yearid;
 
-// - /industry/industry/city/:cityid;
-// - /industry/industry/year/:yearid;
-// - /industry/industry/city/:cityid/year/yearid;
+// - /industry/city/:cityid;
+// - /industry/year/:yearid;
+// - /industry/city/:cityid/year/yearid;
+
+// - /forest/afforestation/city/:cityid;
+// - /forest/afforestation/year/:yearid;
+// - /forest/afforestation/city/:cityid/year/:yearid;
+
+// - /population/population/city/:cityid;
+// - /population/population/year/:yearid;
+// - /population/population/city/:cityid/year/:yearid;
+
+// - /merge/dc1/:dc1/dc2/:dc2/s1/:s1/s2/:s2/city/:cityId/fYear/:fYear/tYear/:tYear
+
+//   - /merge/dc1/dcclimate/dc2/dcclimate/s1/rainfall/s2/temperature/city/danang/fyear/2012/tyear/2018
+
+// - /merge/dc1/:dc1/dc2/:dc2/dc3/:dc3/s1/:s1/s2/:s2/s3:/s3/city/:cityId/fYear/:fYear/tYear/:tYear
+//   - /merge/dc1/dcclimate/dc2/dcindustry/dc3/dcforest/s1/rainfall/s2/industry/s3/forestcover/city/danang/fyear/2012/tyear/2018
 
 export const getDataCityInYear = async (dataCube, dataSet, city, year) => {
 	console.log("url", `${url}/${dataCube}/${dataSet}/city/${city}/year/${year}`);
