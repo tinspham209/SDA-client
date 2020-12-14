@@ -25,6 +25,8 @@ import {
 	INDUSTRY,
 	INDUSTRY_PRODUCTION,
 	PERIOD_OF_CITY,
+	POPULATION,
+	POPULATION_PRODUCTION,
 	RAINFALL,
 	TEMPERATURE,
 } from "../../../../app/ItemTypes";
@@ -35,6 +37,8 @@ import {
 	getHumidityByPeriodOfCity,
 	getIndustryByCity,
 	getIndustryByPeriodOfCity,
+	getPopulationByCity,
+	getPopulationByPeriodOfCity,
 	getRainfallByCity,
 	getRainfallByPeriodOfCity,
 	getTemperatureByCity,
@@ -578,6 +582,109 @@ const WidgetLineChart = ({ id, data, inputs, outputs }) => {
 								action = setLineTitle(`Yearly Afforestation of ${name}`);
 								dispatch(action);
 								action = setLineUnit("IPI");
+								dispatch(action);
+							});
+						}
+					}
+				} else {
+				}
+			} else if (dataCube === POPULATION) {
+				if (dataSet === POPULATION_PRODUCTION) {
+					if (filter === CITY) {
+						const fetchPopulationByCity = async (cities) => {
+							const requests = cities.map(async (city) => {
+								let object = {};
+								let name = "";
+								return await getPopulationByCity(city).then((item) => {
+									const data = [];
+									const category = [];
+
+									item.results.bindings.map((item) => {
+										name = item.city.value;
+										const year = item.year.value;
+										const value = Number(item.value.value);
+										category.push(year);
+										data.push(value);
+
+										return null;
+									});
+
+									object = {
+										...object,
+										name: name,
+										data: data,
+									};
+									categories = category;
+									series = [...series, object];
+								});
+							});
+							return Promise.all(requests);
+						};
+
+						fetchPopulationByCity(cities).then(() => {
+							action = setLineCategories(categories);
+							dispatch(action);
+							action = setLineData(series);
+							dispatch(action);
+							action = setLineTitle("Yearly Population");
+							dispatch(action);
+							action = setLineUnit("thousands");
+							dispatch(action);
+						});
+					} else if (filter === PERIOD_OF_CITY) {
+						let name = "";
+						const fetchPopulationByPeriodOfCity = async (
+							cityId,
+							fYear,
+							tYear
+						) => {
+							let object = {};
+							return await getPopulationByPeriodOfCity(
+								cityId,
+								fYear,
+								tYear
+							).then((item) => {
+								const data = [];
+								const category = [];
+
+								item.results.bindings.map((item) => {
+									name = item.city.value;
+									const year = item.year.value;
+									const value = Number(item.value.value);
+									category.push(year);
+									data.push(value);
+
+									return null;
+								});
+
+								object = {
+									...object,
+									name: name,
+									data: data,
+								};
+								categories = category;
+								series = [...series, object];
+
+								return null;
+							});
+						};
+						if (
+							periodCity[0] !== "" &&
+							periodCity[1] !== "" &&
+							periodCity[2] !== ""
+						) {
+							fetchPopulationByPeriodOfCity(
+								periodCity[0],
+								periodCity[1],
+								periodCity[2]
+							).then(() => {
+								action = setLineCategories(categories);
+								dispatch(action);
+								action = setLineData(series);
+								dispatch(action);
+								action = setLineTitle(`Yearly Population of ${name}`);
+								dispatch(action);
+								action = setLineUnit("thousands");
 								dispatch(action);
 							});
 						}

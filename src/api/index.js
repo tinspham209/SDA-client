@@ -137,6 +137,18 @@ export const getAfforestationByPeriodOfCity = async (city, fYear, tYear) => {
 	}
 };
 
+export const getPopulationByPeriodOfCity = async (city, fYear, tYear) => {
+	try {
+		const { data } = await axios.get(
+			`${url}/population/population/city/${city}/fYear/${fYear}/tYear/${tYear}`
+		);
+
+		return data;
+	} catch (error) {
+		console.log("error: ", error);
+	}
+};
+
 export const getHumidityByYear = async (year) => {
 	try {
 		const { data } = await axios.get(`${url}/climate/humidity/year/${year}`);
@@ -189,6 +201,18 @@ export const getAfforestationByYear = async (year) => {
 	}
 };
 
+export const getPopulationByYear = async (year) => {
+	try {
+		const { data } = await axios.get(
+			`${url}/population/population/year/${year}`
+		);
+
+		return data;
+	} catch (error) {
+		console.log("error: ", error);
+	}
+};
+
 export const getHumidityByCity = async (city) => {
 	try {
 		const { data } = await axios.get(`${url}/climate/humidity/city/${city}`);
@@ -233,6 +257,18 @@ export const getAfforestationByCity = async (city) => {
 	try {
 		const { data } = await axios.get(
 			`${url}/forest/afforestation/city/${city}`
+		);
+
+		return data;
+	} catch (error) {
+		console.log("error: ", error);
+	}
+};
+
+export const getPopulationByCity = async (city) => {
+	try {
+		const { data } = await axios.get(
+			`${url}/population/population/city/${city}`
 		);
 
 		return data;

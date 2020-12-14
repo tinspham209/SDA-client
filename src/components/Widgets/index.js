@@ -26,3 +26,7 @@ export { default as IndustryProductionPeriodOfCity } from "./Industry/IndustryPr
 export { default as AfforestationYear } from "./Forest/Afforestation/AfforestationYear/AfforestationYear";
 export { default as AfforestationCity } from "./Forest/Afforestation/AfforestationCity/AfforestationCity";
 export { default as AfforestationPeriodOfCity } from "./Forest/Afforestation/AfforestationPeriodOfCity/AfforestationPeriodOfCity";
+
+export { default as PopulationYear } from "./Population/Population/PopulationYear/PopulationYear";
+export { default as PopulationCity } from "./Population/Population/PopulationCity/PopulationCity";
+export { default as PopulationPeriodOfCity } from "./Population/Population/PopulationPeriodOfCity/PopulationPeriodOfCity";

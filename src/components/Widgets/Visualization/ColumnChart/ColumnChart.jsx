@@ -25,6 +25,8 @@ import {
 	INDUSTRY,
 	INDUSTRY_PRODUCTION,
 	PERIOD_OF_CITY,
+	POPULATION,
+	POPULATION_PRODUCTION,
 	RAINFALL,
 	TEMPERATURE,
 } from "../../../../app/ItemTypes";
@@ -36,6 +38,8 @@ import {
 	getHumidityByPeriodOfCity,
 	getIndustryByCity,
 	getIndustryByPeriodOfCity,
+	getPopulationByCity,
+	getPopulationByPeriodOfCity,
 	getRainfallByCity,
 	getRainfallByPeriodOfCity,
 	getTemperatureByCity,
@@ -63,6 +67,34 @@ const WidgetColumnChart = ({ id, data, inputs, outputs }) => {
 		(state) => state.dashboard.mashupContent.itemIsSelectYear
 	);
 
+	const getUnit = (name) => {
+		let unit = "";
+		switch (name) {
+			case TEMPERATURE:
+				unit = "°C";
+				break;
+			case HUMIDITY:
+				unit = "%";
+				break;
+			case RAINFALL:
+				unit = "mm";
+				break;
+			case INDUSTRY_PRODUCTION:
+				unit = "IPI";
+				break;
+			case POPULATION_PRODUCTION:
+				unit = "thousands";
+				break;
+			case AFFORESTATION:
+				unit = "1000/km²";
+				break;
+			default:
+				unit = "";
+				break;
+		}
+		return unit;
+	};
+
 	const handleOnClick = () => {
 		let action;
 
@@ -79,7 +111,6 @@ const WidgetColumnChart = ({ id, data, inputs, outputs }) => {
 		if (city !== undefined) {
 			itemIsSelects.map((item) => cities.push(item.split("-")[3]));
 		}
-		console.log("cities: ", cities);
 
 		if (itemIsSelectYear.length !== 0) {
 			// In City In Year
@@ -129,7 +160,7 @@ const WidgetColumnChart = ({ id, data, inputs, outputs }) => {
 				dispatch(action);
 				action = setColumnTitle(nameTitle);
 				dispatch(action);
-				action = setColumnUnit("%");
+				action = setColumnUnit(getUnit(dataSet));
 				dispatch(action);
 			});
 		} else {
@@ -631,6 +662,109 @@ const WidgetColumnChart = ({ id, data, inputs, outputs }) => {
 								action = setColumnTitle(`Yearly Afforestation of ${name}`);
 								dispatch(action);
 								action = setColumnUnit("IPI");
+								dispatch(action);
+							});
+						}
+					}
+				} else {
+				}
+			} else if (dataCube === POPULATION) {
+				if (dataSet === POPULATION_PRODUCTION) {
+					if (filter === CITY) {
+						const fetchPopulationByCity = async (cities) => {
+							const requests = cities.map(async (city) => {
+								let object = {};
+								let name = "";
+								return await getPopulationByCity(city).then((item) => {
+									const data = [];
+									const category = [];
+
+									item.results.bindings.map((item) => {
+										name = item.city.value;
+										const year = item.year.value;
+										const value = Number(item.value.value);
+										category.push(year);
+										data.push(value);
+
+										return null;
+									});
+
+									object = {
+										...object,
+										name: name,
+										data: data,
+									};
+									categories = category;
+									series = [...series, object];
+								});
+							});
+							return Promise.all(requests);
+						};
+
+						fetchPopulationByCity(cities).then(() => {
+							action = setColumnCategories(categories);
+							dispatch(action);
+							action = setColumnData(series);
+							dispatch(action);
+							action = setColumnTitle("Yearly Population");
+							dispatch(action);
+							action = setColumnUnit("thousands");
+							dispatch(action);
+						});
+					} else if (filter === PERIOD_OF_CITY) {
+						let name = "";
+						const fetchPopulationByPeriodOfCity = async (
+							cityId,
+							fYear,
+							tYear
+						) => {
+							let object = {};
+							return await getPopulationByPeriodOfCity(
+								cityId,
+								fYear,
+								tYear
+							).then((item) => {
+								const data = [];
+								const category = [];
+
+								item.results.bindings.map((item) => {
+									name = item.city.value;
+									const year = item.year.value;
+									const value = Number(item.value.value);
+									category.push(year);
+									data.push(value);
+
+									return null;
+								});
+
+								object = {
+									...object,
+									name: name,
+									data: data,
+								};
+								categories = category;
+								series = [...series, object];
+
+								return null;
+							});
+						};
+						if (
+							periodCity[0] !== "" &&
+							periodCity[1] !== "" &&
+							periodCity[2] !== ""
+						) {
+							fetchPopulationByPeriodOfCity(
+								periodCity[0],
+								periodCity[1],
+								periodCity[2]
+							).then(() => {
+								action = setColumnCategories(categories);
+								dispatch(action);
+								action = setColumnData(series);
+								dispatch(action);
+								action = setColumnTitle(`Yearly Population of ${name}`);
+								dispatch(action);
+								action = setColumnUnit("thousands");
 								dispatch(action);
 							});
 						}

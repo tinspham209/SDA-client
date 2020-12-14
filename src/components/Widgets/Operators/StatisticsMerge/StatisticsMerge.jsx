@@ -21,9 +21,11 @@ import {
 	getDataMergeTwoWidgetPeriodOfCity,
 } from "../../../../api";
 import {
+	AFFORESTATION,
 	HUMIDITY,
 	INDUSTRY_PRODUCTION,
 	OPERATORS,
+	POPULATION_PRODUCTION,
 	RAINFALL,
 	STATISTICS_MERGE,
 	TEMPERATURE,
@@ -49,6 +51,12 @@ const StatisticsMerge = ({ id, data, inputs, outputs }) => {
 				break;
 			case INDUSTRY_PRODUCTION:
 				unit = "IPI";
+				break;
+			case POPULATION_PRODUCTION:
+				unit = "k";
+				break;
+			case AFFORESTATION:
+				unit = "1000/km²";
 				break;
 			default:
 				unit = "";

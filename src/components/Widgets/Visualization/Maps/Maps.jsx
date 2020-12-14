@@ -22,6 +22,8 @@ import {
 	HUMIDITY,
 	INDUSTRY,
 	INDUSTRY_PRODUCTION,
+	POPULATION,
+	POPULATION_PRODUCTION,
 	RAINFALL,
 	TEMPERATURE,
 } from "../../../../app/ItemTypes";
@@ -30,6 +32,7 @@ import {
 	getDataCityInYear,
 	getHumidityByYear,
 	getIndustryByYear,
+	getPopulationByYear,
 	getRainfallByYear,
 	getTemperatureByYear,
 } from "../../../../api";
@@ -369,6 +372,51 @@ const WidgetMaps = ({ id, data, inputs, outputs }) => {
 							{ from: 100, to: 150 },
 							{ from: 150, to: 200 },
 							{ from: 200 },
+						];
+						action = setColorRange(dataClasses);
+						dispatch(action);
+
+						action = setMapsData(dataMaps);
+						dispatch(action);
+					});
+				}
+			} else if (dataCube === POPULATION) {
+				if (dataSet === POPULATION_PRODUCTION) {
+					const fetchPopulationByYear = async (year) => {
+						return await getPopulationByYear(year).then((items) =>
+							items.results.bindings.map((item) => {
+								let city = item.city.value;
+								if (city === "Tây Nguyên") {
+									city = "Lâm Đồng";
+								} else if (city === "Đông Nam Bộ") {
+									city = "Phú Yên";
+								}
+
+								const cityId = vn.find((item) => {
+									return city === item.name;
+								});
+								const id = cityId.id;
+								const value = Number(item.value.value).toPrecision();
+								const object = [id, value];
+								dataMaps.push(object);
+								return null;
+							})
+						);
+					};
+					fetchPopulationByYear(year).then(() => {
+						const nameTitle = `Population of VN ${year} (thousands)`;
+						action = setTitleMaps(nameTitle);
+						dispatch(action);
+
+						const dataClasses = [
+							{
+								to: 400,
+							},
+							{ from: 400, to: 800 },
+							{ from: 800, to: 1200 },
+							{ from: 1200, to: 1600 },
+							{ from: 1600, to: 2000 },
+							{ from: 2000 },
 						];
 						action = setColorRange(dataClasses);
 						dispatch(action);
