@@ -125,6 +125,18 @@ export const getHumidityByPeriodOfCity = async (city, fYear, tYear) => {
 	}
 };
 
+export const getAfforestationByPeriodOfCity = async (city, fYear, tYear) => {
+	try {
+		const { data } = await axios.get(
+			`${url}/forest/afforestation/city/${city}/fYear/${fYear}/tYear/${tYear}`
+		);
+
+		return data;
+	} catch (error) {
+		console.log("error: ", error);
+	}
+};
+
 export const getHumidityByYear = async (year) => {
 	try {
 		const { data } = await axios.get(`${url}/climate/humidity/year/${year}`);
@@ -165,6 +177,18 @@ export const getRainfallByYear = async (year) => {
 	}
 };
 
+export const getAfforestationByYear = async (year) => {
+	try {
+		const { data } = await axios.get(
+			`${url}/forest/afforestation/year/${year}`
+		);
+
+		return data;
+	} catch (error) {
+		console.log("error: ", error);
+	}
+};
+
 export const getHumidityByCity = async (city) => {
 	try {
 		const { data } = await axios.get(`${url}/climate/humidity/city/${city}`);
@@ -198,6 +222,18 @@ export const getRainfallByCity = async (city) => {
 export const getIndustryByCity = async (city) => {
 	try {
 		const { data } = await axios.get(`${url}/industry/industry/city/${city}`);
+
+		return data;
+	} catch (error) {
+		console.log("error: ", error);
+	}
+};
+
+export const getAfforestationByCity = async (city) => {
+	try {
+		const { data } = await axios.get(
+			`${url}/forest/afforestation/city/${city}`
+		);
 
 		return data;
 	} catch (error) {

@@ -17,8 +17,10 @@ import {
 	setLineUnit,
 } from "../../../../app/slice/dashboardSlice";
 import {
+	AFFORESTATION,
 	CITY,
 	CLIMATE,
+	FOREST,
 	HUMIDITY,
 	INDUSTRY,
 	INDUSTRY_PRODUCTION,
@@ -27,6 +29,8 @@ import {
 	TEMPERATURE,
 } from "../../../../app/ItemTypes";
 import {
+	getAfforestationByCity,
+	getAfforestationByPeriodOfCity,
 	getHumidityByCity,
 	getHumidityByPeriodOfCity,
 	getIndustryByCity,
@@ -469,6 +473,109 @@ const WidgetLineChart = ({ id, data, inputs, outputs }) => {
 								action = setLineData(series);
 								dispatch(action);
 								action = setLineTitle(`Yearly Industry of ${name}`);
+								dispatch(action);
+								action = setLineUnit("IPI");
+								dispatch(action);
+							});
+						}
+					}
+				} else {
+				}
+			} else if (dataCube === FOREST) {
+				if (dataSet === AFFORESTATION) {
+					if (filter === CITY) {
+						const fetchAfforestationByCity = async (cities) => {
+							const requests = cities.map(async (city) => {
+								let object = {};
+								let name = "";
+								return await getAfforestationByCity(city).then((item) => {
+									const data = [];
+									const category = [];
+
+									item.results.bindings.map((item) => {
+										name = item.city.value;
+										const year = item.year.value;
+										const value = Number(item.value.value);
+										category.push(year);
+										data.push(value);
+
+										return null;
+									});
+
+									object = {
+										...object,
+										name: name,
+										data: data,
+									};
+									categories = category;
+									series = [...series, object];
+								});
+							});
+							return Promise.all(requests);
+						};
+
+						fetchAfforestationByCity(cities).then(() => {
+							action = setLineCategories(categories);
+							dispatch(action);
+							action = setLineData(series);
+							dispatch(action);
+							action = setLineTitle("Yearly Afforestation");
+							dispatch(action);
+							action = setLineUnit("IPI");
+							dispatch(action);
+						});
+					} else if (filter === PERIOD_OF_CITY) {
+						let name = "";
+						const fetchAfforestationByPeriodOfCity = async (
+							cityId,
+							fYear,
+							tYear
+						) => {
+							let object = {};
+							return await getAfforestationByPeriodOfCity(
+								cityId,
+								fYear,
+								tYear
+							).then((item) => {
+								const data = [];
+								const category = [];
+
+								item.results.bindings.map((item) => {
+									name = item.city.value;
+									const year = item.year.value;
+									const value = Number(item.value.value);
+									category.push(year);
+									data.push(value);
+
+									return null;
+								});
+
+								object = {
+									...object,
+									name: name,
+									data: data,
+								};
+								categories = category;
+								series = [...series, object];
+
+								return null;
+							});
+						};
+						if (
+							periodCity[0] !== "" &&
+							periodCity[1] !== "" &&
+							periodCity[2] !== ""
+						) {
+							fetchAfforestationByPeriodOfCity(
+								periodCity[0],
+								periodCity[1],
+								periodCity[2]
+							).then(() => {
+								action = setLineCategories(categories);
+								dispatch(action);
+								action = setLineData(series);
+								dispatch(action);
+								action = setLineTitle(`Yearly Afforestation of ${name}`);
 								dispatch(action);
 								action = setLineUnit("IPI");
 								dispatch(action);

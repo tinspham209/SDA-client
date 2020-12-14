@@ -22,3 +22,7 @@ export { default as RainfallPeriodOfCity } from "./Climate/Rainfall/RainfallPeri
 export { default as IndustryProductionYear } from "./Industry/IndustryProduction/IndustryProductionYear/IndustryProductionYear";
 export { default as IndustryProductionCity } from "./Industry/IndustryProduction/IndustryProductionCity/IndustryProductionCity";
 export { default as IndustryProductionPeriodOfCity } from "./Industry/IndustryProduction/IndustryProductionPeriodOfCity/IndustryProductionPeriodOfCity";
+
+export { default as AfforestationYear } from "./Forest/Afforestation/AfforestationYear/AfforestationYear";
+export { default as AfforestationCity } from "./Forest/Afforestation/AfforestationCity/AfforestationCity";
+export { default as AfforestationPeriodOfCity } from "./Forest/Afforestation/AfforestationPeriodOfCity/AfforestationPeriodOfCity";

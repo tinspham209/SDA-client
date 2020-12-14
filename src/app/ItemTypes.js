@@ -12,6 +12,13 @@ export const RAINFALL = "rainfall";
 export const INDUSTRY = "industry";
 export const INDUSTRY_PRODUCTION = "industry";
 
+export const POPULATION = "population";
+export const POPULATION_PRODUCTION = "population";
+
+export const FOREST = "forest";
+export const FOREST_COVER_AREA = "";
+export const AFFORESTATION = "afforestation";
+
 export const VISUALIZATION = "visualization";
 export const CHART = "chart";
 export const COLUMN = "column";

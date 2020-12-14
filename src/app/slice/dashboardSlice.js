@@ -15,10 +15,10 @@ const dashboard = createSlice({
 		toolbar: {
 			isOpen: {
 				climate: {
-					isOpen: true,
+					isOpen: false,
 					children: {
 						temperature: false,
-						humidity: true,
+						humidity: false,
 						rainfall: false,
 					},
 				},
@@ -35,13 +35,13 @@ const dashboard = createSlice({
 					},
 				},
 				forest: {
-					isOpen: false,
+					isOpen: true,
 					children: {
-						afforestation: false,
+						afforestation: true,
 					},
 				},
 				operators: {
-					isOpen: true,
+					isOpen: false,
 				},
 				visualization: {
 					isOpen: true,

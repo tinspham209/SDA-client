@@ -59,7 +59,22 @@ const WidgetTable = ({ id, data, inputs, outputs }) => {
 		useSelector((state) => state.dashboard.mashupContent.periodOfCity.toYear),
 	];
 
+	const itemIsSelectCity = useSelector(
+		(state) => state.dashboard.mashupContent.itemIsSelectCity
+	);
+	const itemIsSelectYear = useSelector(
+		(state) => state.dashboard.mashupContent.itemIsSelectYear
+	);
+
 	const handleOnClick = () => {
+		const idArray = itemIsSelectCity[0].split("-");
+		const dataCube = idArray[0];
+		const dataSet = idArray[1];
+		const filter = idArray[2];
+		const city = idArray[3];
+	};
+
+	const handleOnClick1 = () => {
 		let action;
 
 		const idArray = itemIsSelects[0].split("-");

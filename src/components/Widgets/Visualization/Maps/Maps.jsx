@@ -16,7 +16,9 @@ import {
 	setTitleMaps,
 } from "../../../../app/slice/dashboardSlice";
 import {
+	AFFORESTATION,
 	CLIMATE,
+	FOREST,
 	HUMIDITY,
 	INDUSTRY,
 	INDUSTRY_PRODUCTION,
@@ -24,6 +26,7 @@ import {
 	TEMPERATURE,
 } from "../../../../app/ItemTypes";
 import {
+	getAfforestationByYear,
 	getDataCityInYear,
 	getHumidityByYear,
 	getIndustryByYear,
@@ -331,167 +334,51 @@ const WidgetMaps = ({ id, data, inputs, outputs }) => {
 						dispatch(action);
 					});
 				}
+			} else if (dataCube === FOREST) {
+				if (dataSet === AFFORESTATION) {
+					const fetchAfforestationByYear = async (year) => {
+						return await getAfforestationByYear(year).then((items) =>
+							items.results.bindings.map((item) => {
+								let city = item.city.value;
+								if (city === "Tây Nguyên") {
+									city = "Lâm Đồng";
+								}
+
+								const cityId = vn.find((item) => {
+									return city === item.name;
+								});
+								const id = cityId.id;
+								const value = Number(item.value.value).toPrecision();
+								const object = [id, value];
+								dataMaps.push(object);
+								return null;
+							})
+						);
+					};
+					fetchAfforestationByYear(year).then(() => {
+						const nameTitle = `Afforestation of VN ${year}`;
+						action = setTitleMaps(nameTitle);
+						dispatch(action);
+
+						const dataClasses = [
+							{
+								to: 10,
+							},
+							{ from: 10, to: 50 },
+							{ from: 50, to: 100 },
+							{ from: 100, to: 150 },
+							{ from: 150, to: 200 },
+							{ from: 200 },
+						];
+						action = setColorRange(dataClasses);
+						dispatch(action);
+
+						action = setMapsData(dataMaps);
+						dispatch(action);
+					});
+				}
 			}
 		}
-
-		// } else if (itemIsSelect[0].split("-")[0] === INDUSTRY_PRODUCTION) {
-		// 	if (itemIsSelect[0].split("-")[1] === "year") {
-		// 		const year = itemIsSelect[0].split("-")[2];
-		// 		const nameTitle = `Industry of VN ${year}`;
-		// 		action = setTitleMaps(nameTitle);
-		// 		dispatch(action);
-		// 		const dataClasses = [
-		// 			{
-		// 				to: 80,
-		// 			},
-		// 			{ from: 80, to: 100 },
-		// 			{ from: 100, to: 110 },
-		// 			{ from: 110, to: 120 },
-		// 			{ from: 120, to: 130 },
-		// 			{ from: 130 },
-		// 		];
-		// 		action = setColorRange(dataClasses);
-		// 		dispatch(action);
-
-		// 		const fetchAPI = async () => {
-		// 			Promise.all([await getIndustryByYear(year)])
-		// 				.then((values) => {
-		// 					values[0].results.bindings.map((item) => {
-		// 						let city = item.city.value;
-		// 						const cityId = vn.find((item) => {
-		// 							return city === item.name;
-		// 						});
-		// 						const id = cityId.id;
-		// 						const value = Number(item.value.value).toPrecision();
-		// 						const object = [id, value];
-		// 						dataMaps.push(object);
-		// 						return null;
-		// 					});
-		// 					action = setMapsData(dataMaps);
-		// 					dispatch(action);
-		// 				})
-		// 				.catch((error) => console.log("error: ", error));
-		// 		};
-		// 		fetchAPI();
-		// 	}
-		// } else if (itemIsSelect[0].split("-")[0] === CLIMATE_TEMPERATURE) {
-		// 	if (itemIsSelect[0].split("-")[1] === "year") {
-		// 		const year = itemIsSelect[0].split("-")[2];
-		// 		const nameTitle = `Temperature of VN ${year}`;
-		// 		action = setTitleMaps(nameTitle);
-		// 		dispatch(action);
-		// 		const dataClasses = [
-		// 			{
-		// 				to: 18,
-		// 			},
-		// 			{ from: 18, to: 22 },
-		// 			{ from: 22, to: 25 },
-		// 			{ from: 25, to: 28 },
-		// 			{ from: 28 },
-		// 		];
-		// 		action = setColorRange(dataClasses);
-		// 		dispatch(action);
-
-		// 		const fetchAPI = async () => {
-		// 			Promise.all([await getTemperatureByYear(year)])
-		// 				.then((values) => {
-		// 					values[0].results.bindings.map((item) => {
-		// 						let city = item.city.value;
-
-		// 						if (city === "Bãi Cháy") {
-		// 							city = "Quảng Ninh";
-		// 						} else if (city === "Đà Lạt") {
-		// 							city = "Lâm Đồng";
-		// 						} else if (city === "Huế") {
-		// 							city = "Thừa Thiên Huế";
-		// 						} else if (city === "Nha Trang") {
-		// 							city = "Khánh Hoà";
-		// 						} else if (city === "Pleiku") {
-		// 							city = "Gia Lai";
-		// 						} else if (city === "Qui Nhơn") {
-		// 							city = "Bình Định";
-		// 						} else if (city === "Vinh") {
-		// 							city = "Nghệ An";
-		// 						} else if (city === "Vũng Tàu") {
-		// 							city = "Bà Rịa - Vũng Tàu";
-		// 						}
-
-		// 						const cityId = vn.find((item) => {
-		// 							return city === item.name;
-		// 						});
-		// 						const id = cityId.id;
-		// 						const value = Number(item.value.value).toPrecision();
-		// 						const object = [id, value];
-		// 						dataMaps.push(object);
-		// 						return null;
-		// 					});
-
-		// 					action = setMapsData(dataMaps);
-		// 					dispatch(action);
-		// 				})
-		// 				.catch((error) => console.log("error: ", error));
-		// 		};
-		// 		fetchAPI();
-		// 	}
-		// } else if (itemIsSelect[0].split("-")[0] === CLIMATE_RAINFALL) {
-		// 	if (itemIsSelect[0].split("-")[1] === "year") {
-		// 		const year = itemIsSelect[0].split("-")[2];
-		// 		const nameTitle = `Rainfall of VN ${year}`;
-		// 		action = setTitleMaps(nameTitle);
-		// 		dispatch(action);
-
-		// 		const dataClasses = [
-		// 			{
-		// 				to: 1000,
-		// 			},
-		// 			{ from: 1000, to: 1500 },
-		// 			{ from: 1500, to: 2000 },
-		// 			{ from: 2000, to: 2800 },
-		// 			{ from: 2800 },
-		// 		];
-		// 		action = setColorRange(dataClasses);
-		// 		dispatch(action);
-
-		// 		const fetchAPI = async () => {
-		// 			Promise.all([await getRainfallByYear(year)])
-		// 				.then((values) => {
-		// 					values[0].results.bindings.map((item) => {
-		// 						let city = item.city.value;
-
-		// 						if (city === "Bãi Cháy") {
-		// 							city = "Quảng Ninh";
-		// 						} else if (city === "Đà Lạt") {
-		// 							city = "Lâm Đồng";
-		// 						} else if (city === "Huế") {
-		// 							city = "Thừa Thiên Huế";
-		// 						} else if (city === "Nha Trang") {
-		// 							city = "Khánh Hoà";
-		// 						} else if (city === "Pleiku") {
-		// 							city = "Gia Lai";
-		// 						} else if (city === "Qui Nhơn") {
-		// 							city = "Bình Định";
-		// 						} else if (city === "Vinh") {
-		// 							city = "Nghệ An";
-		// 						} else if (city === "Vũng Tàu") {
-		// 							city = "Bà Rịa - Vũng Tàu";
-		// 						}
-
-		// 						const cityId = vn.find((item) => {
-		// 							return city === item.name;
-		// 						});
-		// 						const id = cityId.id;
-		// 						const value = Number(item.value.value).toPrecision();
-		// 						const object = [id, value];
-		// 						dataMaps.push(object);
-		// 						return null;
-		// 					});
-		// 					action = setMapsData(dataMaps);
-		// 					dispatch(action);
-		// 				})
-		// 				.catch((error) => console.log("error: ", error));
-		// 		};
-		// 		fetchAPI();
-		// 	}
 	};
 
 	const handleQuestionButton = (id) => {

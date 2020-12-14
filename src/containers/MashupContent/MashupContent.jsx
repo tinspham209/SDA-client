@@ -27,6 +27,8 @@ import {
 	LINE_THREE_AXIS,
 	INDUSTRY,
 	INDUSTRY_PRODUCTION,
+	FOREST,
+	AFFORESTATION,
 } from "../../app/ItemTypes";
 
 import {
@@ -49,6 +51,9 @@ import {
 	IndustryProductionYear,
 	IndustryProductionCity,
 	IndustryProductionPeriodOfCity,
+	AfforestationYear,
+	AfforestationCity,
+	AfforestationPeriodOfCity,
 } from "../../components/Widgets";
 import {
 	removeIdNode,
@@ -154,6 +159,17 @@ const MashupContent = () => {
 						return IndustryProductionCity;
 					} else if (filter === PERIOD_OF_CITY) {
 						return IndustryProductionPeriodOfCity;
+					}
+				}
+				break;
+			case FOREST:
+				if (dataSet === AFFORESTATION) {
+					if (filter === YEAR) {
+						return AfforestationYear;
+					} else if (filter === CITY) {
+						return AfforestationCity;
+					} else if (filter === PERIOD_OF_CITY) {
+						return AfforestationPeriodOfCity;
 					}
 				}
 				break;
