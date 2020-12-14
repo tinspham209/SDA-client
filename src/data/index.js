@@ -232,7 +232,7 @@ export const listItems = [
 				input: true,
 				output: false,
 				button: true,
-				disabled: false,
+				disabled: true,
 			},
 			{
 				id: "chart",
