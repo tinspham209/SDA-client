@@ -10,16 +10,16 @@ const LinechartThreeAxis = () => {
 	const classes = useStyles();
 
 	const lineSeries = useSelector(
-		(state) => state.dashboard.viz.threeTwoAxis.data
+		(state) => state.dashboard.viz.lineThreeAxis.data
 	);
 	const lineTitle = useSelector(
-		(state) => state.dashboard.viz.threeTwoAxis.title
+		(state) => state.dashboard.viz.lineThreeAxis.title
 	);
 	const lineYAxis = useSelector(
-		(state) => state.dashboard.viz.threeTwoAxis.yAxis
+		(state) => state.dashboard.viz.lineThreeAxis.yAxis
 	);
 	const lineCategories = useSelector(
-		(state) => state.dashboard.viz.threeTwoAxis.categories
+		(state) => state.dashboard.viz.lineThreeAxis.categories
 	);
 
 	// eslint-disable-next-line

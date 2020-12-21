@@ -1,4 +1,5 @@
 import axios from "axios";
+import { FOREST_COVER_AREA } from "../app/ItemTypes";
 
 const url = `http://server.sda-research.ml`;
 
@@ -23,6 +24,10 @@ const url = `http://server.sda-research.ml`;
 // - /forest/afforestation/year/:yearid;
 // - /forest/afforestation/city/:cityid/year/:yearid;
 
+// - /forest/forestcover/city/:cityid;
+// - /forest/forestcover/year/:yearid;
+// - /forest/forestcover/city/:cityid/year/:yearid;
+
 // - /population/population/city/:cityid;
 // - /population/population/year/:yearid;
 // - /population/population/city/:cityid/year/:yearid;
@@ -35,6 +40,9 @@ const url = `http://server.sda-research.ml`;
 //   - /merge/dc1/dcclimate/dc2/dcindustry/dc3/dcforest/s1/rainfall/s2/industry/s3/forestcover/city/danang/fyear/2012/tyear/2018
 
 export const getDataCityInYear = async (dataCube, dataSet, city, year) => {
+	if (dataSet === FOREST_COVER_AREA) {
+		dataSet = "forestcover";
+	}
 	console.log("url", `${url}/${dataCube}/${dataSet}/city/${city}/year/${year}`);
 	try {
 		const data = axios.get(
@@ -57,6 +65,15 @@ export const getDataMergeThreeWidgetPeriodOfCity = async (
 	fYear,
 	tYear
 ) => {
+	if (dataSet1 === FOREST_COVER_AREA) {
+		dataSet1 = "forestcover";
+	}
+	if (dataSet2 === FOREST_COVER_AREA) {
+		dataSet2 = "forestcover";
+	}
+	if (dataSet3 === FOREST_COVER_AREA) {
+		dataSet3 = "forestcover";
+	}
 	try {
 		const { data } = await axios.get(
 			`${url}/merge/dc1/dc${dataCube1}/dc2/dc${dataCube2}/dc3/dc${dataCube3}/s1/${dataSet1}/s2/${dataSet2}/s3/${dataSet3}/city/${city}/fyear/${fYear}/tyear/${tYear}`
@@ -78,6 +95,13 @@ export const getDataMergeTwoWidgetPeriodOfCity = async (
 	tYear
 ) => {
 	try {
+		if (dataSet1 === FOREST_COVER_AREA) {
+			dataSet1 = "forestcover";
+		}
+		if (dataSet2 === FOREST_COVER_AREA) {
+			dataSet2 = "forestcover";
+		}
+
 		console.log(
 			"url",
 			`${url}/merge/dc1/dc${dataCube1}/dc2/dc${dataCube2}/s1/${dataSet1}/s2/${dataSet2}/city/${city}/fyear/${fYear}/tyear/${tYear}`
@@ -152,6 +176,18 @@ export const getAfforestationByPeriodOfCity = async (city, fYear, tYear) => {
 	}
 };
 
+export const getForestCoverAreaByPeriodOfCity = async (city, fYear, tYear) => {
+	try {
+		const { data } = await axios.get(
+			`${url}/forest/forestcover/city/${city}/fYear/${fYear}/tYear/${tYear}`
+		);
+
+		return data;
+	} catch (error) {
+		console.log("error: ", error);
+	}
+};
+
 export const getPopulationByPeriodOfCity = async (city, fYear, tYear) => {
 	try {
 		const { data } = await axios.get(
@@ -216,6 +252,16 @@ export const getAfforestationByYear = async (year) => {
 	}
 };
 
+export const getForestCoverAreaByYear = async (year) => {
+	try {
+		const { data } = await axios.get(`${url}/forest/forestcover/year/${year}`);
+
+		return data;
+	} catch (error) {
+		console.log("error: ", error);
+	}
+};
+
 export const getPopulationByYear = async (year) => {
 	try {
 		const { data } = await axios.get(
@@ -273,6 +319,16 @@ export const getAfforestationByCity = async (city) => {
 		const { data } = await axios.get(
 			`${url}/forest/afforestation/city/${city}`
 		);
+
+		return data;
+	} catch (error) {
+		console.log("error: ", error);
+	}
+};
+
+export const getForestCoverAreaByCity = async (city) => {
+	try {
+		const { data } = await axios.get(`${url}/forest/forestcover/city/${city}`);
 
 		return data;
 	} catch (error) {

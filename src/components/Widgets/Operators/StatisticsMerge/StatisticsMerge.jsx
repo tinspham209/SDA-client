@@ -22,6 +22,7 @@ import {
 } from "../../../../api";
 import {
 	AFFORESTATION,
+	FOREST_COVER_AREA,
 	HUMIDITY,
 	INDUSTRY_PRODUCTION,
 	OPERATORS,
@@ -56,7 +57,10 @@ const StatisticsMerge = ({ id, data, inputs, outputs }) => {
 				unit = "k";
 				break;
 			case AFFORESTATION:
-				unit = "1000/km²";
+				unit = "1000km²";
+				break;
+			case FOREST_COVER_AREA:
+				unit = "1000km²";
 				break;
 			default:
 				unit = "";
@@ -166,7 +170,7 @@ const StatisticsMerge = ({ id, data, inputs, outputs }) => {
 							yAxisObject.push(yAxisData);
 
 							let type = "";
-							if (name === RAINFALL) {
+							if (name === RAINFALL || name === INDUSTRY_PRODUCTION) {
 								type = "column";
 							} else {
 								type = "spline";
@@ -289,7 +293,7 @@ const StatisticsMerge = ({ id, data, inputs, outputs }) => {
 							yAxisObject.push(yAxisData);
 
 							let type = "";
-							if (name === RAINFALL) {
+							if (name === RAINFALL || name === INDUSTRY_PRODUCTION) {
 								type = "column";
 							} else {
 								type = "spline";

@@ -31,6 +31,7 @@ import {
 	AFFORESTATION,
 	POPULATION,
 	POPULATION_PRODUCTION,
+	FOREST_COVER_AREA,
 } from "../../app/ItemTypes";
 
 import {
@@ -59,6 +60,9 @@ import {
 	PopulationYear,
 	PopulationCity,
 	PopulationPeriodOfCity,
+	ForestCoverAreaYear,
+	ForestCoverAreaCity,
+	ForestCoverAreaPeriodOfCity,
 } from "../../components/Widgets";
 import {
 	removeIdNode,
@@ -175,6 +179,14 @@ const MashupContent = () => {
 						return AfforestationCity;
 					} else if (filter === PERIOD_OF_CITY) {
 						return AfforestationPeriodOfCity;
+					}
+				} else if (dataSet === FOREST_COVER_AREA) {
+					if (filter === YEAR) {
+						return ForestCoverAreaYear;
+					} else if (filter === CITY) {
+						return ForestCoverAreaCity;
+					} else if (filter === PERIOD_OF_CITY) {
+						return ForestCoverAreaPeriodOfCity;
 					}
 				}
 				break;

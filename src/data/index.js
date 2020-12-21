@@ -176,6 +176,29 @@ export const listItems = [
 				id: "forestCoverArea",
 				name: "Forest Cover Area",
 				disabled: false,
+				children: [
+					{
+						id: "year",
+						name: "Filter by Year",
+						input: false,
+						output: true,
+						disabled: false,
+					},
+					{
+						id: "city",
+						name: "Filer by City",
+						input: false,
+						output: true,
+						disabled: false,
+					},
+					{
+						id: "periodOfCity",
+						name: "Filter by period of city",
+						input: false,
+						output: true,
+						disabled: false,
+					},
+				],
 			},
 			{
 				id: "afforestation",
@@ -885,6 +908,77 @@ export const widgetInfos = {
 				},
 			],
 		},
+		forestCoverArea: {
+			year: [
+				{
+					id: "Name",
+					info: "Forest Cover Area",
+				},
+				{
+					id: "Description",
+					info:
+						"Get Forest Cover Area data of Vietnam's provinces in a specific year. Combine with Maps to view results",
+				},
+				{
+					id: "Input",
+					info: "No",
+				},
+				{
+					id: "Output",
+					info: "json",
+				},
+				{
+					id: "Connect",
+					info: "Maps, Table",
+				},
+			],
+			city: [
+				{
+					id: "Name",
+					info: "Forest Cover Area",
+				},
+				{
+					id: "Description",
+					info:
+						"Get Forest Cover Area data of a specific city from 2012 to 2019. Combine with Charts to view results",
+				},
+				{
+					id: "Input",
+					info: "No",
+				},
+				{
+					id: "Output",
+					info: "json",
+				},
+				{
+					id: "Connect",
+					info: "Line, Column chart, Table",
+				},
+			],
+			periodOfCity: [
+				{
+					id: "Name",
+					info: "Forest Cover Area",
+				},
+				{
+					id: "Description",
+					info:
+						"Get Forest Cover Area data of a specific city in the a years range. Combine with Charts to view results",
+				},
+				{
+					id: "Input",
+					info: "No",
+				},
+				{
+					id: "Output",
+					info: "json",
+				},
+				{
+					id: "Connect",
+					info: "Line, Column chart, Table",
+				},
+			],
+		},
 	},
 	operators: {
 		statisticsMerge: [
@@ -1560,6 +1654,283 @@ export const treeAfforestation = {
 				id: "2015",
 				name: "2015",
 			},
+			{
+				id: "2016",
+				name: "2016",
+			},
+			{
+				id: "2017",
+				name: "2017",
+			},
+			{
+				id: "2018",
+				name: "2018",
+			},
+			{
+				id: "2019",
+				name: "2019",
+			},
+		],
+	},
+	city: {
+		id: "city",
+		name: "City",
+		children: [
+			{
+				id: "angiang",
+				name: "An Giang",
+			},
+			{
+				id: "bacgiang",
+				name: "Bắc Giang",
+			},
+			{
+				id: "backan",
+				name: "Bắc Kạn",
+			},
+			{
+				id: "baclieu",
+				name: "Bạc Liêu",
+			},
+			{
+				id: "bacninh",
+				name: "Bắc Ninh",
+			},
+			{
+				id: "bariavungtau",
+				name: "Bà Rịa - Vũng Tàu",
+			},
+			{
+				id: "bentre",
+				name: "Bến Tre",
+			},
+			{
+				id: "binhdinh",
+				name: "Bình Định",
+			},
+			{
+				id: "binhduong",
+				name: "Bình Dương",
+			},
+			{
+				id: "binhphuoc",
+				name: "Bình Phước",
+			},
+			{
+				id: "binhthuan",
+				name: "Bình Thuận",
+			},
+			{
+				id: "camau",
+				name: "Cà Mau",
+			},
+			{
+				id: "caobang",
+				name: "Cao Bằng",
+			},
+			{
+				id: "daklak",
+				name: "Đắk Lắk",
+			},
+			{
+				id: "daknong",
+				name: "Đắk Nông",
+			},
+			{
+				id: "danang",
+				name: "Đà Nẵng",
+			},
+			{
+				id: "dienbien",
+				name: "Điện Biên",
+			},
+			{
+				id: "dongnai",
+				name: "Đồng Nai",
+			},
+			{
+				id: "dongthap",
+				name: "Đồng Tháp",
+			},
+			{
+				id: "gialai",
+				name: "Gia Lai",
+			},
+			{
+				id: "hagiang",
+				name: "Hà Giang",
+			},
+			{
+				id: "haiduong",
+				name: "Hải Dương",
+			},
+			{
+				id: "haiphong",
+				name: "Hải Phòng",
+			},
+			{
+				id: "hanam",
+				name: "Hà Nam",
+			},
+			{
+				id: "hanoi",
+				name: "Hà Nội",
+			},
+			{
+				id: "hatinh",
+				name: "Hà Tĩnh",
+			},
+			{
+				id: "haugiang",
+				name: "Hậu Giang",
+			},
+			{
+				id: "hoabinh",
+				name: "Hoà Bình",
+			},
+			{
+				id: "khanhhoa",
+				name: "Khánh Hoà",
+			},
+			{
+				id: "kiengiang",
+				name: "Kiên Giang",
+			},
+			{
+				id: "kontum",
+				name: "Kon Tum",
+			},
+			{
+				id: "laichau",
+				name: "Lai Châu",
+			},
+			{
+				id: "lamdong",
+				name: "Lâm Đồng",
+			},
+			{
+				id: "langson",
+				name: "Lạng Sơn",
+			},
+			{
+				id: "laocai",
+				name: "Lào Cai",
+			},
+			{
+				id: "longan",
+				name: "Long An",
+			},
+			{
+				id: "namdinh",
+				name: "Nam Định",
+			},
+			{
+				id: "nghean",
+				name: "Nghệ An",
+			},
+			{
+				id: "ninhbinh",
+				name: "Ninh Bình",
+			},
+			{
+				id: "ninhthuan",
+				name: "Ninh Thuận",
+			},
+			{
+				id: "phutho",
+				name: "Phú Thọ",
+			},
+			{
+				id: "phuyen",
+				name: "Phú Yên",
+			},
+			{
+				id: "quangbinh",
+				name: "Quảng Bình",
+			},
+			{
+				id: "quangnam",
+				name: "Quảng Nam",
+			},
+			{
+				id: "quangngai",
+				name: "Quảng Ngãi",
+			},
+			{
+				id: "quangninh",
+				name: "Quảng Ninh",
+			},
+			{
+				id: "quangtri",
+				name: "Quảng Trị",
+			},
+			{
+				id: "soctrang",
+				name: "Sóc Trăng",
+			},
+			{
+				id: "sonla",
+				name: "Sơn La",
+			},
+			{
+				id: "taynguyen",
+				name: "Tây Nguyên",
+			},
+			{
+				id: "tayninh",
+				name: "Tây Ninh",
+			},
+			{
+				id: "thaibinh",
+				name: "Thái Bình",
+			},
+			{
+				id: "thainguyen",
+				name: "Thái Nguyên",
+			},
+			{
+				id: "thanhhoa",
+				name: "Thanh Hoá",
+			},
+			{
+				id: "thuathienhue",
+				name: "Thừa Thiên Huế",
+			},
+			{
+				id: "tiengiang",
+				name: "Tiền Giang",
+			},
+			{
+				id: "tphochiminh",
+				name: "TP.Hồ Chí Minh",
+			},
+			{
+				id: "travinh",
+				name: "Trà Vinh",
+			},
+			{
+				id: "tuyenquang",
+				name: "Tuyên Quang",
+			},
+			{
+				id: "vinhphuc",
+				name: "Vĩnh Phúc",
+			},
+			{
+				id: "yenbai",
+				name: "Yên Bái",
+			},
+		],
+	},
+};
+
+export const treeForestCoverArea = {
+	name: "Forest Cover Area",
+	id: "forest-forestCoverArea",
+	year: {
+		id: "year",
+		name: "Year",
+		children: [
 			{
 				id: "2016",
 				name: "2016",

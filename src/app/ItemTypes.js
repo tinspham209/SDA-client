@@ -16,7 +16,7 @@ export const POPULATION = "population";
 export const POPULATION_PRODUCTION = "population";
 
 export const FOREST = "forest";
-export const FOREST_COVER_AREA = "";
+export const FOREST_COVER_AREA = "forestCoverArea";
 export const AFFORESTATION = "afforestation";
 
 export const VISUALIZATION = "visualization";

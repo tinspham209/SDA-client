@@ -27,6 +27,10 @@ export { default as AfforestationYear } from "./Forest/Afforestation/Afforestati
 export { default as AfforestationCity } from "./Forest/Afforestation/AfforestationCity/AfforestationCity";
 export { default as AfforestationPeriodOfCity } from "./Forest/Afforestation/AfforestationPeriodOfCity/AfforestationPeriodOfCity";
 
+export { default as ForestCoverAreaYear } from "./Forest/ForestCoverArea/ForestCoverAreaYear/ForestCoverAreaYear";
+export { default as ForestCoverAreaCity } from "./Forest/ForestCoverArea/ForestCoverAreaCity/ForestCoverAreaCity";
+export { default as ForestCoverAreaPeriodOfCity } from "./Forest/ForestCoverArea/ForestCoverAreaPeriodOfCity/ForestCoverAreaPeriodOfCity";
+
 export { default as PopulationYear } from "./Population/Population/PopulationYear/PopulationYear";
 export { default as PopulationCity } from "./Population/Population/PopulationCity/PopulationCity";
 export { default as PopulationPeriodOfCity } from "./Population/Population/PopulationPeriodOfCity/PopulationPeriodOfCity";

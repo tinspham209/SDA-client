@@ -26,9 +26,9 @@ const dashboard = createSlice({
 					isOpen: false,
 				},
 				population: {
-					isOpen: true,
+					isOpen: false,
 					children: {
-						population: true,
+						population: false,
 					},
 				},
 				industry: {
@@ -38,9 +38,10 @@ const dashboard = createSlice({
 					},
 				},
 				forest: {
-					isOpen: false,
+					isOpen: true,
 					children: {
 						afforestation: false,
+						forestCoverArea: true,
 					},
 				},
 				operators: {

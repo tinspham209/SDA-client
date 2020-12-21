@@ -19,6 +19,7 @@ import {
 	AFFORESTATION,
 	CLIMATE,
 	FOREST,
+	FOREST_COVER_AREA,
 	HUMIDITY,
 	INDUSTRY,
 	INDUSTRY_PRODUCTION,
@@ -30,6 +31,7 @@ import {
 import {
 	getAfforestationByYear,
 	getDataCityInYear,
+	getForestCoverAreaByYear,
 	getHumidityByYear,
 	getIndustryByYear,
 	getPopulationByYear,
@@ -109,29 +111,31 @@ const WidgetMaps = ({ id, data, inputs, outputs }) => {
 				});
 				return Promise.all(requests);
 			};
-			fetchDataCityInYear(dataCube, dataSet, cities, year).then(() => {
-				const capitalizeFirstLetter = (string) => {
-					return string.charAt(0).toUpperCase() + string.slice(1);
-				};
-				const nameTitle = `${capitalizeFirstLetter(dataCube)} in ${year}`;
-				action = setTitleMaps(nameTitle);
-				dispatch(action);
+			fetchDataCityInYear(dataCube, dataSet, cities, year)
+				.then(() => {
+					const capitalizeFirstLetter = (string) => {
+						return string.charAt(0).toUpperCase() + string.slice(1);
+					};
+					const nameTitle = `${capitalizeFirstLetter(dataCube)} in ${year}`;
+					action = setTitleMaps(nameTitle);
+					dispatch(action);
 
-				const dataClasses = [
-					{
-						to: 70,
-					},
-					{ from: 70, to: 75 },
-					{ from: 75, to: 80 },
-					{ from: 80, to: 85 },
-					{ from: 85 },
-				];
-				action = setColorRange(dataClasses);
-				dispatch(action);
-				console.log("dataMapsBefore: ", dataMaps);
-				action = setMapsData(dataMaps);
-				dispatch(action);
-			});
+					const dataClasses = [
+						{
+							to: 70,
+						},
+						{ from: 70, to: 75 },
+						{ from: 75, to: 80 },
+						{ from: 80, to: 85 },
+						{ from: 85 },
+					];
+					action = setColorRange(dataClasses);
+					dispatch(action);
+					console.log("dataMapsBefore: ", dataMaps);
+					action = setMapsData(dataMaps);
+					dispatch(action);
+				})
+				.catch((error) => console.log("error: ", error));
 		} else {
 			if (dataCube === CLIMATE) {
 				if (dataSet === HUMIDITY) {
@@ -168,26 +172,28 @@ const WidgetMaps = ({ id, data, inputs, outputs }) => {
 							})
 						);
 					};
-					fetchHumidityByYear(year).then(() => {
-						const nameTitle = `Humidity of VN ${year}`;
-						action = setTitleMaps(nameTitle);
-						dispatch(action);
+					fetchHumidityByYear(year)
+						.then(() => {
+							const nameTitle = `Humidity of VN ${year}`;
+							action = setTitleMaps(nameTitle);
+							dispatch(action);
 
-						const dataClasses = [
-							{
-								to: 70,
-							},
-							{ from: 70, to: 75 },
-							{ from: 75, to: 80 },
-							{ from: 80, to: 85 },
-							{ from: 85 },
-						];
-						action = setColorRange(dataClasses);
-						dispatch(action);
+							const dataClasses = [
+								{
+									to: 70,
+								},
+								{ from: 70, to: 75 },
+								{ from: 75, to: 80 },
+								{ from: 80, to: 85 },
+								{ from: 85 },
+							];
+							action = setColorRange(dataClasses);
+							dispatch(action);
 
-						action = setMapsData(dataMaps);
-						dispatch(action);
-					});
+							action = setMapsData(dataMaps);
+							dispatch(action);
+						})
+						.catch((error) => console.log("error: ", error));
 				} else if (dataSet === TEMPERATURE) {
 					const fetchTemperatureByYear = async (year) => {
 						return await getTemperatureByYear(year).then((items) =>
@@ -222,26 +228,28 @@ const WidgetMaps = ({ id, data, inputs, outputs }) => {
 							})
 						);
 					};
-					fetchTemperatureByYear(year).then(() => {
-						const nameTitle = `Temperature of VN ${year}`;
-						action = setTitleMaps(nameTitle);
-						dispatch(action);
+					fetchTemperatureByYear(year)
+						.then(() => {
+							const nameTitle = `Temperature of VN ${year}`;
+							action = setTitleMaps(nameTitle);
+							dispatch(action);
 
-						const dataClasses = [
-							{
-								to: 18,
-							},
-							{ from: 18, to: 22 },
-							{ from: 22, to: 25 },
-							{ from: 25, to: 28 },
-							{ from: 28 },
-						];
-						action = setColorRange(dataClasses);
-						dispatch(action);
+							const dataClasses = [
+								{
+									to: 18,
+								},
+								{ from: 18, to: 22 },
+								{ from: 22, to: 25 },
+								{ from: 25, to: 28 },
+								{ from: 28 },
+							];
+							action = setColorRange(dataClasses);
+							dispatch(action);
 
-						action = setMapsData(dataMaps);
-						dispatch(action);
-					});
+							action = setMapsData(dataMaps);
+							dispatch(action);
+						})
+						.catch((error) => console.log("error: ", error));
 				} else if (dataSet === RAINFALL) {
 					const fetchRainfallByYear = async (year) => {
 						return await getRainfallByYear(year).then((items) =>
@@ -276,26 +284,28 @@ const WidgetMaps = ({ id, data, inputs, outputs }) => {
 							})
 						);
 					};
-					fetchRainfallByYear(year).then(() => {
-						const nameTitle = `Rainfall of VN ${year}`;
-						action = setTitleMaps(nameTitle);
-						dispatch(action);
+					fetchRainfallByYear(year)
+						.then(() => {
+							const nameTitle = `Rainfall of VN ${year}`;
+							action = setTitleMaps(nameTitle);
+							dispatch(action);
 
-						const dataClasses = [
-							{
-								to: 1000,
-							},
-							{ from: 1000, to: 1500 },
-							{ from: 1500, to: 2000 },
-							{ from: 2000, to: 2800 },
-							{ from: 2800 },
-						];
-						action = setColorRange(dataClasses);
-						dispatch(action);
+							const dataClasses = [
+								{
+									to: 1000,
+								},
+								{ from: 1000, to: 1500 },
+								{ from: 1500, to: 2000 },
+								{ from: 2000, to: 2800 },
+								{ from: 2800 },
+							];
+							action = setColorRange(dataClasses);
+							dispatch(action);
 
-						action = setMapsData(dataMaps);
-						dispatch(action);
-					});
+							action = setMapsData(dataMaps);
+							dispatch(action);
+						})
+						.catch((error) => console.log("error: ", error));
 				}
 			} else if (dataCube === INDUSTRY) {
 				if (dataSet === INDUSTRY_PRODUCTION) {
@@ -315,27 +325,29 @@ const WidgetMaps = ({ id, data, inputs, outputs }) => {
 							})
 						);
 					};
-					fetchIndustryByYear(year).then(() => {
-						const nameTitle = `Industry of VN ${year}`;
-						action = setTitleMaps(nameTitle);
-						dispatch(action);
+					fetchIndustryByYear(year)
+						.then(() => {
+							const nameTitle = `Industry of VN ${year}`;
+							action = setTitleMaps(nameTitle);
+							dispatch(action);
 
-						const dataClasses = [
-							{
-								to: 80,
-							},
-							{ from: 80, to: 100 },
-							{ from: 100, to: 110 },
-							{ from: 110, to: 120 },
-							{ from: 120, to: 130 },
-							{ from: 130 },
-						];
-						action = setColorRange(dataClasses);
-						dispatch(action);
+							const dataClasses = [
+								{
+									to: 80,
+								},
+								{ from: 80, to: 100 },
+								{ from: 100, to: 110 },
+								{ from: 110, to: 120 },
+								{ from: 120, to: 130 },
+								{ from: 130 },
+							];
+							action = setColorRange(dataClasses);
+							dispatch(action);
 
-						action = setMapsData(dataMaps);
-						dispatch(action);
-					});
+							action = setMapsData(dataMaps);
+							dispatch(action);
+						})
+						.catch((error) => console.log("error: ", error));
 				}
 			} else if (dataCube === FOREST) {
 				if (dataSet === AFFORESTATION) {
@@ -358,27 +370,72 @@ const WidgetMaps = ({ id, data, inputs, outputs }) => {
 							})
 						);
 					};
-					fetchAfforestationByYear(year).then(() => {
-						const nameTitle = `Afforestation of VN ${year}`;
-						action = setTitleMaps(nameTitle);
-						dispatch(action);
+					fetchAfforestationByYear(year)
+						.then(() => {
+							const nameTitle = `Afforestation of VN ${year}`;
+							action = setTitleMaps(nameTitle);
+							dispatch(action);
 
-						const dataClasses = [
-							{
-								to: 10,
-							},
-							{ from: 10, to: 50 },
-							{ from: 50, to: 100 },
-							{ from: 100, to: 150 },
-							{ from: 150, to: 200 },
-							{ from: 200 },
-						];
-						action = setColorRange(dataClasses);
-						dispatch(action);
+							const dataClasses = [
+								{
+									to: 10,
+								},
+								{ from: 10, to: 50 },
+								{ from: 50, to: 100 },
+								{ from: 100, to: 150 },
+								{ from: 150, to: 200 },
+								{ from: 200 },
+							];
+							action = setColorRange(dataClasses);
+							dispatch(action);
 
-						action = setMapsData(dataMaps);
-						dispatch(action);
-					});
+							action = setMapsData(dataMaps);
+							dispatch(action);
+						})
+						.catch((error) => console.log("error: ", error));
+				} else if (dataSet === FOREST_COVER_AREA) {
+					const fetchForestCoverAreaByYear = async (year) => {
+						return await getForestCoverAreaByYear(year).then((items) =>
+							items.results.bindings.map((item) => {
+								let city = item.city.value;
+								if (city === "Tây Nguyên") {
+									city = "Lâm Đồng";
+								}
+
+								const cityId = vn.find((item) => {
+									return city === item.name;
+								});
+								const id = cityId.id;
+								const value = Number(item.value.value).toPrecision();
+								const object = [id, value];
+								dataMaps.push(object);
+								return null;
+							})
+						);
+					};
+					fetchForestCoverAreaByYear(year)
+						.then(() => {
+							const nameTitle = `Forest Cover Area of VN in ${year}`;
+							action = setTitleMaps(nameTitle);
+							dispatch(action);
+
+							const dataClasses = [
+								{
+									to: 100,
+								},
+								{ from: 100, to: 200 },
+								{ from: 200, to: 400 },
+								{ from: 400, to: 500 },
+								{ from: 500, to: 600 },
+								{ from: 600 },
+							];
+							action = setColorRange(dataClasses);
+							dispatch(action);
+
+							action = setMapsData(dataMaps);
+							dispatch(action);
+						})
+						.catch((error) => console.log("error: ", error));
 				}
 			} else if (dataCube === POPULATION) {
 				if (dataSet === POPULATION_PRODUCTION) {
@@ -403,27 +460,29 @@ const WidgetMaps = ({ id, data, inputs, outputs }) => {
 							})
 						);
 					};
-					fetchPopulationByYear(year).then(() => {
-						const nameTitle = `Population of VN ${year} (thousands)`;
-						action = setTitleMaps(nameTitle);
-						dispatch(action);
+					fetchPopulationByYear(year)
+						.then(() => {
+							const nameTitle = `Population of VN ${year} (thousands)`;
+							action = setTitleMaps(nameTitle);
+							dispatch(action);
 
-						const dataClasses = [
-							{
-								to: 400,
-							},
-							{ from: 400, to: 800 },
-							{ from: 800, to: 1200 },
-							{ from: 1200, to: 1600 },
-							{ from: 1600, to: 2000 },
-							{ from: 2000 },
-						];
-						action = setColorRange(dataClasses);
-						dispatch(action);
+							const dataClasses = [
+								{
+									to: 400,
+								},
+								{ from: 400, to: 800 },
+								{ from: 800, to: 1200 },
+								{ from: 1200, to: 1600 },
+								{ from: 1600, to: 2000 },
+								{ from: 2000 },
+							];
+							action = setColorRange(dataClasses);
+							dispatch(action);
 
-						action = setMapsData(dataMaps);
-						dispatch(action);
-					});
+							action = setMapsData(dataMaps);
+							dispatch(action);
+						})
+						.catch((error) => console.log("error: ", error));
 				}
 			}
 		}

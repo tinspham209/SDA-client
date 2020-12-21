@@ -21,6 +21,7 @@ import {
 	CITY,
 	CLIMATE,
 	FOREST,
+	FOREST_COVER_AREA,
 	HUMIDITY,
 	INDUSTRY,
 	INDUSTRY_PRODUCTION,
@@ -34,6 +35,8 @@ import {
 	getAfforestationByCity,
 	getAfforestationByPeriodOfCity,
 	getDataCityInYear,
+	getForestCoverAreaByCity,
+	getForestCoverAreaByPeriodOfCity,
 	getHumidityByCity,
 	getHumidityByPeriodOfCity,
 	getIndustryByCity,
@@ -148,21 +151,23 @@ const WidgetColumnChart = ({ id, data, inputs, outputs }) => {
 				});
 			};
 
-			fetchDataCityInYear(dataCube, dataSet, cities, year).then(() => {
-				const capitalizeFirstLetter = (string) => {
-					return string.charAt(0).toUpperCase() + string.slice(1);
-				};
-				const nameTitle = `${capitalizeFirstLetter(dataCube)} in ${year}`;
+			fetchDataCityInYear(dataCube, dataSet, cities, year)
+				.then(() => {
+					const capitalizeFirstLetter = (string) => {
+						return string.charAt(0).toUpperCase() + string.slice(1);
+					};
+					const nameTitle = `${capitalizeFirstLetter(dataCube)} in ${year}`;
 
-				action = setColumnCategories(categories);
-				dispatch(action);
-				action = setColumnData(series);
-				dispatch(action);
-				action = setColumnTitle(nameTitle);
-				dispatch(action);
-				action = setColumnUnit(getUnit(dataSet));
-				dispatch(action);
-			});
+					action = setColumnCategories(categories);
+					dispatch(action);
+					action = setColumnData(series);
+					dispatch(action);
+					action = setColumnTitle(nameTitle);
+					dispatch(action);
+					action = setColumnUnit(getUnit(dataSet));
+					dispatch(action);
+				})
+				.catch((error) => console.log("error", error));
 		} else {
 			//In City
 
@@ -199,16 +204,18 @@ const WidgetColumnChart = ({ id, data, inputs, outputs }) => {
 							return Promise.all(requests);
 						};
 
-						fetchHumidityByCity(cities).then(() => {
-							action = setColumnCategories(categories);
-							dispatch(action);
-							action = setColumnData(series);
-							dispatch(action);
-							action = setColumnTitle("Yearly Humidity");
-							dispatch(action);
-							action = setColumnUnit("%");
-							dispatch(action);
-						});
+						fetchHumidityByCity(cities)
+							.then(() => {
+								action = setColumnCategories(categories);
+								dispatch(action);
+								action = setColumnData(series);
+								dispatch(action);
+								action = setColumnTitle("Yearly Humidity");
+								dispatch(action);
+								action = setColumnUnit("%");
+								dispatch(action);
+							})
+							.catch((error) => console.log("error", error));
 					} else if (filter === PERIOD_OF_CITY) {
 						let name = "";
 						const fetchHumidityByPeriodOfCity = async (
@@ -253,16 +260,18 @@ const WidgetColumnChart = ({ id, data, inputs, outputs }) => {
 								periodCity[0],
 								periodCity[1],
 								periodCity[2]
-							).then(() => {
-								action = setColumnCategories(categories);
-								dispatch(action);
-								action = setColumnData(series);
-								dispatch(action);
-								action = setColumnTitle(`Yearly Humidity of ${name}`);
-								dispatch(action);
-								action = setColumnUnit("%");
-								dispatch(action);
-							});
+							)
+								.then(() => {
+									action = setColumnCategories(categories);
+									dispatch(action);
+									action = setColumnData(series);
+									dispatch(action);
+									action = setColumnTitle(`Yearly Humidity of ${name}`);
+									dispatch(action);
+									action = setColumnUnit("%");
+									dispatch(action);
+								})
+								.catch((error) => console.log("error", error));
 						}
 					}
 				} else if (dataSet === TEMPERATURE) {
@@ -297,16 +306,18 @@ const WidgetColumnChart = ({ id, data, inputs, outputs }) => {
 							return Promise.all(requests);
 						};
 
-						fetchTemperatureByCity(cities).then(() => {
-							action = setColumnCategories(categories);
-							dispatch(action);
-							action = setColumnData(series);
-							dispatch(action);
-							action = setColumnTitle("Yearly Temperature");
-							dispatch(action);
-							action = setColumnUnit("°C");
-							dispatch(action);
-						});
+						fetchTemperatureByCity(cities)
+							.then(() => {
+								action = setColumnCategories(categories);
+								dispatch(action);
+								action = setColumnData(series);
+								dispatch(action);
+								action = setColumnTitle("Yearly Temperature");
+								dispatch(action);
+								action = setColumnUnit("°C");
+								dispatch(action);
+							})
+							.catch((error) => console.log("error", error));
 					} else if (filter === PERIOD_OF_CITY) {
 						let name = "";
 						const fetchTemperatureByPeriodOfCity = async (
@@ -353,16 +364,18 @@ const WidgetColumnChart = ({ id, data, inputs, outputs }) => {
 								periodCity[0],
 								periodCity[1],
 								periodCity[2]
-							).then(() => {
-								action = setColumnCategories(categories);
-								dispatch(action);
-								action = setColumnData(series);
-								dispatch(action);
-								action = setColumnTitle(`Yearly Temperature of ${name}`);
-								dispatch(action);
-								action = setColumnUnit("°C");
-								dispatch(action);
-							});
+							)
+								.then(() => {
+									action = setColumnCategories(categories);
+									dispatch(action);
+									action = setColumnData(series);
+									dispatch(action);
+									action = setColumnTitle(`Yearly Temperature of ${name}`);
+									dispatch(action);
+									action = setColumnUnit("°C");
+									dispatch(action);
+								})
+								.catch((error) => console.log("error", error));
 						}
 					}
 				} else if (dataSet === RAINFALL) {
@@ -397,16 +410,18 @@ const WidgetColumnChart = ({ id, data, inputs, outputs }) => {
 							return Promise.all(requests);
 						};
 
-						fetchRainfallByCity(cities).then(() => {
-							action = setColumnCategories(categories);
-							dispatch(action);
-							action = setColumnData(series);
-							dispatch(action);
-							action = setColumnTitle("Yearly Rainfall");
-							dispatch(action);
-							action = setColumnUnit("%");
-							dispatch(action);
-						});
+						fetchRainfallByCity(cities)
+							.then(() => {
+								action = setColumnCategories(categories);
+								dispatch(action);
+								action = setColumnData(series);
+								dispatch(action);
+								action = setColumnTitle("Yearly Rainfall");
+								dispatch(action);
+								action = setColumnUnit("%");
+								dispatch(action);
+							})
+							.catch((error) => console.log("error", error));
 					} else if (filter === PERIOD_OF_CITY) {
 						let name = "";
 						const fetchRainfallByPeriodOfCity = async (
@@ -451,16 +466,18 @@ const WidgetColumnChart = ({ id, data, inputs, outputs }) => {
 								periodCity[0],
 								periodCity[1],
 								periodCity[2]
-							).then(() => {
-								action = setColumnCategories(categories);
-								dispatch(action);
-								action = setColumnData(series);
-								dispatch(action);
-								action = setColumnTitle(`Yearly Rainfall of ${name}`);
-								dispatch(action);
-								action = setColumnUnit("mm");
-								dispatch(action);
-							});
+							)
+								.then(() => {
+									action = setColumnCategories(categories);
+									dispatch(action);
+									action = setColumnData(series);
+									dispatch(action);
+									action = setColumnTitle(`Yearly Rainfall of ${name}`);
+									dispatch(action);
+									action = setColumnUnit("mm");
+									dispatch(action);
+								})
+								.catch((error) => console.log("error", error));
 						}
 					}
 				}
@@ -497,16 +514,18 @@ const WidgetColumnChart = ({ id, data, inputs, outputs }) => {
 							return Promise.all(requests);
 						};
 
-						fetchIndustryByCity(cities).then(() => {
-							action = setColumnCategories(categories);
-							dispatch(action);
-							action = setColumnData(series);
-							dispatch(action);
-							action = setColumnTitle("Yearly Industry");
-							dispatch(action);
-							action = setColumnUnit("IPI");
-							dispatch(action);
-						});
+						fetchIndustryByCity(cities)
+							.then(() => {
+								action = setColumnCategories(categories);
+								dispatch(action);
+								action = setColumnData(series);
+								dispatch(action);
+								action = setColumnTitle("Yearly Industry");
+								dispatch(action);
+								action = setColumnUnit("IPI");
+								dispatch(action);
+							})
+							.catch((error) => console.log("error", error));
 					} else if (filter === PERIOD_OF_CITY) {
 						let name = "";
 						const fetchIndustryByPeriodOfCity = async (
@@ -551,16 +570,18 @@ const WidgetColumnChart = ({ id, data, inputs, outputs }) => {
 								periodCity[0],
 								periodCity[1],
 								periodCity[2]
-							).then(() => {
-								action = setColumnCategories(categories);
-								dispatch(action);
-								action = setColumnData(series);
-								dispatch(action);
-								action = setColumnTitle(`Yearly Industry of ${name}`);
-								dispatch(action);
-								action = setColumnUnit("IPI");
-								dispatch(action);
-							});
+							)
+								.then(() => {
+									action = setColumnCategories(categories);
+									dispatch(action);
+									action = setColumnData(series);
+									dispatch(action);
+									action = setColumnTitle(`Yearly Industry of ${name}`);
+									dispatch(action);
+									action = setColumnUnit("IPI");
+									dispatch(action);
+								})
+								.catch((error) => console.log("error", error));
 						}
 					}
 				} else {
@@ -598,16 +619,18 @@ const WidgetColumnChart = ({ id, data, inputs, outputs }) => {
 							return Promise.all(requests);
 						};
 
-						fetchAfforestationByCity(cities).then(() => {
-							action = setColumnCategories(categories);
-							dispatch(action);
-							action = setColumnData(series);
-							dispatch(action);
-							action = setColumnTitle("Yearly Afforestation");
-							dispatch(action);
-							action = setColumnUnit("IPI");
-							dispatch(action);
-						});
+						fetchAfforestationByCity(cities)
+							.then(() => {
+								action = setColumnCategories(categories);
+								dispatch(action);
+								action = setColumnData(series);
+								dispatch(action);
+								action = setColumnTitle("Yearly Afforestation");
+								dispatch(action);
+								action = setColumnUnit("1000km²");
+								dispatch(action);
+							})
+							.catch((error) => console.log("error", error));
 					} else if (filter === PERIOD_OF_CITY) {
 						let name = "";
 						const fetchAfforestationByPeriodOfCity = async (
@@ -654,19 +677,126 @@ const WidgetColumnChart = ({ id, data, inputs, outputs }) => {
 								periodCity[0],
 								periodCity[1],
 								periodCity[2]
-							).then(() => {
+							)
+								.then(() => {
+									action = setColumnCategories(categories);
+									dispatch(action);
+									action = setColumnData(series);
+									dispatch(action);
+									action = setColumnTitle(`Yearly Afforestation of ${name}`);
+									dispatch(action);
+									action = setColumnUnit("1000km²");
+									dispatch(action);
+								})
+								.catch((error) => console.log("error", error));
+						}
+					}
+				} else if (dataSet === FOREST_COVER_AREA) {
+					if (filter === CITY) {
+						const fetchForestCoverAreaByCity = async (cities) => {
+							const requests = cities.map(async (city) => {
+								let object = {};
+								let name = "";
+								return await getForestCoverAreaByCity(city).then((item) => {
+									const data = [];
+									const category = [];
+
+									item.results.bindings.map((item) => {
+										name = item.city.value;
+										const year = item.year.value;
+										const value = Number(item.value.value);
+										category.push(year);
+										data.push(value);
+
+										return null;
+									});
+
+									object = {
+										...object,
+										name: name,
+										data: data,
+									};
+									categories = category;
+									series = [...series, object];
+								});
+							});
+							return Promise.all(requests);
+						};
+
+						fetchForestCoverAreaByCity(cities)
+							.then(() => {
 								action = setColumnCategories(categories);
 								dispatch(action);
 								action = setColumnData(series);
 								dispatch(action);
-								action = setColumnTitle(`Yearly Afforestation of ${name}`);
+								action = setColumnTitle("Yearly Forest Cover Area");
 								dispatch(action);
-								action = setColumnUnit("IPI");
+								action = setColumnUnit("1000km²");
 								dispatch(action);
+							})
+							.catch((error) => console.log("error", error));
+					} else if (filter === PERIOD_OF_CITY) {
+						let name = "";
+						const fetchForestCoverAreaByPeriodOfCity = async (
+							cityId,
+							fYear,
+							tYear
+						) => {
+							let object = {};
+							return await getForestCoverAreaByPeriodOfCity(
+								cityId,
+								fYear,
+								tYear
+							).then((item) => {
+								const data = [];
+								const category = [];
+
+								item.results.bindings.map((item) => {
+									name = item.city.value;
+									const year = item.year.value;
+									const value = Number(item.value.value);
+									category.push(year);
+									data.push(value);
+
+									return null;
+								});
+
+								object = {
+									...object,
+									name: name,
+									data: data,
+								};
+								categories = category;
+								series = [...series, object];
+
+								return null;
 							});
+						};
+						if (
+							periodCity[0] !== "" &&
+							periodCity[1] !== "" &&
+							periodCity[2] !== ""
+						) {
+							fetchForestCoverAreaByPeriodOfCity(
+								periodCity[0],
+								periodCity[1],
+								periodCity[2]
+							)
+								.then(() => {
+									action = setColumnCategories(categories);
+									dispatch(action);
+									action = setColumnData(series);
+									dispatch(action);
+									action = setColumnTitle(
+										`Yearly Forest Cover Area of ${name}`
+									);
+									dispatch(action);
+									action = setColumnUnit("1000km²");
+									dispatch(action);
+								})
+								.catch((error) => console.log("error", error));
 						}
 					}
-				} else {
 				}
 			} else if (dataCube === POPULATION) {
 				if (dataSet === POPULATION_PRODUCTION) {
@@ -701,16 +831,18 @@ const WidgetColumnChart = ({ id, data, inputs, outputs }) => {
 							return Promise.all(requests);
 						};
 
-						fetchPopulationByCity(cities).then(() => {
-							action = setColumnCategories(categories);
-							dispatch(action);
-							action = setColumnData(series);
-							dispatch(action);
-							action = setColumnTitle("Yearly Population");
-							dispatch(action);
-							action = setColumnUnit("thousands");
-							dispatch(action);
-						});
+						fetchPopulationByCity(cities)
+							.then(() => {
+								action = setColumnCategories(categories);
+								dispatch(action);
+								action = setColumnData(series);
+								dispatch(action);
+								action = setColumnTitle("Yearly Population");
+								dispatch(action);
+								action = setColumnUnit("thousands");
+								dispatch(action);
+							})
+							.catch((error) => console.log("error", error));
 					} else if (filter === PERIOD_OF_CITY) {
 						let name = "";
 						const fetchPopulationByPeriodOfCity = async (
@@ -757,16 +889,18 @@ const WidgetColumnChart = ({ id, data, inputs, outputs }) => {
 								periodCity[0],
 								periodCity[1],
 								periodCity[2]
-							).then(() => {
-								action = setColumnCategories(categories);
-								dispatch(action);
-								action = setColumnData(series);
-								dispatch(action);
-								action = setColumnTitle(`Yearly Population of ${name}`);
-								dispatch(action);
-								action = setColumnUnit("thousands");
-								dispatch(action);
-							});
+							)
+								.then(() => {
+									action = setColumnCategories(categories);
+									dispatch(action);
+									action = setColumnData(series);
+									dispatch(action);
+									action = setColumnTitle(`Yearly Population of ${name}`);
+									dispatch(action);
+									action = setColumnUnit("thousands");
+									dispatch(action);
+								})
+								.catch((error) => console.log("error", error));
 						}
 					}
 				} else {
