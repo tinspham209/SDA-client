@@ -199,18 +199,20 @@ const StatisticsMerge = ({ id, data, inputs, outputs }) => {
 					city,
 					fYear,
 					tYear
-				).then(() => {
-					action = setMergeCategories(categories);
-					dispatch(action);
-					action = setMergeData(series);
-					dispatch(action);
-					action = setMergeTitle(
-						`${dataSetTitle[0]} & ${dataSetTitle[1]} of ${cityName}`
-					);
-					dispatch(action);
-					action = setMergeYAxis(yAxis);
-					dispatch(action);
-				});
+				)
+					.then(() => {
+						action = setMergeCategories(categories);
+						dispatch(action);
+						action = setMergeData(series);
+						dispatch(action);
+						action = setMergeTitle(
+							`${dataSetTitle[0]} & ${dataSetTitle[1]} of ${cityName}`
+						);
+						dispatch(action);
+						action = setMergeYAxis(yAxis);
+						dispatch(action);
+					})
+					.catch((error) => console.log("error", error));
 			} else if (merge.length === 3) {
 				let dc = [];
 				let ds = [];
@@ -324,18 +326,20 @@ const StatisticsMerge = ({ id, data, inputs, outputs }) => {
 					city,
 					fYear,
 					tYear
-				).then(() => {
-					action = setMergeCategories(categories);
-					dispatch(action);
-					action = setMergeData(series);
-					dispatch(action);
-					action = setMergeTitle(
-						`${dataSetTitle[0]} & ${dataSetTitle[1]} & ${dataSetTitle[2]} of ${cityName}`
-					);
-					dispatch(action);
-					action = setMergeYAxis(yAxis);
-					dispatch(action);
-				});
+				)
+					.then(() => {
+						action = setMergeCategories(categories);
+						dispatch(action);
+						action = setMergeData(series);
+						dispatch(action);
+						action = setMergeTitle(
+							`${dataSetTitle[0]} & ${dataSetTitle[1]} & ${dataSetTitle[2]} of ${cityName}`
+						);
+						dispatch(action);
+						action = setMergeYAxis(yAxis);
+						dispatch(action);
+					})
+					.catch((error) => console.log("error", error));
 			}
 		}
 	};
