@@ -15,8 +15,6 @@ import {
 	setLineTwoAxisData,
 	setLineTwoAxisTitle,
 	setLineTwoAxisYAxis,
-	setPortCanLinked,
-	setPortIsLinked,
 } from "../../../../app/slice/dashboardSlice";
 import { OPERATORS, STATISTICS_MERGE } from "../../../../app/ItemTypes";
 import {} from "../../../../api";
@@ -28,8 +26,6 @@ const WidgetLineChartTwoAxis = ({ id, data, inputs, outputs }) => {
 	const itemIsSelects = useSelector(
 		(state) => state.dashboard.mashupContent.itemIsSelect
 	);
-
-	const port = useSelector((state) => state.dashboard.mashupContent.port);
 
 	// [category, data, title, yAxis]
 	const dataMerge = [
@@ -45,27 +41,6 @@ const WidgetLineChartTwoAxis = ({ id, data, inputs, outputs }) => {
 		const idArray = itemIsSelects[0].split("-");
 		const dataCube = idArray[0];
 		const dataSet = idArray[1];
-		const filter = idArray[2];
-
-		let portWidget;
-		let portViz = id
-			.split("-")
-			.filter((item) => item.length > 2)
-			.join("-");
-		if (filter === undefined) {
-			portWidget = `${dataCube}-${dataSet}`;
-		} else {
-			portWidget = `${dataCube}-${dataSet}-${filter}`;
-		}
-
-		const portLinked = [`port-${portWidget}`, `portOut-${portViz}`];
-
-		if (portLinked !== port) {
-			action = setPortIsLinked(portLinked);
-			dispatch(action);
-			action = setPortCanLinked(true);
-			dispatch(action);
-		}
 
 		if (dataCube === OPERATORS) {
 			if (dataSet === STATISTICS_MERGE) {
