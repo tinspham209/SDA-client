@@ -1397,7 +1397,7 @@ export const treeIndustryProduction = {
 			},
 			{
 				name: "TP.Hồ Chí Minh",
-				id: "hochiminh",
+				id: "tphochiminh",
 			},
 			{
 				name: "Bến Tre",
