@@ -102,6 +102,7 @@ const WidgetColumnChart = ({ id, data, inputs, outputs }) => {
 		let action;
 
 		const idArray = itemIsSelectCity[0].split("-");
+		console.log("itemIsSelectCity: ", itemIsSelectCity);
 		const dataCube = idArray[0];
 		const dataSet = idArray[1];
 		const filter = idArray[2];
@@ -109,7 +110,7 @@ const WidgetColumnChart = ({ id, data, inputs, outputs }) => {
 
 		let series = [];
 		let categories = [];
-		let cities = [];
+		const cities = [];
 
 		if (city !== undefined) {
 			itemIsSelects.map((item) => cities.push(item.split("-")[3]));
@@ -120,8 +121,14 @@ const WidgetColumnChart = ({ id, data, inputs, outputs }) => {
 			const year = itemIsSelectYear[0].split("-").pop();
 			const category = [];
 
-			const fetchDataCityInYear = async (dataCube, dataSet, cities, year) => {
-				const requests = cities.map(async (city) => {
+			const fetchDataCityInYear = async (
+				dataCube,
+				dataSet,
+				multiCities,
+				year
+			) => {
+				console.log("multiCities: ", multiCities);
+				const requests = multiCities.map(async (city) => {
 					let object = {};
 					let name = "";
 					return await getDataCityInYear(dataCube, dataSet, city, year).then(
@@ -151,6 +158,7 @@ const WidgetColumnChart = ({ id, data, inputs, outputs }) => {
 				});
 			};
 
+			console.log("cities: ", cities);
 			fetchDataCityInYear(dataCube, dataSet, cities, year)
 				.then(() => {
 					const capitalizeFirstLetter = (string) => {
