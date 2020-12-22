@@ -91,7 +91,9 @@ http://server.sda-research.ml
 
 ### Next Steps:
 
-- Visualization `Forest Cover Area`
+- Bug:
+  - Select year, cities, click run > working > After that, change another year > click run > Bug: city/2013/year/2013. Only can select year and cities again so that is working
+  - Select 1 city and multi years is not working
 
 ### Directory Structure
 
