@@ -26,8 +26,8 @@ import {
 } from "../../../../../app/slice/dashboardSlice";
 import { useDispatch, useSelector } from "react-redux";
 import {
-	AFFORESTATION,
 	FOREST,
+	FOREST_COVER_AREA,
 	PERIOD_OF_CITY,
 } from "../../../../../app/ItemTypes";
 
@@ -83,11 +83,11 @@ const ForestCoverAreaPeriodOfCity = ({ id, data, inputs, outputs }) => {
 			dispatch(action);
 			action = setPeriodOfCityToYear(toYear);
 			dispatch(action);
-			const itemIsSelect = [`${FOREST}-${AFFORESTATION}-${PERIOD_OF_CITY}`];
+			const itemIsSelect = [`${FOREST}-${FOREST_COVER_AREA}-${PERIOD_OF_CITY}`];
 			action = setItemIsSelectCity(itemIsSelect);
 			dispatch(action);
 
-			const idMerge = `${FOREST}-${AFFORESTATION}-${city}-${fromYear}-${toYear}`;
+			const idMerge = `${FOREST}-${FOREST_COVER_AREA}-${city}-${fromYear}-${toYear}`;
 			const newMerge = [...merge, idMerge];
 			action = setMerge(newMerge);
 			dispatch(action);
