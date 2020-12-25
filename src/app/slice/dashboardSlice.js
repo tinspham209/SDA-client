@@ -38,10 +38,10 @@ const dashboard = createSlice({
 					},
 				},
 				forest: {
-					isOpen: true,
+					isOpen: false,
 					children: {
 						afforestation: false,
-						forestCoverArea: true,
+						forestCoverArea: false,
 					},
 				},
 				operators: {
