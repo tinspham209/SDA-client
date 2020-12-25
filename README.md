@@ -11,16 +11,17 @@
     - [x] Humidity
     - [x] Rainfall
   - [ ] Atmosphere
-  - [x] Population:
+  - [x] Population
   - Industry
     - [x] Industry Production
   - Forest
-    - [ ] Forest Cover Area
+    - [x] Forest Cover Area
     - [x] AfForestation
 - Feature:
   - [x] Filter by year
   - [x] Filter by city
-  - [x] Filter by period of city
+  - [x] Filter by year & cities
+  - [x] Filter by period of ciy
   - [x] Statistics merge
   - [ ] Simple Merge
 - Visualization
@@ -30,12 +31,13 @@
     - [x] Column
     - [x] Line
     - [ ] Pie
-    - [x] Two Axis Charts
-    - [x] Three Axis Charts
+    - [x] Two Y-Axis Charts
+    - [x] Three Y-Axis Charts
 
 ### Releases
 
 - https://sda-research.ml
+- http://sda-research.surge.sh
 
 ### Server Endpoint:
 
