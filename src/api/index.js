@@ -75,6 +75,10 @@ export const getDataMergeThreeWidgetPeriodOfCity = async (
 		dataSet3 = "forestcover";
 	}
 	try {
+		console.log(
+			"url",
+			`${url}/merge/dc1/dc${dataCube1}/dc2/dc${dataCube2}/dc3/dc${dataCube3}/s1/${dataSet1}/s2/${dataSet2}/s3/${dataSet3}/city/${city}/fyear/${fYear}/tyear/${tYear}`
+		);
 		const { data } = await axios.get(
 			`${url}/merge/dc1/dc${dataCube1}/dc2/dc${dataCube2}/dc3/dc${dataCube3}/s1/${dataSet1}/s2/${dataSet2}/s3/${dataSet3}/city/${city}/fyear/${fYear}/tyear/${tYear}`
 		);
@@ -118,6 +122,10 @@ export const getDataMergeTwoWidgetPeriodOfCity = async (
 
 export const getIndustryByPeriodOfCity = async (city, fYear, tYear) => {
 	try {
+		console.log(
+			"url",
+			`${url}/industry/industry/city/${city}/fYear/${fYear}/tYear/${tYear}`
+		);
 		const { data } = await axios.get(
 			`${url}/industry/industry/city/${city}/fYear/${fYear}/tYear/${tYear}`
 		);
@@ -130,6 +138,10 @@ export const getIndustryByPeriodOfCity = async (city, fYear, tYear) => {
 
 export const getRainfallByPeriodOfCity = async (city, fYear, tYear) => {
 	try {
+		console.log(
+			"url",
+			`${url}/climate/rainfall/city/${city}/fYear/${fYear}/tYear/${tYear}`
+		);
 		const { data } = await axios.get(
 			`${url}/climate/rainfall/city/${city}/fYear/${fYear}/tYear/${tYear}`
 		);
@@ -242,6 +254,7 @@ export const getRainfallByYear = async (year) => {
 
 export const getAfforestationByYear = async (year) => {
 	try {
+		console.log("url", `${url}/forest/afforestation/year/${year}`);
 		const { data } = await axios.get(
 			`${url}/forest/afforestation/year/${year}`
 		);
@@ -253,6 +266,7 @@ export const getAfforestationByYear = async (year) => {
 };
 
 export const getForestCoverAreaByYear = async (year) => {
+	console.log("url", `${url}/forest/forestcover/year/${year}`);
 	try {
 		const { data } = await axios.get(`${url}/forest/forestcover/year/${year}`);
 
