@@ -1,6 +1,6 @@
-# Mini Project: Smart Dashboard Application - Client
+# Science Research Project: Smart Dashboard Application - Client
 
-## Date: 20 - Aug - 2020 to present
+## Date: 20 - Aug to 25 - Dec - 2020
 
 ### Functions:
 
