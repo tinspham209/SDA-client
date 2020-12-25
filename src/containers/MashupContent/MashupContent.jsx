@@ -318,7 +318,7 @@ const MashupContent = () => {
 			// action = setLineThreeAxisData([]);
 			// dispatch(action);
 			// action = setLineThreeAxisCategories([]);
-			// dispatch(action);
+			dispatch(action);
 		}
 		// eslint-disable-next-line
 	}, [navbarNewOnClick]);
