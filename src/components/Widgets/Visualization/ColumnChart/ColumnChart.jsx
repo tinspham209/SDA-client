@@ -166,6 +166,7 @@ const WidgetColumnChart = ({ id, data, inputs, outputs }) => {
 					};
 					const nameTitle = `${capitalizeFirstLetter(dataCube)} in ${year}`;
 
+					console.log("categories: ", categories);
 					action = setColumnCategories(categories);
 					dispatch(action);
 					action = setColumnData(series);
